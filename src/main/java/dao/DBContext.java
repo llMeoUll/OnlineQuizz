@@ -1,5 +1,7 @@
 package dao;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.sql.Connection;
 
 public abstract class DBContext<T> {
@@ -7,9 +9,11 @@ public abstract class DBContext<T> {
 
     DBContext() {
         try {
-            String url = "jdbc:mysql://localhost:9999/online_quizz";
-            String user = "root";
-            String password = "longdongtao2002";
+            Dotenv dotenv = Dotenv.configure().load();
+
+            String url = dotenv.get("db_url");
+            String user = dotenv.get("db_user");
+            String password = dotenv.get("db_password");
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
