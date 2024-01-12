@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,4 +19,11 @@ public class User {
     private String email;
     private String displayName;
     private int rid;
+    private ArrayList<StarRate> ratedStar;
+    private ArrayList<Test> doneTest;
+    private ArrayList<Set> ownedSets;
+    private ArrayList<SelfTest> selfTests;
+    private ArrayList<Room> ownedRooms;
+    private ArrayList<Room> joinedRooms;
+    private String avatar;
 }
