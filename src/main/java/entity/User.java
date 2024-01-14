@@ -18,11 +18,12 @@ public class User {
     private String password;
     private String email;
     private String displayName;
-    private String avatar;
     private int rid;
-    private ArrayList<Test> doneTests;
-    private ArrayList<StarRate> listOfRated;
-    private ArrayList<Room> rooms;
-    private ArrayList<Set> sets;
+    private ArrayList<StarRate> ratedStar;
+    private ArrayList<Test> doneTest;
+    private ArrayList<Set> ownedSets;
     private ArrayList<SelfTest> selfTests;
+    private ArrayList<Room> ownedRooms;
+    private ArrayList<Room> joinedRooms;
+    private String avatar;
 }
