@@ -18,7 +18,7 @@ public class User {
     private String password;
     private String email;
     private String displayName;
-    private int rid;
+    private Role role;
     private ArrayList<StarRate> ratedStar;
     private ArrayList<Test> doneTest;
     private ArrayList<Set> ownedSets;
