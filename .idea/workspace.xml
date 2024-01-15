@@ -10,12 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a43bca65-5ade-43c0-8530-cb9c77ebf1b4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlinequizz/HelloServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/DashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/dashboard/DashBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/dashboard/DashBoard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -68,7 +67,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/ProjectSWP/OnlineQuizz",
+    "last_opened_file_path": "E:/ProjectSWP/OnlineQuizz/src/main/webapp/view/icons",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -81,12 +80,15 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\icons" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\dashboard" />
       <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\resources" />
       <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\webapp" />
       <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src" />
       <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz" />
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\webapp\WEB-INF" />
     </key>
   </component>
   <component name="RunManager">
@@ -192,7 +194,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="68bf7d91-c2a9-4978-8c8a-c4ead7d505d1" name="Changes" comment="" />
+      <changelist id="a43bca65-5ade-43c0-8530-cb9c77ebf1b4" name="Changes" comment="" />
       <created>1704853520966</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -201,6 +203,7 @@
       <workItem from="1704967299798" duration="1405000" />
       <workItem from="1704968716737" duration="7008000" />
       <workItem from="1705020492210" duration="109000" />
+      <workItem from="1705286399482" duration="9672000" />
     </task>
     <servers />
   </component>
