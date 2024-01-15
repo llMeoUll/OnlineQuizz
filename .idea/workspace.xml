@@ -10,11 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a43bca65-5ade-43c0-8530-cb9c77ebf1b4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/pages/DashBoard.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/DashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/dashboard/DashBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/dashboard/DashBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/dashboard/DashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/dashboard/DashBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/dashboard/DashBoard.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/dashboard/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/pages/UserManagement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/group.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/overview.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/question-and-answer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/target.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/training.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,14 +90,14 @@
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\icons" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view" />
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\dashboard\pages" />
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\dashboard\styles" />
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\dashboard" />
       <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\resources" />
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\webapp" />
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src" />
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat server 10.0.18">
     <configuration name="Tomcat server 10.0.18" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="21 (2)">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -190,6 +196,30 @@
         </option>
       </method>
     </configuration>
+    <configuration name="Tomcat: OnlineQuizz" type="com.poratu.idea.plugins.tomcat" temporary="true">
+      <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
+      <predefined_log_file enabled="true" id="Tomcat Access Log" />
+      <predefined_log_file id="Tomcat Catalina Log" />
+      <predefined_log_file id="Tomcat Manager Log" />
+      <predefined_log_file id="Tomcat Host Manager Log" />
+      <option name="contextPath" value="/OnlineQuizz" />
+      <option name="docBase" value="$PROJECT_DIR$/src/main/webapp" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/10.0.20" />
+          <option name="path" value="C:/Program Files/Apache Software Foundation/Tomcat 10.0" />
+          <option name="version" value="10.0.20.0" />
+        </TomcatInfo>
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Smart Tomcat.Tomcat: OnlineQuizz" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -203,7 +233,7 @@
       <workItem from="1704967299798" duration="1405000" />
       <workItem from="1704968716737" duration="7008000" />
       <workItem from="1705020492210" duration="109000" />
-      <workItem from="1705286399482" duration="9672000" />
+      <workItem from="1705286399482" duration="15385000" />
     </task>
     <servers />
   </component>

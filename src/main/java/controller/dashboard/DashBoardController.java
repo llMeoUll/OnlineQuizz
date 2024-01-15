@@ -14,7 +14,7 @@ public class DashBoardController extends HttpServlet {
         UserDBContext userDBContext = new UserDBContext();
         ArrayList<User> users = userDBContext.list();
         request.setAttribute("users", users);
-        request.getRequestDispatcher("view/dashboard/DashBoard.jsp").forward(request, response);
+        request.getRequestDispatcher("view/pages/DashBoard.jsp").forward(request, response);
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
