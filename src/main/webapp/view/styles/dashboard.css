@@ -45,8 +45,7 @@ body {
     height: 35px;
     width: 35px;
     margin-right: 50px;
-    border: 3px solid;
-    border-color: rgb(51, 51, 102);
+    border: 3px solid rgb(51, 51, 102);
     border-radius: 50%;
 }
 
@@ -70,7 +69,7 @@ body {
     justify-content: left;
     border: none;
     background-color: rgb(51, 51, 102);
-    transition: 1.5;
+    transition: 1.5s;
 }
 
 .left-sidebar-item :hover {
@@ -104,7 +103,7 @@ img {
 }
 
 .manage-view {
-    padding: 0px 3px;
+    padding: 0 3px;
     display: flex;
     justify-content: right;
 }
@@ -141,11 +140,9 @@ img {
 }
 
 .account-manage-item {
-    border: 1px solid;
     margin-right: 10px;
     margin-left: 10px;
-    border: 3px solid;
-    border-color: rgb(51, 51, 102);
+    border: 3px solid rgb(51, 51, 102);
     border-radius: 5px;
     margin-bottom: 5px;
     max-height: 100%;
@@ -163,9 +160,8 @@ img {
 }
 
 .room-manage-item {
-    border: 3px solid;
     border-radius: 5px;
-    border-color: rgb(51, 51, 102);
+    border: 3px solid rgb(51, 51, 102);
     margin-left: 10px;
     margin-right: 5px;
     margin-bottom: 5px;
@@ -187,9 +183,8 @@ img {
 
 .set-manage-item {
     height: 80px;
-    border: 3px solid;
     border-radius: 5px;
-    border-color: rgb(51, 51, 102);
+    border: 3px solid rgb(51, 51, 102);
     margin-bottom: 20px;
 }
 
