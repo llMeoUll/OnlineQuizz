@@ -13,6 +13,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
 =======
@@ -24,6 +25,15 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
 >>>>>>> 681020898554ba192cd879e61b4443b111a90ba7
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/dashboard/DashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/DashBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/dashboard/UserManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/UserManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/pages/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/DashBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/pages/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/UserManagement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/styles/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/styles/dashboard.css" afterDir="false" />
+>>>>>>> Long
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,43 +80,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/ProjectSWP/OnlineQuizz",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/ProjectSWP/OnlineQuizz/src/main/webapp/view/icons&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+<<<<<<< HEAD
     <key name="CreateClassDialog.RecentsKey">
       <recent name="entity" />
+=======
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\icons" />
+>>>>>>> Long
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\resources" />
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\webapp" />
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src" />
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz" />
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\webapp\WEB-INF" />
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\pages\admin" />
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view" />
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\dashboard\pages" />
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\dashboard\styles" />
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\dashboard" />
     </key>
   </component>
+<<<<<<< HEAD
   <component name="RunManager">
 <<<<<<< HEAD
     <configuration name="Tomcat server 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="21 (2)">
 =======
+=======
+  <component name="RunManager" selected="Tomcat Server.Tomcat server 10.0.18">
+>>>>>>> Long
     <configuration name="Tomcat server 10.0.18" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="21 (2)">
 >>>>>>> 681020898554ba192cd879e61b4443b111a90ba7
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -206,11 +225,36 @@
         </option>
       </method>
     </configuration>
+    <configuration name="Tomcat: OnlineQuizz" type="com.poratu.idea.plugins.tomcat" temporary="true">
+      <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
+      <predefined_log_file enabled="true" id="Tomcat Access Log" />
+      <predefined_log_file id="Tomcat Catalina Log" />
+      <predefined_log_file id="Tomcat Manager Log" />
+      <predefined_log_file id="Tomcat Host Manager Log" />
+      <option name="contextPath" value="/OnlineQuizz" />
+      <option name="docBase" value="$PROJECT_DIR$/src/main/webapp" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/10.0.20" />
+          <option name="path" value="C:/Program Files/Apache Software Foundation/Tomcat 10.0" />
+          <option name="version" value="10.0.20.0" />
+        </TomcatInfo>
+      </option>
+      <module name="OnlineQuizz" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Smart Tomcat.Tomcat: OnlineQuizz" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="68bf7d91-c2a9-4978-8c8a-c4ead7d505d1" name="Changes" comment="" />
+      <changelist id="a43bca65-5ade-43c0-8530-cb9c77ebf1b4" name="Changes" comment="" />
       <created>1704853520966</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -218,8 +262,16 @@
       <workItem from="1704853523048" duration="541000" />
       <workItem from="1704967299798" duration="1405000" />
       <workItem from="1704968716737" duration="7008000" />
+<<<<<<< HEAD
       <workItem from="1705020492210" duration="696000" />
       <workItem from="1705021670811" duration="8804000" />
+=======
+      <workItem from="1705020492210" duration="109000" />
+      <workItem from="1705286399482" duration="16633000" />
+      <workItem from="1705369517160" duration="1430000" />
+      <workItem from="1705543022074" duration="7893000" />
+      <workItem from="1705673751425" duration="2228000" />
+>>>>>>> Long
     </task>
     <servers />
   </component>

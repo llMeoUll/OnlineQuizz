@@ -12,9 +12,9 @@ public abstract class DBContext<T> {
     DBContext() {
         try {
             Dotenv dotenv = Dotenv.configure().load();
-            String url = dotenv.get("DB_URL");
-            String user = dotenv.get("DB_USERNAME");
-            String password = dotenv.get("DB_PASSWORD");
+            String url = dotenv.get("db_url");
+            String user = dotenv.get("db_username");
+            String password = dotenv.get("db_password");
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException | SQLException e) {
@@ -27,6 +27,5 @@ public abstract class DBContext<T> {
     public abstract void delete(T entity);
     public abstract void update(T entity);
     public abstract void create(T entity);
-
     public abstract void insert(T entity);
 }
