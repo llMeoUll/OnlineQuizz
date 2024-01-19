@@ -2,7 +2,6 @@ package dao;
 
 import entity.Role;
 import entity.User;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,7 +57,7 @@ public class UserDBContext extends DBContext<User>{
                     "    `user`.`email`,\n" +
                     "    `user`.`password`,\n" +
                     "    `user`.`display_name`,\n" +
-                    "    `user`.`avatar`,\n" +
+                    "    `user`.`avartar`,\n" +
                     "    `user`.`rid`\n" +
                     "FROM `online_quizz`.`user`;\n";
             PreparedStatement stmGetListUser = connection.prepareStatement(sqlListUser);
@@ -69,10 +68,12 @@ public class UserDBContext extends DBContext<User>{
                 String email = rsListUser.getString("email");
                 String password = rsListUser.getString("password");
                 String display_name = rsListUser.getString("display_name");
-                byte[] avatarBytes = rsListUser.getBytes("avatar");
+                byte[] avatarBytes = rsListUser.getBytes("avartar");
 
-                // Convert avatarBytes to Base64-encoded string
-                String avatar = Base64.getEncoder().encodeToString(avatarBytes);
+                String avatar = null;
+                if(avatarBytes != null) {
+                    avatar = Base64.getEncoder().encodeToString(avatarBytes);
+                }
                 User user = new User();
                 user.setUid(uid);
                 user.setUsername(username);
