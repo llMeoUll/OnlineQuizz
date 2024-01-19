@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <title>DashBoard</title>
         <style>
-            <%@include file="../styles/dashboard.css"%>
+            <%@include file="../../styles/dashboard.css"%>
         </style>
     </head>
 
@@ -77,27 +77,38 @@
             <div class="col-md-8 middle-content">
                 <div class="d-flex flex-column">
                     <div class="account-manage">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-10 manage-title">
-                                    Account management
-                                </div>
-                                <div class="col-md-2 manage-view">
-                                    <button>View Details</button>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-10 manage-title">
+                                Account management
                             </div>
-                            <div class="row manage-overview mb-2">
-                                <div class="col-md-8 account-manage-item">
-                                    Chart
-                                </div>
-                                <div class="col-md-3 account-manage-item">
-                                    New Account
-                                </div>
+                            <div class="col-md-2 manage-view">
+                                <button>View Details</button>
+                            </div>
+                        </div>
+                        <div class="row manage-overview mb-2">
+                            <div class="col-md-8 account-manage-item">
+                                Chart
+                            </div>
+                            <div class="col-md-3 account-manage-item list-new-account">
+                                <div class="account">Account 1</div>
+                                <div class="account">Account 2</div>
+                                <div class="account">Account 3</div>
+                                <div class="account">Account 4</div>
+                                <div class="account">Account 5</div>
+                                <div class="account">Account 6</div>
+                                <div class="account">Account 7</div>
+                                <div class="account">Account 8</div>
+                                <div class="account">Account 9</div>
+                                <div class="account">Account 10</div>
+                                <div class="account">Account 11</div>
+                                <div class="account">Account 11</div>
+                                <div class="account">Account 11</div>
+                                <div class="account">Account 11</div>
                             </div>
                         </div>
                     </div>
                     <div class="room-manage">
-                        <div class="container">
+                        <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-10 manage-title">
                                     Room Management
@@ -106,74 +117,79 @@
                                     <button>View Details</button>
                                 </div>
                             </div>
-                            <div class="row manage-overview mb-2">
-                                <div class="col-md-3 room-manage-item">
-                                    Room 1
-                                </div>
-                                <div class="col-md-3 room-manage-item">
-                                    Room 2
-                                </div>
-                                <div class="col-md-3 room-manage-item">
-                                    Room 3
-                                </div>
+                        </div>
+                        <div class="row manage-overview mb-2">
+                            <div class="col-md-3 room-manage-item">
+                                Room 1
+                            </div>
+                            <div class="col-md-3 room-manage-item">
+                                Room 2
+                            </div>
+                            <div class="col-md-3 room-manage-item">
+                                Room 3
                             </div>
                         </div>
                     </div>
                     <div class="set-manage">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-10 manage-title">
-                                    Set Management
-                                </div>
-                                <div class="col-md-2 manage-view">
-                                    <button>View Details</button>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-10 manage-title">
+                                Set Management
                             </div>
-                            <div class="set-manage-overview">
-                                <div class="set-manage-item">
+                            <div class="col-md-2 manage-view">
+                                <button>View Details</button>
+                            </div>
+                        </div>
+                        <div class="set-manage-overview">
+                            <div class="set-manage-item">
 
-                                </div>
-                                <div class="set-manage-item">
+                            </div>
+                            <div class="set-manage-item">
 
-                                </div>
-                                <div class="set-manage-item">
+                            </div>
+                            <div class="set-manage-item">
 
-                                </div>
+                            </div>
+                            <div class="set-manage-item">
+
+                            </div>
+                            <div class="set-manage-item">
+
+                            </div>
+                            <div class="set-manage-item">
+
                             </div>
                         </div>
                     </div>
                     <div class="question-manage">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-10 manage-title">
-                                    Question Bank
-                                </div>
-                                <div class="col-md-2 manage-view">
-                                    <button>View Details</button>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-10 manage-title">
+                                Question Bank
                             </div>
-                            <div class="set-manage-overview">
-                                <table>
-                                    <thead>
-                                    <tr>
-                                        <td>Question ID</td>
-                                        <td>Category</td>
-                                        <td>Question Content</td>
-                                        <td>Question Answer</td>
-                                        <td>Author</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <div class="col-md-2 manage-view">
+                                <button>View Details</button>
                             </div>
+                        </div>
+                        <div class="set-manage-overview">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <td>Question ID</td>
+                                    <td>Category</td>
+                                    <td>Question Content</td>
+                                    <td>Question Answer</td>
+                                    <td>Author</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

@@ -45,7 +45,8 @@ body {
     height: 35px;
     width: 35px;
     margin-right: 50px;
-    border: 3px solid rgb(51, 51, 102);
+    border: 3px solid;
+    border-color: rgb(51, 51, 102);
     border-radius: 50%;
 }
 
@@ -69,7 +70,7 @@ body {
     justify-content: left;
     border: none;
     background-color: rgb(51, 51, 102);
-    transition: 1.5s;
+    transition: 1.5;
 }
 
 .left-sidebar-item :hover {
@@ -103,7 +104,7 @@ img {
 }
 
 .manage-view {
-    padding: 0 3px;
+    padding: 0px 3px;
     display: flex;
     justify-content: right;
 }
@@ -132,48 +133,64 @@ img {
 .account-manage {
     width: 100%;
     height: 400px;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
+}
+
+.list-new-account {
+    overflow: auto;
 }
 
 .account-manage-item {
+    border: 1px solid;
     margin-right: 10px;
     margin-left: 10px;
-    border: 3px solid rgb(51, 51, 102);
+    border: 3px solid;
+    border-color: rgb(51, 51, 102);
     border-radius: 5px;
     margin-bottom: 5px;
+    max-height: 100%;
+}
+
+.account {
+    height: 35px;
 }
 
 .room-manage {
+    margin-top: 40px;
     width: 100%;
     height: 250px;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
 }
 
 .room-manage-item {
+    border: 3px solid;
     border-radius: 5px;
-    border: 3px solid rgb(51, 51, 102);
+    border-color: rgb(51, 51, 102);
     margin-left: 10px;
     margin-right: 5px;
     margin-bottom: 5px;
-    height: 85%;
+    max-height: 85%;
 }
 
 .set-manage {
     width: 100%;
     height: 300px;
-    margin-bottom: 10px;
+    margin-bottom: 80px;
     margin-top: 20px;
 }
 
 .set-manage-overview {
     margin-top: 10px;
+    max-height: 100%;
+    overflow: auto;
 }
 
 .set-manage-item {
     height: 80px;
+    border: 3px solid;
     border-radius: 5px;
-    border: 3px solid rgb(51, 51, 102);
-    margin-bottom: 5px;
+    border-color: rgb(51, 51, 102);
+    margin-bottom: 20px;
 }
 
 table {
