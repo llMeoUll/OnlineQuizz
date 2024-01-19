@@ -56,7 +56,7 @@ public class UserDBContext extends DBContext<User>{
             String sqlListUser = "SELECT `user`.`uid`,\n" +
                     "    `user`.`username`,\n" +
                     "    `user`.`email`,\n" +
-                    "    `user`.`pgassword`,\n" +
+                    "    `user`.`password`,\n" +
                     "    `user`.`display_name`,\n" +
                     "    `user`.`avatar`,\n" +
                     "    `user`.`rid`\n" +
@@ -69,16 +69,10 @@ public class UserDBContext extends DBContext<User>{
                 String email = rsListUser.getString("email");
                 String password = rsListUser.getString("password");
                 String display_name = rsListUser.getString("display_name");
-<<<<<<< HEAD
                 byte[] avatarBytes = rsListUser.getBytes("avatar");
 
                 // Convert avatarBytes to Base64-encoded string
                 String avatar = Base64.getEncoder().encodeToString(avatarBytes);
-=======
-                String avatar = rsListUser.getString("avartar");
->>>>>>> Long
-                Role role = new Role();
-                int rid = Integer.parseInt(rsListUser.getString("rid"));
                 User user = new User();
                 user.setUid(uid);
                 user.setUsername(username);
