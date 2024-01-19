@@ -1,8 +1,9 @@
 package dao;
 
 import io.github.cdimascio.dotenv.Dotenv;
-
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public abstract class DBContext<T> {
@@ -15,7 +16,8 @@ public abstract class DBContext<T> {
             String user = dotenv.get("DB_USERNAME");
             String password = dotenv.get("DB_PASSWORD");
             Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
+            connection = DriverManager.getConnection(url, user, password);
+        } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -26,4 +28,5 @@ public abstract class DBContext<T> {
     public abstract void update(T entity);
     public abstract void create(T entity);
 
+    public abstract void insert(T entity);
 }
