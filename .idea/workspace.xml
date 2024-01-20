@@ -12,11 +12,22 @@
     <list default="true" id="9e8b4fd3-2b91-427b-85e9-52000caad053" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jsp File" />
+        <option value="JavaScript File" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,7 +43,10 @@
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="RunManager">
+    <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+
     <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="21 (2)" nameIsGenerated="true">
+
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="OnlineQuizz:war">
@@ -132,6 +146,24 @@
     </configuration>
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a43bca65-5ade-43c0-8530-cb9c77ebf1b4" name="Changes" comment="" />
+      <created>1704853520966</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1704853520966</updated>
+      <workItem from="1704853523048" duration="541000" />
+      <workItem from="1704967299798" duration="1405000" />
+      <workItem from="1704968716737" duration="7008000" />
+      <workItem from="1705020492210" duration="696000" />
+      <workItem from="1705021670811" duration="8804000" />
+      <workItem from="1705020492210" duration="109000" />
+      <workItem from="1705286399482" duration="16633000" />
+      <workItem from="1705369517160" duration="1430000" />
+      <workItem from="1705543022074" duration="7893000" />
+      <workItem from="1705673751425" duration="2228000" />
+      <workItem from="1705764087498" duration="1818000" />
+    </task>
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
