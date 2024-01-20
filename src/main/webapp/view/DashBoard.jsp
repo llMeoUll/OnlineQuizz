@@ -34,7 +34,10 @@
                     <td>${user.email}</td>
                     <td>${user.displayName}</td>
                     <td>${user.role.rid}</td>
-                    <td>${user.avatar}</td>
+                    <td>
+                        <!-- Displaying the avatar as an image using a data URI -->
+                        <img src="data:image/jpeg;base64,${user.avatar}" alt="Avatar">
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

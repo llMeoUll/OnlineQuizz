@@ -20,6 +20,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,27 +81,57 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/ProjectSWP/OnlineQuizz/src/main/webapp/view/icons&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\resources" />
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\webapp" />
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src" />
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz" />
-      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\webapp\WEB-INF" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="entity" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\icons" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\pages\admin" />
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view" />
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\dashboard\pages" />
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\dashboard\styles" />
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\view\dashboard" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="excludedTypes">
+      <set>
+        <option value="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" />
+      </set>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Tomcat server 10.0.18" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.18" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="21 (2)">
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
       <option name="UPDATING_POLICY" value="update-resources" />
+    <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/OnlineQuizz/" />
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="OnlineQuizz:war exploded">
           <settings>
@@ -109,8 +140,9 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="8276acfd-ac06-4f6a-a27b-f7a2b5700ad1" />
-        <option name="HTTP_PORT" value="8888" />
+        <option name="BASE_DIRECTORY_NAME" value="65f37362-8b87-4363-913f-8e5260ec652b" />
+        <option name="HTTP_PORT" value="8080" />
+        <option name="JNDI_PORT" value="1098" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -128,7 +160,7 @@
         </ENTRIES>
       </extension>
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="59983" />
+        <option name="DEBUG_PORT" value="50595" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -209,6 +241,8 @@
       <workItem from="1704853523048" duration="541000" />
       <workItem from="1704967299798" duration="1405000" />
       <workItem from="1704968716737" duration="7008000" />
+      <workItem from="1705020492210" duration="696000" />
+      <workItem from="1705021670811" duration="8804000" />
       <workItem from="1705020492210" duration="109000" />
       <workItem from="1705398474030" duration="11327000" />
       <workItem from="1705452002850" duration="7897000" />
@@ -216,6 +250,10 @@
       <workItem from="1705636623347" duration="21372000" />
       <workItem from="1705714793127" duration="19360000" />
       <workItem from="1705743397481" duration="11484000" />
+      <workItem from="1705286399482" duration="16633000" />
+      <workItem from="1705369517160" duration="1430000" />
+      <workItem from="1705543022074" duration="7893000" />
+      <workItem from="1705673751425" duration="2228000" />
     </task>
     <servers />
   </component>

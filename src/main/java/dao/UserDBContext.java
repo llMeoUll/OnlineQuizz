@@ -4,7 +4,6 @@ import com.lambdaworks.crypto.SCryptUtil;
 import entity.Feature;
 import entity.Role;
 import entity.User;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Base64;
 
 public class UserDBContext extends DBContext<User>{
     @Override
@@ -35,8 +35,7 @@ public class UserDBContext extends DBContext<User>{
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        }         
         return null;
 
     }
@@ -61,15 +60,18 @@ public class UserDBContext extends DBContext<User>{
                 String email = rsListUser.getString("email");
                 String password = rsListUser.getString("password");
                 String display_name = rsListUser.getString("display_name");
-                String avatar = rsListUser.getString("avatar");
-                Role role = new Role();
-                int rid = Integer.parseInt(rsListUser.getString("rid"));
+                byte[] avatarBytes = rsListUser.getBytes("avartar");
+
+                String avatar = null;
+                if(avatarBytes != null) {
+                    avatar = Base64.getEncoder().encodeToString(avatarBytes);
+                }
                 User user = new User();
                 user.setId(uid);
                 user.setUsername(username);
                 user.setPassword(password);
                 user.setEmail(email);
-//                user.setName(display_name);
+                user.setName(display_name);
                 user.setPicture(avatar);
                 users.add(user);
             }
@@ -139,6 +141,11 @@ public class UserDBContext extends DBContext<User>{
 
     @Override
     public void update(User entity) {
+
+    }
+
+    @Override
+    public void create(User entity) {
 
     }
 
