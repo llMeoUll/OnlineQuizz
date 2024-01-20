@@ -14,5 +14,5 @@ import java.util.ArrayList;
 public class Role {
     private int rid;
     private String name;
-    private ArrayList<Feature> features;
+    private ArrayList<Feature> features = new ArrayList<>();
 }
