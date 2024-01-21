@@ -8,9 +8,35 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class UserDBContext extends DBContext<User>{
+public class UserDBContext extends DBContext<User> {
     @Override
     public User get(User entity) {
+        String sql = "SELECT `user`.`uid`,\n" +
+                "    `user`.`username`,\n" +
+                "    `user`.`email`,\n" +
+                "    `user`.`password`,\n" +
+                "    `user`.`display_name`,\n" +
+                "    `user`.`avartar`,\n" +
+                "    `user`.`rid`\n" +
+                "FROM `online_quizz`.`user` \n" +
+                "where uid = ?;\n";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, entity.getUid());
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                User u = new User();
+                u.setUid(rs.getInt(1));
+                u.setUsername(rs.getString(2));
+                u.setEmail(rs.getString(3));
+                u.setPassword(rs.getString(4));
+                u.setDisplayName(rs.getString(5));
+                u.setAvatar(rs.getString(6));
+                return u;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 
@@ -28,13 +54,16 @@ public class UserDBContext extends DBContext<User>{
                     "FROM `online_quizz`.`user`;\n";
             PreparedStatement stmGetListUser = connection.prepareStatement(sqlListUser);
             ResultSet rsListUser = stmGetListUser.executeQuery();
-            while(rsListUser.next()) {
+            while (rsListUser.next()) {
                 int uid = Integer.parseInt(rsListUser.getString("uid"));
                 String username = rsListUser.getString("username");
                 String email = rsListUser.getString("email");
                 String password = rsListUser.getString("password");
                 String display_name = rsListUser.getString("display_name");
-                String avatar = rsListUser.getString("avatar");
+                String avatar = rsListUser.getString("avartar");
+                if (avatar == null) {
+                    avatar = "Not exist avatar";
+                }
                 Role role = new Role();
                 int rid = Integer.parseInt(rsListUser.getString("rid"));
                 User user = new User();
