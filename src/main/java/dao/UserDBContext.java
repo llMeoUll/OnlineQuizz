@@ -4,6 +4,7 @@ import com.lambdaworks.crypto.SCryptUtil;
 import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import controller.user.authenticate.Register;
 import entity.*;
+import org.eclipse.tags.shaded.org.apache.xml.dtm.ref.sax2dtm.SAX2RTFDTM;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -165,14 +166,93 @@ public class UserDBContext extends DBContext<User>{
                     "WHERE `user_does_test`.`uid` = ?;";
             PreparedStatement stmDeleteDoneTest = connection.prepareStatement(sqlDeleteDoneTest);
             stmDeleteDoneTest.setInt(1, entity.getId());
+            stmDeleteDoneTest.executeUpdate();
 
-            
+            for(Test doneTest : entity.getDoneTest()) {
+                String sqlDeleteUserAnswer = "DELETE FROM online_quizz.user_answer\n" +
+                        "WHERE `user_answer`.`udt_id` IN (\n" +
+                        "\tSELECT DISTINCT `user_does_test`.`udt_id` FROM `user_does_test`\n" +
+                        "    WHERE `user_does_test`.`test_id` = ?\n" +
+                        ")";
+                PreparedStatement stmDeleteUserAnswer = connection.prepareStatement(sqlDeleteUserAnswer);
+                stmDeleteUserAnswer.setInt(1, doneTest.getTest_id());
+                stmDeleteUserAnswer.executeUpdate();
+            }
+
+            String sqlDeleteComments = "DELETE FROM `online_quizz`.`comment`\n" +
+                    "WHERE `comment`.`uid` = ?;";
+            PreparedStatement stmDeleteComments = connection.prepareStatement(sqlDeleteComments);
+            stmDeleteComments.setInt(1, entity.getId());
+            stmDeleteComments.executeUpdate();
+
+            String sqlDeleteReplyComments = "DELETE FROM `online_quizz`.`comment`\n" +
+                    "WHERE `comment`.`comment_id` IN (\n" +
+                    "\tSELECT DISTINCT `comment`.`reply_id` FROM `online_quizz`.`comment`\n" +
+                    "    WHERE `comment`.`uid` = ?\n" +
+                    ");";
+            PreparedStatement stmDeleteReplyComment = connection.prepareStatement(sqlDeleteReplyComments);
+            stmDeleteReplyComment.setInt(1, entity.getId());
+            stmDeleteReplyComment.executeUpdate();
+
+            String sqlDeleteStarRate = "DELETE FROM `online_quizz`.`star_rate`\n" +
+                    "WHERE `star_rate`.`uid` = ?;";
+            PreparedStatement stmDeleteStarRate = connection.prepareStatement(sqlDeleteStarRate);
+            stmDeleteStarRate.setInt(1, entity.getId());
+            stmDeleteStarRate.executeUpdate();
+
+            for (Set set : entity.getOwnedSets()) {
+                String sqlDeleteSets = "";
+                PreparedStatement stmDeleteSets = connection.prepareStatement(sqlDeleteSets);
+            }
+
+
+
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
     }
 
+    public ArrayList<Comment> getComments(User entity) {
+        ArrayList<Comment> comments = new ArrayList<>();
+        String sqlGetComments = "SELECT `comment`.`comment_id`,\n" +
+                "    `comment`.`sid`,\n" +
+                "    `comment`.`uid`,\n" +
+                "    `comment`.`content`,\n" +
+                "    `comment`.`likes`,\n" +
+                "    `comment`.`unlikes`,\n" +
+                "    `comment`.`created_at`,\n" +
+                "    `comment`.`updated_at`,\n" +
+                "    `comment`.`reply_id`\n" +
+                "FROM `online_quizz`.`comment`\n" +
+                "WHERE `comment`.`uid` = ?;";
+        try {
+            PreparedStatement stmGetComments = connection.prepareStatement(sqlGetComments);
+            stmGetComments.setInt(1, entity.getId());
+            ResultSet rs = stmGetComments.executeQuery();
+            while(rs.next()) {
+                Comment comment = new Comment();
+                comment.setComment_id(rs.getInt("comment_id"));
+                Set set = new Set();
+                set.setSid(rs.getInt("sid"));
+                comment.setSet(set);
+                comment.setUser(entity);
+                comment.setContent(rs.getString("content"));
+                comment.setLikes(rs.getInt("likes"));
+                comment.setUnlikes(rs.getInt("unlikes"));
+                ArrayList<Comment> replyComments = new ArrayList<>();
+                Comment replyComment = new Comment();
+                replyComment.setComment_id(rs.getInt("reply_id"));
+                replyComments.add(replyComment);
+                comment.setRepliedComments(replyComments);
+                comments.add(comment);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return comments;
+    }
     public ArrayList<StarRate> getRatedStars(User entity) {
         ArrayList<StarRate> ratedStars = new ArrayList<>();
         String sqlGetRatedStar = "SELECT `star_rate`.`uid`,\n" +

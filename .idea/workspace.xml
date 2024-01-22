@@ -10,39 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a43bca65-5ade-43c0-8530-cb9c77ebf1b4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/UserManagementController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginWithGoogle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Logout.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Register.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/filer/AuthenticateFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/filer/AuthorizationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/client_secret.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/Login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/Register.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/Login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/Register.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/Login.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/Register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/AdminLoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/DashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/UserManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/VerifyEmail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/DeleteUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/DeleteUserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/StarRate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/js/ChartActiveUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/ChartActiveUsers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/DashBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/UserManagement.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/styles/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/dashboard.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +210,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/dao/UserDBContext.java</url>
-          <line>144</line>
+          <line>145</line>
           <properties class="dao.UserDBContext" method="update">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

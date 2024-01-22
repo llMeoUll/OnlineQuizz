@@ -23,6 +23,7 @@ public class DeleteUserController extends HttpServlet {
         user.setSelfTests(userDBContext.getSelfTests(user));
         user.setOwnedRooms(userDBContext.getOwnedRoom(user));
         user.setJoinedRooms(userDBContext.getJoinedRooms(user));
+        user.setComments(userDBContext.getComments(user));
         userDBContext.delete(user);
         response.sendRedirect("user_management");
     }
