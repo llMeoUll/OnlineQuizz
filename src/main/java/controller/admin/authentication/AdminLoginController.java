@@ -1,5 +1,6 @@
-package controller.admin;
+package controller.admin.authentication;
 
+import dao.AdminDBContext;
 import dao.UserDBContext;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -16,13 +17,13 @@ public class AdminLoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDBContext userDBContext = new UserDBContext();
+        AdminDBContext adminDBContext = new AdminDBContext();
         String username = request.getParameter("admin");
         String password = request.getParameter("adminPassword");
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
-        User loggingUser = userDBContext.get(user);
+        User loggingUser = adminDBContext.get(user);
         if(loggingUser == null) {
             response.getWriter().println("Incorrect password");
         }

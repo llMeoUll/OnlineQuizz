@@ -1,9 +1,6 @@
 package entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 
@@ -11,19 +8,24 @@ import java.util.ArrayList;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 
 public class User {
-    private int uid;
+    private int id;
+    private String email;
+    private String given_name;
+    private String family_name;
+    private String picture;
     private String username;
     private String password;
-    private String email;
-    private String displayName;
-    private Role role;
+    private String created_at;
+    private String updated_at;
+    private ArrayList<Role> roles;
     private ArrayList<StarRate> ratedStar;
     private ArrayList<Test> doneTest;
     private ArrayList<Set> ownedSets;
     private ArrayList<SelfTest> selfTests;
     private ArrayList<Room> ownedRooms;
     private ArrayList<Room> joinedRooms;
-    private String avatar;
+    private ArrayList<Comment> comments;
 }
