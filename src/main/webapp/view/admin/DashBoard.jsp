@@ -8,9 +8,10 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <title>DashBoard</title>
-        <style>
-            <%@include file="../../../css/dashboard.css"%>
-        </style>
+<%--        <style>--%>
+<%--            <%@include file="../../../css/dashboard.css"%>--%>
+<%--        </style>--%>
+        <link rel="stylesheet" href="../../css/dashboard.css">
     </head>
 
     <body>
@@ -94,7 +95,7 @@
                                     var numberOfActiveUser = ${requestScope.listNumberOfActiveUser};
                                 </script>
                                 <script>
-                                    <%@include file="../../../js/ChartActiveUsers.js"%>
+                                    <%@include file="../../js/ChartActiveUsers.js"%>
                                 </script>
                             </div>
                             <div class="col-md-3 account-manage-item list-new-account">
