@@ -1,23 +1,24 @@
 package controller.admin.dashboard;
 
-import dao.UserDBContext;
+import dao.ActiveUsersDBContext;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import entity.User;
 import java.io.IOException;
 import java.util.ArrayList;
 
 @WebServlet(name = "DashBoardController", value = "/dashboard")
 public class DashBoardController extends HttpServlet {
-    private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDBContext userDBContext = new UserDBContext();
-        ArrayList<User> users = userDBContext.list();
-        request.setAttribute("users", users);
-        request.getRequestDispatcher("./view/DashBoard.jsp").forward(request, response);
+    private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
+        ActiveUsersDBContext activeUsersDBContext = new ActiveUsersDBContext();
+        ArrayList<Integer> listNumberOfActiveUser = activeUsersDBContext.numberOfActiveUser();
+        request.setAttribute("listNumberOfActiveUser", listNumberOfActiveUser);
+        request.getRequestDispatcher("view/pages/admin/DashBoard.jsp").forward(request,response);
     }
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
         doProcess(request,response);
     }
 

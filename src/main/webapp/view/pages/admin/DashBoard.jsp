@@ -9,7 +9,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <title>DashBoard</title>
         <style>
-            <%@include file="../../styles/dashboard.css"%>
+            <%@include file="../../../css/dashboard.css"%>
         </style>
     </head>
 
@@ -17,7 +17,7 @@
     <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid ">
             <!-- Left Side: Tên web -->
-            <div class="navbar-brand">Online Quizz</div>
+            <div class="navbar-brand">Quizzical</div>
 
             <!-- Middle: Navbar -->
             <ul class="navbar-nav mx-auto">
@@ -94,7 +94,7 @@
                                     var numberOfActiveUser = ${requestScope.listNumberOfActiveUser};
                                 </script>
                                 <script>
-                                    <%@include file="../../js/ChartActiveUsers.js"%>
+                                    <%@include file="../../../js/ChartActiveUsers.js"%>
                                 </script>
                             </div>
                             <div class="col-md-3 account-manage-item list-new-account">
@@ -215,7 +215,6 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
