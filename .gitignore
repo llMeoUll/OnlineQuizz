@@ -13,7 +13,6 @@ target/
 *.ipr
 .env
 !.env.example
-.idea
 
 ### Eclipse ###
 .apt_generated
