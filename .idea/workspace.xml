@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="OnlineQuizz:war" />
+      <artifact name="OnlineQuizz:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -11,9 +11,21 @@
   <component name="ChangeListManager">
 <<<<<<< HEAD
     <list default="true" id="a43bca65-5ade-43c0-8530-cb9c77ebf1b4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/DeleteUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/DeleteUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/Login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/Register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/manageroom1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/icons/manageroom1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/manageset1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/icons/manageset1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/overview1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/icons/overview1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/question1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/icons/question1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/users1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/icons/users1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/AdminLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/AdminLogin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" afterDir="false" />
     </list>
 =======
     <list default="true" id="9e8b4fd3-2b91-427b-85e9-52000caad053" name="Changes" comment="" />
@@ -62,24 +74,28 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\webapp\view\user\authenticate" />
+      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\webapp\view" />
+      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\webapp" />
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\css" />
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\js" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/OnlineQuizz/" />
-      <option name="UPDATING_POLICY" value="restart-server" />
+    <configuration name="Tomcat 10.0.18" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.18" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8888/OnlineQuizz_war_exploded/" />
+      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
+      <option name="UPDATING_POLICY" value="update-resources" />
       <deployment>
-        <artifact name="OnlineQuizz:war">
+        <artifact name="OnlineQuizz:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/OnlineQuizz" />
+            <option name="CONTEXT_PATH" value="/OnlineQuizz_war_exploded" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="64a6aebe-1e52-4f90-a14f-106df7d84842" />
-        <option name="HTTP_PORT" value="8080" />
+        <option name="HTTP_PORT" value="8888" />
         <option name="JNDI_PORT" value="1098" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
@@ -163,7 +179,7 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="OnlineQuizz:war" />
+          <artifact name="OnlineQuizz:war exploded" />
         </option>
       </method>
     </configuration>
@@ -215,7 +231,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/dao/UserDBContext.java</url>
           <line>145</line>
-          <properties class="dao.UserDBContext" method="update">
+          <properties class="dao.UserDBContext">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
