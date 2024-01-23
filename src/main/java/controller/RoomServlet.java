@@ -20,7 +20,7 @@ public class RoomServlet extends HttpServlet {
         // Assume beacuse don't have Session to get User
         UserDBContext uDB = new UserDBContext();
         User u = new User();
-        u.setUid(3);
+        u.setId(3);
         u = uDB.get(u);
         RoomDbContext rDB = new RoomDbContext();
         ArrayList<Room> listRoom = rDB.list(u);

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 
 public class Type {
-    private int type_id;
-    private String type_name;
+    private int typeId;
+    private String typeName;
     private ArrayList<Question> questions;
 }

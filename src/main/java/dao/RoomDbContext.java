@@ -44,13 +44,13 @@ public class RoomDbContext extends DBContext<Room> {
                 "?);\n";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, entity.getRoom_id());
-            stm.setString(2, entity.getRoom_name());
+            stm.setInt(1, entity.getRoomId());
+            stm.setString(2, entity.getRoomName());
             stm.setString(3, entity.getCode());
             stm.setString(4, entity.getPassword());
             stm.setString(5, entity.getDescription());
-            stm.setInt(6, entity.getUser().getUid());
-            stm.setDate(7, entity.getCreated_at());
+            stm.setInt(6, entity.getUser().getId());
+            stm.setDate(7, entity.getCreatedAt());
             stm.setString(8, entity.getCode_to_join());
 
             stm.executeUpdate();
@@ -62,6 +62,11 @@ public class RoomDbContext extends DBContext<Room> {
 
     @Override
     public void update(Room entity) {
+
+    }
+
+    @Override
+    public void create(Room entity) {
 
     }
 
@@ -84,18 +89,18 @@ public class RoomDbContext extends DBContext<Room> {
                 "WHERE uid = ?;";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, user.getUid());
+            stm.setInt(1, user.getId());
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Room r = new Room();
-                r.setRoom_id(rs.getInt(1));
-                r.setRoom_name(rs.getString(2));
+                r.setRoomId(rs.getInt(1));
+                r.setRoomName(rs.getString(2));
                 r.setCode(rs.getString(3));
                 r.setPassword(rs.getString(4));
                 r.setDescription(rs.getString(5));
                 r.setUser(user);
-                r.setCreated_at(rs.getDate(7));
-                r.setUpdated_at(rs.getDate(8));
+                r.setCreatedAt(rs.getDate(7));
+                r.setUpdatedAt(rs.getDate(8));
                 listRoom.add(r);
             }
         } catch (SQLException e) {
@@ -129,8 +134,8 @@ public class RoomDbContext extends DBContext<Room> {
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
                 Room r = new Room();
-                r.setRoom_id(rs.getInt(1));
-                r.setRoom_name(rs.getString(2));
+                r.setRoomId(rs.getInt(1));
+                r.setRoomName(rs.getString(2));
                 r.setCode(code);
                 r.setPassword(password);
                 r.setDescription(rs.getString(5));
@@ -173,30 +178,25 @@ public class RoomDbContext extends DBContext<Room> {
         ArrayList<Room> listRoomJoinedByUser = new ArrayList<>();
         try {
             connection.setAutoCommit(false);
-            String sql = "SELECT user_join_room.uid, user_join_room.room_id, room.room_name, room.code, room.password, room.description, room.created_at, room.uid, user.display_name\n" +
-                    "FROM online_quizz.user_join_room\n" +
-                    "INNER JOIN online_quizz.room \n" +
-                    "ON user_join_room.room_id = room.room_id AND user_join_room.uid = ?\n" +
-                    "INNER JOIN online_quizz.user\n" +
-                    "ON room.uid = user.uid";
-
+            String sql = "SELECT * FROM rooms WHERE code = ? AND password = ?";
             PreparedStatement stm = null;
             stm = connection.prepareStatement(sql);
-            stm.setInt(1, user.getUid());
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                Room r = new Room();
-                r.setRoom_id(rs.getInt(2));
-                r.setRoom_name(rs.getString(3));
-                r.setCode(rs.getString(4));
-                r.setPassword(rs.getString(5));
-                r.setDescription(rs.getString(6));
-                r.setCreated_at(rs.getDate(7));
+            stm.setInt(1, user.getId());
+            ResultSet resultSet = stm.executeQuery();
+            while (resultSet.next()) {
+                Room room = new Room();
+                room.setRoomId(resultSet.getInt("room_id"));
+                room.setRoomName(resultSet.getString("room_name"));
+                room.setCode(resultSet.getString("code"));
+                room.setPassword(resultSet.getString("password"));
+                room.setDescription(resultSet.getString("description"));
+                room.setCreatedAt(resultSet.getDate("created_at"));
+                room.setUpdatedAt(resultSet.getDate("updated_at"));
                 User u = new User();
-                u.setUid(rs.getInt(8));
-                u.setDisplayName(rs.getString(9));
-                r.setUser(u);
-                listRoomJoinedByUser.add(r);
+                u.setId(resultSet.getInt(8));
+                u.setGivenName(resultSet.getString(9));
+                room.setUser(u);
+                listRoomJoinedByUser.add(room);
             }
             connection.commit();
         } catch (SQLException e) {
@@ -207,33 +207,24 @@ public class RoomDbContext extends DBContext<Room> {
     }
 
     public Room getRoomToJoin(String codeToJoin) {
-        String sql = "SELECT `room`.`room_id`,\n" +
-                "    `room`.`room_name`,\n" +
-                "    `room`.`code`,\n" +
-                "    `room`.`password`,\n" +
-                "    `room`.`description`,\n" +
-                "    `room`.`uid`,\n" +
-                "    `room`.`created_at`,\n" +
-                "    `room`.`updated_at`,\n" +
-                "    `room`.`code_to_join`\n" +
-                "FROM `online_quizz`.`room`\n" +
-                "WHERE code_to_join = ?";
+        String sql = "SELECT * FROM rooms WHERE code_to_join = ?";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, codeToJoin);
-            ResultSet rs = stm.executeQuery();
-            if (rs.next()) {
-                Room r = new Room();
-                r.setRoom_id(rs.getInt(1));
-                r.setRoom_name(rs.getString(2));
-                r.setCode(rs.getString("code"));
-                r.setPassword(rs.getString("password"));
-                r.setCode_to_join(rs.getString("code_to_join"));
-                r.setDescription(rs.getString(5));
+            ResultSet resultSet = stm.executeQuery();
+            if (resultSet.next()) {
+                Room room = new Room();
+                room.setRoomId(resultSet.getInt("room_id"));
+                room.setRoomName(resultSet.getString("room_name"));
+                room.setCode(resultSet.getString("code"));
+                room.setPassword(resultSet.getString("password"));
+                room.setDescription(resultSet.getString("description"));
+                room.setCode_to_join(resultSet.getString("code_to_join"));
+                room.setDescription(resultSet.getString(5));
                 User u = new User();
-                u.setUid(rs.getInt("uid"));
-                r.setUser(u);
-                return r;
+                u.setId(resultSet.getInt("uid"));
+                room.setUser(u);
+                return room;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

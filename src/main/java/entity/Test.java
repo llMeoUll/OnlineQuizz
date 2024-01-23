@@ -13,12 +13,12 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Test {
-    private int test_id;
+    private int testId;
     private Room room;
-    private String test_name;
-    private String test_description;
-    private Date start_time;
-    private Date end_time;
+    private String testName;
+    private String testDescription;
+    private Date startTime;
+    private Date endTime;
     private ArrayList<Question> questions;
     private ArrayList<User> usersDoTest;
 }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @Setter
 
 public class Question {
-    private int qid;
+    private int qId;
     private String question;
     private String answer;
     private Set set;

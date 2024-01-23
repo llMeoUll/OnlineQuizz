@@ -13,14 +13,14 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Room {
-    private int room_id;
-    private String room_name;
+    private int roomId;
+    private String roomName;
     private String code;
     private String password;
     private String description;
     private User user;
-    private Date created_at;
-    private Date updated_at;
+    private Date createdAt;
+    private Date updatedAt;
     private ArrayList<User> joinedUsers;
     private ArrayList<Test> tests;
     private String code_to_join;

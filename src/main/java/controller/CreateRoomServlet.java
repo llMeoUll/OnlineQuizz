@@ -40,14 +40,14 @@ public class CreateRoomServlet extends HttpServlet {
 
         Room r = new Room();
         User u = new User();
-        u.setUid(uid);
+        u.setId(uid);
 
         r.setUser(u);
-        r.setRoom_name(roomName);
+        r.setRoomName(roomName);
         r.setCode(code);
         r.setPassword(password);
         r.setDescription(description);
-        r.setCreated_at(sqlDate);
+        r.setCreatedAt(sqlDate);
         r.setCode_to_join(codeToJoin);
 
         RoomDbContext rDB = new RoomDbContext();

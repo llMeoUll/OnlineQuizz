@@ -21,7 +21,7 @@ public class InviteServlet extends HttpServlet {
         if (r != null) {
             // insert to Many-Many table (uid, roomid) = (ownerUserId, r.room_id)
             // thay 3 là thằng session account logged uid
-            rDB.insertIntoUser_Join_Room(3, r.getRoom_id());
+            rDB.insertIntoUser_Join_Room(3, r.getRoomId());
         } else {
             response.getWriter().println("404 - Not found");
         }
@@ -40,7 +40,7 @@ public class InviteServlet extends HttpServlet {
         r = rDB.getRoomToJoin(code, passwordForJoining);
         if (r != null) {
             // insert to Many-Many table (uid, roomid) = (ownerUserId, r.room_id)
-            rDB.insertIntoUser_Join_Room(ownerUserId, r.getRoom_id());
+            rDB.insertIntoUser_Join_Room(ownerUserId, r.getRoomId());
         } else {
             response.getWriter().println("404 - Not found");
         }
