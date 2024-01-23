@@ -14,7 +14,7 @@ import java.security.SecureRandom;
 public class Register extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("./view/Register.jsp").forward(request, response);
+        request.getRequestDispatcher("./view/user/authenticate/Register.jsp").forward(request, response);
     }
 
     @Override

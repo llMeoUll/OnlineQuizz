@@ -9,9 +9,9 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <link rel="stylesheet" href="./css/dashboard.css">
         <title>DashBoard</title>
-<%--        <style>--%>
-<%--            <%@include file="../../../css/dashboard.css"%>--%>
-<%--        </style>--%>
+        <style>
+            <%@include file="../../../css/dashboard.css"%>
+        </style>
     </head>
 
     <body>
