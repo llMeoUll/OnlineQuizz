@@ -1,4 +1,4 @@
-package controller;
+package controller.user.roomController;
 
 import dao.RoomDbContext;
 import entity.Room;

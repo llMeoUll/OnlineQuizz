@@ -1,4 +1,4 @@
-package controller;
+package controller.user.roomController;
 
 import dao.RoomDbContext;
 import entity.Room;
@@ -8,8 +8,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import utilities.GenerateCode;
-import utilities.GenerateCodeToJoin;
+import controller.user.roomController.utilities.GenerateCode;
+import controller.user.roomController.utilities.GenerateCodeToJoin;
 
 import java.io.IOException;
 import java.sql.Date;
