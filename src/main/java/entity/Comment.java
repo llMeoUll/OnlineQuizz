@@ -14,13 +14,13 @@ import java.util.Date;
 @AllArgsConstructor
 
 public class Comment {
-    private int comment_id;
+    private int commentId;
     private Set set;
     private User user;
     private String content;
     private int likes;
     private int unlikes;
-    private Date created_at;
-    private Date updated_at;
+    private Date createdAt;
+    private Date updatedAt;
     private ArrayList<Comment> repliedComments;
 }

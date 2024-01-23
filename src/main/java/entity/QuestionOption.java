@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 
 public class QuestionOption {
-    private int opt_id;
+    private int optId;
     private Question question;
-    private String opt_content;
+    private String optContent;
 }

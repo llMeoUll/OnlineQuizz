@@ -6,17 +6,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" href="./css/dashboard.css">
         <title>DashBoard</title>
-        <style>
-            <%@include file="../../styles/dashboard.css"%>
-        </style>
+<%--        <style>--%>
+<%--            <%@include file="../../../css/dashboard.css"%>--%>
+<%--        </style>--%>
     </head>
 
     <body>
     <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid ">
             <!-- Left Side: Tên web -->
-            <div class="navbar-brand">Online Quizz</div>
+            <div class="navbar-brand">Quizzical</div>
 
             <!-- Middle: Navbar -->
             <ul class="navbar-nav mx-auto">
@@ -87,7 +89,14 @@
                         </div>
                         <div class="row manage-overview mb-2">
                             <div class="col-md-8 account-manage-item">
-                                Chart
+                                <div></div>
+                                <canvas id="activeUsersChart"></canvas>
+                                <script>
+                                    var numberOfActiveUser = ${requestScope.listNumberOfActiveUser};
+                                </script>
+                                <script>
+                                    <%@include file="../../../js/ChartActiveUsers.js"%>
+                                </script>
                             </div>
                             <div class="col-md-3 account-manage-item list-new-account">
                                 <div class="account">Account 1</div>
@@ -207,7 +216,6 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

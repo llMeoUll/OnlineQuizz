@@ -36,8 +36,8 @@ public class Register extends HttpServlet {
                         // Tạo một đối tượng User mới và thiết lập thông tin
                         User newUser = new User();
                         newUser.setEmail(email);
-                        newUser.setGiven_name(firstName);
-                        newUser.setFamily_name(lastName);
+                        newUser.setGivenName(firstName);
+                        newUser.setFamilyName(lastName);
                         newUser.setPassword(generatedSecuredPasswordHash);
                         newUser.setUsername(userName);
                         db.insert(newUser);

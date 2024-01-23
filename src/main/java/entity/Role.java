@@ -12,7 +12,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Role {
-    private int rid;
+    private int rId;
     private String name;
     private ArrayList<Feature> features = new ArrayList<>();
 }

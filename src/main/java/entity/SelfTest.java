@@ -13,8 +13,8 @@ import java.util.ArrayList;
 @AllArgsConstructor
 
 public class SelfTest {
-    private int self_test_id;
+    private int selfTestId;
     private User user;
-    private int numb_of_ques;
+    private int numbOfQues;
     private ArrayList<Question> questions;
 }

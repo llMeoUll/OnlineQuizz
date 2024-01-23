@@ -13,12 +13,12 @@ import java.util.Date;
 @AllArgsConstructor
 
 public class Set {
-    private int sid;
-    private String sname;
+    private int sId;
+    private String sName;
     private String description;
-    private boolean is_private;
-    private Date created_at;
-    private Date updated_at;
+    private boolean isPrivate;
+    private Date createdAt;
+    private Date updatedAt;
     private User user;
     private ArrayList<StarRate> starRates;
     private ArrayList<Comment> comments;

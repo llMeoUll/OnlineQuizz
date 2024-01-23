@@ -13,8 +13,8 @@ import java.util.ArrayList;
 @AllArgsConstructor
 
 public class Feature {
-    private int fid;
-    private String fname;
+    private int fId;
+    private String fName;
     private String description;
     private String url;
     private ArrayList<Role> roles;
