@@ -43,7 +43,7 @@
         <servlet-class>controller.user.authenticate.GoogleCallBack</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Resgister</servlet-name>
+        <servlet-name>Register</servlet-name>
         <servlet-class>controller.user.authenticate.Register</servlet-class>
     </servlet>
     <servlet>
@@ -54,9 +54,49 @@
         <servlet-name>VerifyEmail</servlet-name>
         <servlet-class>controller.user.authenticate.VerifyEmail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminLogin</servlet-name>
+        <servlet-class>controller.admin.authentication.AdminLoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDashboard</servlet-name>
+        <servlet-class>controller.admin.dashboard.DashBoardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminUserManagement</servlet-name>
+        <servlet-class>controller.admin.usermanagement.UserManagementController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteUserController</servlet-name>
+        <servlet-class>controller.admin.usermanagement.DeleteUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateUserController</servlet-name>
+        <servlet-class>controller.admin.usermanagement.UpdateUserController</servlet-class>
+    </servlet>
 
     <servlet-mapping>
-        <servlet-name>Resgister</servlet-name>
+        <servlet-name>UpdateUserController</servlet-name>
+        <url-pattern>/admin/update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteUserController</servlet-name>
+        <url-pattern>/admin/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminUserManagement</servlet-name>
+        <url-pattern>/admin/user_management</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDashboard</servlet-name>
+        <url-pattern>/admin/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminLogin</servlet-name>
+        <url-pattern>/adminlogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -78,10 +118,6 @@
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GetSet</servlet-name>
-        <url-pattern>/user/set/get</url-pattern>
     </servlet-mapping>
 
 </web-app>

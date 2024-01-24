@@ -7,11 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <link rel="stylesheet" href="./css/dashboard.css">
+        <link rel="stylesheet" href="../css/dashboard.css">
         <title>DashBoard</title>
-        <style>
-            <%@include file="../../../css/dashboard.css"%>
-        </style>
     </head>
 
     <body>
@@ -84,7 +81,7 @@
                                 Account management
                             </div>
                             <div class="col-md-2 manage-view">
-                                <button>View Details</button>
+                                <button onclick="viewDetailsUserManagement()">View Details</button>
                             </div>
                         </div>
                         <div class="row manage-overview mb-2">
@@ -94,9 +91,7 @@
                                 <script>
                                     var numberOfActiveUser = ${requestScope.listNumberOfActiveUser};
                                 </script>
-                                <script>
-                                    <%@include file="../../../js/ChartActiveUsers.js"%>
-                                </script>
+                                <script src="../js/ChartActiveUsers.js"></script>
                             </div>
                             <div class="col-md-3 account-manage-item list-new-account">
                                 <div class="account">Account 1</div>
@@ -215,7 +210,7 @@
 
         </div>
     </div>
-
+    <script src="../js/ClickButton.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

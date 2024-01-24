@@ -12,7 +12,7 @@
     </head>
     <body>
         <form method="post" action="adminlogin">
-            <input type="text" name="admin" value="admin">
+            <input type="text" name="admin" placeholder="Type email">
             <input type="password" name="adminPassword" placeholder="Type password">
             <input type="submit" value="login">
         </form>

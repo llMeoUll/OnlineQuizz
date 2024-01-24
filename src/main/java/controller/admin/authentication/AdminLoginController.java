@@ -1,34 +1,36 @@
 package controller.admin.authentication;
 
-import dao.AdminDBContext;
 import dao.UserDBContext;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 import entity.User;
 import java.io.IOException;
 
-@WebServlet(name = "AdminLoginController", value = "/adminlogin")
 public class AdminLoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/view/pages/admin/AdminLogin.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/admin/AdminLogin.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        AdminDBContext adminDBContext = new AdminDBContext();
-        String username = request.getParameter("admin");
+        UserDBContext userDBContext = new UserDBContext();
+        String email = request.getParameter("admin");
         String password = request.getParameter("adminPassword");
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        User loggingUser = adminDBContext.get(user);
-        if(loggingUser == null) {
-            response.getWriter().println("Incorrect password");
+        User param = new User();
+        param.setUsername(email);
+        param.setPassword(password);
+        User loggedUser = userDBContext.getByUsernameAndPassword(param);
+        if(loggedUser != null) {
+            try {
+                loggedUser.setRoles(userDBContext.getRolesAndFeatures(loggedUser.getUsername()));
+                response.sendRedirect("./admin/dashboard");
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
         else {
-            response.sendRedirect("/OnlineQuizz/dashboard");
+            request.setAttribute("error", "Incorrect email or password!!!");
         }
     }
 }
