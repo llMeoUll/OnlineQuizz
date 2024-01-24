@@ -12,6 +12,7 @@
         <title>User Management</title>
     </head>
     <body>
+        <input type="search" >
         <table>
             <thead>
                 <tr>
@@ -37,7 +38,9 @@
                     <td>${user.createdAt}</td>
                     <td>${user.updatedAt}</td>
                     <td>
-                        <button>Delete</button>
+                        <button onclick="deleteUser(${user.id})">
+                            Delete
+                        </button>
                     </td>
                     <td>
                         <button>Update</button>
@@ -50,4 +53,5 @@
             </tbody>
         </table>
     </body>
+    <script src="../js/ClickButton.js"></script>
 </html>
