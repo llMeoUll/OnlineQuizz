@@ -1,19 +1,22 @@
 <%--
   Created by IntelliJ IDEA.
   User: khanh
-  Date: 1/19/2024
-  Time: 11:00 PM
+  Date: 1/24/2024
+  Time: 10:49 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>404 - Not found!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="./css/manageRoom/NotFound.css">
+
+    <!-- Bootstrap and jQuery scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -23,9 +26,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+
 </head>
 <body>
-<!-- Navbar -->
 <style>
     /* Navbar styling with linear gradient background */
     .navbar {
@@ -63,7 +66,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="#">
-        <img src="" width="30" height= "30" class="d-inline-block align-top" alt="">
+        <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
         Your Logo
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -106,6 +109,12 @@
     </div>
 </nav>
 
-</body>
 
+<div class="error-container">
+    <h1 class="display-4">404 - Not Found</h1>
+    <p class="lead">The requested page could not be found.</p>
+    <!-- Add additional content or links as needed -->
+</div>
+
+</body>
 </html>

@@ -10,52 +10,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8b4fd3-2b91-427b-85e9-52000caad053" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/schedule/ActiveSessionCounter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/schedule/AutoSchedule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/schedule/DailyUpdateActiveUsers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/schedule/HourlyUpdateActiveUsers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/DeleteUserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/ActiveUsersDBContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/AdminDBContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entity/ActiveUsers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/ChartActiveUsers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/utilities/BasedAuthentication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/ManageRoomScreen.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/NotFound.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/ViewRoomDetail.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/NotFound.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/AdminLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/authentication/AdminLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/DashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/UserManagementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/UserManagementController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/CreateRoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/CreateRoomServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/InviteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/InviteServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/RoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/RoomServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDbContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDbContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Feature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Feature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/QuestionOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/QuestionOption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Role.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entity/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/SelfTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/SelfTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Set.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Set.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/StarRate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/StarRate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Type.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/DashBoard.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/Login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/Register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/manageroom1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/icons/manageroom1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/manageset1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/icons/manageset1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/overview1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/icons/overview1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/question1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/icons/question1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/icons/users1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/icons/users1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/AdminLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/AdminLogin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/DashBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/pages/admin/UserManagement.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/styles/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ManageRoomScreen.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ManageRoomScreen.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/Navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/Navbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ViewRoomDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ViewRoomDetail.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +38,7 @@
         <option value="Class" />
         <option value="JavaScript File" />
         <option value="Jsp File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -92,13 +63,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/FPT/Semester 5/SWP391/Project SWP391/OnlineQuizz",
+    "list.type.of.created.stylesheet": "CSS"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\css" />
@@ -108,8 +81,8 @@
   <component name="RunManager">
     <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="BROWSER_ID" value="37cae5b9-e8b2-4949-9172-aafa37fbc09c" />
-      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
-      <option name="UPDATING_POLICY" value="update-resources" />
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
         <artifact name="OnlineQuizz:war exploded">
           <settings>
@@ -201,7 +174,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a43bca65-5ade-43c0-8530-cb9c77ebf1b4" name="Changes" comment="" />
+      <changelist id="9e8b4fd3-2b91-427b-85e9-52000caad053" name="Changes" comment="" />
       <created>1704853520966</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -222,6 +195,7 @@
       <workItem from="1705802075206" duration="4166000" />
       <workItem from="1705807405765" duration="68000" />
       <workItem from="1705836230418" duration="16524000" />
+      <workItem from="1706019806661" duration="24297000" />
     </task>
     <servers />
   </component>
@@ -238,20 +212,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/dao/UserDBContext.java</url>
-          <line>145</line>
-          <properties class="dao.UserDBContext">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

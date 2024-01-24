@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 
-@WebServlet(name = "CreateRoomServlet", value = "/createRoom")
 public class CreateRoomServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,11 +47,11 @@ public class CreateRoomServlet extends HttpServlet {
         r.setPassword(password);
         r.setDescription(description);
         r.setCreatedAt(sqlDate);
-        r.setCode_to_join(codeToJoin);
+        r.setCodeToJoin(codeToJoin);
 
         RoomDbContext rDB = new RoomDbContext();
         rDB.insert(r);
 
-        response.sendRedirect("/OnlineQuizz/ManageRoom");
+        response.sendRedirect("/OnlineQuizz_war_exploded/ManageRoom");
     }
 }

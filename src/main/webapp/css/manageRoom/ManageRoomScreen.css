@@ -1,0 +1,29 @@
+body {
+    background-color: #7e57c2;
+    font-family: 'Quicksand', sans-serif;
+    color: #fff;
+}
+
+.clickable-avatar {
+    cursor: pointer;
+}
+
+.bg-light-purple {
+    background-color: #9c27b0;
+}
+
+.text-purple {
+    color: #9c27b0;
+}
+
+.btn-primary,
+.close,
+.modal-header {
+    background-color: #673ab7;
+    border-color: #673ab7;
+}
+
+.btn-primary:hover {
+    background-color: #512da8;
+    border-color: #512da8;
+}

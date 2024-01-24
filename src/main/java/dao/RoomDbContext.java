@@ -51,13 +51,12 @@ public class RoomDbContext extends DBContext<Room> {
             stm.setString(5, entity.getDescription());
             stm.setInt(6, entity.getUser().getId());
             stm.setDate(7, entity.getCreatedAt());
-            stm.setString(8, entity.getCode_to_join());
+            stm.setString(8, entity.getCodeToJoin());
 
             stm.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Override
@@ -83,10 +82,8 @@ public class RoomDbContext extends DBContext<Room> {
                 "    `room`.`password`,\n" +
                 "    `room`.`description`,\n" +
                 "    `room`.`uid`,\n" +
-                "    `room`.`created_at`,\n" +
-                "    `room`.`updated_at`\n" +
-                "FROM `online_quizz`.`room`\n" +
-                "WHERE uid = ?;";
+                "    `room`.`created_at`\n" +
+                "FROM `online_quizz`.`room` WHERE uid = ?;";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, user.getId());
@@ -100,7 +97,6 @@ public class RoomDbContext extends DBContext<Room> {
                 r.setDescription(rs.getString(5));
                 r.setUser(user);
                 r.setCreatedAt(rs.getDate(7));
-                r.setUpdatedAt(rs.getDate(8));
                 listRoom.add(r);
             }
         } catch (SQLException e) {
@@ -170,15 +166,18 @@ public class RoomDbContext extends DBContext<Room> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
-
 
     public ArrayList<Room> roomJoinedByUser(User user) {
         ArrayList<Room> listRoomJoinedByUser = new ArrayList<>();
         try {
             connection.setAutoCommit(false);
-            String sql = "SELECT * FROM rooms WHERE code = ? AND password = ?";
+            String sql = "SELECT user_join_room.uid, user_join_room.room_id, room.room_name, room.code, room.password, room.description, room.created_at, room.uid, user.username\n" +
+                    "                    FROM online_quizz.user_join_room\n" +
+                    "                    INNER JOIN online_quizz.room \n" +
+                    "                    ON user_join_room.room_id = room.room_id AND user_join_room.uid = ?\n" +
+                    "                    INNER JOIN online_quizz.user\n" +
+                    "                    ON room.uid = user.uid";
             PreparedStatement stm = null;
             stm = connection.prepareStatement(sql);
             stm.setInt(1, user.getId());
@@ -191,10 +190,9 @@ public class RoomDbContext extends DBContext<Room> {
                 room.setPassword(resultSet.getString("password"));
                 room.setDescription(resultSet.getString("description"));
                 room.setCreatedAt(resultSet.getDate("created_at"));
-                room.setUpdatedAt(resultSet.getDate("updated_at"));
                 User u = new User();
-                u.setId(resultSet.getInt(8));
-                u.setGivenName(resultSet.getString(9));
+                u.setId(resultSet.getInt("uid"));
+                u.setUsername(resultSet.getString("username"));
                 room.setUser(u);
                 listRoomJoinedByUser.add(room);
             }
@@ -207,7 +205,7 @@ public class RoomDbContext extends DBContext<Room> {
     }
 
     public Room getRoomToJoin(String codeToJoin) {
-        String sql = "SELECT * FROM rooms WHERE code_to_join = ?";
+        String sql = "SELECT * FROM room WHERE code_to_join = ?";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, codeToJoin);
@@ -219,12 +217,39 @@ public class RoomDbContext extends DBContext<Room> {
                 room.setCode(resultSet.getString("code"));
                 room.setPassword(resultSet.getString("password"));
                 room.setDescription(resultSet.getString("description"));
-                room.setCode_to_join(resultSet.getString("code_to_join"));
-                room.setDescription(resultSet.getString(5));
+                room.setCodeToJoin(resultSet.getString("code_to_join"));
                 User u = new User();
                 u.setId(resultSet.getInt("uid"));
                 room.setUser(u);
                 return room;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    public Room getRoomByName(Room roomNeedToCheck) {
+        String sql = "SELECT `room`.`room_id`,\n" +
+                "    `room`.`room_name`,\n" +
+                "    `room`.`code`,\n" +
+                "    `room`.`password`,\n" +
+                "    `room`.`description`,\n" +
+                "    `room`.`uid`,\n" +
+                "    `room`.`created_at`,\n" +
+                "    `room`.`updated_at`\n" +
+                "FROM `online_quizz`.`room`\n" +
+                "WHERE room_name = ?;\n";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, roomNeedToCheck.getRoomName());
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                Room r = new Room();
+                r.setRoomId(rs.getInt(1));
+                r.setRoomName(rs.getString(2));
+                r.setDescription(rs.getString(5));
+                return r;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

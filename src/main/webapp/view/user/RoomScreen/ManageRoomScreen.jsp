@@ -17,6 +17,17 @@
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="./css/manageRoom/ManageRoomScreen.css">
+    <!-- Bootstrap and jQuery scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
 </head>
 
@@ -102,37 +113,7 @@
     </div>
 </nav>
 <!-- Content -->
-<style>
-    body {
-        background-color: #7e57c2;
-        font-family: 'Quicksand', sans-serif;
-        color: #fff;
-    }
 
-    .clickable-avatar {
-        cursor: pointer;
-    }
-
-    .bg-light-purple {
-        background-color: #9c27b0;
-    }
-
-    .text-purple {
-        color: #9c27b0;
-    }
-
-    .btn-primary,
-    .close,
-    .modal-header {
-        background-color: #673ab7;
-        border-color: #673ab7;
-    }
-
-    .btn-primary:hover {
-        background-color: #512da8;
-        border-color: #512da8;
-    }
-</style>
 <!-- Content -->
 <div class="container mt-4">
     <div class="row">
@@ -144,7 +125,7 @@
                 <img src="https://th.bing.com/th/id/R.d4cafb173ba792aaf336e574250b4560?rik=F6cZ58cL%2b%2f%2fcUQ&pid=ImgRaw&r=0"
                      alt="User Avatar" class="img-fluid rounded-circle clickable-avatar"
                      style="width: 50px; height: 50px;" data-toggle="modal" data-target="#avatarModal">
-                <span class="ml-2 h5">${requestScope.userHasRoom.displayName}</span>
+                <span class="ml-2 h5">${requestScope.userHasRoom.username}</span>
                 <p class="mb-0 text-light">Workplace</p>
             </div>
         </div>
@@ -174,7 +155,7 @@
         </div>
 
         <div class="row">
-            <p class="font-weight-bold  ml-4">Name: ${room.room_name} | Owner: ${room.user.displayName}</p>
+            <p class="font-weight-bold  ml-4">Name: ${room.roomName} | Owner: ${room.user.username}</p>
         </div>
     </div>
 </c:forEach>
@@ -188,7 +169,7 @@
         </div>
 
         <div class="row">
-            <p class="font-weight-bold  ml-4">Name: ${room.room_name} | Owner: ${room.user.displayName}</p>
+            <p class="font-weight-bold  ml-4">Name: ${room.roomName} | Owner: ${room.user.username}</p>
         </div>
     </div>
 </c:forEach>
@@ -225,7 +206,7 @@
             <div class="modal-body">
                 <!-- Add your form elements for creating a room here -->
                 <form action="createRoom" method="post">
-                    <input type="hidden" name="ownerUser" value="${requestScope.userHasRoom.uid}">
+                    <input type="hidden" name="ownerUser" value="${requestScope.userHasRoom.id}">
                     <div class="form-group">
                         <label for="roomName" class="text-purple">Room Name</label>
                         <input type="text" class="form-control" id="roomName" name="roomName"
@@ -245,6 +226,9 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Create Room</button>
+                    <div class="alert alert-danger" role="alert">
+                        ${requestScope.errorDuplicateRoomName}
+                    </div>
                 </form>
 
             </div>
@@ -267,12 +251,12 @@
             <div class="modal-body">
                 <!-- Add your form elements for creating a room here -->
                 <form action="invite" method="post">
-                    <!-- requestScope.userHasRoom.uid đại diện cho user logged trong session -->
-                    <input type="hidden" name="ownerUser" value="${requestScope.userHasRoom.uid}">
+                    <!-- requestScope.userHasRoom.Id đại diện cho user logged trong session -->
+                    <input type="hidden" name="ownerUser" value="${requestScope.userHasRoom.id}">
                     <div class="form-group">
                         <label for="code" class="text-purple">Code: </label>
                         <input type="text" class="form-control" id="code" name="code"
-                               placeholder="Enter room name" required>
+                               placeholder="Enter room name" required autofocus>
                     </div>
 
                     <div class="form-group">
@@ -297,15 +281,6 @@
     });
 </script>
 </body>
-<!-- Bootstrap and jQuery scripts -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+
 
 </html>

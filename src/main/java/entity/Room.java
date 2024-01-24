@@ -23,5 +23,5 @@ public class Room {
     private Date updatedAt;
     private ArrayList<User> joinedUsers;
     private ArrayList<Test> tests;
-    private String code_to_join;
+    private String CodeToJoin;
 }

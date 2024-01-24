@@ -15,7 +15,18 @@
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="./css/manageRoom/ViewRoomDetail.css">
+    <!-- Bootstrap and jQuery scripts -->
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -101,61 +112,7 @@
 </nav>
 
 <!-- Content -->
-<style>
-    body {
-        background-color: #7e57c2;
-        font-family: 'Quicksand', sans-serif;
-        color: #fff;
-    }
 
-    .custom-list-group {
-        background-color: #9c27b0;
-        margin-bottom: 10px;
-    }
-
-    .header-section {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        background-color: #9c27b0;
-        border-radius: 8px;
-        margin-bottom: 20px;
-    }
-
-    .header-info-section-boundary {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0px;
-    }
-
-    .room-buttons button {
-        margin-right: 10px;
-    }
-
-    .info-section {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 5px;
-        background-color: #9c27b0;
-        border-radius: 8px;
-        margin-bottom: 25px;
-        padding-top: 12px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .info-section div {
-        text-align: center;
-    }
-
-    .info-section div p,
-    h3 {
-        margin-bottom: 0;
-    }
-</style>
 
 <div class="container mt-4">
     <!-- Information room -->
@@ -249,17 +206,7 @@
 </script>
 
 </body>
-<!-- Bootstrap and jQuery scripts -->
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
