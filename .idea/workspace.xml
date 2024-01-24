@@ -10,22 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8b4fd3-2b91-427b-85e9-52000caad053" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/utilities/BasedAuthentication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/ManageRoomScreen.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/NotFound.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/ViewRoomDetail.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/NotFound.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/CreateRoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/CreateRoomServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/InviteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/InviteServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/RoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/RoomServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDbContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDbContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ManageRoomScreen.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ManageRoomScreen.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/Navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/Navbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ViewRoomDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ViewRoomDetail.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,15 +49,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/FPT/Semester 5/SWP391/Project SWP391/OnlineQuizz",
-    "list.type.of.created.stylesheet": "CSS"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/FPT/Semester 5/SWP391/Project SWP391/OnlineQuizz&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\css" />
@@ -196,6 +182,7 @@
       <workItem from="1705807405765" duration="68000" />
       <workItem from="1705836230418" duration="16524000" />
       <workItem from="1706019806661" duration="24297000" />
+      <workItem from="1706116941905" duration="103000" />
     </task>
     <servers />
   </component>
