@@ -54,6 +54,14 @@
         <servlet-name>VerifyEmail</servlet-name>
         <servlet-class>controller.user.authenticate.VerifyEmail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateSet</servlet-name>
+        <servlet-class>controller.user.set.CreateSet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetSet</servlet-name>
+        <servlet-class>controller.user.set.GetSet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>Resgister</servlet-name>
@@ -83,5 +91,8 @@
         <servlet-name>GetSet</servlet-name>
         <url-pattern>/user/set/get</url-pattern>
     </servlet-mapping>
-
+<servlet-mapping>
+    <servlet-name>CreateSet</servlet-name>
+    <url-pattern>/user/set/create</url-pattern>
+</servlet-mapping>
 </web-app>
