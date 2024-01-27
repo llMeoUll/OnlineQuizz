@@ -12,7 +12,90 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Base64;
 
-public class UserDBContext extends DBContext<User>{
+public class UserDBContext extends DBContext<User> {
+
+    /**
+     * Get User by Uid
+     * @param entity entity has only id to get user from database (this is entityDTO)
+     * @return
+     */
+    public User getUserById(User entity) {
+        User user = null;
+        String query = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`,\n" +
+                "    `user`.`username`,\n" +
+                "    `user`.`given_name`,\n" +
+                "    `user`.`family_name`,\n" +
+                "    `user`.`password`,\n" +
+                "    `user`.`avartar`,\n" +
+                "    `user`.`created_at`,\n" +
+                "    `user`.`updated_at`\n" +
+                "FROM `online_quizz`.`user` WHERE uid = ?;\n";
+        try {
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setInt(1, entity.getId());
+            try (ResultSet resultSet = stm.executeQuery()) {
+                if (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getInt("uid"));
+                    user.setUsername(resultSet.getString("username"));
+                    user.setPassword(resultSet.getString("password"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setGivenName(resultSet.getString("given_name"));
+                    user.setFamilyName(resultSet.getString("family_name"));
+                    user.setPicture(resultSet.getString("avartar"));
+                    user.setCreatedAt(resultSet.getTimestamp("created_at"));
+                    user.setUpdatedAt(resultSet.getTimestamp("updated_at"));
+                    return user;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    /**
+     * Get full infor of user by email after logging
+     * @param entity entity has only id to get user from database (this is entityDTO)
+     * @return
+     */
+    public User getUserByEmail(User entity) {
+        User user = null;
+        String query = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`,\n" +
+                "    `user`.`username`,\n" +
+                "    `user`.`given_name`,\n" +
+                "    `user`.`family_name`,\n" +
+                "    `user`.`password`,\n" +
+                "    `user`.`avartar`,\n" +
+                "    `user`.`created_at`,\n" +
+                "    `user`.`updated_at`\n" +
+                "FROM `online_quizz`.`user` WHERE email = ?;\n";
+        try {
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setString(1, entity.getEmail());
+            try (ResultSet resultSet = stm.executeQuery()) {
+                if (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getInt("uid"));
+                    user.setUsername(resultSet.getString("username"));
+                    user.setPassword(resultSet.getString("password"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setGivenName(resultSet.getString("given_name"));
+                    user.setFamilyName(resultSet.getString("family_name"));
+                    user.setPicture(resultSet.getString("avartar"));
+                    user.setCreatedAt(resultSet.getTimestamp("created_at"));
+                    user.setUpdatedAt(resultSet.getTimestamp("updated_at"));
+                    return user;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
     @Override
     public User get(User entity) {
         try {
