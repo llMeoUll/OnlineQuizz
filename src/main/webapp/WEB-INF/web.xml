@@ -74,7 +74,15 @@
         <servlet-name>UpdateUserController</servlet-name>
         <servlet-class>controller.admin.usermanagement.UpdateUserController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateUserController</servlet-name>
+        <servlet-class>controller.admin.usermanagement.CreateUserController</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>CreateUserController</servlet-name>
+        <url-pattern>/admin/create</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateUserController</servlet-name>
         <url-pattern>/admin/update</url-pattern>

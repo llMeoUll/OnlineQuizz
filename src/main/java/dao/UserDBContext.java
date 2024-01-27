@@ -569,4 +569,68 @@ public class UserDBContext extends DBContext<User>{
         return null;
     }
 
+    public ArrayList<User> getUsersByEmail(String email) {
+        ArrayList<User> users = new ArrayList<>();
+        String sqlGetUsersByEmail = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`,\n" +
+                "    `user`.`username`,\n" +
+                "    `user`.`given_name`,\n" +
+                "    `user`.`family_name`,\n" +
+                "    `user`.`avartar`,\n" +
+                "    `user`.`created_at`,\n" +
+                "    `user`.`updated_at`\n" +
+                "FROM `online_quizz`.`user`\n" +
+                "WHERE `user`.`email` LIKE ? OR `user`.`email` LIKE ? OR `user`.`email` LIKE ?";
+        try {
+            PreparedStatement stmGetUsersByEmail = connection.prepareStatement(sqlGetUsersByEmail);
+            stmGetUsersByEmail.setString(1, "%" + email);
+            stmGetUsersByEmail.setString(2, "%" + email + "%");
+            stmGetUsersByEmail.setString(3, email + "%");
+            ResultSet rs = stmGetUsersByEmail.executeQuery();
+            while(rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("uid"));
+                user.setEmail(rs.getString("email"));
+                user.setUsername(rs.getString("username"));
+                user.setGivenName(rs.getString("given_name"));
+                user.setFamilyName(rs.getString("family_name"));
+                user.setPicture(rs.getString("avartar"));
+                user.setCreatedAt(rs.getTimestamp("created_at"));
+                user.setUpdatedAt(rs.getTimestamp("updated_at"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return users;
+    }
+
+    public ArrayList<User> getNewUserInWeek() {
+        ArrayList<User> users = new ArrayList<>();
+        String sqlGetNewUserInWeek = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`,\n" +
+                "    `user`.`username`,\n" +
+                "    `user`.`given_name`,\n" +
+                "    `user`.`family_name`,\n" +
+                "    `user`.`avartar`,\n" +
+                "    `user`.`created_at`,\n" +
+                "    `user`.`updated_at`\n" +
+                "FROM `online_quizz`.`user`\n" +
+                "WHERE WEEK(created_at) = WEEK(NOW()) AND DAYOFWEEK(created_at) <= DAYOFWEEK(NOW());";
+        try {
+            PreparedStatement stmGetNewUserInWeek = connection.prepareStatement(sqlGetNewUserInWeek);
+            ResultSet rs = stmGetNewUserInWeek.executeQuery();
+            while(rs.next()) {
+                User user = new User();
+                user.setFamilyName(rs.getString("family_name"));
+                user.setGivenName(rs.getString("given_name"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return users;
+    }
 }

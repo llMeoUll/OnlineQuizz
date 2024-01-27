@@ -94,20 +94,12 @@
                                 <script src="../js/ChartActiveUsers.js"></script>
                             </div>
                             <div class="col-md-3 account-manage-item list-new-account">
-                                <div class="account">Account 1</div>
-                                <div class="account">Account 2</div>
-                                <div class="account">Account 3</div>
-                                <div class="account">Account 4</div>
-                                <div class="account">Account 5</div>
-                                <div class="account">Account 6</div>
-                                <div class="account">Account 7</div>
-                                <div class="account">Account 8</div>
-                                <div class="account">Account 9</div>
-                                <div class="account">Account 10</div>
-                                <div class="account">Account 11</div>
-                                <div class="account">Account 11</div>
-                                <div class="account">Account 11</div>
-                                <div class="account">Account 11</div>
+                                <div>New Users</div>
+                                <c:forEach items="${requestScope.newUsersInWeek}" var="user">
+                                    <div>
+                                        ${user.givenName} ${user.familyName}
+                                    </div>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
