@@ -9,10 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e8b4fd3-2b91-427b-85e9-52000caad053" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/InviteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/InviteServlet.java" afterDir="false" />
-    </list>
+    <list default="true" id="9e8b4fd3-2b91-427b-85e9-52000caad053" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,22 +47,23 @@
     </option>
   </component>
   <component name="ProjectId" id="2bECyPiZYibc9RSNg9jtWkbzdGg" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/FPT/Semester 5/SWP391/Project SWP391/OnlineQuizz&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/FPT/Semester 5/SWP391/Project SWP391/OnlineQuizz",
+    "list.type.of.created.stylesheet": "CSS",
+    "nodejs_package_manager_path": "npm"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\css" />
@@ -191,6 +189,7 @@
       <workItem from="1705836230418" duration="16524000" />
       <workItem from="1706019806661" duration="24297000" />
       <workItem from="1706116941905" duration="103000" />
+      <workItem from="1706341456137" duration="332000" />
     </task>
     <servers />
   </component>
