@@ -19,6 +19,7 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+
         UserDBContext db = new UserDBContext();
         // check if email and password is not null
         if (email != null && password != null) {

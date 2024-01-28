@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
-
 <!--    <filter>-->
 <!--        <filter-name>AuthenticateFilter</filter-name>-->
 <!--        <filter-class>filer.AuthenticateFilter</filter-class>-->
@@ -75,6 +74,7 @@
         <servlet-class>controller.admin.usermanagement.UpdateUserController</servlet-class>
     </servlet>
 
+
     <servlet-mapping>
         <servlet-name>UpdateUserController</servlet-name>
         <url-pattern>/admin/update</url-pattern>
@@ -93,7 +93,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminLogin</servlet-name>
-        <url-pattern>/adminlogin</url-pattern>
+        <url-pattern>/admin-login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
@@ -101,7 +101,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>VerifyEmail</servlet-name>
-        <url-pattern>/verifyemail</url-pattern>
+        <url-pattern>/verify-email</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
