@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -23,4 +23,5 @@ public class Room {
     private Date updatedAt;
     private ArrayList<User> joinedUsers;
     private ArrayList<Test> tests;
+    private String CodeToJoin;
 }

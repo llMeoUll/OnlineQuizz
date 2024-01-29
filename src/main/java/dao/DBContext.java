@@ -24,6 +24,7 @@ public abstract class DBContext<T> {
     }
 
     public abstract T get(T entity);
+
     public abstract ArrayList<T> list();
     public abstract void delete(T entity);
     public abstract void update(T entity);
