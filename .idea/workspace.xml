@@ -10,8 +10,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/ChartActiveUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/ChartActiveUsers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/util/Email.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/util/MailTemplate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/Verify.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/icons/favicon32x32.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/icons/logo32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/icons/logo64x64.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/icons/logo64x64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/icons/logo96x96.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/icons/logo96x96.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Verify.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginWithGoogle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginWithGoogle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/VerifyEmail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/VerifyEmail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/GetSet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/DateTimeHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/DateTimeHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Register.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
