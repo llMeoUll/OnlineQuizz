@@ -9,20 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e8b4fd3-2b91-427b-85e9-52000caad053" name="Changes" comment="Fix error, forget hardcode">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/SearchBar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/RoomScreen/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/CreateRoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/CreateRoomServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/InviteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/InviteServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/RoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/RoomServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/utilities/GenerateCodeToJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/utilities/GenerateCodeToJoin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDbContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDbContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/ManageRoomScreen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/ManageRoomScreen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ManageRoomScreen.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ManageRoomScreen.jsp" afterDir="false" />
-    </list>
+    <list default="true" id="9e8b4fd3-2b91-427b-85e9-52000caad053" name="Changes" comment="Fix error, forget hardcode" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -208,7 +195,7 @@
       <workItem from="1706544381783" duration="3887000" />
       <workItem from="1706548339369" duration="1662000" />
       <workItem from="1706550513519" duration="22000" />
-      <workItem from="1706550646595" duration="1819000" />
+      <workItem from="1706550646595" duration="1937000" />
     </task>
     <servers />
   </component>
