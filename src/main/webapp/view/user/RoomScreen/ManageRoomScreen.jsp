@@ -7,6 +7,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="entity.Room" %>
+<%@ page import="controller.user.roomController.utilities.GenerateCodeToJoin" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.HashMap" %>
+
 
 <html>
 
@@ -18,6 +26,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="./css/manageRoom/ManageRoomScreen.css">
+    <link rel="stylesheet" href="./css/manageRoom/SearchBar.css">
+
     <!-- Bootstrap and jQuery scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -118,7 +128,7 @@
 <div class="container mt-4">
     <div class="row">
         <!-- Left Block -->
-        <div class="col-lg-6 p-0">
+        <div class="col-lg-4 col-md-4 col-sm-12 p-0">
             <!-- User Info Block -->
             <div class="mb-4 bg-light-purple p-3 rounded">
                 <!-- Clickable User Avatar -->
@@ -126,53 +136,104 @@
                      alt="User Avatar" class="img-fluid rounded-circle clickable-avatar"
                      style="width: 50px; height: 50px;" data-toggle="modal" data-target="#avatarModal">
                 <span class="ml-2 h5">${requestScope.userHasRoom.username}</span>
-                <p class="mb-0 text-light">Workplace</p>
             </div>
         </div>
 
         <!-- Right Block -->
-        <div class="col-lg-6 p-0">
+        <div class="col-lg-8 col-md-8 col-sm-12 p-0">
+
             <!-- Create Room Button -->
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+            <button type="button" class="btn btn-primary float-md-right float-sm-none" data-toggle="modal"
                     data-target="#createRoomModal">
                 <i class="fas fa-plus-circle mr-1"></i>Create Room
             </button>
             <%-- Create join room--%>
-            <button type="button" class="btn btn-primary float-right mr-3" data-toggle="modal"
+            <button type="button" class="btn btn-primary float-md-right float-sm-none mr-3" data-toggle="modal"
                     data-target="#joinRoomModal">
                 <i class="fas fa-plus-circle mr-1"></i>Join Room
             </button>
+
+            <%--Search bar--%>
+            <div class="wrapper">
+                <div class="search-input">
+                    <a href="" target="_blank" hidden></a>
+                    <input type="text" placeholder="Find room..." class="form-control">
+                    <div class="autocom-box">
+                        <script>
+                            var suggestion = [
+                                <%
+                                    ArrayList<String> listRoomName = (ArrayList<String>) request.getAttribute("listRoomName");
+                                    for (int i = 0; i < listRoomName.size(); i++) {
+                                %>
+                                "<%= listRoomName.get(i) %>"<%= i + 1 < listRoomName.size() ? "," : "" %>
+                                <% } %>
+                            ];
+                        </script>
+                    </div>
+                    <div class="icon"><i class="fas fa-search"></i></div>
+                </div>
+            </div>
+
+            <!-- Buttons for sorting and filtering -->
+            <div class="btn-group float-md-right float-sm-none mt-2" role="group">
+                <!-- Button for Newest -->
+                <button type="button" class="btn btn-info mr-2" onclick="submitForm('newest')">
+                    <i class="fas fa-calendar-alt mr-1"></i>Newest
+                </button>
+
+                <!-- Button for Oldest -->
+                <button type="button" class="btn btn-info mr-2" onclick="submitForm('oldest')">
+                    <i class="fas fa-calendar-alt mr-1"></i>Oldest
+                </button>
+
+                <!-- Button for Owned -->
+                <button type="button" class="btn btn-info mr-2" onclick="submitForm('owned')">
+                    <i class="fas fa-user mr-1"></i>Owned
+                </button>
+
+                <!-- Button for Joined -->
+                <button type="button" class="btn btn-info" onclick="submitForm('joined')">
+                    <i class="fas fa-users mr-1"></i>Joined
+                </button>
+            </div>
+
+            <!-- Hidden form to submit button value -->
+            <form id="sortingForm" method="GET" action="ManageRoom">
+                <input type="hidden" name="selectedButton" id="selectedButton" value="">
+            </form>
+
         </div>
     </div>
 </div>
 
-<%--Display list information each room in listownedRoom--%>
-<c:forEach items="${requestScope.listRoom}" var="room">
-    <div class="container mt-3 bg-light-purple p-3 rounded">
-        <!-- Information Block -->
-        <div class="row">
-            <p class="text-light ml-4">Number of Tests: 10 | Number of Users: 100 | Workplace: XYZ Corp</p>
-        </div>
+<script>
+    function submitForm(buttonValue) {
+        // Set the value of the hidden input field
+        document.getElementById('selectedButton').value = buttonValue;
+        // Submit the form
+        document.getElementById('sortingForm').submit();
+    }
+</script>
 
-        <div class="row">
-            <p class="font-weight-bold  ml-4">Name: ${room.roomName} | Owner: ${room.user.username}</p>
-        </div>
-    </div>
-</c:forEach>
+<%--Display list room --%>
+<div>
+    <%--Display list information each room in listownedRoom--%>
+    <c:forEach items="${requestScope.listRoom}" var="room">
+        <div class="container mt-3 bg-light-purple p-3 rounded">
+            <!-- Information Block -->
+            <div class="row">
+                <p class="text-light ml-4">Number of Tests: 10 | Number of Users: 100 | Workplace: XYZ Corp</p>
+            </div>
 
-<%--Display list information each room in listRoomJoinedByUser--%>
-<c:forEach items="${requestScope.listRoomJoinedByUser}" var="room">
-    <div class="container mt-3 bg-light-purple p-3 rounded">
-        <!-- Information Block -->
-        <div class="row">
-            <p class="text-light ml-4">Number of Tests: 10 | Number of Users: 100 | Workplace: XYZ Corp</p>
-        </div>
+            <div class="row">
+                <p class="font-weight-bold  ml-4">Name: ${room.roomName} | Owner: ${room.user.username}
+            </div>
 
-        <div class="row">
-            <p class="font-weight-bold  ml-4">Name: ${room.roomName} | Owner: ${room.user.username}</p>
+
         </div>
-    </div>
-</c:forEach>
+    </c:forEach>
+</div>
+
 
 <!-- Modal for Larger Image -->
 <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
@@ -190,6 +251,37 @@
             </div>
         </div>
     </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Room</th>
+            <th>Code</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            // Assuming you have already populated the roomCodes map in the servlet
+            Map<Room, String> roomCodes = (HashMap<Room, String>) request.getAttribute("roomCodes");
+        %>
+        <%
+            // Iterate through the map entries
+            Set<Map.Entry<Room, String>> entrySet = roomCodes.entrySet();
+            Iterator<Map.Entry<Room, String>> iterator = entrySet.iterator();
+
+            while (iterator.hasNext()) {
+                Map.Entry<Room, String> entry = iterator.next();
+                Room room = entry.getKey();
+                String code = entry.getValue();
+        %>
+        <tr>
+            <td><%= room.getRoomName() %>
+            </td>
+            <td><%= code %>
+            </td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
 </div>
 
 <!-- Modal for Create Room -->
@@ -280,6 +372,10 @@
         $('#avatarModal').modal('show');
     });
 </script>
+
+<script src="./js/RoomScreen/script.js"></script>
+<script src="./js/RoomScreen/suggestion.js"></script>
+
 </body>
 
 

@@ -32,7 +32,6 @@ public class RoomDbContext extends DBContext<Room> {
                 "`description`,\n" +
                 "`uid`,\n" +
                 "`created_at`,\n" +
-                "`code_to_join`)\n" +
                 "VALUES\n" +
                 "(?,\n" +
                 "?,\n" +
@@ -51,8 +50,6 @@ public class RoomDbContext extends DBContext<Room> {
             stm.setString(5, entity.getDescription());
             stm.setInt(6, entity.getUser().getId());
             stm.setDate(7, entity.getCreatedAt());
-            stm.setString(8, entity.getCodeToJoin());
-
             stm.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -96,6 +93,36 @@ public class RoomDbContext extends DBContext<Room> {
                 r.setPassword(rs.getString(4));
                 r.setDescription(rs.getString(5));
                 r.setUser(user);
+                r.setCreatedAt(rs.getDate(7));
+                listRoom.add(r);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listRoom;
+    }
+
+    public ArrayList<Room> listAllRoomExceptOwner(User user) {
+        ArrayList<Room> listRoom = new ArrayList<>();
+        String sql = "SELECT `room`.`room_id`,\n" +
+                "    `room`.`room_name`,\n" +
+                "    `room`.`code`,\n" +
+                "    `room`.`password`,\n" +
+                "    `room`.`description`,\n" +
+                "    `room`.`uid`,\n" +
+                "    `room`.`created_at`\n" +
+                "FROM `online_quizz`.`room` WHER uid != ?;";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, user.getId());
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Room r = new Room();
+                r.setRoomId(rs.getInt(1));
+                r.setRoomName(rs.getString(2));
+                r.setCode(rs.getString(3));
+                r.setPassword(rs.getString(4));
+                r.setDescription(rs.getString(5));
                 r.setCreatedAt(rs.getDate(7));
                 listRoom.add(r);
             }
@@ -204,30 +231,6 @@ public class RoomDbContext extends DBContext<Room> {
         return listRoomJoinedByUser;
     }
 
-    public Room getRoomToJoin(String codeToJoin) {
-        String sql = "SELECT * FROM room WHERE code_to_join = ?";
-        try {
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, codeToJoin);
-            ResultSet resultSet = stm.executeQuery();
-            if (resultSet.next()) {
-                Room room = new Room();
-                room.setRoomId(resultSet.getInt("room_id"));
-                room.setRoomName(resultSet.getString("room_name"));
-                room.setCode(resultSet.getString("code"));
-                room.setPassword(resultSet.getString("password"));
-                room.setDescription(resultSet.getString("description"));
-                room.setCodeToJoin(resultSet.getString("code_to_join"));
-                User u = new User();
-                u.setId(resultSet.getInt("uid"));
-                room.setUser(u);
-                return room;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
-    }
 
     public Room getRoomByName(Room roomNeedToCheck) {
         String sql = "SELECT `room`.`room_id`,\n" +
@@ -255,5 +258,20 @@ public class RoomDbContext extends DBContext<Room> {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    public ArrayList<String> listRoomName() {
+        ArrayList<String> listRoomName = new ArrayList<>();
+        String sql = "SELECT room_name FROM online_quizz.room;";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                listRoomName.add(rs.getString("room_name"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listRoomName;
     }
 }

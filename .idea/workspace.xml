@@ -9,9 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e8b4fd3-2b91-427b-85e9-52000caad053" name="Changes" comment="">
+    <list default="true" id="9e8b4fd3-2b91-427b-85e9-52000caad053" name="Changes" comment="Fix error, forget hardcode">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/SearchBar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/RoomScreen/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/CreateRoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/CreateRoomServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/InviteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/InviteServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/RoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/RoomServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/utilities/GenerateCodeToJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/utilities/GenerateCodeToJoin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDbContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDbContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/ManageRoomScreen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/ManageRoomScreen.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ManageRoomScreen.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ManageRoomScreen.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,14 +32,17 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="JavaScript File" />
         <option value="Jsp File" />
+        <option value="JavaScript File" />
         <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ManageRoomScreen.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -65,10 +78,11 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true" show_console_on_std_err="true" show_console_on_std_out="true">
       <option name="BROWSER_ID" value="37cae5b9-e8b2-4949-9172-aafa37fbc09c" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
       <deployment>
         <artifact name="OnlineQuizz:war exploded">
           <settings>
@@ -78,13 +92,12 @@
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="64a6aebe-1e52-4f90-a14f-106df7d84842" />
-        <option name="HTTP_PORT" value="8888" />
-        <option name="JNDI_PORT" value="1098" />
+        <option name="HTTP_PORT" value="8889" />
       </server-settings>
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
+      <log_file alias="Tomcat Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/manager.*" />
+      <log_file alias="Tomcat Host Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/host-manager.*" />
+      <log_file checked="false" alias="Tomcat Localhost Log" path="%IDEA_RUN:CATALINA_BASE%/logs/localhost.*" />
+      <log_file checked="false" alias="Tomcat Catalina Log" path="%IDEA_RUN:CATALINA_BASE%/logs/catalina.*" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="54349" />
@@ -182,7 +195,20 @@
       <workItem from="1705807405765" duration="68000" />
       <workItem from="1705836230418" duration="16524000" />
       <workItem from="1706019806661" duration="24297000" />
-      <workItem from="1706116941905" duration="103000" />
+      <workItem from="1706116941905" duration="256000" />
+      <workItem from="1706505578834" duration="3997000" />
+      <workItem from="1706511546245" duration="123000" />
+      <workItem from="1706511685102" duration="39000" />
+      <workItem from="1706511955169" duration="5434000" />
+      <workItem from="1706530826113" duration="454000" />
+      <workItem from="1706531326726" duration="2000000" />
+      <workItem from="1706533338637" duration="330000" />
+      <workItem from="1706533827345" duration="2902000" />
+      <workItem from="1706536742093" duration="4898000" />
+      <workItem from="1706544381783" duration="3887000" />
+      <workItem from="1706548339369" duration="1662000" />
+      <workItem from="1706550513519" duration="22000" />
+      <workItem from="1706550646595" duration="1819000" />
     </task>
     <servers />
   </component>
@@ -199,5 +225,18 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fix error, forget hardcode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix error, forget hardcode" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
+        <watch expression="listRoomName.get(0).hashIsZero" />
+        <watch expression="listRoomName.get(1)" />
+        <watch expression="listRoom" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

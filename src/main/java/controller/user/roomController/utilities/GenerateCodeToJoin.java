@@ -1,20 +1,43 @@
 package controller.user.roomController.utilities;
 
-import java.security.SecureRandom;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class GenerateCodeToJoin {
 
-    public static String generateCode(int length) {
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder code = new StringBuilder();
+    public static String generateCode(String passwordToHash) {
+        String generatedPassword = null;
 
-        SecureRandom random = new SecureRandom();
+        try {
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
 
-        for (int i = 0; i < length; i++) {
-            int index = random.nextInt(characters.length());
-            code.append(characters.charAt(index));
+            // Add password bytes to digest
+            md.update(passwordToHash.getBytes());
+
+            // Get the hash's bytes
+            byte[] bytes = md.digest();
+
+            // Convert the first 10 bytes to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < Math.min(10, bytes.length); i++) {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+
+            // Get complete hashed password (truncated to 10 characters) in hex format
+            generatedPassword = sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
+        return generatedPassword;
+    }
 
-        return code.toString();
+    public static boolean checkInvitedCode(String code, String passwordToHash) {
+        String fakeCode = generateCode(code);
+        String realCode = generateCode(passwordToHash);
+        if (fakeCode.equals(realCode)) {
+            return true;
+        }
+        return false;
     }
 }
