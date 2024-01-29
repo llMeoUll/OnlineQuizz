@@ -34,11 +34,6 @@ public class ActiveUsersDBContext extends DBContext<ActiveUsers> {
     }
 
     @Override
-    public void create(ActiveUsers entity) {
-
-    }
-
-    @Override
     public void insert(ActiveUsers entity) {
 
     }

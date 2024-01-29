@@ -62,11 +62,6 @@ public class RoomDbContext extends DBContext<Room> {
     }
 
     @Override
-    public void create(Room entity) {
-
-    }
-
-    @Override
     public void delete(Room entity) {
 
     }

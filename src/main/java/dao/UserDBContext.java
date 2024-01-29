@@ -6,10 +6,7 @@ import controller.user.authenticate.Register;
 import entity.*;
 import org.eclipse.tags.shaded.org.apache.xml.dtm.ref.sax2dtm.SAX2RTFDTM;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,8 +44,8 @@ public class UserDBContext extends DBContext<User> {
                     user.setGivenName(resultSet.getString("given_name"));
                     user.setFamilyName(resultSet.getString("family_name"));
                     user.setPicture(resultSet.getString("avartar"));
-                    user.setCreatedAt(resultSet.getString("created_at"));
-                    user.setUpdatedAt(resultSet.getString("updated_at"));
+                    user.setCreatedAt(resultSet.getTimestamp("created_at"));
+                    user.setUpdatedAt(resultSet.getTimestamp("updated_at"));
                     return user;
                 }
             }
@@ -88,8 +85,8 @@ public class UserDBContext extends DBContext<User> {
                     user.setGivenName(resultSet.getString("given_name"));
                     user.setFamilyName(resultSet.getString("family_name"));
                     user.setPicture(resultSet.getString("avartar"));
-                    user.setCreatedAt(resultSet.getString("created_at"));
-                    user.setUpdatedAt(resultSet.getString("updated_at"));
+                    user.setCreatedAt(resultSet.getTimestamp("created_at"));
+                    user.setUpdatedAt(resultSet.getTimestamp("updated_at"));
                     return user;
                 }
             }
@@ -126,6 +123,27 @@ public class UserDBContext extends DBContext<User> {
 
     }
 
+    public User getByUsernameAndPassword(User entity) {
+        try {
+            String sqlGetAdmin = "SELECT `user`.email, `user`.uid, `user`.username FROM online_quizz.user\n" +
+                    "WHERE `user`.username = ? AND `user`.`password` = ?;";
+            PreparedStatement stmGetAdmin = connection.prepareStatement(sqlGetAdmin);
+            stmGetAdmin.setString(1, entity.getUsername());
+            stmGetAdmin.setString(2, entity.getPassword());
+            ResultSet rs = stmGetAdmin.executeQuery();
+            while(rs.next()) {
+                User user = new User();
+                String username = rs.getString("username");
+                int uid = Integer.parseInt(rs.getString("uid"));
+                user.setUsername(username);
+                user.setId(uid);
+                return user;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
     @Override
     public ArrayList<User> list() {
         ArrayList<User> users = new ArrayList<>();
@@ -149,8 +167,8 @@ public class UserDBContext extends DBContext<User> {
                 String given_name = rs.getString("given_name");
                 String family_name = rs.getString("family_name");
                 String avatar = rs.getString("avartar");
-                String created_at = rs.getString("created_at");
-                String updated_at = rs.getString("updated_at");
+                Timestamp created_at = rs.getTimestamp("created_at");
+                Timestamp updated_at = rs.getTimestamp("updated_at");
                 user.setId(id);
                 user.setEmail(email);
                 user.setUsername(username);
@@ -227,70 +245,38 @@ public class UserDBContext extends DBContext<User> {
 
     @Override
     public void update(User entity) {
-
-    }
-
-    @Override
-    public void create(User entity) {
-
+        try {
+            String sqlUpdateUser = "UPDATE `online_quizz`.`user`\n" +
+                    "SET\n" +
+                    "`email` = ?,\n" +
+                    "`username` = ?,\n" +
+                    "`given_name` = ?,\n" +
+                    "`family_name` = ?,\n" +
+                    "`updated_at` = ?\n" +
+                    "WHERE `uid` = ?;";
+            PreparedStatement stmUpdateUser = connection.prepareStatement(sqlUpdateUser);
+            stmUpdateUser.setString(1, entity.getEmail());
+            stmUpdateUser.setString(2, entity.getUsername());
+            stmUpdateUser.setString(3, entity.getGivenName());
+            stmUpdateUser.setString(4, entity.getFamilyName());
+            stmUpdateUser.setTimestamp(5, entity.getUpdatedAt());
+            stmUpdateUser.setInt(6, entity.getId());
+            stmUpdateUser.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void delete(User entity) {
+
+        String sqlDeleteUser = "DELETE FROM `online_quizz`.`user`\n" +
+                "WHERE `user`.`uid` = ?;";
+        PreparedStatement stmDeleteUser = null;
         try {
-            connection.setAutoCommit(false);
-            String sqlDeleteUser = "DELETE FROM `online_quizz`.`user`\n" +
-                    "WHERE `user`.`uid` = ?;";
-            PreparedStatement stmDeleteUser = connection.prepareStatement(sqlDeleteUser);
+            stmDeleteUser = connection.prepareStatement(sqlDeleteUser);
             stmDeleteUser.setInt(1, entity.getId());
             stmDeleteUser.executeUpdate();
-
-            String sqlDeleteDoneTest = "DELETE FROM `online_quizz`.`user_does_test`\n" +
-                    "WHERE `user_does_test`.`uid` = ?;";
-            PreparedStatement stmDeleteDoneTest = connection.prepareStatement(sqlDeleteDoneTest);
-            stmDeleteDoneTest.setInt(1, entity.getId());
-            stmDeleteDoneTest.executeUpdate();
-
-            for(Test doneTest : entity.getDoneTest()) {
-                String sqlDeleteUserAnswer = "DELETE FROM online_quizz.user_answer\n" +
-                        "WHERE `user_answer`.`udt_id` IN (\n" +
-                        "\tSELECT DISTINCT `user_does_test`.`udt_id` FROM `user_does_test`\n" +
-                        "    WHERE `user_does_test`.`test_id` = ?\n" +
-                        ")";
-                PreparedStatement stmDeleteUserAnswer = connection.prepareStatement(sqlDeleteUserAnswer);
-                stmDeleteUserAnswer.setInt(1, doneTest.getTestId());
-                stmDeleteUserAnswer.executeUpdate();
-            }
-
-            String sqlDeleteComments = "DELETE FROM `online_quizz`.`comment`\n" +
-                    "WHERE `comment`.`uid` = ?;";
-            PreparedStatement stmDeleteComments = connection.prepareStatement(sqlDeleteComments);
-            stmDeleteComments.setInt(1, entity.getId());
-            stmDeleteComments.executeUpdate();
-
-            String sqlDeleteReplyComments = "DELETE FROM `online_quizz`.`comment`\n" +
-                    "WHERE `comment`.`comment_id` IN (\n" +
-                    "\tSELECT DISTINCT `comment`.`reply_id` FROM `online_quizz`.`comment`\n" +
-                    "    WHERE `comment`.`uid` = ?\n" +
-                    ");";
-            PreparedStatement stmDeleteReplyComment = connection.prepareStatement(sqlDeleteReplyComments);
-            stmDeleteReplyComment.setInt(1, entity.getId());
-            stmDeleteReplyComment.executeUpdate();
-
-            String sqlDeleteStarRate = "DELETE FROM `online_quizz`.`star_rate`\n" +
-                    "WHERE `star_rate`.`uid` = ?;";
-            PreparedStatement stmDeleteStarRate = connection.prepareStatement(sqlDeleteStarRate);
-            stmDeleteStarRate.setInt(1, entity.getId());
-            stmDeleteStarRate.executeUpdate();
-
-            for (Set set : entity.getOwnedSets()) {
-                String sqlDeleteSets = "";
-                PreparedStatement stmDeleteSets = connection.prepareStatement(sqlDeleteSets);
-            }
-
-
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -551,6 +537,7 @@ public class UserDBContext extends DBContext<User> {
         return roles;
     }
 
+    // if email is existed, return false
     public boolean checkEmail(String email) {
         String sql = "SELECT email FROM user\n" +
                 "where email = ?";
@@ -637,4 +624,97 @@ public class UserDBContext extends DBContext<User> {
 
     }
 
+    public User getUserById(int userId) {
+        String sqlGetUser = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`,\n" +
+                "    `user`.`username`,\n" +
+                "    `user`.`given_name`,\n" +
+                "    `user`.`family_name`,\n" +
+                "    `user`.`avartar`\n" +
+                "FROM `online_quizz`.`user`\n" +
+                "WHERE `user`.`uid` = ?";
+        try {
+            PreparedStatement stmGetUserById = connection.prepareStatement(sqlGetUser);
+            stmGetUserById.setInt(1, userId);
+            ResultSet rs = stmGetUserById.executeQuery();
+            while(rs.next()) {
+                User user = new User();
+                user.setId(userId);
+                user.setEmail(rs.getString("email"));
+                user.setUsername(rs.getString("username"));
+                user.setGivenName(rs.getString("given_name"));
+                user.setFamilyName(rs.getString("family_name"));
+                user.setPicture(rs.getString("avartar"));
+                return user;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    public ArrayList<User> getUsersByEmail(String email) {
+        ArrayList<User> users = new ArrayList<>();
+        String sqlGetUsersByEmail = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`,\n" +
+                "    `user`.`username`,\n" +
+                "    `user`.`given_name`,\n" +
+                "    `user`.`family_name`,\n" +
+                "    `user`.`avartar`,\n" +
+                "    `user`.`created_at`,\n" +
+                "    `user`.`updated_at`\n" +
+                "FROM `online_quizz`.`user`\n" +
+                "WHERE `user`.`email` LIKE ? OR `user`.`email` LIKE ? OR `user`.`email` LIKE ?";
+        try {
+            PreparedStatement stmGetUsersByEmail = connection.prepareStatement(sqlGetUsersByEmail);
+            stmGetUsersByEmail.setString(1, "%" + email);
+            stmGetUsersByEmail.setString(2, "%" + email + "%");
+            stmGetUsersByEmail.setString(3, email + "%");
+            ResultSet rs = stmGetUsersByEmail.executeQuery();
+            while(rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("uid"));
+                user.setEmail(rs.getString("email"));
+                user.setUsername(rs.getString("username"));
+                user.setGivenName(rs.getString("given_name"));
+                user.setFamilyName(rs.getString("family_name"));
+                user.setPicture(rs.getString("avartar"));
+                user.setCreatedAt(rs.getTimestamp("created_at"));
+                user.setUpdatedAt(rs.getTimestamp("updated_at"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return users;
+    }
+
+    public ArrayList<User> getNewUserInWeek() {
+        ArrayList<User> users = new ArrayList<>();
+        String sqlGetNewUserInWeek = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`,\n" +
+                "    `user`.`username`,\n" +
+                "    `user`.`given_name`,\n" +
+                "    `user`.`family_name`,\n" +
+                "    `user`.`avartar`,\n" +
+                "    `user`.`created_at`,\n" +
+                "    `user`.`updated_at`\n" +
+                "FROM `online_quizz`.`user`\n" +
+                "WHERE WEEK(created_at) = WEEK(NOW()) AND DAYOFWEEK(created_at) <= DAYOFWEEK(NOW());";
+        try {
+            PreparedStatement stmGetNewUserInWeek = connection.prepareStatement(sqlGetNewUserInWeek);
+            ResultSet rs = stmGetNewUserInWeek.executeQuery();
+            while(rs.next()) {
+                User user = new User();
+                user.setFamilyName(rs.getString("family_name"));
+                user.setGivenName(rs.getString("given_name"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return users;
+    }
 }

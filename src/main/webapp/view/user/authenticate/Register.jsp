@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Register</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./icons/favicon32x32.ico" />
     <link rel="stylesheet" href="./css/Register.css">
     <link rel="stylesheet" href="webjars/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="webjars/font-awesome/6.5.1/css/all.min.css">
