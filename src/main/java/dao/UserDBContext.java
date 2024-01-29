@@ -537,6 +537,7 @@ public class UserDBContext extends DBContext<User> {
         return roles;
     }
 
+    // if email is existed, return false
     public boolean checkEmail(String email) {
         String sql = "SELECT email FROM user\n" +
                 "where email = ?";
