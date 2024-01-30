@@ -50,6 +50,6 @@ public class CreateRoomServlet extends HttpServlet {
         RoomDbContext rDB = new RoomDbContext();
         rDB.insert(r);
 
-        response.sendRedirect("/OnlineQuizz_war_exploded/ManageRoom");
+        response.sendRedirect("/Quizzicle/ManageRoom");
     }
 }

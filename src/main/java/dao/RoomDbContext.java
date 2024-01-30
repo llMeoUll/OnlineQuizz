@@ -31,16 +31,10 @@ public class RoomDbContext extends DBContext<Room> {
                 "`password`,\n" +
                 "`description`,\n" +
                 "`uid`,\n" +
-                "`created_at`,\n" +
+                "`created_at`)\n" +
                 "VALUES\n" +
-                "(?,\n" +
-                "?,\n" +
-                "?,\n" +
-                "?,\n" +
-                "?,\n" +
-                "?,\n" +
-                "?,\n" +
-                "?);\n";
+                "(?, ?, ?, ?, ?, ?, ?);\n";
+
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, entity.getRoomId());
@@ -106,7 +100,7 @@ public class RoomDbContext extends DBContext<Room> {
                 "    `room`.`description`,\n" +
                 "    `room`.`uid`,\n" +
                 "    `room`.`created_at`\n" +
-                "FROM `online_quizz`.`room` WHER uid != ?;";
+                "FROM `online_quizz`.`room` WHERE uid != ?;";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, user.getId());
