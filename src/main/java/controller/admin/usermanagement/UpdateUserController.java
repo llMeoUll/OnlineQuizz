@@ -23,8 +23,8 @@ public class UpdateUserController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("uid"));
         String email = request.getParameter("email");
         String username = request.getParameter("username");
-        String givenName = request.getParameter("givenName");
-        String familyName = request.getParameter("familyName");
+        String givenName = request.getParameter("given-name");
+        String familyName = request.getParameter("family-name");
         User param = new User();
         param.setEmail(email);
         param.setId(id);
@@ -35,5 +35,6 @@ public class UpdateUserController extends HttpServlet {
         param.setUpdatedAt(new Timestamp(updatedAt.getTime()));
         UserDBContext userDBContext = new UserDBContext();
         userDBContext.update(param);
+        response.sendRedirect("../user_management");
     }
 }
