@@ -105,27 +105,12 @@
             <artifactId>scrypt</artifactId>
             <version>1.4.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-gmail -->
-        <dependency>
-            <groupId>com.google.apis</groupId>
-            <artifactId>google-api-services-gmail</artifactId>
-            <version>v1-rev110-1.25.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-drive -->
-        <dependency>
-            <groupId>com.google.apis</groupId>
-            <artifactId>google-api-services-drive</artifactId>
-            <version>v3-rev197-1.25.0</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail -->
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>jakarta.mail</artifactId>
             <version>2.0.1</version>
         </dependency>
-
-
-
     </dependencies>
 
     <build>

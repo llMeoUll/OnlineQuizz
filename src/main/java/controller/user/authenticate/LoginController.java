@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
                 User loggedUser = db.get(param);
                 if (loggedUser == null) {
                     request.setAttribute("error", "Email/Password is invalid!");
-                    request.getRequestDispatcher("./view/Login.jsp").forward(request, response);
+                    request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request, response);
                 } else {
                     try {
                         loggedUser.setRoles(db.getRolesAndFeatures(loggedUser.getUsername()));
@@ -47,13 +47,13 @@ public class LoginController extends HttpServlet {
             }
             else {
                 request.setAttribute("error", "Email is not registered!");
-                request.getRequestDispatcher("./view/Login.jsp").forward(request, response);
+                request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request, response);
                 return;
             }
 
         } else {
             request.setAttribute("error", "Email/Password is invalid!");
-            request.getRequestDispatcher("./view/Login.jsp").forward(request, response);
+            request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request, response);
             return;
         }
 

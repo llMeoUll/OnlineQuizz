@@ -11,19 +11,37 @@
     <title>Verify</title>
     <link rel="shortcut icon" type="image/x-icon" href="./icons/logo64x64.ico"/>
     <link rel="stylesheet" href="./css/Verify.css">
-    <link rel="stylesheet" href="webjars/bootstrap/5.3.2/css/bootstrap.min.css">
-    <script src="webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+<%--    <link rel="stylesheet" href="webjars/bootstrap/5.3.2/css/bootstrap.min.css">--%>
+<%--    <script src="webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>--%>
 </head>
 <body>
+<form method="post" action="./verify-code">
 <div class="container">
-    <h2 class="text-center mb-4">Verify Your Email</h2>
-    <form action="./verify-email" method="post">
-        <div class="mb-3">
-            <label for="verificationCode" class="form-label">Enter Verification Code</label>
-            <input type="text" class="form-control" id="verificationCode" name="code" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Verify</button>
-    </form>
+    <h2 class="text-center mb-4">Verify Your Code</h2>
+    <p>
+        We emailed you the six-digit code to verify your email address, please enter it below.
+    </p>
+    <div class="code-container">
+        <input type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input type="number" class="code" placeholder="0" min="0" max="9" required>
+    </div>
+    <input type="hidden" id="codeInput" name="code">
+    <input type="hidden" name="verify-type" value="${sessionScope.verifyType}">
+    <p>
+        ${requestScope.error}
+    </p>
+    <div>
+        <button type="button" id="sumbit-btn" class="btn btn-primary" onclick="submitCode()">Verify</button>
+    </div>
+    <small>
+        If you didn't receive the code within 3 minutes, <strong>RESEND</strong>
+    </small>
 </div>
+</form>
+<script src="./js/Verify.js"></script>
 </body>
 </html>

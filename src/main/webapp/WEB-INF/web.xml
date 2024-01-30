@@ -50,8 +50,8 @@
         <servlet-class>controller.user.authenticate.Logout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>VerifyEmail</servlet-name>
-        <servlet-class>controller.user.authenticate.VerifyEmail</servlet-class>
+        <servlet-name>VerifyCode</servlet-name>
+        <servlet-class>controller.user.authenticate.VerifyCode</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminLogin</servlet-name>
@@ -72,6 +72,14 @@
     <servlet>
         <servlet-name>UpdateUserController</servlet-name>
         <servlet-class>controller.admin.usermanagement.UpdateUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ForgotPassword</servlet-name>
+        <servlet-class>controller.user.authenticate.ForgotPassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResetPassword</servlet-name>
+        <servlet-class>controller.user.authenticate.ResetPassword</servlet-class>
     </servlet>
 
 
@@ -100,8 +108,8 @@
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>VerifyEmail</servlet-name>
-        <url-pattern>/verify-email</url-pattern>
+        <servlet-name>VerifyCode</servlet-name>
+        <url-pattern>/verify-code</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -119,5 +127,12 @@
         <servlet-name>Logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>ForgotPassword</servlet-name>
+        <url-pattern>/forgot-password</url-pattern>
+    </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>ResetPassword</servlet-name>
+    <url-pattern>/reset-password</url-pattern>
+</servlet-mapping>
 </web-app>

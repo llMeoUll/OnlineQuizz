@@ -47,27 +47,18 @@ public class Register extends HttpServlet {
                         newUser.setUsername(userName);
                         HttpSession session = request.getSession();
                         session.setAttribute("user", newUser);
-                        // Tạo mã xác nhận
-                        Random random = new Random();
-                        String code = String.valueOf(random.nextInt(900000) + 100000);
-                        // Hash mã xác nhận
-                        String hashCode = SCryptUtil.scrypt(code, 16, 16, 16);
-                        session.setAttribute("code", hashCode);
-                        // Tạo URL xác nhận
-                        Dotenv dotenv = Dotenv.configure().load();
-                        String rootUrl = dotenv.get("ROOT_URL");
-                        String url = rootUrl + "verify-email?email=" + newUser.getEmail() + "&code=" + hashCode;
                         // Tạo nội dung email
                         String subject = "Verify your email address";
                         String content = "Please confirm that you want to use this email as your Quizzicle account email address";
-                        MailTemplate mailTemplate = new MailTemplate();
-                        String mailContent = mailTemplate.generateEmail(subject, content, url, code);
                         // Gửi email xác nhận
-                        Email verifyEmail = new Email();
-                        verifyEmail.sendEmail(newUser.getEmail(), subject, mailContent);
+                        Email sendEmail = new Email();
+                        String verifyType = "verify-email";
+                        sendEmail.sendVerifyCode(request, newUser.getEmail(), subject, content, verifyType);
                         // Thêm người dùng vào cơ sở dữ liệu
                         db.insert(newUser);
-                        response.sendRedirect("./verify-email");
+                        //set verify type to verify email
+                        session.setAttribute("verifyType", verifyType);
+                        response.sendRedirect("./verify-code");
                     } else {
                         // Xử lý lỗi nếu mật khẩu và xác nhận mật khẩu không khớp
                         request.setAttribute("error", "Password and confirm password do not match!");
