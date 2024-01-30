@@ -15,7 +15,7 @@ public class UpdateUserController extends HttpServlet {
         UserDBContext userDBContext = new UserDBContext();
         User userForUpdate = userDBContext.getUserById(userId);
         request.setAttribute("userForUpdate", userForUpdate);
-        request.getRequestDispatcher("../view/admin/UpdateUser.jsp").forward(request, response);
+        request.getRequestDispatcher("../../view/admin/UpdateUser.jsp").forward(request, response);
     }
 
     @Override

@@ -81,15 +81,15 @@
 
     <servlet-mapping>
         <servlet-name>CreateUserController</servlet-name>
-        <url-pattern>/admin/create</url-pattern>
+        <url-pattern>/admin/user_management/create</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateUserController</servlet-name>
-        <url-pattern>/admin/update</url-pattern>
+        <url-pattern>/admin/user_management/update</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminDeleteUserController</servlet-name>
-        <url-pattern>/admin/delete</url-pattern>
+        <url-pattern>/admin/user_management/delete</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminUserManagement</servlet-name>
