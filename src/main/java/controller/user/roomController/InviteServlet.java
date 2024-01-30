@@ -34,7 +34,7 @@ public class InviteServlet extends BasedAuthentication {
         if (r != null) {
             // insert to Many-Many table (uid, roomid) = (ownerUserId, r.room_id)
             rDB.insertIntoUser_Join_Room(u.getId(), r.getRoomId());
-            response.sendRedirect("/OnlineQuizz_war_exploded/ManageRoom");
+            response.sendRedirect("/Quizzicle/ManageRoom");
         } else {
             request.getRequestDispatcher("/view/user/RoomScreen/NotFound.jsp").forward(request, response);
         }
@@ -54,7 +54,7 @@ public class InviteServlet extends BasedAuthentication {
         if (r != null) {
             // insert to Many-Many table (uid, roomid) = (ownerUserId, r.room_id)
             rDB.insertIntoUser_Join_Room(u.getId(), r.getRoomId());
-            response.sendRedirect("/OnlineQuizz_war_exploded/ManageRoom");
+            response.sendRedirect("/Quizzicle/ManageRoom");
         } else {
             request.getRequestDispatcher("/view/user/RoomScreen/NotFound.jsp").forward(request, response);
         }

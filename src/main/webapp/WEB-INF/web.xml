@@ -141,7 +141,14 @@
         <servlet-name>RoomManage</servlet-name>
         <url-pattern>/ManageRoom</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>createRoom</servlet-name>
+        <servlet-class>controller.user.roomController.CreateRoomServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createRoom</servlet-name>
+        <url-pattern>/createRoom</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>Invite</servlet-name>
         <servlet-class>controller.user.roomController.InviteServlet</servlet-class>

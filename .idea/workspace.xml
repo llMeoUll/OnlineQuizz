@@ -9,6 +9,76 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/CreateUserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/UpdateUserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/util/Email.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/util/MailTemplate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/Dashboard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/Verify.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/usermanagement.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/icons/favicon32x32.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/icons/logo32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/icons/logo64x64.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/icons/logo64x64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/icons/logo96x96.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/icons/logo96x96.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/imagines/logo1250x1250.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/ClickButton.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/Dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/DataTable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/DataTableSimple.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateUser.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UpdateUser.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Verify.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/authentication/AdminLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/authentication/AdminLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/CreateUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/CreateUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/DeleteUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/DeleteUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/UpdateUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/UpdateUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/UserManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/UserManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginWithGoogle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginWithGoogle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/VerifyEmail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/VerifyEmail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/CreateRoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/CreateRoomServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/roomController/InviteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/roomController/InviteServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/GetSet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ActiveUsersDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ActiveUsersDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/AdminDBContext.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDbContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDbContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/dashboard.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/usermanagement.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/UserManagement.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/favicon32x32.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/logo32x32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/logo64x64.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/logo64x64.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/logo96x96.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/logo96x96.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/manageroom1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/manageset1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/overview1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/question1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/users1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/ChartActiveUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/ChartActiveUsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/AdminLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/AdminLogin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" afterDir="false" />
+    </list>
     <list default="true" id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes" comment="Fix error, forget hardcode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/CreateUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/CreateUserController.java" afterDir="false" />
@@ -18,6 +88,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateUser.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UpdateUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UpdateUser.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Register.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
