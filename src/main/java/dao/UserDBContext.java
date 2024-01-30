@@ -218,7 +218,7 @@ public class UserDBContext extends DBContext<User> {
                             "VALUES\n" +
                             "(?, ?);\n";
                     PreparedStatement stmInsertRole = connection.prepareStatement(sqlInsertRole);
-                    stmInsertRole.setInt(1, 2);
+                    stmInsertRole.setInt(1, getRoleId("User"));
                     stmInsertRole.setInt(2, userId);
                     stmInsertRole.executeUpdate();
                 }
@@ -242,7 +242,61 @@ public class UserDBContext extends DBContext<User> {
 
 
     }
+    public void insertGoogleUser(User entity) {
+        try {
+            connection.setAutoCommit(false);
+            String sqlInsert = "INSERT INTO `online_quizz`.`user`\n" +
+                    "(\n" +
+                    "`email`,\n" +
+                    "`given_name`,\n" +
+                    "`family_name`,\n" +
+                    "`is_verify`,\n" +
+                    "`avartar`,\n" +
+                    "`created_at`,\n" +
+                    "`updated_at`\n" +
+                    ")\n" +
+                    "VALUES\n" +
+                    "(?, ?, ?, ?, ?, current_timestamp(), current_timestamp());\n";
+            PreparedStatement stm = connection.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
+            stm.setString(1, entity.getEmail());
+            stm.setString(2, entity.getGivenName());
+            stm.setString(3, entity.getFamilyName());
+            stm.setBoolean(4, entity.isVerified());
+            stm.setString(5, entity.getPicture());
+            stm.executeUpdate();
 
+            try (ResultSet generatedKeys = stm.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int userId = generatedKeys.getInt(1);
+                    String sqlInsertRole = "INSERT INTO `online_quizz`.`role_user_mapping`\n" +
+                            "(`rid`,\n" +
+                            "`uid`)\n" +
+                            "VALUES\n" +
+                            "(?, ?);\n";
+                    PreparedStatement stmInsertRole = connection.prepareStatement(sqlInsertRole);
+                    stmInsertRole.setInt(1, getRoleId("User"));
+                    stmInsertRole.setInt(2, userId);
+                    stmInsertRole.executeUpdate();
+                }
+            }
+            connection.commit();
+
+        } catch (SQLException ex) {
+            try {
+                connection.rollback();
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex1) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
     @Override
     public void update(User entity) {
         try {
@@ -553,7 +607,7 @@ public class UserDBContext extends DBContext<User> {
         }
         return true;
     }
-
+    // if username is existed, return false
     public boolean checkUsername(String userName) {
         String sql = "SELECT username FROM user\n" +
                 "where username = ?";
@@ -569,61 +623,23 @@ public class UserDBContext extends DBContext<User> {
         }
         return true;
     }
+    private int getRoleId(String roleName) {
+        String sqlGetIdUserRole = "SELECT `role`.`rid`\n" +
+                "FROM `online_quizz`.`role`\n" +
+                "WHERE `role`.`name` = ?";
 
-    public void insertGoogleUser(User entity) {
         try {
-            connection.setAutoCommit(false);
-            String sqlInsert = "INSERT INTO `online_quizz`.`user`\n" +
-                    "(\n" +
-                    "`email`,\n" +
-                    "`given_name`,\n" +
-                    "`family_name`,\n" +
-                    "`avartar`,\n" +
-                    "`created_at`,\n" +
-                    "`updated_at`\n" +
-                    ")\n" +
-                    "VALUES\n" +
-                    "(?, ?, ?, ?, current_timestamp(), current_timestamp());\n";
-            PreparedStatement stm = connection.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-            stm.setString(1, entity.getEmail());
-            stm.setString(2, entity.getGivenName());
-            stm.setString(3, entity.getFamilyName());
-            stm.setString(4, entity.getPicture());
-            stm.executeUpdate();
-
-            try (ResultSet generatedKeys = stm.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    int userId = generatedKeys.getInt(1);
-                    String sqlInsertRole = "INSERT INTO `online_quizz`.`role_user_mapping`\n" +
-                            "(`rid`,\n" +
-                            "`uid`)\n" +
-                            "VALUES\n" +
-                            "(?, ?);\n";
-                    PreparedStatement stmInsertRole = connection.prepareStatement(sqlInsertRole);
-                    stmInsertRole.setInt(1, 2);
-                    stmInsertRole.setInt(2, userId);
-                    stmInsertRole.executeUpdate();
-                }
+            PreparedStatement stmGetIdUserRole = connection.prepareStatement(sqlGetIdUserRole);
+            stmGetIdUserRole.setString(1, roleName);
+            ResultSet rs = stmGetIdUserRole.executeQuery();
+            while(rs.next()) {
+                return rs.getInt("rid");
             }
-            connection.commit();
-
-        } catch (SQLException ex) {
-            try {
-                connection.rollback();
-                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex1) {
-                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex1);
-            }
-        } finally {
-            try {
-                connection.setAutoCommit(true);
-            } catch (SQLException ex) {
-                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
+        return -1;
     }
-
     public User getUserById(int userId) {
         String sqlGetUser = "SELECT `user`.`uid`,\n" +
                 "    `user`.`email`,\n" +

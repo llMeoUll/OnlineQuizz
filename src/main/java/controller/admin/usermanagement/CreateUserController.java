@@ -1,11 +1,13 @@
 package controller.admin.usermanagement;
 
 import dao.UserDBContext;
+import entity.Role;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import entity.User;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CreateUserController extends HttpServlet {
@@ -21,16 +23,26 @@ public class CreateUserController extends HttpServlet {
         String givenName = request.getParameter("given_name");
         String familyName = request.getParameter("family_name");
         String password = request.getParameter("password");
-        User newUser = new User();
-        newUser.setEmail(email);
-        newUser.setUsername(username);
-        newUser.setGivenName(givenName);
-        newUser.setFamilyName(familyName);
-        newUser.setPassword(password);
-        Date createdAt = new Date();
-        newUser.setCreatedAt(new Timestamp(createdAt.getTime()));
         UserDBContext userDBContext = new UserDBContext();
-        userDBContext.insert(newUser);
-        response.sendRedirect("../admin/user_management");
+        if(userDBContext.checkEmail(email) && userDBContext.checkUsername(username)) {
+            User newUser = new User();
+            newUser.setEmail(email);
+            newUser.setUsername(username);
+            newUser.setGivenName(givenName);
+            newUser.setFamilyName(familyName);
+            newUser.setPassword(password);
+            Date createdAt = new Date();
+            newUser.setCreatedAt(new Timestamp(createdAt.getTime()));
+            Role role = new Role();
+            role.setRId(2);
+            ArrayList<Role> roles = new ArrayList<>();
+            roles.add(role);
+            newUser.setRoles(roles);
+            userDBContext.insert(newUser);
+            response.sendRedirect("../user_management");
+        }
+        else {
+
+        }
     }
 }
