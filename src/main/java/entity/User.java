@@ -18,6 +18,7 @@ public class User {
     private String picture;
     private String username;
     private String password;
+    private boolean isVerified;
     private String createdAt;
     private String updatedAt;
     private ArrayList<Role> roles;
