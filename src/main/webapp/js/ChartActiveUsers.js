@@ -39,7 +39,7 @@ var myLineChart = new Chart(ctx, {
             yAxes: [{
                 ticks: {
                     min: 0,
-                    max: 40000,
+                    max: 400,
                     maxTicksLimit: 5
                 },
                 gridLines: {
