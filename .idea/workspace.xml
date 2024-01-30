@@ -58,6 +58,33 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Register.jsp" afterDir="false" />
+    <list default="true" id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/Dashboard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/imagines/logo1250x1250.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/Dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/DataTable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/DataTableSimple.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/CreateUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/CreateUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/DeleteUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/DeleteUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/UpdateUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/usermanagement/UpdateUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/dashboard.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/usermanagement.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/UserManagement.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/favicon32x32.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/logo32x32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/logo64x64.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/logo64x64.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/logo96x96.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/logo96x96.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/manageroom1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/manageset1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/overview1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/question1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/icons/users1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/ChartActiveUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/ChartActiveUsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,9 +95,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="CSS File" />
         <option value="Jsp File" />
         <option value="JavaScript File" />
-        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -111,20 +138,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/FPT/Semester 5/SWP391/Project SWP391/OnlineQuizz&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/ProjectSWP/OnlineQuizz/src/main/webapp/imagines",
+    "list.type.of.created.stylesheet": "CSS",
+    "nodejs_package_manager_path": "npm"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\imagines" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\css" />
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\js" />
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\css" />
     </key>
   </component>
   <component name="RunManager">
@@ -234,6 +264,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes" comment="Fix error, forget hardcode" />
+      <changelist id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes" comment="" />
       <created>1704853520966</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -259,6 +290,7 @@
       <workItem from="1706341456137" duration="332000" />
       <workItem from="1706341986156" duration="320000" />
       <workItem from="1706553086646" duration="316000" />
+      <workItem from="1706549346789" duration="7570000" />
     </task>
     <servers />
   </component>
