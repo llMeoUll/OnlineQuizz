@@ -2,6 +2,7 @@ package entity;
 
 import lombok.*;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 @Getter
@@ -19,8 +20,8 @@ public class User {
     private String username;
     private String password;
     private boolean isVerified;
-    private String createdAt;
-    private String updatedAt;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
     private ArrayList<Role> roles;
     private ArrayList<StarRate> ratedStar;
     private ArrayList<Test> doneTest;

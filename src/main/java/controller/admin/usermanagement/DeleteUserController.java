@@ -16,7 +16,7 @@ public class DeleteUserController extends HttpServlet {
         User user = new User();
         user.setId(uid);
         userDBContext.delete(user);
-        response.sendRedirect("user_management");
+        response.sendRedirect("../user_management");
     }
 
     @Override

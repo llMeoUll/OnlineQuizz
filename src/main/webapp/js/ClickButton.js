@@ -6,5 +6,9 @@ function viewDetailsUserManagement() {
     window.location.href = 'user_management';
 }
 
+function updateUser(uid) {
+    window.location.href = 'update?uid=' + uid;
+}
+
 
 

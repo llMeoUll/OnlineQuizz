@@ -2,16 +2,101 @@ package dao;
 
 import entity.*;
 
+
 import com.lambdaworks.crypto.SCryptUtil;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class UserDBContext extends DBContext<User>{
+public class UserDBContext extends DBContext<User> {
+
+    /**
+     * Get User by Uid
+     * @param entity entity has only id to get user from database (this is entityDTO)
+     * @return
+     */
+    public User getUserById(User entity) {
+        User user = null;
+        String query = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`,\n" +
+                "    `user`.`username`,\n" +
+                "    `user`.`given_name`,\n" +
+                "    `user`.`family_name`,\n" +
+                "    `user`.`password`,\n" +
+                "    `user`.`avartar`,\n" +
+                "    `user`.`created_at`,\n" +
+                "    `user`.`updated_at`\n" +
+                "FROM `online_quizz`.`user` WHERE uid = ?;\n";
+        try {
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setInt(1, entity.getId());
+            try (ResultSet resultSet = stm.executeQuery()) {
+                if (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getInt("uid"));
+                    user.setUsername(resultSet.getString("username"));
+                    user.setPassword(resultSet.getString("password"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setGivenName(resultSet.getString("given_name"));
+                    user.setFamilyName(resultSet.getString("family_name"));
+                    user.setPicture(resultSet.getString("avartar"));
+                    user.setCreatedAt(resultSet.getTimestamp("created_at"));
+                    user.setUpdatedAt(resultSet.getTimestamp("updated_at"));
+                    return user;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    /**
+     * Get full infor of user by email after logging
+     * @param entity entity has only id to get user from database (this is entityDTO)
+     * @return
+     */
+    public User getUserByEmail(User entity) {
+        User user = null;
+        String query = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`,\n" +
+                "    `user`.`username`,\n" +
+                "    `user`.`given_name`,\n" +
+                "    `user`.`family_name`,\n" +
+                "    `user`.`password`,\n" +
+                "    `user`.`avartar`,\n" +
+                "    `user`.`created_at`,\n" +
+                "    `user`.`updated_at`\n" +
+                "FROM `online_quizz`.`user` WHERE email = ?;\n";
+        try {
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setString(1, entity.getEmail());
+            try (ResultSet resultSet = stm.executeQuery()) {
+                if (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getInt("uid"));
+                    user.setUsername(resultSet.getString("username"));
+                    user.setPassword(resultSet.getString("password"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setGivenName(resultSet.getString("given_name"));
+                    user.setFamilyName(resultSet.getString("family_name"));
+                    user.setPicture(resultSet.getString("avartar"));
+                    user.setCreatedAt(resultSet.getTimestamp("created_at"));
+                    user.setUpdatedAt(resultSet.getTimestamp("updated_at"));
+                    return user;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
     @Override
     public User get(User entity) {
         try {
@@ -83,8 +168,8 @@ public class UserDBContext extends DBContext<User>{
                 String given_name = rs.getString("given_name");
                 String family_name = rs.getString("family_name");
                 String avatar = rs.getString("avartar");
-                String created_at = rs.getString("created_at");
-                String updated_at = rs.getString("updated_at");
+                Timestamp created_at = rs.getTimestamp("created_at");
+                Timestamp updated_at = rs.getTimestamp("updated_at");
                 user.setId(id);
                 user.setEmail(email);
                 user.setUsername(username);
@@ -215,12 +300,26 @@ public class UserDBContext extends DBContext<User>{
     }
     @Override
     public void update(User entity) {
-
-    }
-
-    @Override
-    public void create(User entity) {
-
+        try {
+            String sqlUpdateUser = "UPDATE `online_quizz`.`user`\n" +
+                    "SET\n" +
+                    "`email` = ?,\n" +
+                    "`username` = ?,\n" +
+                    "`given_name` = ?,\n" +
+                    "`family_name` = ?,\n" +
+                    "`updated_at` = ?\n" +
+                    "WHERE `uid` = ?;";
+            PreparedStatement stmUpdateUser = connection.prepareStatement(sqlUpdateUser);
+            stmUpdateUser.setString(1, entity.getEmail());
+            stmUpdateUser.setString(2, entity.getUsername());
+            stmUpdateUser.setString(3, entity.getGivenName());
+            stmUpdateUser.setString(4, entity.getFamilyName());
+            stmUpdateUser.setTimestamp(5, entity.getUpdatedAt());
+            stmUpdateUser.setInt(6, entity.getId());
+            stmUpdateUser.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -586,5 +685,69 @@ public class UserDBContext extends DBContext<User>{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public ArrayList<User> getUsersByEmail(String email) {
+        ArrayList<User> users = new ArrayList<>();
+        String sqlGetUsersByEmail = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`,\n" +
+                "    `user`.`username`,\n" +
+                "    `user`.`given_name`,\n" +
+                "    `user`.`family_name`,\n" +
+                "    `user`.`avartar`,\n" +
+                "    `user`.`created_at`,\n" +
+                "    `user`.`updated_at`\n" +
+                "FROM `online_quizz`.`user`\n" +
+                "WHERE `user`.`email` LIKE ? OR `user`.`email` LIKE ? OR `user`.`email` LIKE ?";
+        try {
+            PreparedStatement stmGetUsersByEmail = connection.prepareStatement(sqlGetUsersByEmail);
+            stmGetUsersByEmail.setString(1, "%" + email);
+            stmGetUsersByEmail.setString(2, "%" + email + "%");
+            stmGetUsersByEmail.setString(3, email + "%");
+            ResultSet rs = stmGetUsersByEmail.executeQuery();
+            while(rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("uid"));
+                user.setEmail(rs.getString("email"));
+                user.setUsername(rs.getString("username"));
+                user.setGivenName(rs.getString("given_name"));
+                user.setFamilyName(rs.getString("family_name"));
+                user.setPicture(rs.getString("avartar"));
+                user.setCreatedAt(rs.getTimestamp("created_at"));
+                user.setUpdatedAt(rs.getTimestamp("updated_at"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return users;
+    }
+
+    public ArrayList<User> getNewUserInWeek() {
+        ArrayList<User> users = new ArrayList<>();
+        String sqlGetNewUserInWeek = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`,\n" +
+                "    `user`.`username`,\n" +
+                "    `user`.`given_name`,\n" +
+                "    `user`.`family_name`,\n" +
+                "    `user`.`avartar`,\n" +
+                "    `user`.`created_at`,\n" +
+                "    `user`.`updated_at`\n" +
+                "FROM `online_quizz`.`user`\n" +
+                "WHERE WEEK(created_at) = WEEK(NOW()) AND DAYOFWEEK(created_at) <= DAYOFWEEK(NOW());";
+        try {
+            PreparedStatement stmGetNewUserInWeek = connection.prepareStatement(sqlGetNewUserInWeek);
+            ResultSet rs = stmGetNewUserInWeek.executeQuery();
+            while(rs.next()) {
+                User user = new User();
+                user.setFamilyName(rs.getString("family_name"));
+                user.setGivenName(rs.getString("given_name"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return users;
     }
 }
