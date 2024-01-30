@@ -24,7 +24,7 @@ public class AdminLoginController extends HttpServlet {
         if(loggedUser != null) {
             try {
                 loggedUser.setRoles(userDBContext.getRolesAndFeatures(loggedUser.getUsername()));
-                response.sendRedirect("./admin/dashboard");
+                response.sendRedirect("../admin/dashboard");
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }

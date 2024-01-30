@@ -5,9 +5,6 @@
         <title>JSP - Hello World</title>
     </head>
     <body>
-    <h1><%= "Hello World!" %>
-    </h1>
-    <br/>
-    <a href="hello-servlet">Hello Servlet</a>
+    <h3>${sessionScope.get("user")}</h3>
     </body>
 </html>

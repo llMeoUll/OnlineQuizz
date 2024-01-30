@@ -77,8 +77,15 @@
         <servlet-name>CreateUserController</servlet-name>
         <servlet-class>controller.admin.usermanagement.CreateUserController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminLoginController</servlet-name>
+        <servlet-class>controller.admin.authentication.AdminLoginController</servlet-class>
+    </servlet>
 
-
+    <servlet-mapping>
+        <servlet-name>AdminLoginController</servlet-name>
+        <url-pattern>/admin/login</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateUserController</servlet-name>
         <url-pattern>/admin/user_management/create</url-pattern>
@@ -157,5 +164,7 @@
         <servlet-name>Invite</servlet-name>
         <url-pattern>/invite</url-pattern>
     </servlet-mapping>
-
+    <listener>
+        <listener-class>controller.admin.schedule.ActiveSessionCounter</listener-class>
+    </listener>
 </web-app>

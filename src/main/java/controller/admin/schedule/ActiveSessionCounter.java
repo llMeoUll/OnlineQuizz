@@ -1,10 +1,11 @@
 package controller.admin.schedule;
 
 import jakarta.servlet.http.HttpSessionEvent;
+import jakarta.servlet.http.HttpSessionListener;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class ActiveSessionCounter {
+public class ActiveSessionCounter implements HttpSessionListener {
     private static AtomicInteger activeSessions = new AtomicInteger();
 
     public void sessionCreated(HttpSessionEvent sessionEvent) {

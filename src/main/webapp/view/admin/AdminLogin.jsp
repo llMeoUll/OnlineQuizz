@@ -11,7 +11,7 @@
         <title>Online Quiz</title>
     </head>
     <body>
-        <form method="post" action="adminlogin">
+        <form method="post" action="../admin/login">
             <input type="text" name="admin" placeholder="Type email">
             <input type="password" name="adminPassword" placeholder="Type password">
             <input type="submit" value="login">
