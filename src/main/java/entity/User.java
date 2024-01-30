@@ -19,6 +19,7 @@ public class User {
     private String picture;
     private String username;
     private String password;
+    private boolean isVerified;
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private ArrayList<Role> roles;

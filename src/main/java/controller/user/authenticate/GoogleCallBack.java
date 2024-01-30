@@ -90,11 +90,13 @@ public class GoogleCallBack extends HttpServlet {
             String givenName = jsonObject.get("given_name").getAsString();
             String familyName = jsonObject.get("family_name").getAsString();
             String picture = jsonObject.get("picture").getAsString();
+            boolean verified = jsonObject.get("verified_email").getAsBoolean();
             User user = new User();
             user.setEmail(email);
             user.setGivenName(givenName);
             user.setFamilyName(familyName);
             user.setPicture(picture);
+            user.setVerified(verified);
             HttpSession userSession = request.getSession();
             userSession.setAttribute("user", user);
             // Check if user is already in database, if not, insert
