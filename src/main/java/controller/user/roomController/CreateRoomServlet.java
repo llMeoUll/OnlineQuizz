@@ -28,7 +28,6 @@ public class CreateRoomServlet extends HttpServlet {
         String password = request.getParameter("password");
         String description = request.getParameter("description");
         String code = GenerateCode.generateCode();
-        String codeToJoin = GenerateCodeToJoin.generateCode(10);
 
         // Get the current date using java.time.LocalDate
         LocalDate currentDate = LocalDate.now();
@@ -47,7 +46,6 @@ public class CreateRoomServlet extends HttpServlet {
         r.setPassword(password);
         r.setDescription(description);
         r.setCreatedAt(sqlDate);
-        r.setCodeToJoin(codeToJoin);
 
         RoomDbContext rDB = new RoomDbContext();
         rDB.insert(r);
