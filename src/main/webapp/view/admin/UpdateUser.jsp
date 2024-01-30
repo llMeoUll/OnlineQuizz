@@ -11,9 +11,14 @@
         <title>UpdateUser</title>
     </head>
     <body>
-        <form action="/admin/update">
-            UserID: ${requestScope.userForUpdate.id}
-            Email: <input type="text" name="email" value="${requestScope.userForUpdate.email}">
+        <form action="./update" method="post">
+            UserID: <input type="hidden" name="uid" value="${requestScope.userForUpdate.id}"> <br>
+            Email: <input type="text" name="email" value="${requestScope.userForUpdate.email}"> <br>
+            Username: <input type="text" name="username" value="${requestScope.userForUpdate.username}"> <br>
+            Given Name: <input type="text" name="givenName" value="${requestScope.userForUpdate.givenName}"> <br>
+            Family Name: <input type="text" name="familyName" value="${requestScope.userForUpdate.familyName}"> <br>
+<%--            Avatar: <input type="text" name="avatar" value="${requestScope.userForUpdate.avatar}"> <br>--%>
+            <input type="submit" value="Save">
         </form>
     </body>
 </html>
