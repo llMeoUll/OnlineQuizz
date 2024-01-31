@@ -58,7 +58,7 @@
                         ${requestScope.error}
                     </p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <a href="./forgotpassword" class="text-body">Forgot password?</a>
+                        <a href="./forgot-password" class="text-body">Forgot password?</a>
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">

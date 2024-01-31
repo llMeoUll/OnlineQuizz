@@ -1,61 +1,33 @@
-<%@ page import="java.util.regex.Pattern" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: vanli
-  Date: 1/19/2024
-  Time: 11:35 PM
+  Date: 1/30/2024
+  Time: 10:40 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Register</title>
+    <title>Change your password</title>
     <link rel="shortcut icon" type="image/x-icon" href="./icons/favicon32x32.ico"/>
-    <link rel="stylesheet" href="./css/Register.css">
+    <link rel="stylesheet" href="./css/ResetPassword.css">
     <link rel="stylesheet" href="webjars/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="webjars/font-awesome/6.5.1/css/all.min.css">
     <script src="webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
     <script src="webjars/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-<section class="vh-100" style="background-color: #eee;">
+<section class="vh-100">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-12 col-xl-11">
                 <div class="card text-black" style="border-radius: 25px;">
                     <div class="card-body p-md-5">
                         <div class="row justify-content-center">
-                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Change Password</p>
 
-                                <form action="./register" method="post" class="mx-1 mx-md-4">
-
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div class="input-group form-outline flex-fill mb-0">
-                                            <input type="text" name="first-name" placeholder="First Name"
-                                                   class="form-control" required/>
-                                            <input type="text" name="last-name" placeholder="Last Name"
-                                                   class="form-control" required/>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fa-solid fa-address-card fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <input type="text" name="username" placeholder="Username"
-                                                   class="form-control"
-                                                   required/>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <input type="email" name="email" placeholder="Email" class="form-control"
-                                                   required/>
-                                        </div>
-                                    </div>
-
-
+                                <form action="./reset-password" method="post" class="mx-1 mx-md-4">
                                     <div>
                                         <div class="input-group d-flex flex-row align-items-center mb-4 position-relative">
                                             <i class="fas fa-lock fa-lg me-3 fa-fw "></i>
@@ -81,7 +53,7 @@
                                                 data-mdb-color="warning"
                                                 id="password-alert"
                                         >
-                                            <ul class="list-unstyled mb-0">
+                                            <ul class="list-unstyled mb-0 d-flex flex-column align-items-start">
                                                 <li class="requirements leng">
                                                     <i class="fas fa-check text-success me-2"></i>
                                                     <i class="fas fa-times text-danger me-3"></i>
@@ -106,7 +78,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="d-flex flex-row align-items-center mb-4">
+                                    <div class="d-flex flex-row align-items-center">
                                         <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <input type="password" name="verify-password" placeholder="Verify password"
@@ -116,22 +88,10 @@
 
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                                        <button type="submit" class="btn btn-primary btn-lg">Save</button>
                                     </div>
-                                    <div class="text-center">
-                                        <a href="./login" class="text-decoration-none text-primary">
-                                            Already have an account?
-                                        </a>
-                                    </div>
+
                                 </form>
-
-                            </div>
-                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                                     class="img-fluid" alt="Sample image">
-
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -139,6 +99,6 @@
         </div>
     </div>
 </section>
-<script src="./js/Register.js"></script>
+<script src="./js/ResetPassword.js"></script>
 </body>
 </html>

@@ -17,7 +17,6 @@ package controller.user.authenticate;
         import org.apache.http.client.methods.HttpGet;
         import org.apache.http.impl.client.HttpClientBuilder;
         import org.apache.http.util.EntityUtils;
-        import util.Email;
 
         import java.io.IOException;
         import java.util.Arrays;
@@ -101,10 +100,12 @@ public class GoogleCallBack extends HttpServlet {
             userSession.setAttribute("user", user);
             // Check if user is already in database, if not, insert
             if(db.checkEmail(user.getEmail())){
-                db.insertGoogleUser(user);
+                try {
+                    db.insertGoogleUser(user);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
-            Email verifyMail = new Email();
-
             response.sendRedirect("./");
         } else {
             // Handle the case where the response entity is null

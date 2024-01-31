@@ -1,16 +1,17 @@
 package dao;
 
-import com.lambdaworks.crypto.SCryptUtil;
-import com.mysql.cj.x.protobuf.MysqlxPrepare;
-import controller.user.authenticate.Register;
 import entity.*;
-import org.eclipse.tags.shaded.org.apache.xml.dtm.ref.sax2dtm.SAX2RTFDTM;
 
+
+import com.lambdaworks.crypto.SCryptUtil;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Base64;
 
 public class UserDBContext extends DBContext<User> {
 
@@ -623,6 +624,7 @@ public class UserDBContext extends DBContext<User> {
         }
         return true;
     }
+    // get role id by role name
     private int getRoleId(String roleName) {
         String sqlGetIdUserRole = "SELECT `role`.`rid`\n" +
                 "FROM `online_quizz`.`role`\n" +
@@ -669,6 +671,21 @@ public class UserDBContext extends DBContext<User> {
         return null;
     }
 
+    public void updatePassword(String email, String generatedSecuredPasswordHash) {
+        String sqlUpdatePassword = "UPDATE `online_quizz`.`user`\n" +
+                "SET\n" +
+                "`password` = ?,\n" +
+                "`updated_at` = current_timestamp()\n" +
+                "WHERE `email` = ?;";
+        try {
+            PreparedStatement stmUpdatePassword = connection.prepareStatement(sqlUpdatePassword);
+            stmUpdatePassword.setString(1, generatedSecuredPasswordHash);
+            stmUpdatePassword.setString(2, email);
+            stmUpdatePassword.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public ArrayList<User> getUsersByEmail(String email) {
         ArrayList<User> users = new ArrayList<>();
         String sqlGetUsersByEmail = "SELECT `user`.`uid`,\n" +
