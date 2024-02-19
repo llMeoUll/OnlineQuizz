@@ -1,15 +1,13 @@
-package controller.user.roomController;
+package controller.user.room;
 
-import dao.RoomDbContext;
+import dao.RoomDBContext;
 import entity.Room;
 import entity.User;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import controller.user.roomController.utilities.GenerateCode;
-import controller.user.roomController.utilities.GenerateCodeToJoin;
+import controller.user.room.utilities.GenerateCode;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -47,9 +45,9 @@ public class CreateRoomServlet extends HttpServlet {
         r.setDescription(description);
         r.setCreatedAt(sqlDate);
 
-        RoomDbContext rDB = new RoomDbContext();
+        RoomDBContext rDB = new RoomDBContext();
         rDB.insert(r);
 
-        response.sendRedirect("/Quizzicle/ManageRoom");
+        response.sendRedirect("/Quizzicle/user/room");
     }
 }

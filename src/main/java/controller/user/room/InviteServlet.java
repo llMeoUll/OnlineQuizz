@@ -1,8 +1,8 @@
-package controller.user.roomController;
+package controller.user.room;
 
-import controller.user.roomController.utilities.BasedAuthentication;
-import controller.user.roomController.utilities.GenerateCodeToJoin;
-import dao.RoomDbContext;
+import controller.user.room.utilities.BasedAuthentication;
+import controller.user.room.utilities.GenerateCodeToJoin;
+import dao.RoomDBContext;
 import dao.UserDBContext;
 import entity.Room;
 import entity.User;
@@ -21,10 +21,10 @@ public class InviteServlet extends BasedAuthentication {
     protected void doGet(HttpServletRequest request, HttpServletResponse response, User userLogged) throws ServletException, IOException {
         UserDBContext uDB = new UserDBContext();
         User u;
-        u = uDB.getUserByEmail(userLogged);
+        u = uDB.get(userLogged.getEmail());
         String fakeCode = request.getParameter("codeToJoin");
         // invite?codeToJoin=1231231231231123
-        RoomDbContext rDB = new RoomDbContext();
+        RoomDBContext rDB = new RoomDBContext();
         ArrayList<Room> listRoom = rDB.listAllRoomExceptOwner(u);
         for (Room room : listRoom) {
             String hashCode = GenerateCodeToJoin.generateCode(room.getCode() + room.getPassword());
@@ -44,10 +44,10 @@ public class InviteServlet extends BasedAuthentication {
     protected void doPost(HttpServletRequest request, HttpServletResponse response, User userLogged) throws ServletException, IOException {
         UserDBContext uDB = new UserDBContext();
         User u;
-        u = uDB.getUserByEmail(userLogged);
+        u = uDB.get(userLogged.getEmail());
         String code = request.getParameter("code");
         String passwordForJoining = request.getParameter("passwordForJoining");
-        RoomDbContext rDB = new RoomDbContext();
+        RoomDBContext rDB = new RoomDBContext();
         // Check exist room
         Room r;
         r = rDB.getRoomToJoin(code, passwordForJoining);

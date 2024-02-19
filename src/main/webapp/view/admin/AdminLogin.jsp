@@ -11,10 +11,14 @@
         <title>Online Quiz</title>
     </head>
     <body>
-        <form method="post" action="../admin/login">
+        <form method="post" action="./admin-login">
             <input type="text" name="admin" placeholder="Type email">
             <input type="password" name="adminPassword" placeholder="Type password">
             <input type="submit" value="login">
         </form>
+        <p>
+
+        ${requestScope.error}
+        </p>
     </body>
 </html>

@@ -1,9 +1,8 @@
-package controller.user.roomController.utilities;
+package controller.user.room.utilities;
 
 import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
@@ -19,7 +18,7 @@ public abstract class BasedAuthentication extends HttpServlet {
         if (isAuthenticated(request)) {
             doGet(request, response, (User) request.getSession().getAttribute("user"));
         } else {
-            request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request,response);
+            response.sendRedirect(".././login");
         }
     }
 
@@ -30,7 +29,7 @@ public abstract class BasedAuthentication extends HttpServlet {
         if (isAuthenticated(request)) {
             doPost(request, response, (User) request.getSession().getAttribute("user"));
         } else {
-            request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request,response);
+            response.sendRedirect(".././login");
         }
     }
 

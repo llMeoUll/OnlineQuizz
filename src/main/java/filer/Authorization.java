@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class AuthorizationFilter implements Filter {
+public class Authorization implements Filter {
 
     private boolean hasAccess(ServletRequest request) {
         HttpServletRequest res = (HttpServletRequest) request;
