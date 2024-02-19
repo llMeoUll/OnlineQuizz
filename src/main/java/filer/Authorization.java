@@ -19,6 +19,7 @@ public class AuthorizationFilter implements Filter {
         String url = res.getServletPath();
 
         ArrayList<Role> roles = loggedUser.getRoles();
+        if(roles == null) return false;
         for (Role role : roles) {
             ArrayList<Feature> features = role.getFeatures();
             for (Feature feature : features) {
