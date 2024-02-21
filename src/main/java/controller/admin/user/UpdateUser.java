@@ -1,4 +1,4 @@
-package controller.admin.usermanagement;
+package controller.admin.user;
 
 import dao.UserDBContext;
 import jakarta.servlet.*;
@@ -8,12 +8,12 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class UpdateUserController extends HttpServlet {
+public class UpdateUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int userId = Integer.parseInt(request.getParameter("uid"));
         UserDBContext userDBContext = new UserDBContext();
-        User userForUpdate = userDBContext.getUserById(userId);
+        User userForUpdate = userDBContext.get(userId);
         request.setAttribute("userForUpdate", userForUpdate);
         request.getRequestDispatcher("../../view/admin/UpdateUser.jsp").forward(request, response);
     }
@@ -35,6 +35,6 @@ public class UpdateUserController extends HttpServlet {
         param.setUpdatedAt(new Timestamp(updatedAt.getTime()));
         UserDBContext userDBContext = new UserDBContext();
         userDBContext.update(param);
-        response.sendRedirect("../user_management");
+        response.sendRedirect("../user");
     }
 }

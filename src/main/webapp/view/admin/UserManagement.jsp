@@ -58,8 +58,8 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/Quizzicle/admin/user_management">Users Information</a>
-                                <a class="nav-link" href="/Quizzicle/admin/user_management/create">Create New User</a>
+                                <a class="nav-link" href="/Quizzicle/admin/user">Users Information</a>
+                                <a class="nav-link" href="/Quizzicle/admin/user/create">Create New User</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRooms" aria-expanded="false" aria-controls="collapseRooms">
@@ -146,16 +146,16 @@
                                                     </td>
                                                     <td>
                                                         <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                                                            <li><a href="/Quizzicle/admin/user_management/view_details?uid=${user.id}"
+                                                            <li><a href="/Quizzicle/admin/user/view-details?uid=${user.id}"
                                                                    class="text-primary" data-toggle="tooltip" title
                                                                    data-original-title="view"><i
                                                                     class="far fa-eye"></i></a></li>
-                                                            <li><a href="/Quizzicle/admin/user_management/update?uid=${user.id}"
+                                                            <li><a href="/Quizzicle/admin/user/update?uid=${user.id}"
                                                                    class="text-info" data-toggle="tooltip" title
                                                                    data-original-title="Edit"><i
                                                                     class="fas fa-pencil-alt"></i></a>
                                                             </li>
-                                                            <li><a href="/Quizzicle/admin/user_management/delete?uid=${user.id}"
+                                                            <li><a href="/Quizzicle/admin/user/delete?uid=${user.id}"
                                                                    class="text-danger" data-toggle="tooltip" title
                                                                    data-original-title="Delete"><i
                                                                     class="far fa-trash-alt"></i></a>

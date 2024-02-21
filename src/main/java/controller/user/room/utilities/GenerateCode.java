@@ -1,4 +1,4 @@
-package controller.user.roomController.utilities;
+package controller.user.room.utilities;
 
 import java.util.Random;
 

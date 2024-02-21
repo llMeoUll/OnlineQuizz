@@ -94,14 +94,14 @@ public class GoogleCallBack extends HttpServlet {
             user.setEmail(email);
             user.setGivenName(givenName);
             user.setFamilyName(familyName);
-            user.setPicture(picture);
+            user.setAvatar(picture);
             user.setVerified(verified);
             HttpSession userSession = request.getSession();
             userSession.setAttribute("user", user);
             // Check if user is already in database, if not, insert
             if(db.checkEmail(user.getEmail())){
                 try {
-                    db.insertGoogleUser(user);
+                    db.insert(user);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

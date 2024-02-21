@@ -111,7 +111,7 @@
                             <div class="card bg-primary text-white mb-4">
                                 <div class="card-body">User Management</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="/Quizzicle/admin/user_management">View Details</a>
+                                    <a class="small text-white stretched-link" href="/Quizzicle/admin/user">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                             <div class="card bg-warning text-white mb-4">
                                 <div class="card-body">Room Management</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="Quizzicle/admin/room_management">View Details</a>
+                                    <a class="small text-white stretched-link" href="Quizzicle/admin/room">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
                             <div class="card bg-success text-white mb-4">
                                 <div class="card-body">Set Management</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="Quizzicle/admin/set_management">View Details</a>
+                                    <a class="small text-white stretched-link" href="Quizzicle/admin/set">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@
                             <div class="card bg-danger text-white mb-4">
                                 <div class="card-body">Question Bank</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="Quizzicle/admin/question_bank">View Details</a>
+                                    <a class="small text-white stretched-link" href="Quizzicle/admin/question-bank">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>

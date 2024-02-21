@@ -8,7 +8,7 @@ import entity.User;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class DashBoardController extends HttpServlet {
+public class DashBoard extends HttpServlet {
     private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         ActiveUsersDBContext activeUsersDBContext = new ActiveUsersDBContext();
