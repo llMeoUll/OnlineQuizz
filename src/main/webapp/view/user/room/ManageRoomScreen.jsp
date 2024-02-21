@@ -153,29 +153,8 @@
                 <i class="fas fa-plus-circle mr-1"></i>Join Room
             </button>
 
-            <%--Search bar--%>
-            <div class="wrapper">
-                <div class="search-input">
-                    <a href="" target="_blank" hidden></a>
-                    <input type="text" placeholder="Find room..." class="form-control">
-                    <div class="autocom-box">
-                        <script>
-                            var suggestion = [
-                                <%
-                                    ArrayList<String> listRoomName = (ArrayList<String>) request.getAttribute("listRoomName");
-                                    for (int i = 0; i < listRoomName.size(); i++) {
-                                %>
-                                "<%= listRoomName.get(i) %>"<%= i + 1 < listRoomName.size() ? "," : "" %>
-                                <% } %>
-                            ];
-                        </script>
-                    </div>
-                    <div class="icon"><i class="fas fa-search"></i></div>
-                </div>
-            </div>
-
             <!-- Buttons for sorting and filtering -->
-            <div class="btn-group float-md-right float-sm-none mt-2" role="group">
+            <div class="btn-group float-md-right float-sm-none mr-2" role="group">
                 <!-- Button for Newest -->
                 <button type="button" class="btn btn-info mr-2" onclick="submitForm('newest')">
                     <i class="fas fa-calendar-alt mr-1"></i>Newest
@@ -198,7 +177,7 @@
             </div>
 
             <!-- Hidden form to submit button value -->
-            <form id="sortingForm" method="GET" action="ManageRoom">
+            <form id="sortingForm" method="GET" action="../user/room">
                 <input type="hidden" name="selectedButton" id="selectedButton" value="">
             </form>
 
@@ -297,7 +276,7 @@
             </div>
             <div class="modal-body">
                 <!-- Add your form elements for creating a room here -->
-                <form action="room/create" method="post">
+                <form action="../user/room/create" method="post">
                     <input type="hidden" name="ownerUser" value="${requestScope.userHasRoom.id}">
                     <div class="form-group">
                         <label for="roomName" class="text-purple">Room Name</label>
@@ -318,9 +297,9 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Create Room</button>
-                    <div class="alert alert-danger" role="alert">
-                        ${requestScope.errorDuplicateRoomName}
-                    </div>
+                    <%--                    <div class="alert alert-danger" role="alert">--%>
+                    <%--                        ${requestScope.errorDuplicateRoomName}--%>
+                    <%--                    </div>--%>
                 </form>
 
             </div>
@@ -342,7 +321,7 @@
             </div>
             <div class="modal-body">
                 <!-- Add your form elements for creating a room here -->
-                <form action="invite" method="post">
+                <form action="../user/room/invite" method="post">
                     <!-- requestScope.userHasRoom.Id đại diện cho user logged trong session -->
                     <input type="hidden" name="ownerUser" value="${requestScope.userHasRoom.id}">
                     <div class="form-group">
@@ -373,8 +352,7 @@
     });
 </script>
 
-<script src="./js/RoomScreen/script.js"></script>
-<script src="./js/RoomScreen/suggestion.js"></script>
+<script src=".././js/RoomScreen/script.js"></script>
 
 </body>
 

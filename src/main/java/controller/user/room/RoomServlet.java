@@ -7,6 +7,7 @@ import dao.UserDBContext;
 import entity.Room;
 import entity.User;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -18,11 +19,12 @@ import java.util.*;
  * room của mình. (Tự tạo hoặc đã joined ở room khác)
  */
 
-public class RoomServlet extends BasedAuthentication {
+public class RoomServlet extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response, User userLogged) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // User này lấy từ session nên chỉ có mỗi email và password
         UserDBContext uDB = new UserDBContext();
+        User userLogged = (User) request.getSession().getAttribute("user");
         User u;
         u = uDB.get(userLogged.getEmail()); // get full information based on email
         request.setAttribute("userHasRoom", u);
@@ -76,12 +78,12 @@ public class RoomServlet extends BasedAuthentication {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response, User userLogged) throws ServletException, IOException {
-        processRequest(request, response, userLogged);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response, User userLogged) throws ServletException, IOException {
-        processRequest(request, response, userLogged);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
     }
 }
