@@ -12,32 +12,7 @@ import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class ActiveUsersDBContext extends DBContext<ActiveUsers> {
-    @Override
-    public ActiveUsers get(ActiveUsers entity) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<ActiveUsers> list() {
-        return null;
-    }
-
-    @Override
-    public void delete(ActiveUsers entity) {
-
-    }
-
-    @Override
-    public void update(ActiveUsers entity) {
-
-    }
-
-    @Override
-    public void insert(ActiveUsers entity) {
-
-    }
-
+public class ActiveUsersDBContext extends DBContext {
     public void update() {
         try {
             String sqlUpdateEachDay = "UPDATE `online_quizz`.`active_users`\n" +

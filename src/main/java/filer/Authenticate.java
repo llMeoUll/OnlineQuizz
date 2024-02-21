@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-public class AuthenticateFilter implements Filter {
+public class Authenticate implements Filter {
 
     private boolean isAuthenticated(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");

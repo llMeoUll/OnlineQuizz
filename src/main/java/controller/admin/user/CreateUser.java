@@ -1,4 +1,4 @@
-package controller.admin.usermanagement;
+package controller.admin.user;
 
 import dao.UserDBContext;
 import entity.Role;
@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class CreateUserController extends HttpServlet {
+public class CreateUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("../../view/admin/CreateUser.jsp").forward(request, response);

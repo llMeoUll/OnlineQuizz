@@ -1,14 +1,12 @@
-package controller.user.roomController;
+package controller.user.room;
 
-import controller.user.roomController.utilities.BasedAuthentication;
-import controller.user.roomController.utilities.GenerateCodeToJoin;
-import dao.RoomDbContext;
+import controller.user.room.utilities.BasedAuthentication;
+import controller.user.room.utilities.GenerateCodeToJoin;
+import dao.RoomDBContext;
 import dao.UserDBContext;
 import entity.Room;
 import entity.User;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -26,9 +24,9 @@ public class RoomServlet extends BasedAuthentication {
         // User này lấy từ session nên chỉ có mỗi email và password
         UserDBContext uDB = new UserDBContext();
         User u;
-        u = uDB.getUserByEmail(userLogged); // get full information based on email
+        u = uDB.get(userLogged.getEmail()); // get full information based on email
         request.setAttribute("userHasRoom", u);
-        RoomDbContext rDB = new RoomDbContext();
+        RoomDBContext rDB = new RoomDBContext();
         ArrayList<Room> listRoomOwned = rDB.list(u);
         ArrayList<Room> listRoomJoinedByUser = rDB.roomJoinedByUser(u);
         // Test print code room
@@ -74,7 +72,7 @@ public class RoomServlet extends BasedAuthentication {
         ArrayList<String> listRoomName = rDB.listRoomName();
         request.setAttribute("listRoomName", listRoomName);
 
-        request.getRequestDispatcher("/view/user/RoomScreen/ManageRoomScreen.jsp").forward(request, response);
+        request.getRequestDispatcher(".././view/user/room/ManageRoomScreen.jsp").forward(request, response);
     }
 
     @Override

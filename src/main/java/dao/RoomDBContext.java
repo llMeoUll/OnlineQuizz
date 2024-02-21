@@ -8,21 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RoomDbContext extends DBContext<Room> {
+public class RoomDBContext extends DBContext {
 
-    @Override
-    public Room get(Room entity) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Room> list() {
-
-        return null;
-    }
-
-
-    @Override
     public void insert(Room entity) {
         String sql = "INSERT INTO `online_quizz`.`room`\n" +
                 "(`room_id`,\n" +
@@ -48,16 +35,6 @@ public class RoomDbContext extends DBContext<Room> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public void update(Room entity) {
-
-    }
-
-    @Override
-    public void delete(Room entity) {
-
     }
 
     public ArrayList<Room> list(User user) {
@@ -262,5 +239,57 @@ public class RoomDbContext extends DBContext<Room> {
             throw new RuntimeException(e);
         }
         return listRoomName;
+    }
+
+    public ArrayList<Room> getOwnedRoom(User entity) {
+        ArrayList<Room> ownedRooms = new ArrayList<>();
+        String sqlGetOwnedRooms = "SELECT `room`.`room_id`,\n" +
+                "    `room`.`room_name`,\n" +
+                "    `room`.`code`,\n" +
+                "    `room`.`password`,\n" +
+                "    `room`.`description`,\n" +
+                "    `room`.`created_at`,\n" +
+                "    `room`.`updated_at`\n" +
+                "FROM `online_quizz`.`room`\n" +
+                "WHERE `room`.`uid` = ?";
+        try {
+            PreparedStatement stmGetOwnedRooms = connection.prepareStatement(sqlGetOwnedRooms);
+            stmGetOwnedRooms.setString(1, String.valueOf(entity.getId()));
+            ResultSet rs = stmGetOwnedRooms.executeQuery();
+            while(rs.next()) {
+                Room ownedRoom = new Room();
+                ownedRoom.setRoomId(rs.getInt("room_id"));
+                ownedRoom.setUser(entity);
+                ownedRoom.setRoomName(rs.getString("room_name"));
+                ownedRoom.setDescription(rs.getString("description"));
+                ownedRoom.setCode(rs.getString("code"));
+                ownedRoom.setPassword(rs.getString("password"));
+                ownedRooms.add(ownedRoom);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return ownedRooms;
+    }
+
+    public ArrayList<Room> getJoinedRooms(User entity) {
+        ArrayList<Room> joinedRooms = new ArrayList<>();
+        String sqlGetJoinedRooms = "SELECT `user_join_room`.`room_id`\n" +
+                "FROM `online_quizz`.`user_join_room`\n" +
+                "WHERE `user_join_room`.`uid` = ? ";
+        try {
+            PreparedStatement stmGetJoinedRooms = connection.prepareStatement(sqlGetJoinedRooms);
+            stmGetJoinedRooms.setInt(1, entity.getId());
+            ResultSet rs = stmGetJoinedRooms.executeQuery();
+            while (rs.next()) {
+                Room joinedRoom = new Room();
+                joinedRoom.setRoomId(rs.getInt("room_id"));
+                joinedRooms.add(joinedRoom);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return joinedRooms;
     }
 }

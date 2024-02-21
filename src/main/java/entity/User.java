@@ -16,7 +16,7 @@ public class User {
     private String email;
     private String givenName;
     private String familyName;
-    private String picture;
+    private String avatar;
     private String username;
     private String password;
     private boolean isVerified;

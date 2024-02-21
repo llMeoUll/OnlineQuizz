@@ -1,4 +1,4 @@
-package controller.admin.usermanagement;
+package controller.admin.user;
 
 import dao.UserDBContext;
 import jakarta.servlet.*;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import entity.User;
 
-public class UserManagementController extends HttpServlet {
+public class UserManagement extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDBContext userDBContext = new UserDBContext();
@@ -20,7 +20,7 @@ public class UserManagementController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userEmail = request.getParameter("user_email");
         UserDBContext userDBContext = new UserDBContext();
-        ArrayList<User> users = userDBContext.getUsersByEmail(userEmail);
+        ArrayList<User> users = userDBContext.list(userEmail);
         request.setAttribute("users", users);
         request.getRequestDispatcher("../view/admin/UserManagement.jsp").forward(request, response);
     }

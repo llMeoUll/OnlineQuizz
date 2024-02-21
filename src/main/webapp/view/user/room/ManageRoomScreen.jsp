@@ -9,7 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="entity.Room" %>
-<%@ page import="controller.user.roomController.utilities.GenerateCodeToJoin" %>
+<%@ page import="controller.user.room.utilities.GenerateCodeToJoin" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Iterator" %>
@@ -25,8 +25,8 @@
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="./css/manageRoom/ManageRoomScreen.css">
-    <link rel="stylesheet" href="./css/manageRoom/SearchBar.css">
+    <link rel="stylesheet" href=".././css/manageRoom/ManageRoomScreen.css">
+    <link rel="stylesheet" href=".././css/manageRoom/SearchBar.css">
 
     <!-- Bootstrap and jQuery scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -297,7 +297,7 @@
             </div>
             <div class="modal-body">
                 <!-- Add your form elements for creating a room here -->
-                <form action="createRoom" method="post">
+                <form action="room/create" method="post">
                     <input type="hidden" name="ownerUser" value="${requestScope.userHasRoom.id}">
                     <div class="form-group">
                         <label for="roomName" class="text-purple">Room Name</label>

@@ -1,14 +1,13 @@
-package controller.admin.usermanagement;
+package controller.admin.user;
 
 import dao.UserDBContext;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 import entity.User;
 
 import java.io.IOException;
 
-public class DeleteUserController extends HttpServlet {
+public class DeleteUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDBContext userDBContext = new UserDBContext();
@@ -16,7 +15,7 @@ public class DeleteUserController extends HttpServlet {
         User user = new User();
         user.setId(uid);
         userDBContext.delete(user);
-        response.sendRedirect("../user_management");
+        response.sendRedirect("../user");
     }
 
     @Override
