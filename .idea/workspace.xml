@@ -1,70 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="OnlineQuizz:war exploded" />
-    </artifacts-to-build>
-  </component>
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
-  <component name="ChangeListManager">
-    <list default="true" id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes" comment="Fix error, forget hardcode">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-        <option value="CSS File" />
-        <option value="Jsp File" />
-        <option value="JavaScript File" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ManageRoomScreen.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="LogFilters">
-    <option name="FILTER_ERRORS" value="false" />
-    <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
-    <option name="CUSTOM_FILTER" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="ProjectId" id="2bECyPiZYibc9RSNg9jtWkbzdGg" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
+    <component name="ArtifactsWorkspaceSettings">
+        <artifacts-to-build>
+            <artifact name="OnlineQuizz:war exploded"/>
+        </artifacts-to-build>
+    </component>
+    <component name="AutoImportSettings">
+        <option name="autoReloadType" value="SELECTIVE"/>
+    </component>
+    <component name="ChangeListManager">
+        <list default="true" id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes"
+              comment="Fix error, forget hardcode">
+            <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false"
+                    afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false"/>
+        </list>
+        <option name="SHOW_DIALOG" value="false"/>
+        <option name="HIGHLIGHT_CONFLICTS" value="true"/>
+        <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false"/>
+        <option name="LAST_RESOLUTION" value="IGNORE"/>
+    </component>
+    <component name="FileTemplateManagerImpl">
+        <option name="RECENT_TEMPLATES">
+            <list>
+                <option value="Class"/>
+                <option value="CSS File"/>
+                <option value="Jsp File"/>
+                <option value="JavaScript File"/>
+            </list>
+        </option>
+    </component>
+    <component name="Git.Settings">
+        <option name="RECENT_BRANCH_BY_REPOSITORY">
+            <map>
+                <entry key="$PROJECT_DIR$" value="main"/>
+            </map>
+        </option>
+        <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$"/>
+    </component>
+    <component name="HighlightingSettingsPerFile">
+        <setting file="file://$PROJECT_DIR$/src/main/webapp/view/user/RoomScreen/ManageRoomScreen.jsp"
+                 root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING"/>
+    </component>
+    <component name="LogFilters">
+        <option name="FILTER_ERRORS" value="false"/>
+        <option name="FILTER_WARNINGS" value="false"/>
+        <option name="FILTER_INFO" value="true"/>
+        <option name="FILTER_DEBUG" value="true"/>
+        <option name="CUSTOM_FILTER"/>
+    </component>
+    <component name="MarkdownSettingsMigration">
+        <option name="stateVersion" value="1"/>
+    </component>
+    <component name="MavenImportPreferences">
+        <option name="generalSettings">
+            <MavenGeneralSettings>
+                <option name="mavenHome" value="Use Maven wrapper"/>
+                <option name="useMavenConfig" value="true"/>
+            </MavenGeneralSettings>
+        </option>
+    </component>
+    <component name="ProjectId" id="2bECyPiZYibc9RSNg9jtWkbzdGg"/>
+    <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+        <ConfirmationsSetting value="2" id="Add"/>
+    </component>
+    <component name="ProjectViewState">
+        <option name="hideEmptyMiddlePackages" value="true"/>
+        <option name="showLibraryContents" value="true"/>
+    </component>
+    <component name="PropertiesComponent">{
         &quot;keyToString&quot;: {
         &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
         &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -73,183 +76,187 @@
         &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
         &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
         }
-        }</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\imagines" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\js" />
-      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\css" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8888/Quizzicle/" />
-      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
-      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
-      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
-      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
-      <deployment>
-        <artifact name="OnlineQuizz:war exploded">
-          <settings>
-            <option name="CONTEXT_PATH" value="/Quizzicle" />
-          </settings>
-        </artifact>
-      </deployment>
-      <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="64a6aebe-1e52-4f90-a14f-106df7d84842" />
-        <option name="HTTP_PORT" value="8888" />
-      </server-settings>
-      <log_file alias="Tomcat Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/manager.*" />
-      <log_file alias="Tomcat Host Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/host-manager.*" />
-      <log_file checked="false" alias="Tomcat Localhost Log" path="%IDEA_RUN:CATALINA_BASE%/logs/localhost.*" />
-      <log_file checked="false" alias="Tomcat Catalina Log" path="%IDEA_RUN:CATALINA_BASE%/logs/catalina.*" />
-      <predefined_log_file id="Tomcat Localhost Access" />
-      <extension name="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
-        </ENTRIES>
-      </extension>
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="54349" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method v="2">
-        <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="OnlineQuizz:war exploded" />
+        }
+    </component>
+    <component name="RecentsManager">
+        <key name="CopyFile.RECENT_KEYS">
+            <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\imagines"/>
+        </key>
+        <key name="MoveFile.RECENT_KEYS">
+            <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\js"/>
+            <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\css"/>
+        </key>
+    </component>
+    <component name="RunManager">
+        <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory"
+                       factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false"
+                       nameIsGenerated="true">
+            <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8888/Quizzicle/"/>
+            <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3"/>
+            <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true"/>
+            <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true"/>
+            <option name="SHOW_DIALOG_ON_UPDATE" value="false"/>
+            <deployment>
+                <artifact name="OnlineQuizz:war exploded">
+                    <settings>
+                        <option name="CONTEXT_PATH" value="/Quizzicle"/>
+                    </settings>
+                </artifact>
+            </deployment>
+            <server-settings>
+                <option name="BASE_DIRECTORY_NAME" value="64a6aebe-1e52-4f90-a14f-106df7d84842"/>
+                <option name="HTTP_PORT" value="8888"/>
+            </server-settings>
+            <log_file alias="Tomcat Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/manager.*"/>
+            <log_file alias="Tomcat Host Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/host-manager.*"/>
+            <log_file checked="false" alias="Tomcat Localhost Log" path="%IDEA_RUN:CATALINA_BASE%/logs/localhost.*"/>
+            <log_file checked="false" alias="Tomcat Catalina Log" path="%IDEA_RUN:CATALINA_BASE%/logs/catalina.*"/>
+            <predefined_log_file id="Tomcat Localhost Access"/>
+            <extension name="net.ashald.envfile">
+                <option name="IS_ENABLED" value="false"/>
+                <option name="IS_SUBST" value="false"/>
+                <option name="IS_PATH_MACRO_SUPPORTED" value="false"/>
+                <option name="IS_IGNORE_MISSING_FILES" value="false"/>
+                <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false"/>
+                <ENTRIES>
+                    <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false"/>
+                </ENTRIES>
+            </extension>
+            <RunnerSettings RunnerId="Debug">
+                <option name="DEBUG_PORT" value="54349"/>
+            </RunnerSettings>
+            <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+                <option name="USE_ENV_VARIABLES" value="true"/>
+                <STARTUP>
+                    <option name="USE_DEFAULT" value="true"/>
+                    <option name="SCRIPT" value=""/>
+                    <option name="VM_PARAMETERS" value=""/>
+                    <option name="PROGRAM_PARAMETERS" value=""/>
+                </STARTUP>
+                <SHUTDOWN>
+                    <option name="USE_DEFAULT" value="true"/>
+                    <option name="SCRIPT" value=""/>
+                    <option name="VM_PARAMETERS" value=""/>
+                    <option name="PROGRAM_PARAMETERS" value=""/>
+                </SHUTDOWN>
+            </ConfigurationWrapper>
+            <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+                <option name="USE_ENV_VARIABLES" value="true"/>
+                <STARTUP>
+                    <option name="USE_DEFAULT" value="true"/>
+                    <option name="SCRIPT" value=""/>
+                    <option name="VM_PARAMETERS" value=""/>
+                    <option name="PROGRAM_PARAMETERS" value=""/>
+                </STARTUP>
+                <SHUTDOWN>
+                    <option name="USE_DEFAULT" value="true"/>
+                    <option name="SCRIPT" value=""/>
+                    <option name="VM_PARAMETERS" value=""/>
+                    <option name="PROGRAM_PARAMETERS" value=""/>
+                </SHUTDOWN>
+            </ConfigurationWrapper>
+            <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+                <option name="USE_ENV_VARIABLES" value="true"/>
+                <STARTUP>
+                    <option name="USE_DEFAULT" value="true"/>
+                    <option name="SCRIPT" value=""/>
+                    <option name="VM_PARAMETERS" value=""/>
+                    <option name="PROGRAM_PARAMETERS" value=""/>
+                </STARTUP>
+                <SHUTDOWN>
+                    <option name="USE_DEFAULT" value="true"/>
+                    <option name="SCRIPT" value=""/>
+                    <option name="VM_PARAMETERS" value=""/>
+                    <option name="PROGRAM_PARAMETERS" value=""/>
+                </SHUTDOWN>
+            </ConfigurationWrapper>
+            <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+                <option name="USE_ENV_VARIABLES" value="true"/>
+                <STARTUP>
+                    <option name="USE_DEFAULT" value="true"/>
+                    <option name="SCRIPT" value=""/>
+                    <option name="VM_PARAMETERS" value=""/>
+                    <option name="PROGRAM_PARAMETERS" value=""/>
+                </STARTUP>
+                <SHUTDOWN>
+                    <option name="USE_DEFAULT" value="true"/>
+                    <option name="SCRIPT" value=""/>
+                    <option name="VM_PARAMETERS" value=""/>
+                    <option name="PROGRAM_PARAMETERS" value=""/>
+                </SHUTDOWN>
+            </ConfigurationWrapper>
+            <method v="2">
+                <option name="Make" enabled="true"/>
+                <option name="BuildArtifacts" enabled="true">
+                    <artifact name="OnlineQuizz:war exploded"/>
+                </option>
+            </method>
+        </configuration>
+    </component>
+    <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0"
+               DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true"/>
+    <component name="TaskManager">
+        <task active="true" id="Default" summary="Default task">
+            <changelist id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes" comment="Fix error, forget hardcode"/>
+            <changelist id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes" comment=""/>
+            <created>1704853520966</created>
+            <option name="number" value="Default"/>
+            <option name="presentableId" value="Default"/>
+            <updated>1704853520966</updated>
+            <workItem from="1704853523048" duration="541000"/>
+            <workItem from="1704967299798" duration="1405000"/>
+            <workItem from="1704968716737" duration="7008000"/>
+            <workItem from="1705020492210" duration="696000"/>
+            <workItem from="1705021670811" duration="8804000"/>
+            <workItem from="1705020492210" duration="109000"/>
+            <workItem from="1705286399482" duration="16633000"/>
+            <workItem from="1705369517160" duration="1430000"/>
+            <workItem from="1705543022074" duration="7893000"/>
+            <workItem from="1705673751425" duration="2228000"/>
+            <workItem from="1705764087498" duration="1818000"/>
+            <workItem from="1705771111911" duration="3592000"/>
+            <workItem from="1705774736307" duration="24000"/>
+            <workItem from="1705802075206" duration="4166000"/>
+            <workItem from="1705807405765" duration="68000"/>
+            <workItem from="1705836230418" duration="16524000"/>
+            <workItem from="1706019806661" duration="24297000"/>
+            <workItem from="1706116941905" duration="103000"/>
+            <workItem from="1706341456137" duration="332000"/>
+            <workItem from="1706341986156" duration="320000"/>
+            <workItem from="1706553086646" duration="316000"/>
+            <workItem from="1706549346789" duration="7570000"/>
+            <workItem from="1706610170728" duration="8770000"/>
+            <workItem from="1708478648890" duration="126000"/>
+            <workItem from="1708478794153" duration="2000"/>
+            <workItem from="1708479821076" duration="84000"/>
+        </task>
+        <servers/>
+    </component>
+    <component name="TypeScriptGeneratedFilesManager">
+        <option name="version" value="3"/>
+    </component>
+    <component name="Vcs.Log.Tabs.Properties">
+        <option name="TAB_STATES">
+            <map>
+                <entry key="MAIN">
+                    <value>
+                        <State/>
+                    </value>
+                </entry>
+            </map>
         </option>
-      </method>
-    </configuration>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes" comment="Fix error, forget hardcode" />
-      <changelist id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes" comment="" />
-      <created>1704853520966</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1704853520966</updated>
-      <workItem from="1704853523048" duration="541000" />
-      <workItem from="1704967299798" duration="1405000" />
-      <workItem from="1704968716737" duration="7008000" />
-      <workItem from="1705020492210" duration="696000" />
-      <workItem from="1705021670811" duration="8804000" />
-      <workItem from="1705020492210" duration="109000" />
-      <workItem from="1705286399482" duration="16633000" />
-      <workItem from="1705369517160" duration="1430000" />
-      <workItem from="1705543022074" duration="7893000" />
-      <workItem from="1705673751425" duration="2228000" />
-      <workItem from="1705764087498" duration="1818000" />
-      <workItem from="1705771111911" duration="3592000" />
-      <workItem from="1705774736307" duration="24000" />
-      <workItem from="1705802075206" duration="4166000" />
-      <workItem from="1705807405765" duration="68000" />
-      <workItem from="1705836230418" duration="16524000" />
-      <workItem from="1706019806661" duration="24297000" />
-      <workItem from="1706116941905" duration="103000" />
-      <workItem from="1706341456137" duration="332000" />
-      <workItem from="1706341986156" duration="320000" />
-      <workItem from="1706553086646" duration="316000" />
-      <workItem from="1706549346789" duration="7570000" />
-      <workItem from="1706610170728" duration="8770000" />
-      <workItem from="1708478648890" duration="126000" />
-      <workItem from="1708478794153" duration="2000" />
-      <workItem from="1708479821076" duration="84000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix error, forget hardcode" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix error, forget hardcode" />
-  </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-        <watch expression="listRoomName.get(0).hashIsZero" />
-        <watch expression="listRoomName.get(1)" />
-        <watch expression="listRoom" />
-      </configuration>
-    </watches-manager>
-  </component>
+    </component>
+    <component name="VcsManagerConfiguration">
+        <MESSAGE value="Fix error, forget hardcode"/>
+        <option name="LAST_COMMIT_MESSAGE" value="Fix error, forget hardcode"/>
+    </component>
+    <component name="XDebuggerManager">
+        <watches-manager>
+            <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
+                <watch expression="listRoomName.get(0).hashIsZero"/>
+                <watch expression="listRoomName.get(1)"/>
+                <watch expression="listRoom"/>
+            </configuration>
+        </watches-manager>
+    </component>
 </project>
