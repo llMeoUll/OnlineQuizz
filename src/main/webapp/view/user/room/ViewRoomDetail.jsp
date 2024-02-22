@@ -135,6 +135,10 @@
                 <p class="text-light fs-5 font-weight-bold">${requestScope.currentRoom.roomName}</p>
             </div>
 
+            <div>
+                <p class="text-light fs-5 font-weight-bold">Invite: Quizzicle/user/room/invite?codeToJoin=${requestScope.codeToJoin}</p>
+            </div>
+
             <!-- Settings Dropdown -->
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"

@@ -11,11 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="Fix error, forget hardcode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/DeleteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/DeleteTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/RoomDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/RoomDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/UpdateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/UpdateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TestDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TestDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewRoomDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewRoomDetail.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +228,7 @@
       <workItem from="1708554263186" duration="11577000" />
       <workItem from="1708575423294" duration="9607000" />
       <workItem from="1708590825265" duration="311000" />
-      <workItem from="1708591252249" duration="11938000" />
+      <workItem from="1708591252249" duration="13165000" />
     </task>
     <servers />
   </component>

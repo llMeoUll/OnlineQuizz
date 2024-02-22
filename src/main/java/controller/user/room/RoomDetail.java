@@ -1,5 +1,6 @@
 package controller.user.room;
 
+import controller.user.room.utilities.GenerateCodeToJoin;
 import dao.RoomDBContext;
 import dao.TestDBContext;
 import dao.UserDBContext;
@@ -38,7 +39,9 @@ public class RoomDetail extends HttpServlet {
         TestDBContext tDB = new TestDBContext();
         ArrayList<Test> listTestOfRoom = tDB.getTestsCorrespondingEachRoom(u, r);
         r = rDB.getRoomById(r);
+        String codeToJoin = GenerateCodeToJoin.generateCode(r.getCode() + r.getPassword());
         String roomName = r.getRoomName();
+        request.setAttribute("codeToJoin", codeToJoin);
         request.setAttribute("currentRoom", r);
         request.setAttribute("listTestOfRoom", listTestOfRoom);
         request.getRequestDispatcher("../../view/user/room/ViewRoomDetail.jsp").forward(request, response);
