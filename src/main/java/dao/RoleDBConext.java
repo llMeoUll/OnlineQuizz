@@ -52,7 +52,7 @@ public class RoleDBConext extends DBContext{
         }
         return roles;
     }
-    public ArrayList<Role> list(String username) throws ClassNotFoundException {
+    public ArrayList<Role> list(String email) throws ClassNotFoundException {
         ArrayList<Role> roles = new ArrayList<>();
         try {
             String sql = "select r.rid, r.name as rname, f.fid, f.url from `user` u\n" +
@@ -60,11 +60,11 @@ public class RoleDBConext extends DBContext{
                     "inner join `role` r on r.rid = ru.rid\n" +
                     "inner join `role_feature_mapping` rf on rf.rid = r.rid\n" +
                     "inner join `feature` f on f.fid = rf.fid\n" +
-                    "where u.username = ?;";
+                    "where u.email = ?;";
 
             PreparedStatement stm = connection.prepareStatement(sql);
 
-            stm.setString(1, username);
+            stm.setString(1, email);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Role r = new Role();

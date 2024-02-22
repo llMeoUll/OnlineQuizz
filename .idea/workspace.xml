@@ -10,43 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="Fix error, forget hardcode">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/authentication/AdminLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/authentication/AdminLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/user/CreateUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/user/CreateUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/user/DeleteUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/user/DeleteUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/user/UpdateUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/user/UpdateUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/user/UserManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/user/UserManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Logout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Logout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/CreateRoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/CreateRoomServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/InviteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/InviteServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/RoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/RoomServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/utilities/BasedAuthentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/utilities/BasedAuthentication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/utilities/GenerateCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/utilities/GenerateCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/utilities/GenerateCodeToJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/utilities/GenerateCodeToJoin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ActiveUsersDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ActiveUsersDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CommentDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CommentDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/FeatureDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/FeatureDBContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoleDBConext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoleDBConext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SelfTestDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SelfTestDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/StarRateDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/StarRateDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TestDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TestDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/filer/Authenticate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filer/Authenticate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/filer/Authorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filer/Authorization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/filer/Authenticate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/Authenticate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/filer/Authorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/Authorization.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/AdminLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/AdminLogin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/ManageRoomScreen.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/ManageRoomScreen.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,9 +29,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="Class" />
         <option value="Jsp File" />
         <option value="JavaScript File" />
-        <option value="Class" />
       </list>
     </option>
   </component>
@@ -124,7 +96,7 @@
     <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
-      <option name="UPDATING_POLICY" value="restart-server" />
+      <option name="UPDATING_POLICY" value="update-resources" />
       <deployment>
         <artifact name="Quizzicle:war exploded">
           <settings>
@@ -255,7 +227,11 @@
       <workItem from="1706793133895" duration="1106000" />
       <workItem from="1706866862197" duration="11062000" />
       <workItem from="1706926525114" duration="3706000" />
-      <workItem from="1708312096805" duration="6102000" />
+      <workItem from="1708312096805" duration="7317000" />
+      <workItem from="1708391316336" duration="10322000" />
+      <workItem from="1708475502782" duration="7008000" />
+      <workItem from="1708513513582" duration="904000" />
+      <workItem from="1708566770626" duration="5296000" />
     </task>
     <servers />
   </component>
