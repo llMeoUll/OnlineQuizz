@@ -10,7 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="Fix error, forget hardcode">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/authentication/AdminLogin.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" afterDir="false" />
@@ -18,6 +21,14 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/AdminLogin.jsp" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoleDBConext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoleDBConext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/filer/Authenticate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/Authenticate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/filer/Authorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/Authorization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+>>>>>>> 70896cc1b904f39a092c7552c6549bf01eff0286
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,9 +39,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+<<<<<<< HEAD
         <option value="JavaScript File" />
         <option value="Class" />
         <option value="Jsp File" />
+=======
+        <option value="Class" />
+        <option value="Jsp File" />
+        <option value="JavaScript File" />
+>>>>>>> 70896cc1b904f39a092c7552c6549bf01eff0286
       </list>
     </option>
   </component>
@@ -95,7 +112,7 @@
     <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
-      <option name="UPDATING_POLICY" value="restart-server" />
+      <option name="UPDATING_POLICY" value="update-resources" />
       <deployment>
         <artifact name="OnlineQuizz:war exploded">
           <settings>
@@ -228,8 +245,16 @@
       <workItem from="1706793133895" duration="1106000" />
       <workItem from="1706866862197" duration="11062000" />
       <workItem from="1706926525114" duration="3706000" />
+<<<<<<< HEAD
       <workItem from="1708312096805" duration="6102000" />
       <workItem from="1708563063169" duration="8553000" />
+=======
+      <workItem from="1708312096805" duration="7317000" />
+      <workItem from="1708391316336" duration="10322000" />
+      <workItem from="1708475502782" duration="7008000" />
+      <workItem from="1708513513582" duration="904000" />
+      <workItem from="1708566770626" duration="5296000" />
+>>>>>>> 70896cc1b904f39a092c7552c6549bf01eff0286
     </task>
     <servers />
   </component>

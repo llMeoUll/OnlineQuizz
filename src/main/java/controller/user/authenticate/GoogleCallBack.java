@@ -114,6 +114,15 @@ public class GoogleCallBack extends HttpServlet {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
+            } else {
+                try {
+                    RoleDBConext roleDBConext = new RoleDBConext();
+                    user.setRoles(roleDBConext.list(user.getEmail()));
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
             }
             response.sendRedirect("./");
         } else {
