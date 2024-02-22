@@ -282,4 +282,30 @@ public class RoomDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
+
+    public Room getRoomById(Room r) {
+        String sql = "SELECT \n" +
+                "    `room`.`room_name`,\n" +
+                "    `room`.`code`,\n" +
+                "    `room`.`password`,\n" +
+                "    `room`.`description`\n" +
+                "FROM `online_quizz`.`room` WHERE room_id = ?;\n";
+
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, r.getRoomId());
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                Room room = new Room();
+                room.setRoomName(rs.getString("room_name"));
+                room.setDescription(rs.getString("description"));
+                room.setCode(rs.getString("code"));
+                room.setPassword(rs.getString("password"));
+                return room;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

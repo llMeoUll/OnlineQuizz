@@ -31,12 +31,26 @@ public class TestDBContext extends DBContext {
 
     public ArrayList<Test> getTestsCorrespondingEachRoom(User entity, Room room) {
         ArrayList<Test> getTestsCorrespondingEachRoom = new ArrayList<>();
-        String sql = "SELECT * FROM online_quizz.room \n" +
-                "JOIN online_quizz.test WHERE room.room_id = test.room_id AND room.uid = ? AND room.room_id = ?";
+        String sql = "SELECT CombinedResults.uid, CombinedResults.room_id, CombinedResults.room_name, test.*\n" +
+                "FROM (\n" +
+                "    SELECT user_join_room.uid, user_join_room.room_id, room.room_name \n" +
+                "    FROM online_quizz.user_join_room\n" +
+                "    LEFT JOIN online_quizz.room ON user_join_room.room_id = room.room_id \n" +
+                "    WHERE user_join_room.uid = ?\n" +
+                "\n" +
+                "    UNION\n" +
+                "\n" +
+                "    SELECT uid, room_id, room_name \n" +
+                "    FROM online_quizz.room \n" +
+                "    WHERE uid = ?\n" +
+                ") AS CombinedResults\n" +
+                "\n" +
+                "JOIN online_quizz.test ON CombinedResults.room_id = test.room_id AND CombinedResults.room_id = ?;\n";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, entity.getId());
-            stm.setInt(2, room.getRoomId());
+            stm.setInt(2, entity.getId());
+            stm.setInt(3, room.getRoomId());
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Test t = new Test();
@@ -47,16 +61,16 @@ public class TestDBContext extends DBContext {
                 t.setTestId(rs.getInt("test_id"));
                 t.setTestName(rs.getString("test_name"));
                 t.setTestDescription(rs.getString("test_description"));
-                // .. Need question in each test
+                // Need question in each test
 
                 t.setStartTime(rs.getTimestamp("start_time"));
                 t.setEndTime(rs.getTimestamp("end_time"));
                 getTestsCorrespondingEachRoom.add(t);
             }
+            return getTestsCorrespondingEachRoom;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return getTestsCorrespondingEachRoom;
     }
 
     public Test getTestById(Test entity) {
@@ -147,5 +161,34 @@ public class TestDBContext extends DBContext {
             throw new RuntimeException(e);
         }
         return listQuestions;
+    }
+
+    public void updateById(Test entity) {
+        String sql = "UPDATE `online_quizz`.`test`\n" +
+                "SET\n" +
+                "`test_name` = ?,\n" +
+                "`test_description` = ?\n" +
+                "WHERE `test_id` = ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, entity.getTestName());
+            stm.setString(2, entity.getTestDescription());
+            stm.setInt(3, entity.getTestId());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteById(Test entity) {
+        String sql = "DELETE FROM `online_quizz`.`test`\n" +
+                "WHERE test_id = ?;\n";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, entity.getTestId());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
