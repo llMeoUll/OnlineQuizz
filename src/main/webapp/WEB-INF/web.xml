@@ -103,8 +103,8 @@
         <servlet-name>ResetPassword</servlet-name>
         <url-pattern>/reset-password</url-pattern>
     </servlet-mapping>
-<!--    Management Room Feature-->
-<!--    manager room-->
+    <!--    Management Room Feature-->
+    <!--    manager room-->
     <servlet>
         <servlet-name>RoomManage</servlet-name>
         <servlet-class>controller.user.room.RoomServlet</servlet-class>
@@ -113,7 +113,7 @@
         <servlet-name>RoomManage</servlet-name>
         <url-pattern>/user/room</url-pattern>
     </servlet-mapping>
-<!--    create room-->
+    <!--    create room-->
     <servlet>
         <servlet-name>createRoom</servlet-name>
         <servlet-class>controller.user.room.CreateRoomServlet</servlet-class>
@@ -122,7 +122,7 @@
         <servlet-name>createRoom</servlet-name>
         <url-pattern>/user/room/create</url-pattern>
     </servlet-mapping>
-<!--    room invite-->
+    <!--    room invite-->
     <servlet>
         <servlet-name>Invite</servlet-name>
         <servlet-class>controller.user.room.InviteServlet</servlet-class>
@@ -131,8 +131,40 @@
         <servlet-name>Invite</servlet-name>
         <url-pattern>/user/room/invite</url-pattern>
     </servlet-mapping>
-<!--    Management Set Feature-->
-<!--    create set-->
+
+    <!--    user get room (view room detail)-->
+    <servlet>
+        <servlet-name>getRoom</servlet-name>
+        <servlet-class>controller.user.room.RoomDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getRoom</servlet-name>
+        <url-pattern>/user/room/get</url-pattern>
+    </servlet-mapping>
+
+    <!--    Update room-->
+    <servlet>
+        <servlet-name>updateRoom</servlet-name>
+        <servlet-class>controller.user.room.UpdateRoom</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateRoom</servlet-name>
+        <url-pattern>/user/room/update</url-pattern>
+    </servlet-mapping>
+
+    <!--    Delete room -->
+    <servlet>
+        <servlet-name>deleteRoom</servlet-name>
+        <servlet-class>controller.user.room.DeleteRoom</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteRoom</servlet-name>
+        <url-pattern>/user/room/delete</url-pattern>
+    </servlet-mapping>
+
+
+    <!--    Management Set Feature-->
+    <!--    create set-->
     <servlet>
         <servlet-name>CreateSet</servlet-name>
         <servlet-class>controller.user.set.CreateSet</servlet-class>
@@ -142,9 +174,9 @@
         <url-pattern>/user/set/create</url-pattern>
     </servlet-mapping>
 
-<!--    *********************************************ADMINISTRATOR******************************************************-->
-<!--    Authenticate Feature-->
-<!--    login-->
+    <!--    *********************************************ADMINISTRATOR******************************************************-->
+    <!--    Authenticate Feature-->
+    <!--    login-->
     <servlet>
         <servlet-name>AdminLogin</servlet-name>
         <servlet-class>controller.admin.authentication.AdminLogin</servlet-class>
@@ -153,7 +185,7 @@
         <servlet-name>AdminLogin</servlet-name>
         <url-pattern>/admin-login</url-pattern>
     </servlet-mapping>
-<!--    dashboard-->
+    <!--    dashboard-->
     <servlet>
         <servlet-name>AdminDashboard</servlet-name>
         <servlet-class>controller.admin.dashboard.DashBoard</servlet-class>
@@ -162,8 +194,8 @@
         <servlet-name>AdminDashboard</servlet-name>
         <url-pattern>/admin/dashboard</url-pattern>
     </servlet-mapping>
-<!--    User Management Feature-->
-<!--    user management-->
+    <!--    User Management Feature-->
+    <!--    user management-->
     <servlet>
         <servlet-name>AdminUserManagement</servlet-name>
         <servlet-class>controller.admin.user.UserManagement</servlet-class>
@@ -172,7 +204,7 @@
         <servlet-name>AdminUserManagement</servlet-name>
         <url-pattern>/admin/user</url-pattern>
     </servlet-mapping>
-<!--    create user-->
+    <!--    create user-->
     <servlet>
         <servlet-name>CreateUserController</servlet-name>
         <servlet-class>controller.admin.user.CreateUser</servlet-class>
@@ -181,7 +213,7 @@
         <servlet-name>CreateUserController</servlet-name>
         <url-pattern>/admin/user/create</url-pattern>
     </servlet-mapping>
-<!--    delete user-->
+    <!--    delete user-->
     <servlet>
         <servlet-name>AdminDeleteUserController</servlet-name>
         <servlet-class>controller.admin.user.DeleteUser</servlet-class>
@@ -190,7 +222,7 @@
         <servlet-name>AdminDeleteUserController</servlet-name>
         <url-pattern>/admin/user/delete</url-pattern>
     </servlet-mapping>
-<!--    update user-->
+    <!--    update user-->
     <servlet>
         <servlet-name>UpdateUserController</servlet-name>
         <servlet-class>controller.admin.user.UpdateUser</servlet-class>

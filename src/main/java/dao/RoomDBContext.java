@@ -6,21 +6,13 @@ import entity.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class RoomDBContext extends DBContext {
 
     public void insert(Room entity) {
-        String sql = "INSERT INTO `online_quizz`.`room`\n" +
-                "(`room_id`,\n" +
-                "`room_name`,\n" +
-                "`code`,\n" +
-                "`password`,\n" +
-                "`description`,\n" +
-                "`uid`,\n" +
-                "`created_at`)\n" +
-                "VALUES\n" +
-                "(?, ?, ?, ?, ?, ?, ?);\n";
+        String sql = "INSERT INTO `online_quizz`.`room`\n" + "(`room_id`,\n" + "`room_name`,\n" + "`code`,\n" + "`password`,\n" + "`description`,\n" + "`uid`,\n" + "`created_at`)\n" + "VALUES\n" + "(?, ?, ?, ?, ?, ?, ?);\n";
 
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -39,14 +31,7 @@ public class RoomDBContext extends DBContext {
 
     public ArrayList<Room> list(User user) {
         ArrayList<Room> listRoom = new ArrayList<>();
-        String sql = "SELECT `room`.`room_id`,\n" +
-                "    `room`.`room_name`,\n" +
-                "    `room`.`code`,\n" +
-                "    `room`.`password`,\n" +
-                "    `room`.`description`,\n" +
-                "    `room`.`uid`,\n" +
-                "    `room`.`created_at`\n" +
-                "FROM `online_quizz`.`room` WHERE uid = ?;";
+        String sql = "SELECT `room`.`room_id`,\n" + "    `room`.`room_name`,\n" + "    `room`.`code`,\n" + "    `room`.`password`,\n" + "    `room`.`description`,\n" + "    `room`.`uid`,\n" + "    `room`.`created_at`\n" + "FROM `online_quizz`.`room` WHERE uid = ?;";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, user.getId());
@@ -70,14 +55,7 @@ public class RoomDBContext extends DBContext {
 
     public ArrayList<Room> listAllRoomExceptOwner(User user) {
         ArrayList<Room> listRoom = new ArrayList<>();
-        String sql = "SELECT `room`.`room_id`,\n" +
-                "    `room`.`room_name`,\n" +
-                "    `room`.`code`,\n" +
-                "    `room`.`password`,\n" +
-                "    `room`.`description`,\n" +
-                "    `room`.`uid`,\n" +
-                "    `room`.`created_at`\n" +
-                "FROM `online_quizz`.`room` WHERE uid != ?;";
+        String sql = "SELECT `room`.`room_id`,\n" + "    `room`.`room_name`,\n" + "    `room`.`code`,\n" + "    `room`.`password`,\n" + "    `room`.`description`,\n" + "    `room`.`uid`,\n" + "    `room`.`created_at`\n" + "FROM `online_quizz`.`room` WHERE uid != ?;";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, user.getId());
@@ -106,16 +84,7 @@ public class RoomDBContext extends DBContext {
      * @return null nếu không tồn tại
      */
     public Room getRoomToJoin(String code, String password) {
-        String sql = "SELECT `room`.`room_id`,\n" +
-                "    `room`.`room_name`,\n" +
-                "    `room`.`code`,\n" +
-                "    `room`.`password`,\n" +
-                "    `room`.`description`,\n" +
-                "    `room`.`uid`,\n" +
-                "    `room`.`created_at`,\n" +
-                "    `room`.`updated_at`\n" +
-                "FROM `online_quizz`.`room`\n" +
-                "WHERE code = ? AND password= ?;\n";
+        String sql = "SELECT `room`.`room_id`,\n" + "    `room`.`room_name`,\n" + "    `room`.`code`,\n" + "    `room`.`password`,\n" + "    `room`.`description`,\n" + "    `room`.`uid`,\n" + "    `room`.`created_at`,\n" + "    `room`.`updated_at`\n" + "FROM `online_quizz`.`room`\n" + "WHERE code = ? AND password= ?;\n";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, code);
@@ -144,12 +113,7 @@ public class RoomDBContext extends DBContext {
      * @param room_id
      */
     public void insertIntoUser_Join_Room(int uid, int room_id) {
-        String sql = "INSERT INTO `online_quizz`.`user_join_room`\n" +
-                "(`uid`,\n" +
-                "`room_id`)\n" +
-                "VALUES\n" +
-                "(?,\n" +
-                "?);\n";
+        String sql = "INSERT INTO `online_quizz`.`user_join_room`\n" + "(`uid`,\n" + "`room_id`)\n" + "VALUES\n" + "(?,\n" + "?);\n";
 
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -165,12 +129,7 @@ public class RoomDBContext extends DBContext {
         ArrayList<Room> listRoomJoinedByUser = new ArrayList<>();
         try {
             connection.setAutoCommit(false);
-            String sql = "SELECT user_join_room.uid, user_join_room.room_id, room.room_name, room.code, room.password, room.description, room.created_at, room.uid, user.username\n" +
-                    "                    FROM online_quizz.user_join_room\n" +
-                    "                    INNER JOIN online_quizz.room \n" +
-                    "                    ON user_join_room.room_id = room.room_id AND user_join_room.uid = ?\n" +
-                    "                    INNER JOIN online_quizz.user\n" +
-                    "                    ON room.uid = user.uid";
+            String sql = "SELECT user_join_room.uid, user_join_room.room_id, room.room_name, room.code, room.password, room.description, room.created_at, room.uid, user.username\n" + "                    FROM online_quizz.user_join_room\n" + "                    INNER JOIN online_quizz.room \n" + "                    ON user_join_room.room_id = room.room_id AND user_join_room.uid = ?\n" + "                    INNER JOIN online_quizz.user\n" + "                    ON room.uid = user.uid";
             PreparedStatement stm = null;
             stm = connection.prepareStatement(sql);
             stm.setInt(1, user.getId());
@@ -199,16 +158,7 @@ public class RoomDBContext extends DBContext {
 
 
     public Room getRoomByName(Room roomNeedToCheck) {
-        String sql = "SELECT `room`.`room_id`,\n" +
-                "    `room`.`room_name`,\n" +
-                "    `room`.`code`,\n" +
-                "    `room`.`password`,\n" +
-                "    `room`.`description`,\n" +
-                "    `room`.`uid`,\n" +
-                "    `room`.`created_at`,\n" +
-                "    `room`.`updated_at`\n" +
-                "FROM `online_quizz`.`room`\n" +
-                "WHERE room_name = ?;\n";
+        String sql = "SELECT `room`.`room_id`,\n" + "    `room`.`room_name`,\n" + "    `room`.`code`,\n" + "    `room`.`password`,\n" + "    `room`.`description`,\n" + "    `room`.`uid`,\n" + "    `room`.`created_at`,\n" + "    `room`.`updated_at`\n" + "FROM `online_quizz`.`room`\n" + "WHERE room_name = ?;\n";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, roomNeedToCheck.getRoomName());
@@ -243,20 +193,12 @@ public class RoomDBContext extends DBContext {
 
     public ArrayList<Room> getOwnedRoom(User entity) {
         ArrayList<Room> ownedRooms = new ArrayList<>();
-        String sqlGetOwnedRooms = "SELECT `room`.`room_id`,\n" +
-                "    `room`.`room_name`,\n" +
-                "    `room`.`code`,\n" +
-                "    `room`.`password`,\n" +
-                "    `room`.`description`,\n" +
-                "    `room`.`created_at`,\n" +
-                "    `room`.`updated_at`\n" +
-                "FROM `online_quizz`.`room`\n" +
-                "WHERE `room`.`uid` = ?";
+        String sqlGetOwnedRooms = "SELECT `room`.`room_id`,\n" + "    `room`.`room_name`,\n" + "    `room`.`code`,\n" + "    `room`.`password`,\n" + "    `room`.`description`,\n" + "    `room`.`created_at`,\n" + "    `room`.`updated_at`\n" + "FROM `online_quizz`.`room`\n" + "WHERE `room`.`uid` = ?";
         try {
             PreparedStatement stmGetOwnedRooms = connection.prepareStatement(sqlGetOwnedRooms);
             stmGetOwnedRooms.setString(1, String.valueOf(entity.getId()));
             ResultSet rs = stmGetOwnedRooms.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Room ownedRoom = new Room();
                 ownedRoom.setRoomId(rs.getInt("room_id"));
                 ownedRoom.setUser(entity);
@@ -275,9 +217,7 @@ public class RoomDBContext extends DBContext {
 
     public ArrayList<Room> getJoinedRooms(User entity) {
         ArrayList<Room> joinedRooms = new ArrayList<>();
-        String sqlGetJoinedRooms = "SELECT `user_join_room`.`room_id`\n" +
-                "FROM `online_quizz`.`user_join_room`\n" +
-                "WHERE `user_join_room`.`uid` = ? ";
+        String sqlGetJoinedRooms = "SELECT `user_join_room`.`room_id`\n" + "FROM `online_quizz`.`user_join_room`\n" + "WHERE `user_join_room`.`uid` = ? ";
         try {
             PreparedStatement stmGetJoinedRooms = connection.prepareStatement(sqlGetJoinedRooms);
             stmGetJoinedRooms.setInt(1, entity.getId());
@@ -291,5 +231,55 @@ public class RoomDBContext extends DBContext {
             throw new RuntimeException(e);
         }
         return joinedRooms;
+    }
+
+    public void deleteRoom(Room r) {
+        try {
+            connection.setAutoCommit(false);
+
+            String sqlDeleteTest = "DELETE FROM `online_quizz`.`test` WHERE room_id = ?";
+            try (PreparedStatement psDeleteTest = connection.prepareStatement(sqlDeleteTest)) {
+                psDeleteTest.setInt(1, r.getRoomId());
+                int rowsDeletedTest = psDeleteTest.executeUpdate();
+                System.out.println(rowsDeletedTest + " records deleted from test table");
+            }
+
+
+            String sqlDeleteRoom = "DELETE FROM `online_quizz`.`room` WHERE room.room_id = ?";
+            try (PreparedStatement psDeleteRoom = connection.prepareStatement(sqlDeleteRoom)) {
+                psDeleteRoom.setInt(1, r.getRoomId());
+                int rowsDeletedRoom = psDeleteRoom.executeUpdate();
+                System.out.println(rowsDeletedRoom + " records deleted from room table");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+
+    public void updateRoom(Room r) {
+        try {
+            String sql = "UPDATE `online_quizz`.`room`\n" +
+                    "SET\n" +
+                    "`room_name` = ?,\n" +
+                    "`description` = ?,\n" +
+                    "`updated_at` =?\n" +
+                    "WHERE `room_id` =?;\n";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, r.getRoomName());
+            stm.setString(2, r.getDescription());
+            stm.setDate(3, r.getUpdatedAt());
+            stm.setInt(4, r.getRoomId());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

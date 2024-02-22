@@ -79,9 +79,9 @@
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="#">
-        <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
-        Your Logo
+    <a class="navbar-brand" href="../../">
+        <img src="../../imagines/logo1250x1250.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Quizzicle
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -116,7 +116,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#"><i class="fas fa-cogs"></i> Settings</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
             </li>
         </ul>
@@ -196,20 +196,19 @@
 
 <%--Display list room --%>
 <div>
-    <%--Display list information each room in listownedRoom--%>
     <c:forEach items="${requestScope.listRoom}" var="room">
-        <div class="container mt-3 bg-light-purple p-3 rounded">
-            <!-- Information Block -->
-            <div class="row">
-                <p class="text-light ml-4">Number of Tests: 10 | Number of Users: 100 | Workplace: XYZ Corp</p>
+        <a href="./room/get?roomId=${room.roomId}" class="text-decoration-none">
+            <div class="container mt-3 bg-light-purple p-3 rounded room-item">
+                <!-- Information Block -->
+                <div class="row">
+                    <p class="text-light ml-4">Number of Tests: 10 | Number of Users: 100 | Workplace: XYZ Corp</p>
+                </div>
+
+                <div class="row">
+                    <p class="font-weight-bold ml-4 text-light">Name: ${room.roomName} | Owner: ${room.user.username}</p>
+                </div>
             </div>
-
-            <div class="row">
-                <p class="font-weight-bold  ml-4">Name: ${room.roomName} | Owner: ${room.user.username}
-            </div>
-
-
-        </div>
+        </a>
     </c:forEach>
 </div>
 

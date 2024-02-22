@@ -4,50 +4,27 @@ body {
     color: #fff;
 }
 
-.custom-list-group {
+.bg-light-purple {
     background-color: #9c27b0;
-    margin-bottom: 10px;
 }
 
-.header-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #9c27b0;
-    border-radius: 8px;
-    margin-bottom: 20px;
+.clickable-avatar {
+    cursor: pointer;
 }
 
-.header-info-section-boundary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px;
+.text-purple {
+    color: #9c27b0;
 }
 
-.room-buttons button {
-    margin-right: 10px;
+.btn-primary,
+.close,
+.modal-header {
+    background-color: #673ab7;
+    border-color: #673ab7;
 }
 
-.info-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px;
-    background-color: #9c27b0;
-    border-radius: 8px;
-    margin-bottom: 25px;
-    padding-top: 12px;
-    padding-left: 20px;
-    padding-right: 20px;
+.btn-primary:hover {
+    background-color: #512da8;
+    border-color: #512da8;
 }
 
-.info-section div {
-    text-align: center;
-}
-
-.info-section div p,
-h3 {
-    margin-bottom: 0;
-}
