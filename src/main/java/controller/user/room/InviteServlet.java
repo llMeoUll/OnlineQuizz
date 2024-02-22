@@ -1,6 +1,5 @@
 package controller.user.room;
 
-import controller.user.room.utilities.BasedAuthentication;
 import controller.user.room.utilities.GenerateCodeToJoin;
 import dao.RoomDBContext;
 import dao.UserDBContext;

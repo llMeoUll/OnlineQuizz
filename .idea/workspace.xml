@@ -10,17 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="Fix error, forget hardcode">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/DeleteRoom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/RoomDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/UpdateRoom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/DeleteTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/TestDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/UpdateTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/ViewTestDetail.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewTestDetail.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SelfTestDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SelfTestDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/InviteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/InviteServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/RoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/RoomServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/utilities/BasedAuthentication.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/TestDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TestDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/ViewRoomDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/manageRoom/ViewRoomDetail.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/ManageRoomScreen.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/ManageRoomScreen.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/Navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/Navbar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewRoomDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewRoomDetail.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,16 +78,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
-        &quot;keyToString&quot;: {
-        &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-        &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-        &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-        &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-        &quot;last_opened_file_path&quot;: &quot;E:/ProjectSWP/OnlineQuizz/src/main/webapp/imagines&quot;,
-        &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-        &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
-        }
-        }</component>
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/ProjectSWP/OnlineQuizz/src/main/webapp/imagines&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\imagines" />
@@ -233,7 +235,10 @@
       <workItem from="1706866862197" duration="11062000" />
       <workItem from="1706926525114" duration="3706000" />
       <workItem from="1708312096805" duration="6102000" />
-      <workItem from="1708554263186" duration="10906000" />
+      <workItem from="1708554263186" duration="11577000" />
+      <workItem from="1708575423294" duration="9607000" />
+      <workItem from="1708590825265" duration="311000" />
+      <workItem from="1708591252249" duration="2463000" />
     </task>
     <servers />
   </component>
@@ -256,6 +261,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="Fix error, forget hardcode" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/user/room/TestDetail.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="listRoomName.get(0).hashIsZero" />

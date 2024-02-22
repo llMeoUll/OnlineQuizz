@@ -162,6 +162,35 @@
         <url-pattern>/user/room/delete</url-pattern>
     </servlet-mapping>
 
+    <!-- view test detail-->
+    <servlet>
+        <servlet-name>viewTestDetail</servlet-name>
+        <servlet-class>controller.user.room.TestDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>viewTestDetail</servlet-name>
+        <url-pattern>/user/room/test/get</url-pattern>
+    </servlet-mapping>
+
+    <!--  delete test -->
+    <servlet>
+        <servlet-name>deleteTest</servlet-name>
+        <servlet-class>controller.user.room.DeleteTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteTest</servlet-name>
+        <url-pattern>/user/room/test/delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- update/edit test-->
+    <servlet>
+        <servlet-name>updateTest</servlet-name>
+        <servlet-class>controller.user.room.UpdateTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateTest</servlet-name>
+        <url-pattern>/user/room/test/update</url-pattern>
+    </servlet-mapping>
 
     <!--    Management Set Feature-->
     <!--    create set-->
