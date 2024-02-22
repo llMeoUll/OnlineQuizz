@@ -144,15 +144,6 @@
 
 <!--    *********************************************ADMINISTRATOR******************************************************-->
 <!--    Authenticate Feature-->
-<!--    login-->
-    <servlet>
-        <servlet-name>AdminLogin</servlet-name>
-        <servlet-class>controller.admin.authentication.AdminLogin</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminLogin</servlet-name>
-        <url-pattern>/admin-login</url-pattern>
-    </servlet-mapping>
 <!--    dashboard-->
     <servlet>
         <servlet-name>AdminDashboard</servlet-name>
