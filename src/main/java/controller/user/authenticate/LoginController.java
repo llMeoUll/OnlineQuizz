@@ -36,7 +36,7 @@ public class LoginController extends HttpServlet {
                 } else {
                     try {
                         RoleDBConext roleDBConext = new RoleDBConext();
-                        loggedUser.setRoles(roleDBConext.list(loggedUser.getUsername()));
+                        loggedUser.setRoles(roleDBConext.list(loggedUser.getEmail()));
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
