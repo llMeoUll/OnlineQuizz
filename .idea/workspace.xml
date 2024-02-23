@@ -10,15 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="Fix error, forget hardcode">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/HashTag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/CreateSet.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoleDBConext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoleDBConext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/filer/Authenticate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/Authenticate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/filer/Authorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/Authorization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Set.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Set.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,10 +28,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
-        <option value="Class" />
         <option value="Jsp File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -84,6 +84,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="entity" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\imagines" />
     </key>
@@ -231,7 +234,8 @@
       <workItem from="1708391316336" duration="10322000" />
       <workItem from="1708475502782" duration="7008000" />
       <workItem from="1708513513582" duration="904000" />
-      <workItem from="1708566770626" duration="5296000" />
+      <workItem from="1708566770626" duration="26602000" />
+      <workItem from="1708651568635" duration="20196000" />
     </task>
     <servers />
   </component>

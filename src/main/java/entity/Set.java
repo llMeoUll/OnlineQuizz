@@ -23,4 +23,5 @@ public class Set {
     private ArrayList<StarRate> starRates;
     private ArrayList<Comment> comments;
     private ArrayList<Question> questions;
+    private ArrayList<HashTag> hashTags = new ArrayList<>();
 }
