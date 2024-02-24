@@ -249,6 +249,7 @@ public class RoomDbContext extends DBContext<Room> {
         return null;
     }
 
+
     public ArrayList<String> listRoomName() {
         ArrayList<String> listRoomName = new ArrayList<>();
         String sql = "SELECT room_name FROM online_quizz.room;";
@@ -263,4 +264,32 @@ public class RoomDbContext extends DBContext<Room> {
         }
         return listRoomName;
     }
+//    public ArrayList<Room> searchRoomByName(String name) {
+//        ArrayList<Room> rooms = new ArrayList<>();
+//        String sql = "SELECT `room`.`room_id`,\n" +
+//                "    `room`.`room_name`,\n" +
+//                "    `room`.`code`,\n" +
+//                "    `room`.`password`,\n" +
+//                "    `room`.`description`,\n" +
+//                "    `room`.`uid`,\n" +
+//                "    `room`.`created_at`,\n" +
+//                "    `room`.`updated_at`\n" +
+//                "FROM `online_quizz`.`room`\n" +
+//                "WHERE room_name = ?;\n";
+//        try {
+//            PreparedStatement stm = connection.prepareStatement(sql);
+//            stm.setString(1, name);
+//            ResultSet rs = stm.executeQuery();
+//            if (rs.next()) {
+//                Room r = new Room();
+//                r.setRoomId(rs.getInt(1));
+//                r.setRoomName(rs.getString(2));
+//                r.setDescription(rs.getString(5));
+//                return r;
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return null;
+//    }
 }

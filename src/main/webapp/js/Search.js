@@ -1,12 +1,4 @@
-function scrollToFooter() {
-    // Lấy đối tượng footer
-    var footer = document.getElementById("footer");
-
-    // Scroll đến vị trí của footer
-    footer.scrollIntoView({behavior: "smooth"});
-}
-
-let suggestions = [
+let availablekeywords = [
     "Biology",
     "Chemistry",
     "Physics",
@@ -108,47 +100,36 @@ let suggestions = [
     "Fashion",
     "Parenting"
 ];
+const resultBox = document.querySelector(".result-box");
+const inputBox = document.querySelector("#input-box");
 
-// getting all required elements
-const searchInput = document.querySelector(".searchInput");
-const input = searchInput.querySelector("input");
-const resultBox = searchInput.querySelector(".resultBox");
-const icon = searchInput.querySelector(".icon");
-let linkTag = searchInput.querySelector("a");
-let webLink;
-
-// if user press any key and release
-input.onkeyup = (e) => {
-    let userData = e.target.value; //user enetered data
-    let emptyArray = [];
-    if (userData) {
-        emptyArray = suggestions.filter((data) => {
-            //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
-            return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
+inputBox.onkeyup = function () {
+    let result = [];
+    let input = inputBox.value;
+    if (input.length) {
+        result = availablekeywords.filter((data) => {
+            return data.toLocaleLowerCase().includes(input.toLocaleLowerCase());
         });
-        emptyArray = emptyArray.map((data) => {
-            // passing return data inside li tag
-            return data = '<li>' + data + '</li>';
-        });
-        searchInput.classList.add("active"); //show autocomplete box
-        showSuggestions(emptyArray);
-        let allList = resultBox.querySelectorAll("li");
-        for (let i = 0; i < allList.length; i++) {
-            //adding onclick attribute in all li tag
-            allList[i].setAttribute("onclick", "select(this)");
-        }
+        console.log(result)
+    }
+    if (result.length === 0) {
+        resultBox.innerHTML = ""; // Clear the result box if no matches found
     } else {
-        searchInput.classList.remove("active"); //hide autocomplete box
+        display(result);
+    }
+    if (!input.length) {
+        resultBox.innerHTML = "";
     }
 }
-
-function showSuggestions(list) {
-    let listData;
-    if (!list.length) {
-        userValue = inputBox.value;
-        listData = '<li>' + userValue + '</li>';
-    } else {
-        listData = list.join('');
-    }
-    resultBox.innerHTML = listData;
+function display(result) {
+    const slicedResult = result.slice(0, 6);
+    const content = slicedResult.map((list) => {
+        return `<li onclick=selectInput(this)><i class="fa-solid fa-magnifying-glass"></i> ${list}</li>`;
+    });
+    resultBox.innerHTML = "<ul>" + content.join('') + "</ul>";
 }
+function selectInput(list) {
+    inputBox.value = element.textContent;
+    resultBox.innerHTML = "";
+}
+

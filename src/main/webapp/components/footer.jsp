@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<footer class="bg-body-tertiary text-center">
+<footer class="bg-body-tertiary text-center border-top border-dark">
     <!-- Grid container -->
     <div class="container p-4">
         <!-- Section: Social media -->

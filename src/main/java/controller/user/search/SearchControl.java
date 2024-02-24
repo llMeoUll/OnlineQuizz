@@ -1,4 +1,4 @@
-package controller.user.seach;
+package controller.user.search;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -10,7 +10,10 @@ import java.io.IOException;
 public class SearchControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("./view/user/Search/Search.jsp").forward(request, response);
+        request.setCharacterEncoding("UTF-8");
+        String txtSearch = request.getParameter("txt");
+        request.setAttribute("txtSearch", txtSearch);
+        request.getRequestDispatcher("./view/user/HomePage/Home.jsp").forward(request, response);
     }
 
     @Override

@@ -1,2 +1,23 @@
-package controller.user.HomeController;public class HomeControl {
+package controller.user.HomeController;
+
+import com.lambdaworks.crypto.SCryptUtil;
+import dao.UserDBContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
+
+public class HomeControl extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("./view/user/HomePage/Home.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+    }
 }

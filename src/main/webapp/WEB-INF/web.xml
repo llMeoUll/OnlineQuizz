@@ -34,6 +34,14 @@
         <servlet-class>controller.user.authenticate.LoginWithGoogle</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>SearchControl</servlet-name>
+        <servlet-class>controller.user.search.SearchControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeControl</servlet-name>
+        <servlet-class>controller.user.HomeController.HomeControl</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.user.authenticate.LoginController</servlet-class>
     </servlet>
@@ -93,6 +101,14 @@
     <servlet-mapping>
         <servlet-name>AdminLoginController</servlet-name>
         <url-pattern>/admin/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchControl</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeControl</servlet-name>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateUserController</servlet-name>
