@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
                     }
                     HttpSession session = request.getSession();
                     session.setAttribute("user", loggedUser);
-                    response.sendRedirect("./");
+                    request.getRequestDispatcher("./").forward(request, response);
                 }
             }
             else {

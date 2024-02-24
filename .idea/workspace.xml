@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Quizzicle:war exploded" />
+      <artifact name="OnlineQuizz:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,15 +10,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="Fix error, forget hardcode">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/room/CreateRoom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/room/DeleteRoom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/room/RoomManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/room/UpdateRoom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/user/UserProfile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/websocket/configuration/DashboardWebSocketEndpointConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/websocket/endpoints/DashboardWebSocketEndpoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateRoom.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/RoomManagement.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UpdateRoom.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserProfile.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoleDBConext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoleDBConext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/filer/Authenticate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/Authenticate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/filer/Authorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/Authorization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/CreateRoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/CreateRoomServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UpdateUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UpdateUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +45,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Class" />
-        <option value="Jsp File" />
         <option value="JavaScript File" />
+        <option value="Jsp File" />
+        <option value="Class" />
+        <option value="Class" />
+        <option value="JavaScript File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -94,23 +113,22 @@
   </component>
   <component name="RunManager">
     <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
-      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
-      <option name="UPDATING_POLICY" value="update-resources" />
       <deployment>
-        <artifact name="Quizzicle:war exploded">
+        <artifact name="OnlineQuizz:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="/Quizzicle" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="64a6aebe-1e52-4f90-a14f-106df7d84842" />
+        <option name="BASE_DIRECTORY_NAME" value="75f005a9-0ba8-41c9-aeb4-a305cdc2c355" />
+        <option name="HTTP_PORT" value="8888" />
+        <option name="JNDI_PORT" value="1098" />
       </server-settings>
-      <log_file alias="Tomcat Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/manager.*" />
-      <log_file alias="Tomcat Host Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/host-manager.*" />
-      <log_file checked="false" alias="Tomcat Localhost Log" path="%IDEA_RUN:CATALINA_BASE%/logs/localhost.*" />
-      <log_file checked="false" alias="Tomcat Catalina Log" path="%IDEA_RUN:CATALINA_BASE%/logs/catalina.*" />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <extension name="net.ashald.envfile">
         <option name="IS_ENABLED" value="false" />
@@ -123,7 +141,7 @@
         </ENTRIES>
       </extension>
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="54349" />
+        <option name="DEBUG_PORT" value="50804" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -188,7 +206,7 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="Quizzicle:war exploded" />
+          <artifact name="OnlineQuizz:war exploded" />
         </option>
       </method>
     </configuration>
@@ -227,11 +245,17 @@
       <workItem from="1706793133895" duration="1106000" />
       <workItem from="1706866862197" duration="11062000" />
       <workItem from="1706926525114" duration="3706000" />
+      <workItem from="1708312096805" duration="6102000" />
+      <workItem from="1708563063169" duration="8553000" />
       <workItem from="1708312096805" duration="7317000" />
       <workItem from="1708391316336" duration="10322000" />
       <workItem from="1708475502782" duration="7008000" />
       <workItem from="1708513513582" duration="904000" />
       <workItem from="1708566770626" duration="5296000" />
+      <workItem from="1708616425416" duration="3168000" />
+      <workItem from="1708620552116" duration="5669000" />
+      <workItem from="1708702591069" duration="78000" />
+      <workItem from="1708714324835" duration="19068000" />
     </task>
     <servers />
   </component>
@@ -254,6 +278,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="Fix error, forget hardcode" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/webapp/js/Dashboard.js</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="listRoomName.get(0).hashIsZero" />

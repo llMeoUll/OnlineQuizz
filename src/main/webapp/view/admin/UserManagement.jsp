@@ -121,12 +121,12 @@
                                                 <tr class="candidates-list">
                                                     <td class="title">
                                                         <div class="thumb">
-                                                            <img class="img-fluid" src="" alt>
+                                                            <img class="img-fluid" src="${user.avatar}" alt>
                                                         </div>
                                                         <div class="candidate-list-details">
                                                             <div class="candidate-list-info">
                                                                 <div class="candidate-list-title">
-                                                                    <h5 class="mb-0"><a href="#">${user.givenName}
+                                                                    <h5 class="mb-0"><a href="/Quizzicle/admin/user/profile?uid=${user.id}">${user.givenName}
                                                                             ${user.familyName}</a></h5>
                                                                 </div>
                                                                 <div class="candidate-list-option">
@@ -142,11 +142,11 @@
                                                     <td class="candidate-list-favourite-time text-center">
                                                         <a class="candidate-list-favourite order-2 text-danger"
                                                            href="#"><i class="fas fa-heart"></i></a>
-                                                        <span class="candidate-list-time order-1">isVerified or not</span>
+                                                        <span class="candidate-list-time order-1">${user.isVerified() ? "Verified" : "Not Verified"}</span>
                                                     </td>
                                                     <td>
                                                         <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                                                            <li><a href="/Quizzicle/admin/user/view-details?uid=${user.id}"
+                                                            <li><a href="/Quizzicle/admin/user/profile?uid=${user.id}"
                                                                    class="text-primary" data-toggle="tooltip" title
                                                                    data-original-title="view"><i
                                                                     class="far fa-eye"></i></a></li>

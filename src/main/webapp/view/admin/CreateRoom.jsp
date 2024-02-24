@@ -6,7 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="../css/Dashboard.css" rel="stylesheet">
+        <link href="../../css/Dashboard.css" rel="stylesheet">
+        <link href="../../css/Register.css" rel="stylesheet">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <title>Dashboard</title>
     </head>
@@ -14,7 +15,7 @@
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="">
-            <img src="../imagines/logo1250x1250.png" alt="Quizzicle Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
+            <img src="../../imagines/logo1250x1250.png" alt="Quizzicle Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
             Quizzicle
         </a>
         <!-- Sidebar Toggle-->
@@ -34,7 +35,7 @@
                     <li><a class="dropdown-item" href="">Settings</a></li>
                     <li><a class="dropdown-item" href="">Activity Log</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="../logout">Logout</a></li>
+                    <li><a class="dropdown-item" href=>Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -57,8 +58,8 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/Quizzicle/admin/user">Users Information</a>
-                                <a class="nav-link" href="/Quizzicle/admin/user/create">Create New User</a>
+                                <a class="nav-link" href="/Quizzicle/admin/user_management">Users Information</a>
+                                <a class="nav-link" href="/Quizzicle/admin/user_management/create">Create New User</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRooms" aria-expanded="false" aria-controls="collapseRooms">
@@ -88,7 +89,7 @@
                         </a>
                         <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="light_user_list.html"></a>
+                                <a class="nav-link" href="#"></a>
                             </nav>
                         </div>
                     </div>
@@ -102,112 +103,104 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Dashboard</h1>
+                    <h1 class="mt-4">Create User</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active">Input information here</li>
                     </ol>
-                    <div class="row">
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-primary text-white mb-4">
-                                <div class="card-body">User Management</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="/Quizzicle/admin/user">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-warning text-white mb-4">
-                                <div class="card-body">Room Management</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="./room">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-success text-white mb-4">
-                                <div class="card-body">Set Management</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="Quizzicle/admin/set">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-danger text-white mb-4">
-                                <div class="card-body">Question Bank</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="Quizzicle/admin/question-bank">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-area me-1"></i>
-                                    Active User
-                                    <script>
-                                        var numberOfActiveUsers = ${requestScope.listNumberOfActiveUser};
-                                    </script>
+                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                                </div>
-                                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-bar me-1"></i>
-                                    Room Management
-                                </div>
-                                <div class="card-body">
+                        <form action="./create" method="post" class="mx-1 mx-md-4">
 
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                <div class="input-group form-outline flex-fill mb-0">
+                                    <input type="text" name="given-name" placeholder="First Name"
+                                           class="form-control" required/>
+                                    <input type="text" name="family-name" placeholder="Last Name"
+                                           class="form-control" required/>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            Weekly New Account
-                        </div>
-                        <div class="card-body">
-                            <table id="datatablesSimple">
-                                <thead>
-                                <tr>
-                                    <th>User ID</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>User ID</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
-                                </tr>
-                                </tfoot>
-                                <tbody>
-                                <c:forEach items="${requestScope.newUsersInWeek}" var="user">
-                                    <tr>
-                                        <td>${user.id}</td>
-                                        <td>${user.username}</td>
-                                        <td>${user.email}</td>
-                                        <td>${user.createdAt}</td>
-                                        <td>${user.updatedAt}</td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fa-solid fa-address-card fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="text" name="username" placeholder="Username" class="form-control"
+                                           required/>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="email" name="email" placeholder="Email" class="form-control"
+                                           required/>
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <div class="input-group d-flex flex-row align-items-center mb-4 position-relative">
+                                    <i class="fas fa-lock fa-lg me-3 fa-fw "></i>
+                                    <span class="position-absolute top-custom start-100 translate-middle-y p-1"
+                                          id="show-hide-password">
+                                        <i class="fa-regular fa-eye-slash"></i>
+                                    </span>
+                                    <input
+                                            type="password"
+                                            class="form-control rounded mt-1 password"
+                                            placeholder="Type your password"
+                                            aria-label="password"
+                                            aria-describedby="password"
+                                            name="password"
+                                            id="password-input"
+                                    />
+                                    <div class="valid-feedback">Good</div>
+                                    <div class="invalid-feedback">Wrong</div>
+                                </div>
+                                <div
+                                        class="alert px-4 py-3 mb-0 d-none"
+                                        role="alert"
+                                        data-mdb-color="warning"
+                                        id="password-alert"
+                                >
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="requirements leng">
+                                            <i class="fas fa-check text-success me-2"></i>
+                                            <i class="fas fa-times text-danger me-3"></i>
+                                            Your password must have at least 8 chars
+                                        </li>
+                                        <li class="requirements big-letter">
+                                            <i class="fas fa-check text-success me-2"></i>
+                                            <i class="fas fa-times text-danger me-3"></i>
+                                            Your password must have at least 1 big letter.
+                                        </li>
+                                        <li class="requirements num">
+                                            <i class="fas fa-check text-success me-2"></i>
+                                            <i class="fas fa-times text-danger me-3"></i>
+                                            Your password must have at least 1 number.
+                                        </li>
+                                        <li class="requirements special-char">
+                                            <i class="fas fa-check text-success me-2"></i>
+                                            <i class="fas fa-times text-danger me-3"></i>
+                                            Your password must have at least 1 special char.
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="password" name="verify-password" placeholder="Verify password"
+                                           class="form-control password" required/>
+                                </div>
+                            </div>
+
+
+                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                            </div>
+
+                        </form>
+
                     </div>
                 </div>
             </main>
@@ -226,10 +219,9 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="../js/Dashboard.js"></script>
+    <script src="../../js/Dashboard.js"></script>
+    <script src="../../js/Register.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="../js/ChartActiveUsers.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-    <script src="../js/DataTableSimple.js"></script>
     </body>
 </html>
