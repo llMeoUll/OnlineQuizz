@@ -58,8 +58,8 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/Quizzicle/admin/user_management">Users Information</a>
-                                <a class="nav-link" href="/Quizzicle/admin/user_management/create">Create New User</a>
+                                <a class="nav-link" href="/Quizzicle/admin/user">Users Information</a>
+                                <a class="nav-link" href="/Quizzicle/admin/user/create">Create New User</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRooms" aria-expanded="false" aria-controls="collapseRooms">

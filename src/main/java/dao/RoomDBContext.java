@@ -30,7 +30,7 @@ public class RoomDBContext extends DBContext {
             stm.setString(4, entity.getPassword());
             stm.setString(5, entity.getDescription());
             stm.setInt(6, entity.getUser().getId());
-            stm.setDate(7, entity.getCreatedAt());
+            stm.setTimestamp(7, entity.getCreatedAt());
             stm.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -59,7 +59,7 @@ public class RoomDBContext extends DBContext {
                 r.setPassword(rs.getString(4));
                 r.setDescription(rs.getString(5));
                 r.setUser(user);
-                r.setCreatedAt(rs.getDate(7));
+                r.setCreatedAt(rs.getTimestamp(7));
                 listRoom.add(r);
             }
         } catch (SQLException e) {
@@ -89,7 +89,7 @@ public class RoomDBContext extends DBContext {
                 r.setCode(rs.getString(3));
                 r.setPassword(rs.getString(4));
                 r.setDescription(rs.getString(5));
-                r.setCreatedAt(rs.getDate(7));
+                r.setCreatedAt(rs.getTimestamp(7));
                 listRoom.add(r);
             }
         } catch (SQLException e) {
@@ -182,7 +182,7 @@ public class RoomDBContext extends DBContext {
                 room.setCode(resultSet.getString("code"));
                 room.setPassword(resultSet.getString("password"));
                 room.setDescription(resultSet.getString("description"));
-                room.setCreatedAt(resultSet.getDate("created_at"));
+                room.setCreatedAt(resultSet.getTimestamp("created_at"));
                 User u = new User();
                 u.setId(resultSet.getInt("uid"));
                 u.setUsername(resultSet.getString("username"));
@@ -291,5 +291,38 @@ public class RoomDBContext extends DBContext {
             throw new RuntimeException(e);
         }
         return joinedRooms;
+    }
+
+    public ArrayList<Room> listRoomAndOwner() {
+        ArrayList<Room> rooms = new ArrayList<>();
+        try {
+            String sqlGetRoomsAndOwners = "SELECT r.room_id, r.room_name, r.`code`, r.`password`, r.`description`, r.`uid`,\n" +
+                    "\tr.`created_at`, r.`updated_at`, u.`email`, u.`given_name`, u.`family_name`, u.`avatar`\n" +
+                    "\tFROM online_quizz.`room` r \n" +
+                    "\tINNER JOIN online_quizz.`user` u ON u.uid = r.uid;";
+            PreparedStatement stmGetRoomsAndOwners = connection.prepareStatement(sqlGetRoomsAndOwners);
+            ResultSet rs = stmGetRoomsAndOwners.executeQuery();
+            while(rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("uid"));
+                user.setEmail(rs.getString("email"));
+                user.setFamilyName(rs.getString("family_name"));
+                user.setGivenName(rs.getString("given_name"));
+                user.setAvatar(rs.getString("avatar"));
+                Room room = new Room();
+                room.setUser(user);
+                room.setRoomName(rs.getString("room_name"));
+                room.setRoomId(rs.getInt("room_id"));
+                room.setCode(rs.getString("code"));
+                room.setPassword(rs.getString("password"));
+                room.setDescription(rs.getString("description"));
+                room.setCreatedAt(rs.getTimestamp("created_at"));
+                room.setUpdatedAt(rs.getTimestamp("updated_at"));
+                rooms.add(room);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rooms;
     }
 }
