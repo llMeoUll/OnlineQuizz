@@ -10,6 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="Fix error, forget hardcode">
+
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/HashtagDBContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/TypeDBContext.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/room/CreateRoom.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/room/DeleteRoom.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/room/RoomManagement.java" afterDir="false" />
@@ -25,6 +29,15 @@
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/QuestionOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/QuestionOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Set.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Set.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/CreateRoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/CreateRoomServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
@@ -50,6 +63,8 @@
         <option value="Class" />
         <option value="Class" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
+        <option value="Class" />
         <option value="Jsp File" />
       </list>
     </option>
@@ -103,6 +118,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="entity" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\imagines" />
     </key>
@@ -251,6 +269,9 @@
       <workItem from="1708391316336" duration="10322000" />
       <workItem from="1708475502782" duration="7008000" />
       <workItem from="1708513513582" duration="904000" />
+      <workItem from="1708566770626" duration="26602000" />
+      <workItem from="1708651568635" duration="20388000" />
+      <workItem from="1708738224340" duration="18256000" />
       <workItem from="1708566770626" duration="5296000" />
       <workItem from="1708616425416" duration="3168000" />
       <workItem from="1708620552116" duration="5669000" />

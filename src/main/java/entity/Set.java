@@ -1,9 +1,7 @@
 package entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,7 +9,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@ToString
 public class Set {
     private int sId;
     private String sName;
@@ -23,4 +21,5 @@ public class Set {
     private ArrayList<StarRate> starRates;
     private ArrayList<Comment> comments;
     private ArrayList<Question> questions;
+    private ArrayList<HashTag> hashTags = new ArrayList<>();
 }
