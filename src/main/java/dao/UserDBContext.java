@@ -4,14 +4,12 @@ import entity.*;
 
 
 import com.lambdaworks.crypto.SCryptUtil;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +17,6 @@ public class UserDBContext extends DBContext<User> {
 
     /**
      * Get User by Uid
-     *
      * @param entity entity has only id to get user from database (this is entityDTO)
      * @return
      */
@@ -61,7 +58,6 @@ public class UserDBContext extends DBContext<User> {
 
     /**
      * Get full infor of user by email after logging
-     *
      * @param entity entity has only id to get user from database (this is entityDTO)
      * @return
      */
@@ -123,7 +119,7 @@ public class UserDBContext extends DBContext<User> {
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }         
         return null;
 
     }
@@ -136,7 +132,7 @@ public class UserDBContext extends DBContext<User> {
             stmGetAdmin.setString(1, entity.getUsername());
             stmGetAdmin.setString(2, entity.getPassword());
             ResultSet rs = stmGetAdmin.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 User user = new User();
                 String username = rs.getString("username");
                 int uid = Integer.parseInt(rs.getString("uid"));
@@ -149,7 +145,6 @@ public class UserDBContext extends DBContext<User> {
         }
         return null;
     }
-
     @Override
     public ArrayList<User> list() {
         ArrayList<User> users = new ArrayList<>();
@@ -165,7 +160,7 @@ public class UserDBContext extends DBContext<User> {
         try {
             PreparedStatement stmGetListUser = connection.prepareStatement(sqlGetListUser);
             ResultSet rs = stmGetListUser.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 User user = new User();
                 int id = Integer.parseInt(rs.getString("uid"));
                 String email = rs.getString("email");
@@ -248,7 +243,6 @@ public class UserDBContext extends DBContext<User> {
 
 
     }
-
     public void insertGoogleUser(User entity) {
         try {
             connection.setAutoCommit(false);
@@ -304,7 +298,6 @@ public class UserDBContext extends DBContext<User> {
         }
 
     }
-
     @Override
     public void update(User entity) {
         try {
@@ -362,7 +355,7 @@ public class UserDBContext extends DBContext<User> {
             PreparedStatement stmGetComments = connection.prepareStatement(sqlGetComments);
             stmGetComments.setInt(1, entity.getId());
             ResultSet rs = stmGetComments.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 Comment comment = new Comment();
                 comment.setCommentId(rs.getInt("comment_id"));
                 Set set = new Set();
@@ -384,7 +377,6 @@ public class UserDBContext extends DBContext<User> {
         }
         return comments;
     }
-
     public ArrayList<StarRate> getRatedStars(User entity) {
         ArrayList<StarRate> ratedStars = new ArrayList<>();
         String sqlGetRatedStar = "SELECT `star_rate`.`uid`,\n" +
@@ -398,7 +390,7 @@ public class UserDBContext extends DBContext<User> {
             PreparedStatement stmGetRatedStar = connection.prepareStatement(sqlGetRatedStar);
             stmGetRatedStar.setString(1, String.valueOf(entity.getId()));
             ResultSet rs = stmGetRatedStar.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 StarRate starRate = new StarRate();
                 starRate.setUser(entity);
                 starRate.setRate(Integer.parseInt(rs.getString("rate")));
@@ -422,7 +414,7 @@ public class UserDBContext extends DBContext<User> {
             PreparedStatement stmGetDoneTests = connection.prepareStatement(sqlGetDoneTests);
             stmGetDoneTests.setString(1, String.valueOf(entity.getId()));
             ResultSet rs = stmGetDoneTests.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 Test doneTest = new Test();
                 doneTest.setTestId(rs.getInt("test_id"));
                 doneTests.add(doneTest);
@@ -433,7 +425,6 @@ public class UserDBContext extends DBContext<User> {
 
         return doneTests;
     }
-
     public ArrayList<Set> getOwnedSet(User entity) {
         ArrayList<Set> ownedSets = new ArrayList<>();
         String sqlGetOwnedSet = "SELECT `set`.`sid`,\n" +
@@ -449,7 +440,7 @@ public class UserDBContext extends DBContext<User> {
             PreparedStatement stmGetOwnedSet = connection.prepareStatement(sqlGetOwnedSet);
             stmGetOwnedSet.setString(1, String.valueOf(entity.getId()));
             ResultSet rs = stmGetOwnedSet.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 Set ownedSet = new Set();
                 ownedSet.setSId(rs.getInt("sid"));
                 ownedSet.setSName(rs.getString("sname"));
@@ -466,7 +457,7 @@ public class UserDBContext extends DBContext<User> {
     }
 
     public ArrayList<SelfTest> getSelfTests(User entity) {
-        ArrayList<SelfTest> selfTests = new ArrayList<>();
+        ArrayList<SelfTest> selfTests  = new ArrayList<>();
         String sqlGetSelfTests = "SELECT `self-test`.`self-test_id`,\n" +
                 "    `self-test`.`uid`,\n" +
                 "    `self-test`.`num_of_ques`,\n" +
@@ -477,7 +468,7 @@ public class UserDBContext extends DBContext<User> {
             PreparedStatement stmGetSelfTests = connection.prepareStatement(sqlGetSelfTests);
             stmGetSelfTests.setString(1, String.valueOf(entity.getId()));
             ResultSet rs = stmGetSelfTests.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 SelfTest selfTest = new SelfTest();
                 selfTest.setUser(entity);
                 selfTest.setSelfTestId(rs.getInt("self-test_id"));
@@ -506,7 +497,7 @@ public class UserDBContext extends DBContext<User> {
             PreparedStatement stmGetOwnedRooms = connection.prepareStatement(sqlGetOwnedRooms);
             stmGetOwnedRooms.setString(1, String.valueOf(entity.getId()));
             ResultSet rs = stmGetOwnedRooms.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 Room ownedRoom = new Room();
                 ownedRoom.setRoomId(rs.getInt("room_id"));
                 ownedRoom.setUser(entity);
@@ -552,7 +543,7 @@ public class UserDBContext extends DBContext<User> {
             PreparedStatement stmGetRoles = connection.prepareStatement(sqlGetRoles);
             stmGetRoles.setInt(1, entity.getId());
             ResultSet rs = stmGetRoles.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 Role role = new Role();
                 role.setRId(rs.getInt("rid"));
                 roles.add(role);
@@ -562,7 +553,6 @@ public class UserDBContext extends DBContext<User> {
         }
         return roles;
     }
-
     public ArrayList<Role> getRolesAndFeatures(String username) throws ClassNotFoundException {
         ArrayList<Role> roles = new ArrayList<>();
         try {
@@ -618,7 +608,6 @@ public class UserDBContext extends DBContext<User> {
         }
         return true;
     }
-
     // if username is existed, return false
     public boolean checkUsername(String userName) {
         String sql = "SELECT username FROM user\n" +
@@ -635,7 +624,6 @@ public class UserDBContext extends DBContext<User> {
         }
         return true;
     }
-
     // get role id by role name
     private int getRoleId(String roleName) {
         String sqlGetIdUserRole = "SELECT `role`.`rid`\n" +
@@ -646,7 +634,7 @@ public class UserDBContext extends DBContext<User> {
             PreparedStatement stmGetIdUserRole = connection.prepareStatement(sqlGetIdUserRole);
             stmGetIdUserRole.setString(1, roleName);
             ResultSet rs = stmGetIdUserRole.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 return rs.getInt("rid");
             }
         } catch (SQLException e) {
@@ -654,7 +642,6 @@ public class UserDBContext extends DBContext<User> {
         }
         return -1;
     }
-
     public User getUserById(int userId) {
         String sqlGetUser = "SELECT `user`.`uid`,\n" +
                 "    `user`.`email`,\n" +
@@ -668,7 +655,7 @@ public class UserDBContext extends DBContext<User> {
             PreparedStatement stmGetUserById = connection.prepareStatement(sqlGetUser);
             stmGetUserById.setInt(1, userId);
             ResultSet rs = stmGetUserById.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 User user = new User();
                 user.setId(userId);
                 user.setEmail(rs.getString("email"));
@@ -699,7 +686,6 @@ public class UserDBContext extends DBContext<User> {
             throw new RuntimeException(e);
         }
     }
-
     public ArrayList<User> getUsersByEmail(String email) {
         ArrayList<User> users = new ArrayList<>();
         String sqlGetUsersByEmail = "SELECT `user`.`uid`,\n" +
@@ -718,7 +704,7 @@ public class UserDBContext extends DBContext<User> {
             stmGetUsersByEmail.setString(2, "%" + email + "%");
             stmGetUsersByEmail.setString(3, email + "%");
             ResultSet rs = stmGetUsersByEmail.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 User user = new User();
                 user.setId(rs.getInt("uid"));
                 user.setEmail(rs.getString("email"));
@@ -752,7 +738,7 @@ public class UserDBContext extends DBContext<User> {
         try {
             PreparedStatement stmGetNewUserInWeek = connection.prepareStatement(sqlGetNewUserInWeek);
             ResultSet rs = stmGetNewUserInWeek.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 User user = new User();
                 user.setFamilyName(rs.getString("family_name"));
                 user.setGivenName(rs.getString("given_name"));
@@ -763,48 +749,5 @@ public class UserDBContext extends DBContext<User> {
         }
 
         return users;
-    }
-    // searchUserByName
-    public ArrayList<User> searchUsersByName(String username) {
-        ArrayList<User> users = new ArrayList<>();
-        String sqlSearchUsersByName = "SELECT `user`.`uid`,\n" +
-                "    `user`.`email`,\n" +
-                "    `user`.`username`,\n" +
-                "    `user`.`given_name`,\n" +
-                "    `user`.`family_name`,\n" +
-                "    `user`.`avartar`,\n" +
-                "    `user`.`created_at`,\n" +
-                "    `user`.`updated_at`\n" +
-                "FROM `online_quizz`.`user`\n" +
-                "WHERE `user`.`username` LIKE ?";
-        try {
-            PreparedStatement stmSearchUsersByName = connection.prepareStatement(sqlSearchUsersByName);
-            stmSearchUsersByName.setString(1, "%" + username + "%");
-            ResultSet rs = stmSearchUsersByName.executeQuery();
-            while (rs.next()) {
-                User user = new User();
-                user.setId(rs.getInt("uid"));
-                user.setEmail(rs.getString("email"));
-                user.setUsername(rs.getString("username"));
-                user.setGivenName(rs.getString("given_name"));
-                user.setFamilyName(rs.getString("family_name"));
-                user.setPicture(rs.getString("avartar"));
-                user.setCreatedAt(rs.getTimestamp("created_at"));
-                user.setUpdatedAt(rs.getTimestamp("updated_at"));
-                users.add(user);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return users;
-    }
-    public static void main(String[] args) {
-        UserDBContext u = new UserDBContext();
-        List<User> list = u.getUsersByEmail("vinhtthe176288@fpt.edu.vn");
-//        List<Category> listC = dao.getAllCategory();
-
-        for (User o : list) {
-            System.out.println(o);
-        }
     }
 }

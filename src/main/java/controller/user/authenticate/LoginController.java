@@ -1,5 +1,6 @@
 package controller.user.authenticate;
 
+import dao.RoleDBConext;
 import dao.UserDBContext;
 import entity.User;
 import jakarta.servlet.*;
@@ -27,22 +28,21 @@ public class LoginController extends HttpServlet {
             password = password.trim();
             // check if email is registered
             if (!db.checkEmail(email)){
-                User param = new User();
-                param.setEmail(email);
-                param.setPassword(password);
-                User loggedUser = db.get(param);
+
+                User loggedUser = db.get(email, password);
                 if (loggedUser == null) {
                     request.setAttribute("error", "Email/Password is invalid!");
                     request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request, response);
                 } else {
                     try {
-                        loggedUser.setRoles(db.getRolesAndFeatures(loggedUser.getUsername()));
+                        RoleDBConext roleDBConext = new RoleDBConext();
+                        loggedUser.setRoles(roleDBConext.list(loggedUser.getEmail()));
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     HttpSession session = request.getSession();
                     session.setAttribute("user", loggedUser);
-                    response.sendRedirect("./");
+                    request.getRequestDispatcher("./").forward(request, response);
                 }
             }
             else {

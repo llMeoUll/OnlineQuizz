@@ -1,17 +1,14 @@
 package entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
-
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
+@ToString
 
 public class Question {
     private int qId;
@@ -23,3 +20,4 @@ public class Question {
     private ArrayList<SelfTest> selfTests;
     private ArrayList<Test> tests;
 }
+
