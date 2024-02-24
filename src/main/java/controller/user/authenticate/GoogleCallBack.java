@@ -113,6 +113,8 @@ public class GoogleCallBack extends HttpServlet {
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                User registedUser = db.get(user.getEmail());
+                user.setId(registedUser.getId());
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
             }

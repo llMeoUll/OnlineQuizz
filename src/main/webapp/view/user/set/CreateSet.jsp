@@ -25,7 +25,7 @@
     </div>
     <form action="./create" method="post">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="title" name="title" placeholder="Enter a title"/>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter a title" required/>
             <label for="title">Title</label>
         </div>
         <div class="form-floating mb-3">
@@ -64,9 +64,9 @@
                     </div>
                     <div class="form-floating">
                         <select class="form-select question-type" id="question-type-1" name="question-type-1" onchange="handleSelectType(1);">
-                            <option value="multiple">Multiple choice</option>
-                            <option value="true/false">True/False</option>
-                            <option value="essay">Essay</option>
+                            <option value="Multiple choice">Multiple choice</option>
+                            <option value="True/False">True/False</option>
+                            <option value="Essay">Essay</option>
                         </select>
                         <label class="question-type-label" for="question-type-1">Type</label>
                     </div>

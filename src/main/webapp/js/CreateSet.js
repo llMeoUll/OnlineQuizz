@@ -1,6 +1,7 @@
-$(document).on("keydown", "form", function(event) {
+$(document).on("keydown", "form", function (event) {
     return event.key != "Enter";
 });
+
 // number of questions state
 function setNumberOfQuestions() {
     let numberOfQuestions = document.getElementsByClassName("question").length;
@@ -8,12 +9,19 @@ function setNumberOfQuestions() {
 }
 
 // number of options state
-function setNumberOfOptions(qid){
+function setNumberOfOptions(qid) {
     let numberOfOptions = document.querySelectorAll(`#opt-container-${qid} .opt`).length;
     document.getElementById(`number-opt-mul-${qid}`).value = numberOfOptions;
 }
+// run the function state when the document is loaded
+document.addEventListener("DOMContentLoaded", function () {
+    setNumberOfQuestions();
+});
+document.addEventListener("DOMContentLoaded", function () {
+    setNumberOfOptions(1);
+});
 
-window.onload = setNumberOfQuestions;
+
 
 // handle add hashtags
 document.addEventListener("DOMContentLoaded", function () {
@@ -47,17 +55,17 @@ function handleSelectType(id) {
     let selectType = document.getElementById(`question-type-${id}`);
     let type = selectType.options[selectType.selectedIndex].value;
     switch (type) {
-        case 'multiple':
+        case 'Multiple choice':
             document.getElementById(`multiple-choice-${id}`).style.display = 'block';
             document.getElementById(`true-false-${id}`).style.display = 'none';
             document.getElementById(`essay-${id}`).style.display = 'none';
             break;
-        case 'true/false':
+        case 'True/False':
             document.getElementById(`multiple-choice-${id}`).style.display = 'none';
             document.getElementById(`true-false-${id}`).style.display = 'block';
             document.getElementById(`essay-${id}`).style.display = 'none';
             break;
-        case 'essay':
+        case 'Essay':
             document.getElementById(`multiple-choice-${id}`).style.display = 'none';
             document.getElementById(`true-false-${id}`).style.display = 'none';
             document.getElementById(`essay-${id}`).style.display = 'block';
@@ -109,6 +117,7 @@ function handleAddOpt(id) {
 
     // Append the new input group to the container
     container.appendChild(newInputGroup);
+    newInput.focus();
     setNumberOfOptions(id);
 }
 
@@ -138,9 +147,9 @@ function handleAddQuestion() {
         </div>
         <div class="form-floating">
             <select class="form-select question-type" id= "question-type-${length}" name="question-type-${length}" onchange="handleSelectType(${length});">
-                <option value="multiple">Multiple choice</option>
-                <option value="true/false">True/False</option>
-                <option value="essay">Essay</option>
+                <option value="Multiple choice">Multiple choice</option>
+                <option value="True/False">True/False</option>
+                <option value="Essay">Essay</option>
             </select>
             <label class="question-type-label" for="question-type-${length}">Type</label>
         </div>`;
