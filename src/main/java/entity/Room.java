@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.sql.Date;
 
 @Getter
 @Setter
@@ -19,8 +19,8 @@ public class Room {
     private String password;
     private String description;
     private User user;
-    private Date createdAt;
-    private Date updatedAt;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
     private ArrayList<User> joinedUsers;
     private ArrayList<Test> tests;
 }
