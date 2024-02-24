@@ -121,8 +121,8 @@
             <div>
                 <p class="text-light fs-5 font-weight-bold">${requestScope.currentTest.testName}</p>
                 <p class="text-light fs-5 font-weight-bold">${requestScope.currentTest.testDescription}</p>
-                <p class="text-light fs-5 font-weight-bold">${requestScope.currentTest.startTime}
-                    - ${requestScope.currentTest.endTime} </p>
+                <p class="text-light fs-5 font-weight-bold">Start time: ${requestScope.currentTest.startTime}
+                    - End time: ${requestScope.currentTest.endTime} </p>
             </div>
 
             <!-- Settings Dropdown -->

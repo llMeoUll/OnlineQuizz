@@ -296,12 +296,11 @@ public class RoomDBContext extends DBContext {
             stm.setInt(1, r.getRoomId());
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
-                Room room = new Room();
-                room.setRoomName(rs.getString("room_name"));
-                room.setDescription(rs.getString("description"));
-                room.setCode(rs.getString("code"));
-                room.setPassword(rs.getString("password"));
-                return room;
+                r.setRoomName(rs.getString("room_name"));
+                r.setDescription(rs.getString("description"));
+                r.setCode(rs.getString("code"));
+                r.setPassword(rs.getString("password"));
+                return r;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
