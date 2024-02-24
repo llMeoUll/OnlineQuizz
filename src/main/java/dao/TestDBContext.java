@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class TestDBContext extends DBContext{
+public class TestDBContext extends DBContext {
     public ArrayList<Test> getDoneTest(User entity) {
         ArrayList<Test> doneTests = new ArrayList<>();
         String sqlGetDoneTests = "SELECT `user_does_test`.`test_id`\n" +

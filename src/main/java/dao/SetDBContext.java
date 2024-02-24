@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
-public class SetDBContext extends DBContext{
+public class SetDBContext extends DBContext {
     public ArrayList<Set> getOwnedSet(User entity) {
         ArrayList<Set> ownedSets = new ArrayList<>();
         String sqlGetOwnedSet = "SELECT `set`.`sid`,\n" +

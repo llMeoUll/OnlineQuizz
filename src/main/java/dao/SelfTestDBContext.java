@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SelfTestDBContext extends DBContext{
+public class SelfTestDBContext extends DBContext {
     public ArrayList<SelfTest> getSelfTests(User entity) {
         ArrayList<SelfTest> selfTests  = new ArrayList<>();
         String sqlGetSelfTests = "SELECT `self-test`.`self-test_id`,\n" +

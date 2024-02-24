@@ -18,7 +18,6 @@ package controller.user.authenticate;
         import org.apache.http.client.methods.HttpGet;
         import org.apache.http.impl.client.HttpClientBuilder;
         import org.apache.http.util.EntityUtils;
-        import websocket.endpoints.DashboardWebSocketEndpoint;
 
         import java.io.IOException;
         import java.util.Arrays;

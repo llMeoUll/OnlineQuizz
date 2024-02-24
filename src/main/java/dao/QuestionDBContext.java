@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class QuestionDBContext extends DBContext{
+public class QuestionDBContext extends DBContext {
     public void insertQuestions(ArrayList<Question> questions, int setId, Connection connection) throws SQLException {
             String insertQuestionQuery = "INSERT INTO `online_quizz`.`question`\n" +
                     "(`question`,\n" +

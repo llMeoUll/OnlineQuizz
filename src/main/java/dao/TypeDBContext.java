@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class TypeDBContext extends DBContext{
+public class TypeDBContext extends DBContext {
     public ArrayList<Type> list() {
         ArrayList<Type> types = new ArrayList<>();
         String sql = "SELECT * FROM online_quizz.type;";
