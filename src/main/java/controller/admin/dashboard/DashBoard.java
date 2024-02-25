@@ -18,10 +18,10 @@ public class DashBoard extends HttpServlet {
         RoomDBContext roomDBContext = new RoomDBContext();
         ArrayList<Integer> listNumberOfActiveUser = activeUsersDBContext.numberOfActiveUser();
         ArrayList<User> newUsersInWeek = userDBContext.getNewUserInWeek();
-        ArrayList<Room> roomsAndOwners = roomDBContext.listRoomAndOwner();
+//        ArrayList<Room> roomsAndOwners = roomDBContext.listRoomAndOwner();
         request.setAttribute("newUsersInWeek", newUsersInWeek);
         request.setAttribute("listNumberOfActiveUser", listNumberOfActiveUser);
-        request.setAttribute("roomsAndOwners", roomsAndOwners);
+//        request.setAttribute("roomsAndOwners", roomsAndOwners);
         request.getRequestDispatcher("../view/admin/DashBoard.jsp").forward(request,response);
     }
     @Override

@@ -22,7 +22,7 @@ public class RoomDBContext extends DBContext {
             stm.setString(4, entity.getPassword());
             stm.setString(5, entity.getDescription());
             stm.setInt(6, entity.getUser().getId());
-            stm.setDate(7, entity.getCreatedAt());
+            stm.setTimestamp(7, entity.getCreatedAt());
             stm.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -44,7 +44,7 @@ public class RoomDBContext extends DBContext {
                 r.setPassword(rs.getString(4));
                 r.setDescription(rs.getString(5));
                 r.setUser(user);
-                r.setCreatedAt(rs.getDate(7));
+                r.setCreatedAt(rs.getTimestamp(7));
                 listRoom.add(r);
             }
         } catch (SQLException e) {
@@ -67,7 +67,7 @@ public class RoomDBContext extends DBContext {
                 r.setCode(rs.getString(3));
                 r.setPassword(rs.getString(4));
                 r.setDescription(rs.getString(5));
-                r.setCreatedAt(rs.getDate(7));
+                r.setCreatedAt(rs.getTimestamp(7));
                 listRoom.add(r);
             }
         } catch (SQLException e) {
@@ -141,7 +141,7 @@ public class RoomDBContext extends DBContext {
                 room.setCode(resultSet.getString("code"));
                 room.setPassword(resultSet.getString("password"));
                 room.setDescription(resultSet.getString("description"));
-                room.setCreatedAt(resultSet.getDate("created_at"));
+                room.setCreatedAt(resultSet.getTimestamp("created_at"));
                 User u = new User();
                 u.setId(resultSet.getInt("uid"));
                 u.setUsername(resultSet.getString("username"));
@@ -275,7 +275,7 @@ public class RoomDBContext extends DBContext {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, r.getRoomName());
             stm.setString(2, r.getDescription());
-            stm.setDate(3, r.getUpdatedAt());
+            stm.setTimestamp(3, r.getUpdatedAt());
             stm.setInt(4, r.getRoomId());
             stm.executeUpdate();
         } catch (SQLException e) {
@@ -307,4 +307,6 @@ public class RoomDBContext extends DBContext {
         }
         return null;
     }
+
+    
 }
