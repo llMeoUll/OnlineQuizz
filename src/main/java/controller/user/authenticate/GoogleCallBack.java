@@ -18,6 +18,7 @@ package controller.user.authenticate;
         import org.apache.http.client.methods.HttpGet;
         import org.apache.http.impl.client.HttpClientBuilder;
         import org.apache.http.util.EntityUtils;
+        import websocket.endpoints.DashboardWebSocketEndpoint;
 
         import java.io.IOException;
         import java.util.Arrays;
@@ -99,6 +100,14 @@ public class GoogleCallBack extends HttpServlet {
             user.setFamilyName(familyName);
             user.setAvatar(picture);
             user.setVerified(verified);
+            try {
+                RoleDBConext roleDBConext = new RoleDBConext();
+                user.setRoles(roleDBConext.list(user.getEmail()));
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            HttpSession userSession = request.getSession();
+            userSession.setAttribute("user", user);
             // Check if user is already in database, if not, insert
             if(db.checkEmail(user.getEmail())){
                 try {
