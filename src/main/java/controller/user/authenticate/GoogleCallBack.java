@@ -1,30 +1,31 @@
 package controller.user.authenticate;
 
-        import com.google.api.client.auth.oauth2.*;
-        import com.google.api.client.http.GenericUrl;
-        import com.google.api.client.http.javanet.NetHttpTransport;
-        import com.google.api.client.json.gson.GsonFactory;
-        import com.google.gson.Gson;
-        import com.google.gson.JsonObject;
-        import dao.RoleDBConext;
-        import dao.UserDBContext;
-        import entity.User;
-        import io.github.cdimascio.dotenv.Dotenv;
-        import jakarta.servlet.*;
-        import jakarta.servlet.http.*;
-        import org.apache.http.HttpEntity;
-        import org.apache.http.HttpResponse;
-        import org.apache.http.client.HttpClient;
-        import org.apache.http.client.methods.HttpGet;
-        import org.apache.http.impl.client.HttpClientBuilder;
-        import org.apache.http.util.EntityUtils;
+import com.google.api.client.auth.oauth2.*;
+import com.google.api.client.http.GenericUrl;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import dao.RoleDBConext;
+import dao.UserDBContext;
+import entity.User;
+import io.github.cdimascio.dotenv.Dotenv;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
+import websocket.endpoints.DashboardWebSocketEndpoint;
 
-        import java.io.IOException;
-        import java.util.Arrays;
-        import java.util.concurrent.locks.Lock;
-        import java.util.concurrent.locks.ReentrantLock;
-        import java.util.logging.Level;
-        import java.util.logging.Logger;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GoogleCallBack extends HttpServlet {
     Dotenv dotenv = Dotenv.configure().load();
@@ -149,4 +150,3 @@ public class GoogleCallBack extends HttpServlet {
 
 
 }
-

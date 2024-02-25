@@ -32,7 +32,7 @@
                     <form action="search" method="post" class="form-inline my-2 my-lg-0"
                           style="margin-top: 0.25rem; width: 120%">
                         <div class="input-group input-group-sm" style="width: 20vw">
-                            <input name="txt" type="text" class="form-control" aria-label="Small"
+                            <input name="query" type="text" class="form-control" aria-label="Small"
                                    aria-describedby="inputGroup-sizing-sm" placeholder="Search..." value="${txtSearch}" style="font-size: 18px">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-secondary btn-number">
@@ -79,11 +79,11 @@
                                data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
                                 <i class="" style="font-size: 25px;"></i>
-                                <img src="${sessionScope.user.picture}" alt="UserAvatar"
+                                <img src="${sessionScope.user.avatar}" alt="UserAvatar"
                                      style="width: 25px;height: 25px;border-radius: 50%">
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#"><i class=" sfa-solid fa-gear"></i> Brief</a>
+                                <a class="dropdown-item" href=""><i class=" sfa-solid fa-gear"></i> Brief</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cogs"></i> Settings</a>
                                 <div class="dropdown-divider"></div>

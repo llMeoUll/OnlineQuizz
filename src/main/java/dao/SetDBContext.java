@@ -25,7 +25,7 @@ public class SetDBContext extends DBContext {
             PreparedStatement stmGetOwnedSet = connection.prepareStatement(sqlGetOwnedSet);
             stmGetOwnedSet.setString(1, String.valueOf(entity.getId()));
             ResultSet rs = stmGetOwnedSet.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Set ownedSet = new Set();
                 ownedSet.setSId(rs.getInt("sid"));
                 ownedSet.setSName(rs.getString("sname"));
@@ -37,8 +37,32 @@ public class SetDBContext extends DBContext {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return ownedSets;
+    }
+    // search Set by name
+    public ArrayList<Set> search(String name) {
+        ArrayList<Set> searchSets = new ArrayList<>();
+        String sqlSearchByName = "select sid, sname, description, is_private,uid from `set` \n" +
+                "where sname like ?";
+        try {
+            PreparedStatement stmSearchSetByName = connection.prepareStatement(sqlSearchByName);
+            stmSearchSetByName.setString(1, "%" + name + "%");
+            ResultSet rs = stmSearchSetByName.executeQuery();
+            while (rs.next()) {
+                Set set = new Set();
+                set.setSId(rs.getInt("sid"));
+                set.setSName(rs.getString("sname"));
+                set.setDescription(rs.getString("description"));
+                set.setPrivate(rs.getBoolean("is_private"));
+                UserDBContext udb = new UserDBContext();
+                User user = udb.get(rs.getInt("uid"));
+                set.setUser(user);
+                searchSets.add(set);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return searchSets;
     }
 
     public void insert(Set set) throws SQLException {
@@ -81,4 +105,5 @@ public class SetDBContext extends DBContext {
             connection.setAutoCommit(true); // Reset auto-commit mode
         }
     }
+
 }

@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RoomDBContext extends DBContext {
-
     public void insert(Room entity) {
         String sql = "INSERT INTO `online_quizz`.`room`\n" +
                 "(`room_id`,\n" +
@@ -256,7 +255,7 @@ public class RoomDBContext extends DBContext {
             PreparedStatement stmGetOwnedRooms = connection.prepareStatement(sqlGetOwnedRooms);
             stmGetOwnedRooms.setString(1, String.valueOf(entity.getId()));
             ResultSet rs = stmGetOwnedRooms.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Room ownedRoom = new Room();
                 ownedRoom.setRoomId(rs.getInt("room_id"));
                 ownedRoom.setUser(entity);
@@ -302,7 +301,7 @@ public class RoomDBContext extends DBContext {
                     "\tINNER JOIN online_quizz.`user` u ON u.uid = r.uid;";
             PreparedStatement stmGetRoomsAndOwners = connection.prepareStatement(sqlGetRoomsAndOwners);
             ResultSet rs = stmGetRoomsAndOwners.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 User user = new User();
                 user.setId(rs.getInt("uid"));
                 user.setEmail(rs.getString("email"));
@@ -319,6 +318,34 @@ public class RoomDBContext extends DBContext {
                 room.setCreatedAt(rs.getTimestamp("created_at"));
                 room.setUpdatedAt(rs.getTimestamp("updated_at"));
                 rooms.add(room);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rooms;
+    }
+    // search Room by Name
+    public ArrayList<Room> search(String name) {
+        ArrayList<Room> rooms = new ArrayList<>();
+        String sql = "select * from room \n" +
+                "where room_name like ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, "%" + name + "%");
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                Room r = new Room();
+                r.setRoomId(rs.getInt(1));
+                r.setRoomName(rs.getString(2));
+                r.setCode(rs.getString(3));
+                r.setPassword(rs.getString(4));
+                UserDBContext udb = new UserDBContext();
+                User user = udb.get(rs.getInt("uid"));
+                r.setUser(user);
+                r.setDescription(rs.getString(5));
+                r.setCreatedAt(rs.getTimestamp(7));
+                r.setUpdatedAt(rs.getTimestamp(8));
+                rooms.add(r);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
