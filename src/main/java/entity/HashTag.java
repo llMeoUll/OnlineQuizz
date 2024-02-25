@@ -12,15 +12,10 @@ import java.util.ArrayList;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Room {
-    private int roomId;
-    private String roomName;
-    private String code;
-    private String password;
-    private String description;
-    private User user;
+public class HashTag {
+    private int id;
+    private String name;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-    private ArrayList<User> joinedUsers;
-    private ArrayList<Test> tests;
+    private ArrayList<Set> sets = new ArrayList<>();
 }

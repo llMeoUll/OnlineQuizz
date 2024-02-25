@@ -35,7 +35,7 @@
                     <li><a class="dropdown-item" href="">Settings</a></li>
                     <li><a class="dropdown-item" href="">Activity Log</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href=>Logout</a></li>
+                    <li><a class="dropdown-item" href="/Quizzicle/logout">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -69,7 +69,8 @@
                         </a>
                         <div class="collapse" id="collapseRooms" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">List Room</a>
+                                <a class="nav-link" href="/Quizzicle/admin/room">List Room</a>
+                                <a class="nav-link" href="/Quizzicle/admin/room/create">Create New Room</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSets" aria-expanded="false" aria-controls="collapseSets">
@@ -79,7 +80,8 @@
                         </a>
                         <div class="collapse" id="collapseSets" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="">Set List</a>
+                                <a class="nav-link" href="/Quizzicle/admin/set">Set List</a>
+                                <a class="nav-link" href="/Quizzicle/admin/set/create">Create New Set</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseQuestions" aria-expanded="false" aria-controls="collapseQuestions">
@@ -89,7 +91,8 @@
                         </a>
                         <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="light_user_list.html"></a>
+                                <a class="nav-link" href="/Quizzicle/admin/question">Question List</a>
+                                <a class="nav-link" href="/Quizzicle/admin/question/create">Create New Question</a>
                             </nav>
                         </div>
                     </div>
@@ -121,12 +124,12 @@
                                                 <tr class="candidates-list">
                                                     <td class="title">
                                                         <div class="thumb">
-                                                            <img class="img-fluid" src="" alt>
+                                                            <img class="img-fluid" src="${user.avatar}" alt>
                                                         </div>
                                                         <div class="candidate-list-details">
                                                             <div class="candidate-list-info">
                                                                 <div class="candidate-list-title">
-                                                                    <h5 class="mb-0"><a href="#">${user.givenName}
+                                                                    <h5 class="mb-0"><a href="/Quizzicle/admin/user/profile?uid=${user.id}">${user.givenName}
                                                                             ${user.familyName}</a></h5>
                                                                 </div>
                                                                 <div class="candidate-list-option">
@@ -142,11 +145,11 @@
                                                     <td class="candidate-list-favourite-time text-center">
                                                         <a class="candidate-list-favourite order-2 text-danger"
                                                            href="#"><i class="fas fa-heart"></i></a>
-                                                        <span class="candidate-list-time order-1">isVerified or not</span>
+                                                        <span class="candidate-list-time order-1">${user.isVerified() ? "Verified" : "Not Verified"}</span>
                                                     </td>
                                                     <td>
                                                         <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                                                            <li><a href="/Quizzicle/admin/user/view-details?uid=${user.id}"
+                                                            <li><a href="/Quizzicle/admin/user/profile?uid=${user.id}"
                                                                    class="text-primary" data-toggle="tooltip" title
                                                                    data-original-title="view"><i
                                                                     class="far fa-eye"></i></a></li>
@@ -187,24 +190,11 @@
                     </div>
                 </div>
             </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="../js/Dashboard.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     </body>
 </html>

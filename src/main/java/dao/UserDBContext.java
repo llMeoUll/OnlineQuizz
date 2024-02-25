@@ -68,36 +68,12 @@ public class UserDBContext extends DBContext {
     }
     public ArrayList<User> list() {
         ArrayList<User> users = new ArrayList<>();
-        String sqlGetListUser = "SELECT `user`.`uid`,\n" +
-                "    `user`.`email`,\n" +
-                "    `user`.`username`,\n" +
-                "    `user`.`given_name`,\n" +
-                "    `user`.`family_name`,\n" +
-                "    `user`.`avatar`,\n" +
-                "    `user`.`created_at`,\n" +
-                "    `user`.`updated_at`\n" +
-                "FROM `online_quizz`.`user`;";
+        String sqlGetListUser = "SELECT * FROM `online_quizz`.`user`";
         try {
             PreparedStatement stmGetListUser = connection.prepareStatement(sqlGetListUser);
             ResultSet rs = stmGetListUser.executeQuery();
             while(rs.next()) {
-                User user = new User();
-                int id = Integer.parseInt(rs.getString("uid"));
-                String email = rs.getString("email");
-                String username = rs.getString("username");
-                String given_name = rs.getString("given_name");
-                String family_name = rs.getString("family_name");
-                String avatar = rs.getString("avatar");
-                Timestamp created_at = rs.getTimestamp("created_at");
-                Timestamp updated_at = rs.getTimestamp("updated_at");
-                user.setId(id);
-                user.setEmail(email);
-                user.setUsername(username);
-                user.setGivenName(given_name);
-                user.setFamilyName(family_name);
-                user.setAvatar(avatar);
-                user.setCreatedAt(created_at);
-                user.setUpdatedAt(updated_at);
+                User user = initUserInfo(rs);
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -293,23 +269,14 @@ public class UserDBContext extends DBContext {
     }
     public ArrayList<User> getNewUserInWeek() {
         ArrayList<User> users = new ArrayList<>();
-        String sqlGetNewUserInWeek = "SELECT `user`.`uid`,\n" +
-                "    `user`.`email`,\n" +
-                "    `user`.`username`,\n" +
-                "    `user`.`given_name`,\n" +
-                "    `user`.`family_name`,\n" +
-                "    `user`.`avatar`,\n" +
-                "    `user`.`created_at`,\n" +
-                "    `user`.`updated_at`\n" +
+        String sqlGetNewUserInWeek = "SELECT *\n" +
                 "FROM `online_quizz`.`user`\n" +
                 "WHERE WEEK(created_at) = WEEK(NOW()) AND DAYOFWEEK(created_at) <= DAYOFWEEK(NOW());";
         try {
             PreparedStatement stmGetNewUserInWeek = connection.prepareStatement(sqlGetNewUserInWeek);
             ResultSet rs = stmGetNewUserInWeek.executeQuery();
             while(rs.next()) {
-                User user = new User();
-                user.setFamilyName(rs.getString("family_name"));
-                user.setGivenName(rs.getString("given_name"));
+                User user = initUserInfo(rs);
                 users.add(user);
             }
         } catch (SQLException e) {

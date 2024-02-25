@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import controller.user.room.utilities.GenerateCode;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class CreateRoomServlet extends HttpServlet {
     @Override
@@ -27,12 +27,9 @@ public class CreateRoomServlet extends HttpServlet {
         String description = request.getParameter("description");
         String code = GenerateCode.generateCode();
 
-        // Get the current date using java.time.LocalDate
-        LocalDate currentDate = LocalDate.now();
+        Date createdAtDate = new Date();
 
-        // Convert java.time.LocalDate to java.sql.Date
-        Date sqlDate = Date.valueOf(currentDate);
-
+        Timestamp createdAt = new Timestamp(createdAtDate.getTime());
 
         Room r = new Room();
         User u = new User();
@@ -43,7 +40,7 @@ public class CreateRoomServlet extends HttpServlet {
         r.setCode(code);
         r.setPassword(password);
         r.setDescription(description);
-        r.setCreatedAt(sqlDate);
+        r.setCreatedAt(createdAt);
 
         RoomDBContext rDB = new RoomDBContext();
         rDB.insert(r);
