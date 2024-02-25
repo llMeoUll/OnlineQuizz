@@ -25,7 +25,7 @@
 <div id="create-set-content" style="margin-top: 64px">
     <form action="./create" method="post">
         <div class="container-fluid bg-white p-4 d-flex align-items-center justify-content-between sticky-top z-3">
-            <h3 class="d-inline mx-3">Create a new set</h3>
+            <h3 class="d-inline mx-3">Update Set</h3>
             <button type="submit" class="btn btn-primary mx-3">Create</button>
         </div>
         <div class="container d-flex flex-column my-3 z-1">
@@ -77,12 +77,11 @@
                             <label class="question-type-label" for="question-type-1">Type</label>
                         </div>
                     </div>
-                    <div>
 
-                    </div>
                     <div class="card-body multiple-choice" id="multiple-choice-1">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control mul-question" name="mul-question-1" id="mul-question-1"
+                            <input type="text" class="form-control mul-question" name="mul-question-1"
+                                   id="mul-question-1"
                                    placeholder="Enter a question" required/>
                             <label class="mul-question-label" for="mul-question-1">Question</label>
                         </div>
@@ -94,8 +93,10 @@
                         <div class="opt-container" id="opt-container-1">
                             <input type="hidden" name="number-opt-mul-1" id="number-opt-mul-1">
                             <div class="input-group mb-3 align-items-center opt">
-                                <input type="text" name="mul-question-1-opt-1" class="form-control" placeholder="Option 1" required/>
-                                <span class="text-primary mx-1 xmark-icon" role="button" onclick="handleRemoveOpt(1,1);">
+                                <input type="text" name="mul-question-1-opt-1" class="form-control"
+                                       placeholder="Option 1" required/>
+                                <span class="text-primary mx-1 xmark-icon" role="button"
+                                      onclick="handleRemoveOpt(1,1);">
                                 <i class="fa-solid fa-xmark"></i>
                             </span>
                             </div>

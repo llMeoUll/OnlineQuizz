@@ -142,7 +142,15 @@
         <servlet-name>CreateSet</servlet-name>
         <url-pattern>/user/set/create</url-pattern>
     </servlet-mapping>
-
+<!--    update set-->
+    <servlet>
+        <servlet-name>UpdateSet</servlet-name>
+        <servlet-class>controller.user.set.UpdateSet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateSet</servlet-name>
+        <url-pattern>/user/set/update</url-pattern>
+    </servlet-mapping>
 <!--    *********************************************ADMINISTRATOR******************************************************-->
 <!--    Authenticate Feature-->
 <!--    dashboard-->
