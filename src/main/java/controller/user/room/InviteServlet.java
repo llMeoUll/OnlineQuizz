@@ -1,6 +1,5 @@
 package controller.user.room;
 
-import controller.user.room.utilities.BasedAuthentication;
 import controller.user.room.utilities.GenerateCodeToJoin;
 import dao.RoomDBContext;
 import dao.UserDBContext;
@@ -14,13 +13,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InviteServlet extends BasedAuthentication {
+public class InviteServlet extends HttpServlet {
     private static Map<Room, String> roomCodes = new HashMap<>();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response, User userLogged) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDBContext uDB = new UserDBContext();
         User u;
+        User userLogged = (User) request.getSession().getAttribute("user");
+
         u = uDB.get(userLogged.getEmail());
         String fakeCode = request.getParameter("codeToJoin");
         // invite?codeToJoin=1231231231231123
@@ -34,16 +35,17 @@ public class InviteServlet extends BasedAuthentication {
         if (r != null) {
             // insert to Many-Many table (uid, roomid) = (ownerUserId, r.room_id)
             rDB.insertIntoUser_Join_Room(u.getId(), r.getRoomId());
-            response.sendRedirect("/Quizzicle/ManageRoom");
+            response.sendRedirect("../../../Quizzicle/user/room");
         } else {
             request.getRequestDispatcher("/view/user/RoomScreen/NotFound.jsp").forward(request, response);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response, User userLogged) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDBContext uDB = new UserDBContext();
         User u;
+        User userLogged = (User) request.getSession().getAttribute("user");
         u = uDB.get(userLogged.getEmail());
         String code = request.getParameter("code");
         String passwordForJoining = request.getParameter("passwordForJoining");
@@ -54,7 +56,7 @@ public class InviteServlet extends BasedAuthentication {
         if (r != null) {
             // insert to Many-Many table (uid, roomid) = (ownerUserId, r.room_id)
             rDB.insertIntoUser_Join_Room(u.getId(), r.getRoomId());
-            response.sendRedirect("/Quizzicle/ManageRoom");
+            response.sendRedirect("../../../Quizzicle/user/room");
         } else {
             request.getRequestDispatcher("/view/user/RoomScreen/NotFound.jsp").forward(request, response);
         }
