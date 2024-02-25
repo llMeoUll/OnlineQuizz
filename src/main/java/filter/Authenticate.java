@@ -1,4 +1,4 @@
-package filer;
+package filter;
 
 import entity.User;
 import jakarta.servlet.*;

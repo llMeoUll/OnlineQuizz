@@ -14,3 +14,17 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+// let socket = new WebSocket("ws://localhost:8888/Quizzicle/dashboard_endpoint");
+//
+// socket.onopen = function () {
+//     console.log("WebSocket connection opened");
+// };
+//
+// socket.onclose = function () {
+//     console.log("WebSocket connection closed");
+// };
+//
+// socket.onmessage = function (event) {
+//     console.log("Notification: " + event.data);
+// };

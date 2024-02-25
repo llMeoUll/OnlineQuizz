@@ -6,6 +6,7 @@ package controller.user.authenticate;
         import com.google.api.client.json.gson.GsonFactory;
         import com.google.gson.Gson;
         import com.google.gson.JsonObject;
+        import dao.RoleDBConext;
         import dao.UserDBContext;
         import entity.User;
         import io.github.cdimascio.dotenv.Dotenv;
@@ -17,11 +18,14 @@ package controller.user.authenticate;
         import org.apache.http.client.methods.HttpGet;
         import org.apache.http.impl.client.HttpClientBuilder;
         import org.apache.http.util.EntityUtils;
+        import websocket.endpoints.DashboardWebSocketEndpoint;
 
         import java.io.IOException;
         import java.util.Arrays;
         import java.util.concurrent.locks.Lock;
         import java.util.concurrent.locks.ReentrantLock;
+        import java.util.logging.Level;
+        import java.util.logging.Logger;
 
 public class GoogleCallBack extends HttpServlet {
     Dotenv dotenv = Dotenv.configure().load();
@@ -96,6 +100,12 @@ public class GoogleCallBack extends HttpServlet {
             user.setFamilyName(familyName);
             user.setAvatar(picture);
             user.setVerified(verified);
+            try {
+                RoleDBConext roleDBConext = new RoleDBConext();
+                user.setRoles(roleDBConext.list(user.getEmail()));
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             HttpSession userSession = request.getSession();
             userSession.setAttribute("user", user);
             // Check if user is already in database, if not, insert
@@ -105,6 +115,17 @@ public class GoogleCallBack extends HttpServlet {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
+            } else {
+                try {
+                    RoleDBConext roleDBConext = new RoleDBConext();
+                    user.setRoles(roleDBConext.list(user.getEmail()));
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                User registedUser = db.get(user.getEmail());
+                user.setId(registedUser.getId());
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
             }
             response.sendRedirect("./");
         } else {

@@ -1,7 +1,9 @@
 package controller.admin.dashboard;
 
 import dao.ActiveUsersDBContext;
+import dao.RoomDBContext;
 import dao.UserDBContext;
+import entity.Room;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import entity.User;
@@ -13,10 +15,13 @@ public class DashBoard extends HttpServlet {
             IOException {
         ActiveUsersDBContext activeUsersDBContext = new ActiveUsersDBContext();
         UserDBContext userDBContext = new UserDBContext();
+        RoomDBContext roomDBContext = new RoomDBContext();
         ArrayList<Integer> listNumberOfActiveUser = activeUsersDBContext.numberOfActiveUser();
         ArrayList<User> newUsersInWeek = userDBContext.getNewUserInWeek();
+        ArrayList<Room> roomsAndOwners = roomDBContext.listRoomAndOwner();
         request.setAttribute("newUsersInWeek", newUsersInWeek);
         request.setAttribute("listNumberOfActiveUser", listNumberOfActiveUser);
+        request.setAttribute("roomsAndOwners", roomsAndOwners);
         request.getRequestDispatcher("../view/admin/DashBoard.jsp").forward(request,response);
     }
     @Override
