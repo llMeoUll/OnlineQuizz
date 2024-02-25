@@ -10,20 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="Fix error, forget hardcode">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/HashtagDBContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/TypeDBContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/QuestionOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/QuestionOption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Set.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Set.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Type.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +229,8 @@
       <workItem from="1708513513582" duration="904000" />
       <workItem from="1708566770626" duration="26602000" />
       <workItem from="1708651568635" duration="20388000" />
-      <workItem from="1708738224340" duration="18256000" />
+      <workItem from="1708738224340" duration="23717000" />
+      <workItem from="1708830227510" duration="6926000" />
     </task>
     <servers />
   </component>
