@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: luulo
+  Date: 2/25/2024
+  Time: 12:25 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@page contentType="text/html; ISO-8859-1" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -6,8 +13,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="../../css/Dashboard.css" rel="stylesheet">
-        <link href="../../css/Register.css" rel="stylesheet">
+        <link href="../css/Dashboard.css" rel="stylesheet">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <title>Dashboard</title>
     </head>
@@ -15,7 +21,7 @@
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="">
-            <img src="../../imagines/logo1250x1250.png" alt="Quizzicle Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
+            <img src="../imagines/logo1250x1250.png" alt="Quizzicle Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
             Quizzicle
         </a>
         <!-- Sidebar Toggle-->
@@ -105,75 +111,48 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Create User</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Input information here</li>
-                    </ol>
-                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-
-                        <form action="./update" method="post" class="mx-1 mx-md-4">
-
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <i class="fa-solid fa-id-badge fa-lg me-3 fa-fw"></i>
-                                <div class="form-outline flex-fill mb-0">
-                                    <input type="number" name="uid" placeholder="uid" class="form-control"
-                                           value="${requestScope.userForUpdate.id}"
-                                           readonly
-                                           required/>
-                                </div>
+                <section class="vh-100" style="background-color: #eee;">
+                    <div class="container py-5 h-100">
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col col-xl-10">
+                                <c:forEach items="${requestScope.sets}" var="set">
+                                    <div class="card mb-5" style="border-radius: 15px;">
+                                        <div class="card-body p-4">
+                                            <h3 class="mb-3">${set.getSName()}</h3>
+                                            <p class="small mb-0"><i class="fas fa-star fa-lg text-warning"></i> <span class="mx-2">|</span>
+                                                    ${set.isPrivate() ? "Private" : "Public"} <span class="mx-2">|</span> Created by <strong>${set.user.givenName} ${set.user.familyName}</strong> ${set.createdAt}
+                                            </p>
+                                            <hr class="my-4">
+                                            <div class="d-flex justify-content-start align-items-center">
+                                                <p class="mb-0 text-uppercase"><i class="fas fa-cog me-2"></i> <span
+                                                        class="text-muted small">
+                                                    <a href="/Quizzicle/admin/set/delete?sid=${set.getSId()}">Delete</a>
+                                                </span></p>
+                                                <p class="mb-0 text-uppercase"><i class="fas fa-link ms-4 me-2"></i> <span
+                                                        class="text-muted small">
+                                                    <a href="/Quizzicle/admin/set/update?sid=${set.getSId()}">Update</a>
+                                                </span></p>
+                                                <span class="ms-3 me-4">|</span></p>
+                                                <a href="#">
+                                                    <img src="${set.user.avatar}" alt="avatar"
+                                                         class="img-fluid rounded-circle me-1" width="35">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
                             </div>
-
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                <div class="input-group form-outline flex-fill mb-0">
-                                    <input type="text" name="given-name" placeholder="First Name"
-                                           class="form-control" value="${requestScope.userForUpdate.givenName}" required/>
-                                    <input type="text" name="family-name" placeholder="Last Name"
-                                           class="form-control" value="${requestScope.userForUpdate.familyName}" required/>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <i class="fa-solid fa-address-card fa-lg me-3 fa-fw"></i>
-                                <div class="form-outline flex-fill mb-0">
-                                    <input type="text" name="username" placeholder="Username" class="form-control"
-                                           value="${requestScope.userForUpdate.username}" required/>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                <div class="form-outline flex-fill mb-0">
-                                    <input type="email" name="email" placeholder="Email" class="form-control"
-                                           value="${requestScope.userForUpdate.email}"
-                                           required/>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                <button type="submit" class="btn btn-primary btn-lg">Update</button>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
                         </div>
                     </div>
-                </div>
-            </footer>
+                </section>
+            </main>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="../../js/Dashboard.js"></script>
-    <script src="../../js/Register.js"></script>
+    <script src="../js/Dashboard.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../js/ChartActiveUsers.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="../js/DataTableSimple.js"></script>
     </body>
 </html>

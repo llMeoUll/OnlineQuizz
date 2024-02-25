@@ -2,6 +2,8 @@ package dao;
 
 import entity.Question;
 import entity.QuestionOption;
+import entity.Set;
+import entity.Type;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -57,5 +59,45 @@ public class QuestionDBContext extends DBContext{
                 connection.rollback();
                 throw new RuntimeException("Transaction failed.", e);
             }
+    }
+    public ArrayList<Question> list() {
+        ArrayList<Question> questions = new ArrayList<>();
+        String sqlListQuestion = "SELECT q.qid, q.question, q.answer, q.sid,\n" +
+                " q.type_id, t.type_name, s.sname FROM online_quizz.question q\n" +
+                " INNER JOIN online_quizz.`type` t ON t.type_id = q.type_id\n" +
+                " INNER JOIN online_quizz.`set` s ON s.sid = q.sid;";
+        try {
+            PreparedStatement stmListQuestion = connection.prepareStatement(sqlListQuestion);
+            ResultSet rs = stmListQuestion.executeQuery();
+            while(rs.next()) {
+                Question question = new Question();
+                Set set = new Set();
+                set.setSId(rs.getInt("sid"));
+                set.setSName(rs.getString("sname"));
+                question.setSet(set);
+                question.setQId(rs.getInt("qid"));
+                question.setQuestion(rs.getString("question"));
+                question.setAnswer(rs.getString("answer"));
+                Type type = new Type();
+                type.setTypeId(rs.getInt("type_id"));
+                type.setTypeName(rs.getString("type_name"));
+                question.setType(type);
+                questions.add(question);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return questions;
+    }
+
+    public void delete(int qid) {
+        String sqlDeleteQuestion = "DELETE FROM `online_quizz`.`question` WHERE `qid` = ?;";
+        try {
+            PreparedStatement stmDeleteQuestion = connection.prepareStatement(sqlDeleteQuestion);
+            stmDeleteQuestion.setInt(1, qid);
+            stmDeleteQuestion.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

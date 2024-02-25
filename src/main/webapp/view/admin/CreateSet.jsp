@@ -105,69 +105,8 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Create User</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Input information here</li>
-                    </ol>
-                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-
-                        <form action="./update" method="post" class="mx-1 mx-md-4">
-
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <i class="fa-solid fa-id-badge fa-lg me-3 fa-fw"></i>
-                                <div class="form-outline flex-fill mb-0">
-                                    <input type="number" name="uid" placeholder="uid" class="form-control"
-                                           value="${requestScope.userForUpdate.id}"
-                                           readonly
-                                           required/>
-                                </div>
-                            </div>
-
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                <div class="input-group form-outline flex-fill mb-0">
-                                    <input type="text" name="given-name" placeholder="First Name"
-                                           class="form-control" value="${requestScope.userForUpdate.givenName}" required/>
-                                    <input type="text" name="family-name" placeholder="Last Name"
-                                           class="form-control" value="${requestScope.userForUpdate.familyName}" required/>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <i class="fa-solid fa-address-card fa-lg me-3 fa-fw"></i>
-                                <div class="form-outline flex-fill mb-0">
-                                    <input type="text" name="username" placeholder="Username" class="form-control"
-                                           value="${requestScope.userForUpdate.username}" required/>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                <div class="form-outline flex-fill mb-0">
-                                    <input type="email" name="email" placeholder="Email" class="form-control"
-                                           value="${requestScope.userForUpdate.email}"
-                                           required/>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                <button type="submit" class="btn btn-primary btn-lg">Update</button>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
+                <jsp:include page="../user/set/CreateSet.jsp"></jsp:include>
             </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
