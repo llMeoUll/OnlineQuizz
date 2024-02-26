@@ -263,6 +263,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>UserProfileControl</servlet-name>
-        <url-pattern>/user/brief</url-pattern>
+        <url-pattern>/profile</url-pattern>
     </servlet-mapping>
 </web-app>
