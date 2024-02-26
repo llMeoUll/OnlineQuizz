@@ -9,19 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/UpdateSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/HashtagSetMappingDBContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionOptionsDBContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/UpdateSet.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/HashtagDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/HashtagDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TypeDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TypeDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" afterDir="false" />
-    </list>
+    <list default="true" id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="Fix error, forget hardcode" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
