@@ -19,7 +19,7 @@
 <html>
 
 <head>
-    <title>Title</title>
+    <title>Manage room</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </style>
@@ -79,9 +79,9 @@
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="#">
-        <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
-        Your Logo
+    <a class="navbar-brand" href="../../">
+        <img src="../../imagines/logo1250x1250.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Quizzicle
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -116,7 +116,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#"><i class="fas fa-cogs"></i> Settings</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
             </li>
         </ul>
@@ -153,29 +153,8 @@
                 <i class="fas fa-plus-circle mr-1"></i>Join Room
             </button>
 
-            <%--Search bar--%>
-            <div class="wrapper">
-                <div class="search-input">
-                    <a href="" target="_blank" hidden></a>
-                    <input type="text" placeholder="Find room..." class="form-control">
-                    <div class="autocom-box">
-                        <script>
-                            var suggestion = [
-                                <%
-                                    ArrayList<String> listRoomName = (ArrayList<String>) request.getAttribute("listRoomName");
-                                    for (int i = 0; i < listRoomName.size(); i++) {
-                                %>
-                                "<%= listRoomName.get(i) %>"<%= i + 1 < listRoomName.size() ? "," : "" %>
-                                <% } %>
-                            ];
-                        </script>
-                    </div>
-                    <div class="icon"><i class="fas fa-search"></i></div>
-                </div>
-            </div>
-
             <!-- Buttons for sorting and filtering -->
-            <div class="btn-group float-md-right float-sm-none mt-2" role="group">
+            <div class="btn-group float-md-right float-sm-none mr-2" role="group">
                 <!-- Button for Newest -->
                 <button type="button" class="btn btn-info mr-2" onclick="submitForm('newest')">
                     <i class="fas fa-calendar-alt mr-1"></i>Newest
@@ -198,7 +177,7 @@
             </div>
 
             <!-- Hidden form to submit button value -->
-            <form id="sortingForm" method="GET" action="ManageRoom">
+            <form id="sortingForm" method="GET" action="../user/room">
                 <input type="hidden" name="selectedButton" id="selectedButton" value="">
             </form>
 
@@ -217,20 +196,19 @@
 
 <%--Display list room --%>
 <div>
-    <%--Display list information each room in listownedRoom--%>
     <c:forEach items="${requestScope.listRoom}" var="room">
-        <div class="container mt-3 bg-light-purple p-3 rounded">
-            <!-- Information Block -->
-            <div class="row">
-                <p class="text-light ml-4">Number of Tests: 10 | Number of Users: 100 | Workplace: XYZ Corp</p>
+        <a href="./room/get?roomId=${room.roomId}" class="text-decoration-none">
+            <div class="container mt-3 bg-light-purple p-3 rounded room-item">
+                <!-- Information Block -->
+                <div class="row">
+                    <p class="text-light ml-4">Number of Tests: 10 | Number of Users: 100 | Workplace: XYZ Corp</p>
+                </div>
+
+                <div class="row">
+                    <p class="font-weight-bold ml-4 text-light">Name: ${room.roomName} | Owner: ${room.user.username}</p>
+                </div>
             </div>
-
-            <div class="row">
-                <p class="font-weight-bold  ml-4">Name: ${room.roomName} | Owner: ${room.user.username}
-            </div>
-
-
-        </div>
+        </a>
     </c:forEach>
 </div>
 
@@ -297,7 +275,7 @@
             </div>
             <div class="modal-body">
                 <!-- Add your form elements for creating a room here -->
-                <form action="room/create" method="post">
+                <form action="../user/room/create" method="post">
                     <input type="hidden" name="ownerUser" value="${requestScope.userHasRoom.id}">
                     <div class="form-group">
                         <label for="roomName" class="text-purple">Room Name</label>
@@ -318,9 +296,9 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Create Room</button>
-                    <div class="alert alert-danger" role="alert">
-                        ${requestScope.errorDuplicateRoomName}
-                    </div>
+                    <%--                    <div class="alert alert-danger" role="alert">--%>
+                    <%--                        ${requestScope.errorDuplicateRoomName}--%>
+                    <%--                    </div>--%>
                 </form>
 
             </div>
@@ -342,7 +320,7 @@
             </div>
             <div class="modal-body">
                 <!-- Add your form elements for creating a room here -->
-                <form action="invite" method="post">
+                <form action="../user/room/invite" method="post">
                     <!-- requestScope.userHasRoom.Id đại diện cho user logged trong session -->
                     <input type="hidden" name="ownerUser" value="${requestScope.userHasRoom.id}">
                     <div class="form-group">
@@ -373,8 +351,7 @@
     });
 </script>
 
-<script src="./js/RoomScreen/script.js"></script>
-<script src="./js/RoomScreen/suggestion.js"></script>
+<script src=".././js/RoomScreen/script.js"></script>
 
 </body>
 

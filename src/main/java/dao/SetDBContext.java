@@ -4,6 +4,7 @@ import entity.HashTag;
 import entity.Question;
 import entity.Set;
 import entity.User;
+import org.checkerframework.checker.units.qual.A;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -109,6 +110,7 @@ public class SetDBContext extends DBContext {
         }
     }
 
+
     public void update(Set set) throws SQLException {
         try {
             connection.setAutoCommit(false);
@@ -164,8 +166,52 @@ public class SetDBContext extends DBContext {
             } else {
                 return true;
             }
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+    }
+          
+    public ArrayList<Set> list() {
+        ArrayList<Set> sets = new ArrayList<>();
+        try {
+            String sqlGetListSet = "SELECT s.sid, s.sname, s.`description`, s.is_private, s.uid, s.created_at, " +
+                    "s.updated_at, u.avatar, u.family_name, u.given_name FROM online_quizz.`set` s\n" +
+                    "INNER JOIN `online_quizz`.`user` u ON s.uid = u.uid";
+            PreparedStatement stmGetListSet = connection.prepareStatement(sqlGetListSet);
+            ResultSet rs = stmGetListSet.executeQuery();
+            while(rs.next()) {
+                Set set = new Set();
+                User user = new User();
+                user.setId(rs.getInt("uid"));
+                user.setAvatar(rs.getString("avatar"));
+                user.setGivenName(rs.getString("given_name"));
+                user.setFamilyName(rs.getString("family_name"));
+                set.setUser(user);
+                set.setSId(rs.getInt("sid"));
+                set.setSName(rs.getString("sname"));
+                set.setDescription(rs.getString("description"));
+                set.setPrivate(rs.getBoolean("is_private"));
+                set.setCreatedAt(rs.getTimestamp("created_at"));
+                set.setUpdatedAt(rs.getTimestamp("updated_at"));
+                sets.add(set);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return sets;
+    }
+
+    public void delete(Set set) {
+        String sqlDeleteSet = "DELETE FROM `online_quizz`.`set`\n" +
+                "WHERE `sid` = ?;";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sqlDeleteSet);
+            stm.setInt(1, set.getSId());
+            stm.executeUpdate();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 }
