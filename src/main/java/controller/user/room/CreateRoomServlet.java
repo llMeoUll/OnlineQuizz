@@ -45,6 +45,6 @@ public class CreateRoomServlet extends HttpServlet {
         RoomDBContext rDB = new RoomDBContext();
         rDB.insert(r);
 
-        response.sendRedirect("/Quizzicle/user/room");
+        response.sendRedirect("../../../Quizzicle/user/room");
     }
 }
