@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Quizzicle:war exploded" />
+      <artifact name="OnlineQuizz:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,10 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fa11cae-5c64-4c84-9dd2-997488ea4c87" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/GetSetController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/CreateSet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/CreateSet.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/GetSet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/.env.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/CreateSet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/set/GetSet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/GetSet.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +28,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="Jsp File" />
+        <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -64,11 +69,15 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Acer/IdeaProjects/OnlineQuizz&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;DatabaseDriversLRU&quot;: [
@@ -79,9 +88,10 @@
   <component name="RunManager">
     <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
+      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
       <option name="UPDATING_POLICY" value="update-resources" />
       <deployment>
-        <artifact name="Quizzicle:war exploded">
+        <artifact name="OnlineQuizz:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="/Quizzicle" />
           </settings>
@@ -162,7 +172,7 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="Quizzicle:war exploded" />
+          <artifact name="OnlineQuizz:war exploded" />
         </option>
       </method>
     </configuration>
@@ -180,6 +190,13 @@
       <workItem from="1706444398588" duration="1201000" />
       <workItem from="1706498471964" duration="14063000" />
       <workItem from="1706598482772" duration="7871000" />
+      <workItem from="1708478490182" duration="3080000" />
+      <workItem from="1708588398898" duration="971000" />
+      <workItem from="1708654385406" duration="1786000" />
+      <workItem from="1708795227855" duration="1603000" />
+      <workItem from="1708825992527" duration="4811000" />
+      <workItem from="1708864908539" duration="6415000" />
+      <workItem from="1708916249637" duration="6388000" />
     </task>
     <servers />
   </component>
@@ -208,12 +225,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <inline-watch fileUrl="file://$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" line="27">
-        <watch expression="privateRadio" />
-      </inline-watch>
-    </watches-manager>
   </component>
 </project>

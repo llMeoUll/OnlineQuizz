@@ -60,7 +60,7 @@
     </servlet>
     <servlet>
         <servlet-name>GetSet</servlet-name>
-        <servlet-class>controller.user.set.GetSet</servlet-class>
+        <servlet-class>controller.user.set.GetSetController</servlet-class>
     </servlet>
 
     <servlet-mapping>
