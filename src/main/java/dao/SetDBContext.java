@@ -1,76 +1,217 @@
 package dao;
 
+import entity.HashTag;
 import entity.Question;
 import entity.Set;
-import java.sql.Connection;
+import entity.User;
+import org.checkerframework.checker.units.qual.A;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
-public class SetDBContext extends DBContext<entity.Set> {
 
 
-    @Override
-    public Set get(Set entity) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Set> list() {
-        return null;
-    }
-
-    @Override
-    public void delete(Set entity) {
-
-    }
-
-    @Override
-    public void update(Set entity) {
-
-    }
-
-    @Override
-    public void create(Set set) {
+public class SetDBContext extends DBContext {
+    public ArrayList<Set> getOwnedSet(User entity) {
+        ArrayList<Set> ownedSets = new ArrayList<>();
+        String sqlGetOwnedSet = "SELECT `set`.`sid`,\n" +
+                "    `set`.`sname`,\n" +
+                "    `set`.`description`,\n" +
+                "    `set`.`is_private`,\n" +
+                "    `set`.`uid`,\n" +
+                "    `set`.`created_at`,\n" +
+                "    `set`.`updated_at`\n" +
+                "FROM `online_quizz`.`set`\n" +
+                "WHERE `set`.`uid` = ?";
         try {
-            String query = "INSERT INTO `online_quizz`.`set` (`sname`, `description`, `is_private`, `created_at`, `updated_at`, `uid`) VALUES (?, ?, ?,current_timestamp(), current_timestamp(), ?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, set.getSName());
-            preparedStatement.setString(2, set.getDescription());
-            preparedStatement.setBoolean(3, set.isPrivate());
-            preparedStatement.setInt(4, 1);
-            preparedStatement.executeUpdate();
+            PreparedStatement stmGetOwnedSet = connection.prepareStatement(sqlGetOwnedSet);
+            stmGetOwnedSet.setString(1, String.valueOf(entity.getId()));
+            ResultSet rs = stmGetOwnedSet.executeQuery();
+            while (rs.next()) {
+                Set ownedSet = new Set();
+                ownedSet.setSId(rs.getInt("sid"));
+                ownedSet.setSName(rs.getString("sname"));
+                ownedSet.setDescription(rs.getString("description"));
+                ownedSet.setPrivate(rs.getBoolean("is_private"));
+                ownedSet.setUser(entity);
+                ownedSets.add(ownedSet);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
-//            if (!set.getQuestions().isEmpty()) {
-//                List<Question> questions = set.getQuestions();
-//
-//                String query2 = "SELECT sid FROM online_quizz.set order by sid limit 1";
-//                PreparedStatement preparedStatement2 = connection.prepareStatement(query2);
-//                ResultSet rs = preparedStatement2.executeQuery();
-//                while (rs.next()) {
-//                    int setId = rs.getInt("sid");
-//
-//                    for (Question q : questions) {
-//                        String query3 = "INSERT INTO `online_quizz`.`question`\n" + "`question`,\n" + "`answer`,\n" + "`sid`,\n" + "`type_id`)\n" + "VALUES\n" + "(?, ?, ?, ?)";
-//                        PreparedStatement preparedStatement3 = connection.prepareStatement(query3);
-//                        preparedStatement3.setString(1, q.getQuestion());
-//                        preparedStatement3.setString(1, q.getQuestion());
-//                        preparedStatement3.setInt(3, setId);
-//                        preparedStatement3.setInt(4, q.getType().getTypeId());
-//                        preparedStatement3.executeUpdate();
-//                    }
-//                }
-//            }
+        return ownedSets;
+    }
+
+    public Set get(int setId) {
+        String sql = "SELECT * FROM `online_quizz`.`set` WHERE `set`.`sid` = ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, setId);
+            ResultSet rs = stm.executeQuery();
+            if (!rs.next()) {
+                return null;
+            } else {
+                Set set = new Set();
+                set.setSId(rs.getInt("sid"));
+                set.setSName(rs.getString("sname"));
+                set.setDescription(rs.getString("description"));
+                set.setPrivate(rs.getBoolean("is_private"));
+                ArrayList<Question> questions = new QuestionDBContext().list(setId, connection);
+                set.setQuestions(questions);
+                ArrayList<HashTag> hashTags = new HashtagDBContext().list(setId, connection);
+                set.setHashTags(hashTags);
+                return set;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void insert(Set set) throws SQLException {
+        try {
+            connection.setAutoCommit(false);
+            String insertSetQuery = "INSERT INTO `online_quizz`.`set`\n" +
+                    "(`sname`,\n" +
+                    "`description`,\n" +
+                    "`is_private`,\n" +
+                    "`uid`,\n" +
+                    "`created_at`,\n" +
+                    "`updated_at`)\n" +
+                    "VALUES\n" +
+                    "(?,?,?,?, current_timestamp(), current_timestamp());";
+            try (PreparedStatement setStatement = connection.prepareStatement(insertSetQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
+                setStatement.setString(1, set.getSName());
+                setStatement.setString(2, set.getDescription());
+                setStatement.setBoolean(3, set.isPrivate());
+                setStatement.setInt(4, set.getUser().getId());
+                setStatement.executeUpdate();
+
+                try (ResultSet generatedKeys = setStatement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        int setId = generatedKeys.getInt(1);
+                        // Now, insert questions associated with this set
+                        HashtagDBContext hashtagDBContext = new HashtagDBContext();
+                        hashtagDBContext.insertAll(set.getHashTags(), setId, connection);
+                        QuestionDBContext questionDBContext = new QuestionDBContext();
+                        questionDBContext.insertAll(set.getQuestions(), setId, connection);
+                    }
+                    connection.commit(); // Commit the transaction for inserting set
+                } catch (SQLException e) {
+                    connection.rollback(); // Rollback if there's an exception
+                    throw new RuntimeException("Failed to insert set.", e);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException("Failed to set auto-commit mode.", e);
+            }
+        } finally {
+            connection.setAutoCommit(true); // Reset auto-commit mode
+        }
+    }
+
+
+    public void update(Set set) throws SQLException {
+        try {
+            connection.setAutoCommit(false);
+            String updateSetQuery = "UPDATE `online_quizz`.`set`\n" +
+                    "SET\n" +
+                    "`sname` = ?,\n" +
+                    "`description` = ?,\n" +
+                    "`is_private` = ?,\n" +
+                    "`updated_at` = current_timestamp()\n" +
+                    "WHERE `sid` = ?;";
+            try (PreparedStatement setStatement = connection.prepareStatement(updateSetQuery)) {
+                setStatement.setString(1, set.getSName());
+                setStatement.setString(2, set.getDescription());
+                setStatement.setBoolean(3, set.isPrivate());
+                setStatement.setInt(4, set.getSId());
+                setStatement.executeUpdate();
+
+                // Now, update questions associated with this set
+                //delete all hashtag set mapping
+                HashtagSetMappingDBContext hashtagSetMappingDBContext = new HashtagSetMappingDBContext();
+                hashtagSetMappingDBContext.deleteAll(set.getSId(), connection);
+                //delete all hashtag
+                HashtagDBContext hashtagDBContext = new HashtagDBContext();
+                ArrayList<HashTag> oldHashTags = hashtagDBContext.list(set.getSId(), connection);
+                if (oldHashTags.size() > 0) {
+                    hashtagDBContext.deleteAll(oldHashTags, connection);
+                }
+                hashtagDBContext.insertAll(set.getHashTags(), set.getSId(), connection);
+
+                QuestionDBContext questionDBContext = new QuestionDBContext();
+                //delete all question
+                questionDBContext.deleteAll(set.getSId(), connection);
+                questionDBContext.insertAll(set.getQuestions(), set.getSId(), connection);
+                connection.commit(); // Commit the transaction for updating set
+            } catch (SQLException e) {
+                connection.rollback(); // Rollback if there's an exception
+                throw new RuntimeException("Failed to update set.", e);
+            }
+        } finally {
+            connection.setAutoCommit(true); // Reset auto-commit mode
+        }
+    }
+
+    public boolean isOwner(int userId, int setId) {
+        String sql = "SELECT * FROM `online_quizz`.`set` WHERE `set`.`sid` = ? AND `set`.`uid` = ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, setId);
+            stm.setInt(2, userId);
+            ResultSet rs = stm.executeQuery();
+            if (!rs.next()) {
+                return false;
+            } else {
+                return true;
+            }
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+    }
+          
+    public ArrayList<Set> list() {
+        ArrayList<Set> sets = new ArrayList<>();
+        try {
+            String sqlGetListSet = "SELECT s.sid, s.sname, s.`description`, s.is_private, s.uid, s.created_at, " +
+                    "s.updated_at, u.avatar, u.family_name, u.given_name FROM online_quizz.`set` s\n" +
+                    "INNER JOIN `online_quizz`.`user` u ON s.uid = u.uid";
+            PreparedStatement stmGetListSet = connection.prepareStatement(sqlGetListSet);
+            ResultSet rs = stmGetListSet.executeQuery();
+            while(rs.next()) {
+                Set set = new Set();
+                User user = new User();
+                user.setId(rs.getInt("uid"));
+                user.setAvatar(rs.getString("avatar"));
+                user.setGivenName(rs.getString("given_name"));
+                user.setFamilyName(rs.getString("family_name"));
+                set.setUser(user);
+                set.setSId(rs.getInt("sid"));
+                set.setSName(rs.getString("sname"));
+                set.setDescription(rs.getString("description"));
+                set.setPrivate(rs.getBoolean("is_private"));
+                set.setCreatedAt(rs.getTimestamp("created_at"));
+                set.setUpdatedAt(rs.getTimestamp("updated_at"));
+                sets.add(set);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return sets;
+    }
+
+    public void delete(Set set) {
+        String sqlDeleteSet = "DELETE FROM `online_quizz`.`set`\n" +
+                "WHERE `sid` = ?;";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sqlDeleteSet);
+            stm.setInt(1, set.getSId());
+            stm.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @Override
-    public void insert(Set entity) {
-
-    }
 }

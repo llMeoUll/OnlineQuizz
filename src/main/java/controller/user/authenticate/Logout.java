@@ -10,7 +10,7 @@ public class Logout extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getSession().invalidate();
-        response.getWriter().println("Logout successful!");
+        response.sendRedirect("./login");
     }
 
     @Override

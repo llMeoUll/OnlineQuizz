@@ -2,23 +2,51 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="OnlineQuizz:war exploded" />
+      <artifact name="Quizzicle:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fa11cae-5c64-4c84-9dd2-997488ea4c87" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/GetSetController.java" afterDir="false" />
+    <list default="true" id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/UpdateSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/HashtagSetMappingDBContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionOptionsDBContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/UpdateSet.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/GetSet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/.env.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/HashtagDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/HashtagDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TypeDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TypeDBContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/CreateSet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/CreateSet.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/set/GetSet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/GetSet.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/question/CreateQuestion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/question/DeleteQuestion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/question/QuestionManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/question/UpdateQuestion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/set/AdminCreateSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/set/AdminDeleteSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/set/AdminUpdateSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/set/SetManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/QuestionBankButton.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateSet.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/QuestionManagement.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/SetManagement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/UpdateRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/UpdateRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewTestDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewTestDetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateRoom.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateRoom.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UpdateUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UpdateUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UserProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserProfile.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,15 +56,24 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
-        <option value="Jsp File" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="Class" />
+        <option value="Jsp File" />
+        <option value="Servlet" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/view/user/room/ManageRoomScreen.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -56,58 +93,70 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="2bNi22rvkh8Ne89FG6qAbxi4Dw2" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
+  <component name="ProjectId" id="2bECyPiZYibc9RSNg9jtWkbzdGg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Acer/IdeaProjects/OnlineQuizz&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
-    ]
-  }
-}</component>
+        &quot;keyToString&quot;: {
+        &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+        &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+        &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+        &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+        &quot;last_opened_file_path&quot;: &quot;E:/ProjectSWP/OnlineQuizz/src/main/webapp/imagines&quot;,
+        &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+        &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+        &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+        }
+        }</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="entity" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\imagines" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\js" />
+      <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\css" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
       <option name="UPDATING_POLICY" value="update-resources" />
       <deployment>
-        <artifact name="OnlineQuizz:war exploded">
+        <artifact name="Quizzicle:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="/Quizzicle" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="8b58245c-90db-40fd-b351-f76f3c2252bc" />
-        <option name="HTTP_PORT" value="8888" />
+        <option name="BASE_DIRECTORY_NAME" value="75f005a9-0ba8-41c9-aeb4-a305cdc2c355" />
+        <option name="JNDI_PORT" value="1098" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
       <predefined_log_file id="Tomcat Manager" />
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="56759" />
+        <option name="DEBUG_PORT" value="50804" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -172,7 +221,9 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
+          <artifact name="Quizzicle:war exploded" />
           <artifact name="OnlineQuizz:war exploded" />
+
         </option>
       </method>
     </configuration>
@@ -180,23 +231,53 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0fa11cae-5c64-4c84-9dd2-997488ea4c87" name="Changes" comment="" />
-      <created>1706061735929</created>
+      <changelist id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="" />
+      <created>1704853520966</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1706061735929</updated>
-      <workItem from="1706061738820" duration="12181000" />
-      <workItem from="1706269313350" duration="19373000" />
-      <workItem from="1706444398588" duration="1201000" />
-      <workItem from="1706498471964" duration="14063000" />
-      <workItem from="1706598482772" duration="7871000" />
-      <workItem from="1708478490182" duration="3080000" />
-      <workItem from="1708588398898" duration="971000" />
-      <workItem from="1708654385406" duration="1786000" />
-      <workItem from="1708795227855" duration="1603000" />
-      <workItem from="1708825992527" duration="4811000" />
-      <workItem from="1708864908539" duration="6415000" />
-      <workItem from="1708916249637" duration="6388000" />
+      <updated>1704853520966</updated>
+      <workItem from="1704853523048" duration="541000" />
+      <workItem from="1704967299798" duration="1405000" />
+      <workItem from="1704968716737" duration="7008000" />
+      <workItem from="1705020492210" duration="696000" />
+      <workItem from="1705021670811" duration="8804000" />
+      <workItem from="1705020492210" duration="109000" />
+      <workItem from="1705286399482" duration="16633000" />
+      <workItem from="1705369517160" duration="1430000" />
+      <workItem from="1705543022074" duration="7893000" />
+      <workItem from="1705673751425" duration="2228000" />
+      <workItem from="1705764087498" duration="1818000" />
+      <workItem from="1705771111911" duration="3592000" />
+      <workItem from="1705774736307" duration="24000" />
+      <workItem from="1705802075206" duration="4166000" />
+      <workItem from="1705807405765" duration="68000" />
+      <workItem from="1705836230418" duration="16524000" />
+      <workItem from="1706019806661" duration="24297000" />
+      <workItem from="1706116941905" duration="103000" />
+      <workItem from="1706341456137" duration="332000" />
+      <workItem from="1706341986156" duration="320000" />
+      <workItem from="1706553086646" duration="316000" />
+      <workItem from="1706549346789" duration="7570000" />
+      <workItem from="1706610170728" duration="8770000" />
+      <workItem from="1706793133895" duration="1106000" />
+      <workItem from="1706866862197" duration="11062000" />
+      <workItem from="1706926525114" duration="3706000" />
+      <workItem from="1708312096805" duration="6102000" />
+      <workItem from="1708563063169" duration="8553000" />
+      <workItem from="1708312096805" duration="7317000" />
+      <workItem from="1708391316336" duration="10322000" />
+      <workItem from="1708475502782" duration="7008000" />
+      <workItem from="1708513513582" duration="904000" />
+      <workItem from="1708566770626" duration="26602000" />
+      <workItem from="1708651568635" duration="20388000" />
+      <workItem from="1708738224340" duration="18256000" />
+      <workItem from="1708566770626" duration="5296000" />
+      <workItem from="1708616425416" duration="3168000" />
+      <workItem from="1708620552116" duration="5669000" />
+      <workItem from="1708702591069" duration="78000" />
+      <workItem from="1708714324835" duration="19068000" />
+      <workItem from="1708792792524" duration="20472000" />
+      <workItem from="1708714324835" duration="19441000" />
     </task>
     <servers />
   </component>
@@ -208,22 +289,31 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/Nam" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fix error, forget hardcode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix error, forget hardcode" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/webapp/js/Dashboard.js</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
+        <watch expression="listRoomName.get(0).hashIsZero" />
+        <watch expression="listRoomName.get(1)" />
+        <watch expression="listRoom" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

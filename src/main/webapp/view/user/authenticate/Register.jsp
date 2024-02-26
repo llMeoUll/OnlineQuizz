@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Register</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./icons/favicon32x32.ico"/>
     <link rel="stylesheet" href="./css/Register.css">
     <link rel="stylesheet" href="webjars/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="webjars/font-awesome/6.5.1/css/all.min.css">
@@ -41,7 +42,8 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fa-solid fa-address-card fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" name="username" placeholder="Username" class="form-control"
+                                            <input type="text" name="username" placeholder="Username"
+                                                   class="form-control"
                                                    required/>
                                         </div>
                                     </div>
@@ -116,7 +118,11 @@
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <button type="submit" class="btn btn-primary btn-lg">Register</button>
                                     </div>
-
+                                    <div class="text-center">
+                                        <a href="./login" class="text-decoration-none text-primary">
+                                            Already have an account?
+                                        </a>
+                                    </div>
                                 </form>
 
                             </div>

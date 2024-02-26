@@ -1,148 +1,158 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: vanli
+  Date: 2/20/2024
+  Time: 8:10 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Create a new set</title>
+    <title>Create Set | Quizzicle</title>
     <link rel="stylesheet" href="../.././webjars/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../.././css/CreateSet.css">
     <link rel="stylesheet" href="../.././webjars/font-awesome/6.5.1/css/all.min.css">
     <script src="../.././webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
     <script src="../.././webjars/jquery/3.7.1/jquery.min.js"></script>
 </head>
-
 <body>
-<div class="container-fluid">
-    <h1 class="mt-5 mb-4">CREATE A NEW SET</h1>
+<%--header--%>
+<div class="fixed-top shadow z-2" style="height: 64px; background-color: #0d6efd">
+
+</div>
+<%--content--%>
+<div id="create-set-content" style="margin-top: 64px">
     <form action="./create" method="post">
-        <div class="name-container">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name">
+        <div class="container-fluid bg-white p-4 d-flex align-items-center justify-content-between sticky-top z-3">
+            <h3 class="d-inline mx-3">Update Set</h3>
+            <button type="submit" class="btn btn-primary mx-3">Create</button>
         </div>
-        <div class="description-container">
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="4" cols="50"></textarea>
-        </div>
-        <div class="hashtag-container">
-            <label for="hashtag">Hashtag:</label>
-            <input type="text" id="hashtag" name="hashtag">
-        </div>
-        <div class="privacy-container">
-            <label for="privacy">Privacy:</label>
-            <select id="privacy" name="privacy">
-                <option value="public">Public</option>
-                <option value="private">Private</option>
-            </select>
-        </div>
-        <%--        <input name="number-of-question" placeholder="Enter number of question"/>--%>
-        <%--        <h1>Create Questions</h1>--%>
-        <label for="numberOfQuestions">Enter the number of questions:</label>
-        <input type="number" id="numberOfQuestions" name="number-of-question" placeholder="Enter number of questions"
-               min="1" value="5">
+        <div class="container d-flex flex-column my-3 z-1">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter a title" required/>
+                <label for="title">Title</label>
+            </div>
+            <div class="form-floating mb-3">
+            <textarea type="text" class="form-control" id="description" name="description"
+                      placeholder="Add a description"
+                      style="height: 100px"></textarea>
+                <label for="description">Description</label>
+            </div>
+            <div class="form-floating mb-3" id="hashtag-input">
+                <input type="text" class="form-control" id="hashtag-text"
+                       placeholder="Enter hashtag (comma-separated)"/>
+                <label for="hashtag-text">Hashtags</label>
+                <div class="mt-4" id="hashtag-container"></div>
+            </div>
 
-        <button type="button" onclick="generateQuestionList()">Generate Question List</button>
+            <div class="form-floating mb-3">
+                <select class="form-select" id="privacy" name="privacy">
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                </select>
+                <label for="privacy">Privacy</label>
+            </div>
 
-        <div id="questionList"></div>
-        <%--        question template--%>
-        <div class="card">
-            <label for="questionType" class="form-label">Select the question type:</label>
-            <select id="questionType" class="form-select" onchange="handleChooseType()">
-                <option value="multipleChoice">Multiple Choice</option>
-                <option value="trueFalse">True/False</option>
-                <option value="essay">Essay</option>
-            </select>
+            <div id="question-list" class="d-flex flex-column">
+                <div class="card mb-3 question" id="question-container-1">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center justify-content-between mb-1 mx-2">
+                            <div>
+                                <span class="index">1</span>
+                            </div>
+                            <div>
+                            <span role="button" class="text-primary trash-icon" onclick="handleRemoveQuestion(1)">
+                                <i class="fa-solid fa-trash"></i>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="form-floating">
+                            <select class="form-select question-type" id="question-type-1" name="question-type-1"
+                                    onchange="handleSelectType(1);">
+                                <option value="Multiple choice">Multiple choice</option>
+                                <option value="True/False">True/False</option>
+                                <option value="Essay">Essay</option>
+                            </select>
+                            <label class="question-type-label" for="question-type-1">Type</label>
+                        </div>
+                    </div>
 
-            <%--            multiple choice template--%>
-            <div id="multipleChoiceContainer" class="card-body mpc">
-                <label for="question">Question: </label>
-                <input name="question" id="question"/>
-                <label for="answer">Answer: </label>
-                <input name="answer" id="answer"/>
-                <br/>
-                <%--                opt conntainer--%>
-                <div id="opt-container">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            A
-                        </label>
-                        <input name="opt-1"/>
+                    <div class="card-body multiple-choice" id="multiple-choice-1">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control mul-question" name="mul-question-1"
+                                   id="mul-question-1"
+                                   placeholder="Enter a question" required/>
+                            <label class="mul-question-label" for="mul-question-1">Question</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control mul-answer" id="mul-answer-1" name="mul-answer-1"
+                                   placeholder="Enter a answer" required/>
+                            <label class="mul-answer-label" for="mul-answer-1">Answer</label>
+                        </div>
+                        <div class="opt-container" id="opt-container-1">
+                            <input type="hidden" name="number-opt-mul-1" id="number-opt-mul-1">
+                            <div class="input-group mb-3 align-items-center opt">
+                                <input type="text" name="mul-question-1-opt-1" class="form-control"
+                                       placeholder="Option 1" required/>
+                                <span class="text-primary mx-1 xmark-icon" role="button"
+                                      onclick="handleRemoveOpt(1,1);">
+                                <i class="fa-solid fa-xmark"></i>
+                            </span>
+                            </div>
+
+                        </div>
+                        <div class="text-center">
+                        <span role="button" class="text-primary btn-add-opt" onclick="handleAddOpt(1);"><i
+                                class="fa-solid fa-circle-plus"></i></span>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            B
-                        </label>
-                        <input name="opt-1"/>
+
+                    <div class="card-body true-false" id="true-false-1" style="display: none;">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control tf-question" id="tf-question-1" name="tf-question-1"
+                                   placeholder="Enter a question"/>
+                            <label class="tf-question-label" for="tf-question-1">Question</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select tf-answer" id="tf-answer-1" name="tf-answer-1">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                            <label class="tf-answer-label" for="tf-answer-1">Answer</label>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            C
-                        </label>
-                        <input name="opt-1"/>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            D
-                        </label>
-                        <input name="opt-1"/>
+
+                    <div class="card-body essay" id="essay-1" style="display: none;">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control essay-question" id="essay-question-1"
+                                   name="essay-question-1" placeholder="Enter a question"/>
+                            <label class="essay-question-label" for="essay-question-1">Question</label>
+                        </div>
+                        <textarea class="form-control essay-answer" id="essay-answer-1" name="essay-answer-1"
+                                  placeholder="Enter a answer"
+                                  style="height: 100px"></textarea>
                     </div>
                 </div>
+                <button type="button" onclick="handleAddQuestion();" class="btn btn-outline-primary">+ADD QUESTION
+                </button>
             </div>
-
-            <%--            true/false template--%>
-            <div id="trueFalseContainer" class="card-body true-false" style="display: none;">
-                <label for="question">Question: </label>
-                <input name="question" id="question"/>
-                <label for="tfa" class="form-label">Answer for question: </label>
-                <select id="tfa" class="form-select" onchange="handleChooseType()">
-                    <option value="multipleChoice">True</option>
-                    <option value="trueFalse">False</option>
-
-                </select>
-
-
-            </div>
-
-            <%--            Essay template--%>
-            <div id="essayContainer" class="card-body essay" style="display: none;">
-                <label for="question">Question: </label>
-                <input name="question" id=""/>
-                <label for="answer">Answer: </label>
-                <textarea name="answer" id=""></textarea>
-            </div>
+            <input type="hidden" name="number-of-question" id="number-of-question">
+            <button type="submit" class="btn btn-primary mt-3">Create</button>
         </div>
 
-        <div class="container" name="list-questions">
-
-        </div>
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="submit-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body text-danger">
+                You can't create set! you must have at least 2 questions.
+            </div>
+        </div>
+    </div>
 </div>
-<script>
-    function generateQuestionList() {
-        var numQuestions = document.getElementById('numberOfQuestions').value;
-        var questionFormsContainer = document.getElementById('questionList');
-        questionFormsContainer.innerHTML = '';
-
-        for (var i = 0; i < numQuestions; i++) {
-            var questionForm = document.createElement('div');
-            questionForm.innerHTML = `
-                <h3>Question ${i+1}</h3>
-                <label for="question_${i}">Question:</label>
-                <input type="text" id="question_${i}" name="question_${i}">
-                <br>
-                <label for="answer_${i}">Answer:</label>
-                <input type="text" id="answer_${i}" name="answer_${i}">
-                <br>
-            `;
-            questionFormsContainer.appendChild(questionForm);
-        }
-    }
-</script>
 <script src="../.././js/CreateSet.js"></script>
 </body>
-</html>
 </html>

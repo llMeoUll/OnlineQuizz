@@ -3,96 +3,382 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
+    <listener>
+        <listener-class>controller.admin.schedule.ActiveSessionCounter</listener-class>
+    </listener>
+    <!--    *********************************************Filter******************************************************-->
+    <filter>
+        <filter-name>AuthenticateFilter</filter-name>
+        <filter-class>filter.Authenticate</filter-class>
+    </filter>
+    <filter>
+        <filter-name>AuthorizationFilter</filter-name>
+        <filter-class>filter.Authorization</filter-class>
+    </filter>
 
-<!--    <filter>-->
-<!--        <filter-name>AuthenticateFilter</filter-name>-->
-<!--        <filter-class>filer.AuthenticateFilter</filter-class>-->
-<!--    </filter>-->
-<!--    <filter>-->
-<!--        <filter-name>AuthorizationFilter</filter-name>-->
-<!--        <filter-class>filer.AuthorizationFilter</filter-class>-->
-<!--    </filter>-->
-
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthenticateFilter</filter-name>-->
-<!--        <url-pattern>/user/*</url-pattern>-->
-<!--    </filter-mapping>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthenticateFilter</filter-name>-->
-<!--        <url-pattern>/admin/*</url-pattern>-->
-<!--    </filter-mapping>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthorizationFilter</filter-name>-->
-<!--        <url-pattern>/user/*</url-pattern>-->
-<!--    </filter-mapping>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthorizationFilter</filter-name>-->
-<!--        <url-pattern>/admin/*</url-pattern>-->
-<!--    </filter-mapping>-->
-
+    <filter-mapping>
+        <filter-name>AuthenticateFilter</filter-name>
+        <url-pattern>/user/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthenticateFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/user/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+    <!--    *********************************************USER******************************************************-->
+    <!--    Authenticate Feature-->
+    <!--    log in with Google-->
     <servlet>
         <servlet-name>LoginWithGoogle</servlet-name>
         <servlet-class>controller.user.authenticate.LoginWithGoogle</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>LoginController</servlet-name>
-        <servlet-class>controller.user.authenticate.LoginController</servlet-class>
-    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginWithGoogle</servlet-name>
+        <url-pattern>/login-with-google</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>GoogleCallBack</servlet-name>
         <servlet-class>controller.user.authenticate.GoogleCallBack</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>Resgister</servlet-name>
-        <servlet-class>controller.user.authenticate.Register</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Logout</servlet-name>
-        <servlet-class>controller.user.authenticate.Logout</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>VerifyEmail</servlet-name>
-        <servlet-class>controller.user.authenticate.VerifyEmail</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreateSet</servlet-name>
-        <servlet-class>controller.user.set.CreateSet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GetSet</servlet-name>
-        <servlet-class>controller.user.set.GetSetController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Resgister</servlet-name>
-        <url-pattern>/register</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>VerifyEmail</servlet-name>
-        <url-pattern>/verifyemail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoginController</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoginWithGoogle</servlet-name>
-        <url-pattern>/loginwithgoogle</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GoogleCallBack</servlet-name>
         <url-pattern>/callback</url-pattern>
     </servlet-mapping>
+    <!--    log in-->
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controller.user.authenticate.LoginController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <!--    register-->
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>controller.user.authenticate.Register</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <!--    log out-->
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>controller.user.authenticate.Logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    <!--    verify code-->
+    <servlet>
+        <servlet-name>VerifyCode</servlet-name>
+        <servlet-class>controller.user.authenticate.VerifyCode</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>GetSet</servlet-name>
-        <url-pattern>/user/set/get</url-pattern>
+        <servlet-name>VerifyCode</servlet-name>
+        <url-pattern>/verify-code</url-pattern>
     </servlet-mapping>
-<servlet-mapping>
-    <servlet-name>CreateSet</servlet-name>
-    <url-pattern>/user/set/create</url-pattern>
-</servlet-mapping>
+    <!--    reset password-->
+    <servlet>
+        <servlet-name>ForgotPassword</servlet-name>
+        <servlet-class>controller.user.authenticate.ForgotPassword</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ForgotPassword</servlet-name>
+        <url-pattern>/forgot-password</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ResetPassword</servlet-name>
+        <servlet-class>controller.user.authenticate.ResetPassword</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResetPassword</servlet-name>
+        <url-pattern>/reset-password</url-pattern>
+    </servlet-mapping>
+    <!--    Management Room Feature-->
+    <!--    manager room-->
+    <servlet>
+        <servlet-name>RoomManage</servlet-name>
+        <servlet-class>controller.user.room.RoomServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RoomManage</servlet-name>
+        <url-pattern>/user/room</url-pattern>
+    </servlet-mapping>
+    <!--    create room-->
+    <servlet>
+        <servlet-name>createRoom</servlet-name>
+        <servlet-class>controller.user.room.CreateRoomServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createRoom</servlet-name>
+        <url-pattern>/user/room/create</url-pattern>
+    </servlet-mapping>
+    <!--    room invite-->
+    <servlet>
+        <servlet-name>Invite</servlet-name>
+        <servlet-class>controller.user.room.InviteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Invite</servlet-name>
+        <url-pattern>/user/room/invite</url-pattern>
+    </servlet-mapping>
+
+    <!--    user get room (view room detail)-->
+    <servlet>
+        <servlet-name>getRoom</servlet-name>
+        <servlet-class>controller.user.room.RoomDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getRoom</servlet-name>
+        <url-pattern>/user/room/get</url-pattern>
+    </servlet-mapping>
+
+    <!--    Update room-->
+    <servlet>
+        <servlet-name>updateRoom</servlet-name>
+        <servlet-class>controller.user.room.UpdateRoom</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateRoom</servlet-name>
+        <url-pattern>/user/room/update</url-pattern>
+    </servlet-mapping>
+
+    <!--    Delete room -->
+    <servlet>
+        <servlet-name>deleteRoom</servlet-name>
+        <servlet-class>controller.user.room.DeleteRoom</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteRoom</servlet-name>
+        <url-pattern>/user/room/delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- view test detail-->
+    <servlet>
+        <servlet-name>viewTestDetail</servlet-name>
+        <servlet-class>controller.user.room.TestDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>viewTestDetail</servlet-name>
+        <url-pattern>/user/room/test/get</url-pattern>
+    </servlet-mapping>
+
+    <!--  delete test -->
+    <servlet>
+        <servlet-name>deleteTest</servlet-name>
+        <servlet-class>controller.user.room.DeleteTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteTest</servlet-name>
+        <url-pattern>/user/room/test/delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- update/edit test-->
+    <servlet>
+        <servlet-name>updateTest</servlet-name>
+        <servlet-class>controller.user.room.UpdateTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateTest</servlet-name>
+        <url-pattern>/user/room/test/update</url-pattern>
+    </servlet-mapping>
+
+    <!--    Management Set Feature-->
+    <!--    create set-->
+    <servlet>
+        <servlet-name>CreateSet</servlet-name>
+        <servlet-class>controller.user.set.CreateSet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateSet</servlet-name>
+        <url-pattern>/user/set/create</url-pattern>
+    </servlet-mapping>
+<!--    update set-->
+    <servlet>
+        <servlet-name>UpdateSet</servlet-name>
+        <servlet-class>controller.user.set.UpdateSet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateSet</servlet-name>
+        <url-pattern>/user/set/update</url-pattern>
+    </servlet-mapping>
+<!--    *********************************************ADMINISTRATOR******************************************************-->
+<!--    Authenticate Feature-->
+<!--    dashboard-->
+    <servlet>
+        <servlet-name>AdminDashboard</servlet-name>
+        <servlet-class>controller.admin.dashboard.DashBoard</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminDashboard</servlet-name>
+        <url-pattern>/admin/dashboard</url-pattern>
+    </servlet-mapping>
+    <!--    User Management Feature-->
+    <!--    user management-->
+    <servlet>
+        <servlet-name>AdminUserManagement</servlet-name>
+        <servlet-class>controller.admin.user.UserManagement</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminUserManagement</servlet-name>
+        <url-pattern>/admin/user</url-pattern>
+    </servlet-mapping>
+    <!--    create user-->
+    <servlet>
+        <servlet-name>CreateUserController</servlet-name>
+        <servlet-class>controller.admin.user.CreateUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateUserController</servlet-name>
+        <url-pattern>/admin/user/create</url-pattern>
+    </servlet-mapping>
+    <!--    delete user-->
+    <servlet>
+        <servlet-name>AdminDeleteUserController</servlet-name>
+        <servlet-class>controller.admin.user.DeleteUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteUserController</servlet-name>
+        <url-pattern>/admin/user/delete</url-pattern>
+    </servlet-mapping>
+    <!--    update user-->
+    <servlet>
+        <servlet-name>UpdateUserController</servlet-name>
+        <servlet-class>controller.admin.user.UpdateUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateUserController</servlet-name>
+        <url-pattern>/admin/user/update</url-pattern>
+    </servlet-mapping>
+<!--    view user profile-->
+    <servlet>
+        <servlet-name>ViewUserProfileController</servlet-name>
+        <servlet-class>controller.admin.user.UserProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewUserProfileController</servlet-name>
+        <url-pattern>/admin/user/profile</url-pattern>
+    </servlet-mapping>
+<!--    Room Management Feature-->
+<!--    Room management-->
+    <servlet>
+        <servlet-name>AdminRoomManagement</servlet-name>
+        <servlet-class>controller.admin.room.RoomManagement</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminRoomManagement</servlet-name>
+        <url-pattern>/admin/room</url-pattern>
+    </servlet-mapping>
+<!--    Create room-->
+    <servlet>
+        <servlet-name>AdminCreateRoom</servlet-name>
+        <servlet-class>controller.admin.room.CreateRoom</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminCreateRoom</servlet-name>
+        <url-pattern>/admin/room/create</url-pattern>
+    </servlet-mapping>
+<!--    Delete room-->
+    <servlet>
+        <servlet-name>AdminUpdateRoom</servlet-name>
+        <servlet-class>controller.admin.room.UpdateRoom</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminUpdateRoom</servlet-name>
+        <url-pattern>/admin/room/update</url-pattern>
+    </servlet-mapping>
+<!--    Update room-->
+    <servlet>
+        <servlet-name>AdminDeleteRoom</servlet-name>
+        <servlet-class>controller.admin.room.DeleteRoom</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteRoom</servlet-name>
+        <url-pattern>/admin/room/delete</url-pattern>
+    </servlet-mapping>
+<!--    View details of each room-->
+<!--    Set Management Feature-->
+<!--    Set management-->
+    <servlet>
+        <servlet-name>AdminSetManagement</servlet-name>
+        <servlet-class>controller.admin.set.SetManagement</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminSetManagement</servlet-name>
+        <url-pattern>/admin/set</url-pattern>
+    </servlet-mapping>
+<!--    Create set-->
+    <servlet>
+        <servlet-name>AdminCreateSet</servlet-name>
+        <servlet-class>controller.admin.set.AdminCreateSet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminCreateSet</servlet-name>
+        <url-pattern>/admin/set/create</url-pattern>
+    </servlet-mapping>
+<!--    Update set-->
+    <servlet>
+        <servlet-name>AdminUpdateSet</servlet-name>
+        <servlet-class>controller.admin.set.AdminUpdateSet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminUpdateSet</servlet-name>
+        <url-pattern>/admin/set/update</url-pattern>
+    </servlet-mapping>
+<!--    Delete set-->
+    <servlet>
+        <servlet-name>AdminDeleteSet</servlet-name>
+        <servlet-class>controller.admin.set.AdminDeleteSet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteSet</servlet-name>
+        <url-pattern>/admin/set/delete</url-pattern>
+    </servlet-mapping>
+<!--    Question Management Feature-->
+<!--    Question management-->
+    <servlet>
+        <servlet-name>AdminQuestionManagement</servlet-name>
+        <servlet-class>controller.admin.question.QuestionManagement</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminQuestionManagement</servlet-name>
+        <url-pattern>/admin/question</url-pattern>
+    </servlet-mapping>
+<!--    Create set-->
+    <servlet>
+        <servlet-name>AdminCreateQuestion</servlet-name>
+        <servlet-class>controller.admin.question.CreateQuestion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminCreateQuestion</servlet-name>
+        <url-pattern>/admin/question/create</url-pattern>
+    </servlet-mapping>
+<!--    Update set-->
+    <servlet>
+        <servlet-name>AdminUpdateQuestion</servlet-name>
+        <servlet-class>controller.admin.question.UpdateQuestion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminUpdateQuestion</servlet-name>
+        <url-pattern>/admin/question/update</url-pattern>
+    </servlet-mapping>
+<!--    Delete set-->
+    <servlet>
+        <servlet-name>AdminDeleteQuestion</servlet-name>
+        <servlet-class>controller.admin.question.DeleteQuestion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteQuestion</servlet-name>
+        <url-pattern>/admin/question/delete</url-pattern>
+    </servlet-mapping>
 </web-app>

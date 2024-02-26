@@ -2,6 +2,7 @@ package entity;
 
 import lombok.*;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 @Getter
@@ -15,11 +16,12 @@ public class User {
     private String email;
     private String givenName;
     private String familyName;
-    private String picture;
+    private String avatar;
     private String username;
     private String password;
-    private String createdAt;
-    private String updatedAt;
+    private boolean isVerified;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
     private ArrayList<Role> roles;
     private ArrayList<StarRate> ratedStar;
     private ArrayList<Test> doneTest;

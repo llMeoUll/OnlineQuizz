@@ -1,224 +1,226 @@
 <%@page contentType="text/html; ISO-8859-1" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <link rel="stylesheet" href="./css/dashboard.css">
-        <title>DashBoard</title>
-        <style>
-            <%@include file="../../../css/dashboard.css"%>
-        </style>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="../css/Dashboard.css" rel="stylesheet">
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <title>Dashboard</title>
     </head>
-
-    <body>
-    <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container-fluid ">
-            <!-- Left Side: Tên web -->
-            <div class="navbar-brand">Quizzical</div>
-
-            <!-- Middle: Navbar -->
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item link-header"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item link-header"><a class="nav-link" href="#">Admin Profile</a></li>
-            </ul>
-
-            <!-- Right Side: Admin Avatar -->
-
-            <div class="avatar-sign-out navbar-brand">
-                <button class="admin-avatar"></button>
-                <button onclick="" class="btn btn-secondary mb-2 sign-out">Sign out</button>
+    <body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="">
+            <img src="../imagines/logo1250x1250.png" alt="Quizzicle Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
+            Quizzicle
+        </a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
             </div>
-        </div>
-    </header>
-
-    <!-- Body -->
-    <div class="container-fluid">
-        <div class="row">
-
-            <!-- Left Sidebar -->
-            <div class="col-md-2 left-sidebar">
-                <button onclick="" class="btn btn-secondary mb-3">Hello Admin</button>
-                <ul class="nav flex-column">
-                    <button class="left-sidebar-item">
-                        <div>
-                            <img src="${pageContext.request.contextPath}/view/icons/overview1x.png" alt="">
-                        </div>
-                        <li class="nav-item"><a class="nav-link" href="#">Overview</a></li>
-                    </button>
-                    <button class="left-sidebar-item">
-                        <div>
-                            <img src="${pageContext.request.contextPath}/view/icons/users1x.png" alt="">
-                        </div>
-                        <li class="nav-item"><a class="nav-link" href="#">Manage User</a></li>
-                    </button>
-                    <button class="left-sidebar-item">
-                        <div>
-                            <img src="${pageContext.request.contextPath}/view/icons/manageset1x.png" alt="">
-                        </div>
-                        <li class="nav-item"><a class="nav-link" href="#">Manage Set</a></li>
-                    </button>
-                    <button class="left-sidebar-item">
-                        <div>
-                            <img src="${pageContext.request.contextPath}/view/icons/manageroom1x.png" alt="">
-                        </div>
-                        <li class="nav-item"><a class="nav-link" href="#">Manage Room</a></li>
-                    </button>
-                    <button class="left-sidebar-item">
-                        <div>
-                            <img src="${pageContext.request.contextPath}/view/icons/question1x.png" alt="">
-                        </div>
-                        <li class="nav-item"><a class="nav-link" href="#">Question Bank</a></li>
-                    </button>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="">Settings</a></li>
+                    <li><a class="dropdown-item" href="">Activity Log</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="/Quizzicle/logout">Logout</a></li>
                 </ul>
-            </div>
-
-            <div class="col-md-8 middle-content">
-                <div class="d-flex flex-column">
-                    <div class="account-manage">
-                        <div class="row">
-                            <div class="col-md-10 manage-title">
-                                Account management
-                            </div>
-                            <div class="col-md-2 manage-view">
-                                <button>View Details</button>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <a class="nav-link" href="/Quizzicle/admin/dashboard">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Dashboard
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Interface</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fa-regular fa-address-card"></i></div>
+                            Users
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/Quizzicle/admin/user">Users Information</a>
+                                <a class="nav-link" href="/Quizzicle/admin/user/create">Create New User</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRooms" aria-expanded="false" aria-controls="collapseRooms">
+                            <div class="sb-nav-link-icon"><i class="fa-brands fa-leanpub"></i></div>
+                            Rooms
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseRooms" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/Quizzicle/admin/room">Room List</a>
+                                <a class="nav-link" href="/Quizzicle/admin/room/create">Create New Room</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSets" aria-expanded="false" aria-controls="collapseSets">
+                            <div class="sb-nav-link-icon"><i class="fa-brands fa-leanpub"></i></div>
+                            Sets
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseSets" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/Quizzicle/admin/set">Set List</a>
+                                <a class="nav-link" href="/Quizzicle/admin/set/create">Create New Set</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseQuestions" aria-expanded="false" aria-controls="collapseQuestions">
+                            <div class="sb-nav-link-icon"><i class="fa-brands fa-leanpub"></i></div>
+                            Question Bank
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/Quizzicle/admin/question">Question List</a>
+                                <a class="nav-link" href="/Quizzicle/admin/question/create">Create New Question</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Administrator
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Dashboard</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-primary text-white mb-4">
+                                <div class="card-body">User Management</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="/Quizzicle/admin/user">View Details</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="row manage-overview mb-2">
-                            <div class="col-md-8 account-manage-item">
-                                <div></div>
-                                <canvas id="activeUsersChart"></canvas>
-                                <script>
-                                    var numberOfActiveUser = ${requestScope.listNumberOfActiveUser};
-                                </script>
-                                <script>
-                                    <%@include file="../../../js/ChartActiveUsers.js"%>
-                                </script>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-warning text-white mb-4">
+                                <div class="card-body">Room Management</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="/Quizzicle/admin/room">View Details</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
                             </div>
-                            <div class="col-md-3 account-manage-item list-new-account">
-                                <div class="account">Account 1</div>
-                                <div class="account">Account 2</div>
-                                <div class="account">Account 3</div>
-                                <div class="account">Account 4</div>
-                                <div class="account">Account 5</div>
-                                <div class="account">Account 6</div>
-                                <div class="account">Account 7</div>
-                                <div class="account">Account 8</div>
-                                <div class="account">Account 9</div>
-                                <div class="account">Account 10</div>
-                                <div class="account">Account 11</div>
-                                <div class="account">Account 11</div>
-                                <div class="account">Account 11</div>
-                                <div class="account">Account 11</div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-success text-white mb-4">
+                                <div class="card-body">Set Management</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="/Quizzicle/admin/set">View Details</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-danger text-white mb-4">
+                                <div class="card-body">Question Bank</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="/Quizzicle/admin/question">View Details</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="room-manage">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-10 manage-title">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-area me-1"></i>
+                                    Active User
+                                    <script>
+                                        var numberOfActiveUsers = ${requestScope.listNumberOfActiveUser};
+                                    </script>
+
+                                </div>
+                                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar me-1"></i>
                                     Room Management
                                 </div>
-                                <div class="col-md-2 manage-view">
-                                    <button>View Details</button>
+                                <div class="card-body">
+
                                 </div>
                             </div>
                         </div>
-                        <div class="row manage-overview mb-2">
-                            <div class="col-md-3 room-manage-item">
-                                Room 1
-                            </div>
-                            <div class="col-md-3 room-manage-item">
-                                Room 2
-                            </div>
-                            <div class="col-md-3 room-manage-item">
-                                Room 3
-                            </div>
-                        </div>
                     </div>
-                    <div class="set-manage">
-                        <div class="row">
-                            <div class="col-md-10 manage-title">
-                                Set Management
-                            </div>
-                            <div class="col-md-2 manage-view">
-                                <button>View Details</button>
-                            </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Weekly New Account
                         </div>
-                        <div class="set-manage-overview">
-                            <div class="set-manage-item">
-
-                            </div>
-                            <div class="set-manage-item">
-
-                            </div>
-                            <div class="set-manage-item">
-
-                            </div>
-                            <div class="set-manage-item">
-
-                            </div>
-                            <div class="set-manage-item">
-
-                            </div>
-                            <div class="set-manage-item">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="question-manage">
-                        <div class="row">
-                            <div class="col-md-10 manage-title">
-                                Question Bank
-                            </div>
-                            <div class="col-md-2 manage-view">
-                                <button>View Details</button>
-                            </div>
-                        </div>
-                        <div class="set-manage-overview">
-                            <table>
+                        <div class="card-body">
+                            <table id="datatablesSimple">
                                 <thead>
                                 <tr>
-                                    <td>Question ID</td>
-                                    <td>Category</td>
-                                    <td>Question Content</td>
-                                    <td>Question Answer</td>
-                                    <td>Author</td>
+                                    <th>User ID</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Created At</th>
+                                    <th>Updated At</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tfoot>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <th>User ID</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Created At</th>
+                                    <th>Updated At</th>
                                 </tr>
+                                </tfoot>
+                                <tbody>
+                                <c:forEach items="${requestScope.newUsersInWeek}" var="user">
+                                    <tr>
+                                        <td>${user.id}</td>
+                                        <td>${user.username}</td>
+                                        <td>${user.email}</td>
+                                        <td>${user.createdAt}</td>
+                                        <td>${user.updatedAt}</td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Right Sidebar -->
-            <div class="col-md-2 right-sidebar">
-                <h5>Notifications</h5>
-                <!-- Các thông báo nằm ở đây -->
-            </div>
-
-            <!-- Middle Content -->
-
-
+            </main>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="../js/Dashboard.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../js/ChartActiveUsers.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="../js/DataTableSimple.js"></script>
     </body>
-
 </html>

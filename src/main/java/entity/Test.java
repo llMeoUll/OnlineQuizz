@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,8 +18,8 @@ public class Test {
     private Room room;
     private String testName;
     private String testDescription;
-    private Date startTime;
-    private Date endTime;
+    private Timestamp startTime;
+    private Timestamp endTime;
     private ArrayList<Question> questions;
     private ArrayList<User> usersDoTest;
 }

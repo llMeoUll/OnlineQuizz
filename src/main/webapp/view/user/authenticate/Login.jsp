@@ -28,7 +28,7 @@
                 <form method="post" action="./login">
                     <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                         <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-                        <a href="./loginwithgoogle" role="button" class="btn btn-link">
+                        <a href="./login-with-google" role="button" class="btn btn-link">
                             <i class="fa-brands fa-google"></i>
                         </a>
                     </div>
@@ -58,7 +58,7 @@
                         ${requestScope.error}
                     </p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <a href="./forgotpassword" class="text-body">Forgot password?</a>
+                        <a href="./forgot-password" class="text-body">Forgot password?</a>
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
