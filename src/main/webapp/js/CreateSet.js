@@ -1,7 +1,17 @@
 $(document).on("keydown", "form", function (event) {
     return event.key != "Enter";
 });
-
+$(document).ready(function(){
+    $(window).scroll(function(){
+        let stickyTop = $('.sticky-top').offset().top;
+        let scrollTop = $(window).scrollTop();
+        if (scrollTop >= stickyTop) {
+            $('.sticky-top').addClass('shadow');
+        } else {
+            $('.sticky-top').removeClass('shadow');
+        }
+    });
+});
 // number of questions state
 function setNumberOfQuestions() {
     let numberOfQuestions = document.getElementsByClassName("question").length;
@@ -57,22 +67,64 @@ function handleSelectType(id) {
     switch (type) {
         case 'Multiple choice':
             document.getElementById(`multiple-choice-${id}`).style.display = 'block';
+            multipleChoiceQualityCheck(true, id);
             document.getElementById(`true-false-${id}`).style.display = 'none';
+            trueFalseQualityCheck(false, id);
             document.getElementById(`essay-${id}`).style.display = 'none';
+            essayQualityCheck(false, id);
             break;
         case 'True/False':
             document.getElementById(`multiple-choice-${id}`).style.display = 'none';
+            multipleChoiceQualityCheck(false, id);
             document.getElementById(`true-false-${id}`).style.display = 'block';
+            trueFalseQualityCheck(true, id);
             document.getElementById(`essay-${id}`).style.display = 'none';
+            essayQualityCheck(false, id);
             break;
         case 'Essay':
             document.getElementById(`multiple-choice-${id}`).style.display = 'none';
+            multipleChoiceQualityCheck(false, id);
             document.getElementById(`true-false-${id}`).style.display = 'none';
+            trueFalseQualityCheck(false, id);
             document.getElementById(`essay-${id}`).style.display = 'block';
+            essayQualityCheck(true, id);
             break;
     }
 }
 
+function multipleChoiceQualityCheck(require, id) {
+    const elements = [
+        document.getElementById(`mul-question-${id}`),
+        document.getElementById(`mul-answer-${id}`),
+        ...document.getElementById(`opt-container-${id}`).querySelectorAll('input')
+    ];
+
+    elements.forEach(element => {
+        if (require) {
+            element.setAttribute('required', 'required');
+        } else {
+            element.removeAttribute('required');
+        }
+    });
+}
+
+function trueFalseQualityCheck(require, id) {
+    const element = document.getElementById(`tf-question-${id}`);
+    if (require) {
+        element.setAttribute('required', 'required');
+    } else {
+        element.removeAttribute('required');
+    }
+}
+
+function essayQualityCheck(require, id) {
+    const element = document.getElementById(`essay-question-${id}`);
+    if (require) {
+        element.setAttribute('required', 'required');
+    } else {
+        element.removeAttribute('required');
+    }
+}
 
 function handleRemoveOpt(questionId, optId) {
     let container = document.getElementById(`opt-container-${questionId}`);
@@ -103,6 +155,7 @@ function handleAddOpt(id) {
     newInput.classList.add("form-control");
     newInput.name = `mul-question-${id}-opt-${container.childElementCount}`;
     newInput.placeholder = "Option " + (container.childElementCount); // Incremental placeholder
+    newInput.required = true;
 
     // Create the span element for the remove button
     let removeButtonSpan = document.createElement("span");
@@ -160,17 +213,17 @@ function handleAddQuestion() {
     cardBodyMul.setAttribute('id', `multiple-choice-${length}`);
     cardBodyMul.innerHTML = `
         <div class="form-floating mb-3">
-            <input type="text" class="form-control mul-question" id="mul-question-${length}" name="mul-question-${length}" placeholder="Enter a question"/>
+            <input type="text" class="form-control mul-question" id="mul-question-${length}" name="mul-question-${length}" placeholder="Enter a question" required/>
             <label class="mul-question-label" for="mul-question-${length}">Question</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control mul-answer" id="mul-answer-${length}" name="mul-answer-${length}" placeholder="Enter an answer"/>
+            <input type="text" class="form-control mul-answer" id="mul-answer-${length}" name="mul-answer-${length}" placeholder="Enter an answer" required/>
             <label class="mul-answer-label"  for="mul-answer-${length}">Answer</label>
         </div>
         <div class="opt-container" id="opt-container-${length}">
             <input type="hidden" name="number-opt-mul-${length}" id="number-opt-mul-${length}">
             <div class="input-group mb-3 align-items-center opt">
-                <input type="text" name="mul-question-${length}-opt-1" class="form-control" placeholder="Option 1"/>
+                <input type="text" name="mul-question-${length}-opt-1" class="form-control" placeholder="Option 1" required/>
                 <span class="text-primary mx-1 xmark-icon" role="button" onclick="handleRemoveOpt(${length}, 1);">
                     <i class="fa-solid fa-xmark"></i>
                 </span>
@@ -187,7 +240,7 @@ function handleAddQuestion() {
     cardBodyTF.setAttribute('style', 'display: none;');
     cardBodyTF.innerHTML = `
     <div class="form-floating mb-3">
-        <input type="text" class="form-control tf-question" id="tf-question-${length}" name="tf-question-${length}" placeholder="Enter a question"/>
+        <input type="text" class="form-control tf-question" id="tf-question-${length}" name="tf-question-${length}" placeholder="Enter a question" required/>
         <label class="tf-question-label" for="tf-question-${length}">Question</label>
     </div>
     <div class="form-floating mb-3">
@@ -205,7 +258,7 @@ function handleAddQuestion() {
     cardBodyEssay.setAttribute('style', 'display: none;');
     cardBodyEssay.innerHTML = `
     <div class="form-floating mb-3">
-        <input type="text" class="form-control essay-question" id="essay-question-${length}" name="essay-question-${length}" placeholder="Enter a question"/>
+        <input type="text" class="form-control essay-question" id="essay-question-${length}" name="essay-question-${length}" placeholder="Enter a question" required/>
         <label class="essay-question-label" for="essay-question-${length}">Question</label>
     </div>
     <textarea class="form-control essay-answer" id="essay-answer-${length}" name="essay-answer-${length}" placeholder="Enter a answer"
@@ -280,5 +333,25 @@ function handleRemoveQuestion(id) {
         console.error("No questions found to remove.");
     }
 }
+
+function handleSubmit(event) {
+    // Prevent the default form submission
+    event.preventDefault();
+
+    // Check if the number of questions is greater than or equal to 2
+    const numberOfQuestions = parseInt(document.getElementById('number-of-question').value);
+    if (numberOfQuestions >= 2) {
+        // If conditions are met, submit the form
+        event.target.submit();
+    } else {
+        // If conditions are not met, display an error message or take appropriate action
+        let submitToast = new bootstrap.Toast(document.getElementById('submit-toast'));
+        submitToast.show();
+    }
+}
+
+// Add event listener to the form for submission handling
+document.querySelector('form').addEventListener('submit', handleSubmit);
+
 
 
