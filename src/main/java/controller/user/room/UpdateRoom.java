@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class UpdateRoom extends HttpServlet {
     @Override
@@ -26,8 +27,12 @@ public class UpdateRoom extends HttpServlet {
         String description = request.getParameter("description");
         // Get the current date as java.util.Date
         java.util.Date utilDate = new java.util.Date();
-        // Convert java.util.Date to java.sql.Date
-        java.sql.Date updatedAt = new java.sql.Date(utilDate.getTime());
+
+        // Convert java.util.Date to timestamp (in milliseconds)
+        long timestamp = utilDate.getTime();
+
+        // Convert timestamp to java.sql.Timestamp
+        Timestamp updatedAt = new Timestamp(timestamp);
         Room r = new Room();
         r.setRoomId(roomId);
         r.setRoomName(roomName);
