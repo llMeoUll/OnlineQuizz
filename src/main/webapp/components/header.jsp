@@ -23,10 +23,10 @@
                     <a class="nav-link" href="#"><i class="fas fa-home"></i> Homepage</a>
                 </li>
                 <li class="nav-item active mr-5">
-                    <a class="nav-link" href="#"><i class='fas fa-book'></i> Your room</a>
+                    <a class="nav-link" href="./user/room"><i class='fas fa-book'></i> Your room</a>
                 </li>
                 <li class="nav-item active mr-5">
-                    <a class="nav-link" href="#" onclick="scrollToFooter()"><i class='fas fa-book'></i> Your set</a>
+                    <a class="nav-link" href="#"><i class='fas fa-book'></i> Your set</a>
                 </li>
                 <li class="nav-item mr-5 mt-1">
                     <form action="search" method="post" class="form-inline my-2 my-lg-0"
@@ -50,11 +50,11 @@
                     </button>
                     <div class="dropdown" id="custom-dropdown">
                         <div class="dropdown-menu custom-dropdown" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item custom-dropdown-item" href="#"><i class="fas fa-cog"></i>
+                            <a class="dropdown-item custom-dropdown-item" href="./user/set/create"><i class="fas fa-cog"></i>
                                 Set</a>
-                            <a class="dropdown-item custom-dropdown-item" href="#"><i class="fas fa-folder"></i>
+                            <a class="dropdown-item custom-dropdown-item" href="./user/set/create"><i class="fas fa-folder"></i>
                                 Question</a>
-                            <a class="dropdown-item custom-dropdown-item" href="./createRoom"><i
+                            <a class="dropdown-item custom-dropdown-item" href="./user/room"><i
                                     class="fa-solid fa-people-group"></i>
                                 Room</a>
                         </div>
@@ -83,7 +83,7 @@
                                      style="width: 25px;height: 25px;border-radius: 50%">
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href=""><i class=" sfa-solid fa-gear"></i> Brief</a>
+                                <a class="dropdown-item" href="./profile"><i class=" sfa-solid fa-gear"></i> Brief</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cogs"></i> Settings</a>
                                 <div class="dropdown-divider"></div>

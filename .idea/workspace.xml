@@ -27,6 +27,10 @@
       <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/SetManagement.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/UpdateSet.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/UpdateRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/UpdateRoom.java" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/HashtagDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/HashtagDBContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" afterDir="false" />
@@ -61,13 +65,12 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Vinh" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Login.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/view/user/room/ManageRoomScreen.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LogFilters">
@@ -96,20 +99,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-        &quot;keyToString&quot;: {
-        &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-        &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-        &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-        &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-        &quot;last_opened_file_path&quot;: &quot;E:/ProjectSWP/OnlineQuizz/src/main/webapp/imagines&quot;,
-        &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-        &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-        &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
-        }
-        }
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "E:/ProjectSWP/OnlineQuizz/src/main/webapp/imagines",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="entity" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\imagines" />
     </key>
@@ -130,9 +139,6 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="931dd783-fc28-4874-a1d9-d267a14af7bf" />
-        <option name="HTTP_PORT" value="8888" />
-        <option name="JNDI_PORT" value="1999" />
         <option name="BASE_DIRECTORY_NAME" value="75f005a9-0ba8-41c9-aeb4-a305cdc2c355" />
         <option name="JNDI_PORT" value="1098" />
       </server-settings>
@@ -141,8 +147,18 @@
       <predefined_log_file id="Tomcat Manager" />
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="50852" />
+        <option name="DEBUG_PORT" value="50804" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -216,8 +232,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes" comment="Fix error, forget hardcode" />
-      <changelist id="bd1ecc52-dcb2-4b0e-8576-f9b76ff480d1" name="Changes" comment="" />
+      <changelist id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="" />
       <created>1704853520966</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -245,7 +260,6 @@
       <workItem from="1706553086646" duration="316000" />
       <workItem from="1706549346789" duration="7570000" />
       <workItem from="1706610170728" duration="8770000" />
-      <workItem from="1708857461492" duration="10102000" />
       <workItem from="1706793133895" duration="1106000" />
       <workItem from="1706866862197" duration="11062000" />
       <workItem from="1706926525114" duration="3706000" />
@@ -293,10 +307,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="2" />
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/webapp/js/Dashboard.js</url>
           <option name="timeStamp" value="1" />

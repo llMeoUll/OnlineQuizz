@@ -24,167 +24,33 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <%--    <link rel="stylesheet" href="./css/HomePage.css">--%>
-    <link rel="stylesheet" href="./css/SearchPage.css">
+    <link rel="stylesheet" href="./css/HomePage.css">
 </head>
 <body>
-<%--<jsp:include page="../../../components/header.jsp"></jsp:include>--%>
+<jsp:include page="../../../components/header.jsp"></jsp:include>
 <!-- header -->
-
-<div class="nav-item mr-5 mt-1">
-    <form action="search" method="post" class="form-inline my-2 my-lg-0"
-          style="margin-top: 0.25rem; width: 120%">
-        <div class="input-group input-group-sm" style="width: 20vw">
-            <input name="txt" type="text" class="form-control" aria-label="Small"
-                   aria-describedby="inputGroup-sizing-sm" placeholder="Search..." value="${txtSearch}"
-                   style="font-size: 18px">
-            <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary btn-number">
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
+<main style="height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div class="nav-item mr-5 mt-1">
+        <div style="text-align: center">
+            <h1>Tìm kiếm Quizzcle</h1>
+            <p>Tìm học phần lớp học, người dùng,...</p>
         </div>
-    </form>
-</div>
-<%--<script>--%>
-<%--    const availablekeywords = [--%>
-<%--        "Biology",--%>
-<%--        "Chemistry",--%>
-<%--        "Physics",--%>
-<%--        "Mathematics",--%>
-<%--        "History",--%>
-<%--        "Geography",--%>
-<%--        "Literature",--%>
-<%--        "Vocabulary",--%>
-<%--        "Grammar",--%>
-<%--        "Spanish",--%>
-<%--        "French",--%>
-<%--        "German",--%>
-<%--        "Mandarin",--%>
-<%--        "Japanese",--%>
-<%--        "Economics",--%>
-<%--        "Psychology",--%>
-<%--        "Sociology",--%>
-<%--        "Philosophy",--%>
-<%--        "Art",--%>
-<%--        "Music",--%>
-<%--        "Computer Science",--%>
-<%--        "Programming",--%>
-<%--        "Statistics",--%>
-<%--        "Medicine",--%>
-<%--        "Nursing",--%>
-<%--        "Law",--%>
-<%--        "Political Science",--%>
-<%--        "Astronomy",--%>
-<%--        "Environmental Science",--%>
-<%--        "Nutrition",--%>
-<%--        "Physical Education",--%>
-<%--        "Business",--%>
-<%--        "Marketing",--%>
-<%--        "Management",--%>
-<%--        "Finance",--%>
-<%--        "Accounting",--%>
-<%--        "Entrepreneurship",--%>
-<%--        "Communication",--%>
-<%--        "Public Speaking",--%>
-<%--        "Debate",--%>
-<%--        "Ethics",--%>
-<%--        "Cultural Studies",--%>
-<%--        "Anthropology",--%>
-<%--        "Archaeology",--%>
-<%--        "Paleontology",--%>
-<%--        "Mythology",--%>
-<%--        "Religion",--%>
-<%--        "World Religions",--%>
-<%--        "Ethics",--%>
-<%--        "Leadership",--%>
-<%--        "Teamwork",--%>
-<%--        "Time Management",--%>
-<%--        "Goal Setting",--%>
-<%--        "Stress Management",--%>
-<%--        "Mindfulness",--%>
-<%--        "Motivation",--%>
-<%--        "Self-discipline",--%>
-<%--        "Creativity",--%>
-<%--        "Critical Thinking",--%>
-<%--        "Problem Solving",--%>
-<%--        "Decision Making",--%>
-<%--        "Emotional Intelligence",--%>
-<%--        "Cybersecurity",--%>
-<%--        "Artificial Intelligence",--%>
-<%--        "Machine Learning",--%>
-<%--        "Robotics",--%>
-<%--        "Cryptocurrency",--%>
-<%--        "Blockchain",--%>
-<%--        "Internet of Things (IoT)",--%>
-<%--        "Virtual Reality (VR)",--%>
-<%--        "Augmented Reality (AR)",--%>
-<%--        "Renewable Energy",--%>
-<%--        "Climate Change",--%>
-<%--        "Sustainable Development",--%>
-<%--        "Green Living",--%>
-<%--        "Yoga",--%>
-<%--        "Meditation",--%>
-<%--        "Fitness",--%>
-<%--        "Nutrition",--%>
-<%--        "Healthy Living",--%>
-<%--        "Cooking",--%>
-<%--        "Gardening",--%>
-<%--        "DIY Projects",--%>
-<%--        "Photography",--%>
-<%--        "Film",--%>
-<%--        "Animation",--%>
-<%--        "Game Design",--%>
-<%--        "Graphic Design",--%>
-<%--        "Web Development",--%>
-<%--        "Mobile App Development",--%>
-<%--        "Social Media",--%>
-<%--        "Influencer Marketing",--%>
-<%--        "E-commerce",--%>
-<%--        "Digital Marketing",--%>
-<%--        "Stock Market",--%>
-<%--        "Real Estate",--%>
-<%--        "Travel",--%>
-<%--        "Food",--%>
-<%--        "Fashion",--%>
-<%--        "Parenting"--%>
-<%--    ];--%>
-<%--    const resultBox = document.querySelector(".result-box");--%>
-<%--    const inputBox = document.querySelector("#input-box");--%>
+        <form action="search" method="post" class="form-inline my-2 my-lg-0"
+              style="width: 100%;">
+            <div class="input-group input-group-lg" style="width: 50vw; height: 20px">
+                <input name="query" type="text" class="form-control" aria-label="Large"
+                       aria-describedby="inputGroup-sizing-lg" placeholder="Search..." value="${txtSearch}"
+                       style="font-size: 20px; width: 80%;">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-secondary btn-number">
+                        <i class="fa fa-search" style="margin-top: 2px;"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
 
-<%--    inputBox.onkeyup = function () {--%>
-<%--        let result = [];--%>
-<%--        let input = inputBox.value;--%>
-<%--        if (input.length) {--%>
-<%--            result = availablekeywords.filter((data) => {--%>
-<%--                return data.toLocaleLowerCase().includes(input.toLocaleLowerCase());--%>
-<%--            });--%>
-<%--            console.log(result)--%>
-<%--        }--%>
-<%--        if (result.length === 0) {--%>
-<%--            resultBox.innerHTML = ""; // Clear the result box if no matches found--%>
-<%--        } else {--%>
-<%--            display(result);--%>
-<%--        }--%>
-<%--        if (!input.length) {--%>
-<%--            resultBox.innerHTML = "";--%>
-<%--        }--%>
-<%--    }--%>
-<%--    function display(result) {--%>
-<%--        const slicedResult = result.slice(0, 6);--%>
-<%--        const content = slicedResult.map(function (list) {--%>
-<%--            return '<li onclick="selectInput(this)"><i class="fa-solid fa-magnifying-glass"></i> ' + list + '</li>';--%>
-<%--        });--%>
-<%--        resultBox.innerHTML = '<ul>' + content.join('') + '</ul>';--%>
-<%--    }--%>
-<%--    function selectInput(list) {--%>
-<%--        inputBox.value = element.textContent;--%>
-<%--        resultBox.innerHTML = "";--%>
-<%--    }--%>
-<%--</script>--%>
-<!-- Footer -->
-<%--<jsp:include page="../../../components/footer.jsp"></jsp:include>--%>
-<!-- Footer -->
-<%--<script src="./js/Search.js"></script>--%>
+<jsp:include page="../../../components/footer.jsp"></jsp:include>
 </body>
 </html>
