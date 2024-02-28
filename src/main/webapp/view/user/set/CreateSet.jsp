@@ -25,7 +25,7 @@
 <div id="create-set-content" style="margin-top: 64px">
     <form action="./create" method="post">
         <div class="container-fluid bg-white p-4 d-flex align-items-center justify-content-between sticky-top z-3">
-            <h3 class="d-inline mx-3">Update Set</h3>
+            <h3 class="d-inline mx-3">Create a new Set</h3>
             <button type="submit" class="btn btn-primary mx-3">Create</button>
         </div>
         <div class="container d-flex flex-column my-3 z-1">
