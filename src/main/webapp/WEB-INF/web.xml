@@ -7,31 +7,31 @@
         <listener-class>controller.admin.schedule.ActiveSessionCounter</listener-class>
     </listener>
     <!--    *********************************************Filter******************************************************-->
-    <filter>
-        <filter-name>AuthenticateFilter</filter-name>
-        <filter-class>filter.Authenticate</filter-class>
-    </filter>
-    <filter>
-        <filter-name>AuthorizationFilter</filter-name>
-        <filter-class>filter.Authorization</filter-class>
-    </filter>
+<!--    <filter>-->
+<!--        <filter-name>AuthenticateFilter</filter-name>-->
+<!--        <filter-class>filter.Authenticate</filter-class>-->
+<!--    </filter>-->
+<!--    <filter>-->
+<!--        <filter-name>AuthorizationFilter</filter-name>-->
+<!--        <filter-class>filter.Authorization</filter-class>-->
+<!--    </filter>-->
 
-    <filter-mapping>
-        <filter-name>AuthenticateFilter</filter-name>
-        <url-pattern>/user/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthenticateFilter</filter-name>
-        <url-pattern>/admin/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/user/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorizationFilter</filter-name>
-        <url-pattern>/admin/*</url-pattern>
-    </filter-mapping>
+<!--    <filter-mapping>-->
+<!--        <filter-name>AuthenticateFilter</filter-name>-->
+<!--        <url-pattern>/user/*</url-pattern>-->
+<!--    </filter-mapping>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>AuthenticateFilter</filter-name>-->
+<!--        <url-pattern>/admin/*</url-pattern>-->
+<!--    </filter-mapping>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>AuthorizationFilter</filter-name>-->
+<!--        <url-pattern>/user/*</url-pattern>-->
+<!--    </filter-mapping>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>AuthorizationFilter</filter-name>-->
+<!--        <url-pattern>/admin/*</url-pattern>-->
+<!--    </filter-mapping>-->
     <!--    *********************************************USER******************************************************-->
     <!--    Authenticate Feature-->
     <!--    log in with Google-->
@@ -132,7 +132,6 @@
         <servlet-name>Invite</servlet-name>
         <url-pattern>/user/room/invite</url-pattern>
     </servlet-mapping>
-
     <!--    user get room (view room detail)-->
     <servlet>
         <servlet-name>getRoom</servlet-name>
@@ -192,7 +191,6 @@
         <servlet-name>updateTest</servlet-name>
         <url-pattern>/user/room/test/update</url-pattern>
     </servlet-mapping>
-
     <!--    Management Set Feature-->
     <!--    create set-->
     <servlet>
@@ -211,6 +209,34 @@
     <servlet-mapping>
         <servlet-name>UpdateSet</servlet-name>
         <url-pattern>/user/set/update</url-pattern>
+    </servlet-mapping>
+  <!--    View details of each room-->
+    <!--    SearchPage-->
+    <servlet>
+        <servlet-name>SearchControl</servlet-name>
+        <servlet-class>controller.user.search.SearchControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchControl</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <!--HomePage-->
+    <servlet>
+        <servlet-name>HomeControl</servlet-name>
+        <servlet-class>controller.user.HomeController.HomeControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeControl</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+<!--    Profile-->
+    <servlet>
+        <servlet-name>UserProfileControl</servlet-name>
+        <servlet-class>controller.user.profile.UserProfileControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserProfileControl</servlet-name>
+        <url-pattern>/user/brief</url-pattern>
     </servlet-mapping>
 <!--    *********************************************ADMINISTRATOR******************************************************-->
 <!--    Authenticate Feature-->
@@ -260,7 +286,7 @@
         <servlet-name>UpdateUserController</servlet-name>
         <url-pattern>/admin/user/update</url-pattern>
     </servlet-mapping>
-<!--    view user profile-->
+    <!--    view user profile-->
     <servlet>
         <servlet-name>ViewUserProfileController</servlet-name>
         <servlet-class>controller.admin.user.UserProfile</servlet-class>
@@ -269,8 +295,8 @@
         <servlet-name>ViewUserProfileController</servlet-name>
         <url-pattern>/admin/user/profile</url-pattern>
     </servlet-mapping>
-<!--    Room Management Feature-->
-<!--    Room management-->
+    <!--    Room Management Feature-->
+    <!--    Room management-->
     <servlet>
         <servlet-name>AdminRoomManagement</servlet-name>
         <servlet-class>controller.admin.room.RoomManagement</servlet-class>
@@ -279,7 +305,7 @@
         <servlet-name>AdminRoomManagement</servlet-name>
         <url-pattern>/admin/room</url-pattern>
     </servlet-mapping>
-<!--    Create room-->
+    <!--    Create room-->
     <servlet>
         <servlet-name>AdminCreateRoom</servlet-name>
         <servlet-class>controller.admin.room.CreateRoom</servlet-class>
@@ -288,7 +314,7 @@
         <servlet-name>AdminCreateRoom</servlet-name>
         <url-pattern>/admin/room/create</url-pattern>
     </servlet-mapping>
-<!--    Delete room-->
+    <!--    Delete room-->
     <servlet>
         <servlet-name>AdminUpdateRoom</servlet-name>
         <servlet-class>controller.admin.room.UpdateRoom</servlet-class>
@@ -297,7 +323,7 @@
         <servlet-name>AdminUpdateRoom</servlet-name>
         <url-pattern>/admin/room/update</url-pattern>
     </servlet-mapping>
-<!--    Update room-->
+    <!--    Update room-->
     <servlet>
         <servlet-name>AdminDeleteRoom</servlet-name>
         <servlet-class>controller.admin.room.DeleteRoom</servlet-class>

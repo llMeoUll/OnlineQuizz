@@ -1,19 +1,13 @@
 package controller.user.authenticate;
 
-import com.lambdaworks.crypto.SCrypt;
 import com.lambdaworks.crypto.SCryptUtil;
 import dao.UserDBContext;
 import entity.User;
-import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import util.Email;
-import util.MailTemplate;
 
 import java.io.IOException;
-import java.security.GeneralSecurityException;
-import java.security.SecureRandom;
-import java.util.Random;
 
 
 public class Register extends HttpServlet {

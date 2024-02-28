@@ -40,8 +40,32 @@ public class SetDBContext extends DBContext {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return ownedSets;
+    }
+    // search Set by name
+    public ArrayList<Set> search(String name) {
+        ArrayList<Set> searchSets = new ArrayList<>();
+        String sqlSearchByName = "select sid, sname, description, is_private,uid from `set` \n" +
+                "where sname like ?";
+        try {
+            PreparedStatement stmSearchSetByName = connection.prepareStatement(sqlSearchByName);
+            stmSearchSetByName.setString(1, "%" + name + "%");
+            ResultSet rs = stmSearchSetByName.executeQuery();
+            while (rs.next()) {
+                Set set = new Set();
+                set.setSId(rs.getInt("sid"));
+                set.setSName(rs.getString("sname"));
+                set.setDescription(rs.getString("description"));
+                set.setPrivate(rs.getBoolean("is_private"));
+                UserDBContext udb = new UserDBContext();
+                User user = udb.get(rs.getInt("uid"));
+                set.setUser(user);
+                searchSets.add(set);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return searchSets;
     }
 
     public Set get(int setId) {

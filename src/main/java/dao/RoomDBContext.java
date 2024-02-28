@@ -10,7 +10,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class RoomDBContext extends DBContext {
-
     public void insert(Room entity) {
         String sql = "INSERT INTO `online_quizz`.`room`\n" + "(`room_id`,\n" + "`room_name`,\n" + "`code`,\n" + "`password`,\n" + "`description`,\n" + "`uid`,\n" + "`created_at`)\n" + "VALUES\n" + "(?, ?, ?, ?, ?, ?, ?);\n";
 
@@ -282,6 +281,35 @@ public class RoomDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
+    // search Room by Name
+    public ArrayList<Room> search(String name) {
+        ArrayList<Room> rooms = new ArrayList<>();
+        String sql = "select * from room \n" +
+                "where room_name like ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, "%" + name + "%");
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                Room r = new Room();
+                r.setRoomId(rs.getInt(1));
+                r.setRoomName(rs.getString(2));
+                r.setCode(rs.getString(3));
+                r.setPassword(rs.getString(4));
+                UserDBContext udb = new UserDBContext();
+                User user = udb.get(rs.getInt("uid"));
+                r.setUser(user);
+                r.setDescription(rs.getString(5));
+                r.setCreatedAt(rs.getTimestamp(7));
+                r.setUpdatedAt(rs.getTimestamp(8));
+                rooms.add(r);
+            }
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+      return rooms;
+    }
+      
 
     public Room getRoomById(Room r) {
         String sql = "SELECT \n" +
@@ -305,8 +333,6 @@ public class RoomDBContext extends DBContext {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+      return null;
     }
-
-
 }
