@@ -2,6 +2,8 @@ package dao;
 
 import entity.Question;
 import entity.QuestionOption;
+import entity.Set;
+import entity.Type;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +11,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class QuestionDBContext extends DBContext {
-    public void insertQuestions(ArrayList<Question> questions, int setId, Connection connection) throws SQLException {
+public class QuestionDBContext extends DBContext{
+    public ArrayList<Question> list(int setId, Connection connection) {
+        ArrayList<Question> questions = new ArrayList<>();
+        String sql = "SELECT * FROM `online_quizz`.`question` WHERE `question`.`sid` = ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, setId);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()) {
+                Question question = new Question();
+                question.setQId(rs.getInt("qid"));
+                question.setQuestion(rs.getString("question"));
+                question.setAnswer(rs.getString("answer"));
+                question.setType(new TypeDBContext().get(rs.getInt("type_id"), connection));
+                if (question.getType().getTypeName().equals("Multiple choice")){
+                    question.setQuestionOptions(new QuestionOptionsDBContext().list(question.getQId(), connection));
+                }
+                questions.add(question);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return questions;
+    }
+   public void insertQuestions(ArrayList<Question> questions, int setId, Connection connection) throws SQLException {
             String insertQuestionQuery = "INSERT INTO `online_quizz`.`question`\n" +
                     "(`question`,\n" +
                     "`answer`,\n" +
@@ -57,5 +83,66 @@ public class QuestionDBContext extends DBContext {
                 connection.rollback();
                 throw new RuntimeException("Transaction failed.", e);
             }
+    }
+
+    public void deleteAll(int sId, Connection connection) throws SQLException {
+        QuestionOptionsDBContext questionOptionsDBContext = new QuestionOptionsDBContext();
+        ArrayList<Question> questions = list(sId, connection);
+        for (Question question : questions) {
+            if (question.getType().getTypeName().equals("Multiple choice")) {
+                questionOptionsDBContext.deleteAll(question.getQId(), connection);
+            }
+        }
+
+        String sql = "DELETE FROM `online_quizz`.`question` WHERE `sid` = ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, sId);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            connection.rollback();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<Question> list() {
+        ArrayList<Question> questions = new ArrayList<>();
+        String sqlListQuestion = "SELECT q.qid, q.question, q.answer, q.sid,\n" +
+                " q.type_id, t.type_name, s.sname FROM online_quizz.question q\n" +
+                " INNER JOIN online_quizz.`type` t ON t.type_id = q.type_id\n" +
+                " INNER JOIN online_quizz.`set` s ON s.sid = q.sid;";
+        try {
+            PreparedStatement stmListQuestion = connection.prepareStatement(sqlListQuestion);
+            ResultSet rs = stmListQuestion.executeQuery();
+            while(rs.next()) {
+                Question question = new Question();
+                Set set = new Set();
+                set.setSId(rs.getInt("sid"));
+                set.setSName(rs.getString("sname"));
+                question.setSet(set);
+                question.setQId(rs.getInt("qid"));
+                question.setQuestion(rs.getString("question"));
+                question.setAnswer(rs.getString("answer"));
+                Type type = new Type();
+                type.setTypeId(rs.getInt("type_id"));
+                type.setTypeName(rs.getString("type_name"));
+                question.setType(type);
+                questions.add(question);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return questions;
+    }
+
+    public void delete(int qid) {
+        String sqlDeleteQuestion = "DELETE FROM `online_quizz`.`question` WHERE `qid` = ?;";
+        try {
+            PreparedStatement stmDeleteQuestion = connection.prepareStatement(sqlDeleteQuestion);
+            stmDeleteQuestion.setInt(1, qid);
+            stmDeleteQuestion.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
