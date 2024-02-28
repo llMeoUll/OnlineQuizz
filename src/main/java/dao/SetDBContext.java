@@ -1,9 +1,6 @@
 package dao;
 
-import entity.HashTag;
-import entity.Question;
-import entity.Set;
-import entity.User;
+import entity.*;
 import org.checkerframework.checker.units.qual.A;
 
 import java.sql.PreparedStatement;
@@ -40,32 +37,8 @@ public class SetDBContext extends DBContext {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
         return ownedSets;
-    }
-    // search Set by name
-    public ArrayList<Set> search(String name) {
-        ArrayList<Set> searchSets = new ArrayList<>();
-        String sqlSearchByName = "select sid, sname, description, is_private,uid from `set` \n" +
-                "where sname like ?";
-        try {
-            PreparedStatement stmSearchSetByName = connection.prepareStatement(sqlSearchByName);
-            stmSearchSetByName.setString(1, "%" + name + "%");
-            ResultSet rs = stmSearchSetByName.executeQuery();
-            while (rs.next()) {
-                Set set = new Set();
-                set.setSId(rs.getInt("sid"));
-                set.setSName(rs.getString("sname"));
-                set.setDescription(rs.getString("description"));
-                set.setPrivate(rs.getBoolean("is_private"));
-                UserDBContext udb = new UserDBContext();
-                User user = udb.get(rs.getInt("uid"));
-                set.setUser(user);
-                searchSets.add(set);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return searchSets;
     }
 
     public Set get(int setId) {
@@ -119,7 +92,7 @@ public class SetDBContext extends DBContext {
                         HashtagDBContext hashtagDBContext = new HashtagDBContext();
                         hashtagDBContext.insertAll(set.getHashTags(), setId, connection);
                         QuestionDBContext questionDBContext = new QuestionDBContext();
-                        questionDBContext.insertQuestions(set.getQuestions(), setId, connection);
+                        questionDBContext.insertAll(set.getQuestions(), setId, connection);
                     }
                     connection.commit(); // Commit the transaction for inserting set
                 } catch (SQLException e) {
@@ -167,7 +140,7 @@ public class SetDBContext extends DBContext {
                 QuestionDBContext questionDBContext = new QuestionDBContext();
                 //delete all question
                 questionDBContext.deleteAll(set.getSId(), connection);
-                questionDBContext.insertQuestions(set.getQuestions(), set.getSId(), connection);
+                questionDBContext.insertAll(set.getQuestions(), set.getSId(), connection);
                 connection.commit(); // Commit the transaction for updating set
             } catch (SQLException e) {
                 connection.rollback(); // Rollback if there's an exception
@@ -190,11 +163,11 @@ public class SetDBContext extends DBContext {
             } else {
                 return true;
             }
-          } catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
-          }
+        }
     }
-          
+
     public ArrayList<Set> list() {
         ArrayList<Set> sets = new ArrayList<>();
         try {
@@ -237,5 +210,30 @@ public class SetDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
-
+    public ArrayList<Set> search(String name) {
+        ArrayList<Set> sets = new ArrayList<>();
+        String sql = "SELECT * FROM online_quizz.set\n" +
+                "where sname like ?;";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, "%" + name + "%");
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                Set set = new Set();
+                set.setSId(rs.getInt("sid"));
+                set.setSName(rs.getString("sname"));
+                set.setDescription(rs.getString("description"));
+                set.setPrivate(rs.getBoolean("is_private"));
+                set.setCreatedAt(rs.getTimestamp("created_at"));
+                set.setUpdatedAt(rs.getTimestamp("updated_at"));
+                UserDBContext udb = new UserDBContext();
+                User user = udb.get(rs.getInt("uid"));
+                set.setUser(user);
+                sets.add(set);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return sets;
+    }
 }
