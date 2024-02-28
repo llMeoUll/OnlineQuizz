@@ -4,10 +4,9 @@ import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 
-public abstract class DBContext {
+public abstract class DBContext<U> {
     protected Connection connection;
 
     DBContext() {
