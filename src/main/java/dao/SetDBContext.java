@@ -119,7 +119,7 @@ public class SetDBContext extends DBContext {
                         HashtagDBContext hashtagDBContext = new HashtagDBContext();
                         hashtagDBContext.insertAll(set.getHashTags(), setId, connection);
                         QuestionDBContext questionDBContext = new QuestionDBContext();
-                        questionDBContext.insertAll(set.getQuestions(), setId, connection);
+                        questionDBContext.insertQuestions(set.getQuestions(), setId, connection);
                     }
                     connection.commit(); // Commit the transaction for inserting set
                 } catch (SQLException e) {
@@ -167,7 +167,7 @@ public class SetDBContext extends DBContext {
                 QuestionDBContext questionDBContext = new QuestionDBContext();
                 //delete all question
                 questionDBContext.deleteAll(set.getSId(), connection);
-                questionDBContext.insertAll(set.getQuestions(), set.getSId(), connection);
+                questionDBContext.insertQuestions(set.getQuestions(), set.getSId(), connection);
                 connection.commit(); // Commit the transaction for updating set
             } catch (SQLException e) {
                 connection.rollback(); // Rollback if there's an exception
