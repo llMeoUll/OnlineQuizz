@@ -41,7 +41,7 @@
                     <li><a class="dropdown-item" href="">Settings</a></li>
                     <li><a class="dropdown-item" href="">Activity Log</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="../logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="/Quizzicle/logout">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -75,7 +75,8 @@
                         </a>
                         <div class="collapse" id="collapseRooms" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">List Room</a>
+                                <a class="nav-link" href="/Quizzicle/admin/room">List Room</a>
+                                <a class="nav-link" href="/Quizzicle/admin/room/create">Create New Room</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSets" aria-expanded="false" aria-controls="collapseSets">
@@ -85,7 +86,8 @@
                         </a>
                         <div class="collapse" id="collapseSets" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="">Set List</a>
+                                <a class="nav-link" href="/Quizzicle/admin/set">Set List</a>
+                                <a class="nav-link" href="/Quizzicle/admin/set/create">Create New Set</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseQuestions" aria-expanded="false" aria-controls="collapseQuestions">
@@ -95,7 +97,8 @@
                         </a>
                         <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="light_user_list.html"></a>
+                                <a class="nav-link" href="/Quizzicle/admin/question">Question List</a>
+                                <a class="nav-link" href="/Quizzicle/admin/question/create">Create New Question</a>
                             </nav>
                         </div>
                     </div>

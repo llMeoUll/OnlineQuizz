@@ -34,7 +34,7 @@
                     <li><a class="dropdown-item" href="">Settings</a></li>
                     <li><a class="dropdown-item" href="">Activity Log</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="../logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="/Quizzicle/logout">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -68,7 +68,8 @@
                         </a>
                         <div class="collapse" id="collapseRooms" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">List Room</a>
+                                <a class="nav-link" href="/Quizzicle/admin/room">Room List</a>
+                                <a class="nav-link" href="/Quizzicle/admin/room/create">Create New Room</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSets" aria-expanded="false" aria-controls="collapseSets">
@@ -78,7 +79,8 @@
                         </a>
                         <div class="collapse" id="collapseSets" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="">Set List</a>
+                                <a class="nav-link" href="/Quizzicle/admin/set">Set List</a>
+                                <a class="nav-link" href="/Quizzicle/admin/set/create">Create New Set</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseQuestions" aria-expanded="false" aria-controls="collapseQuestions">
@@ -88,7 +90,8 @@
                         </a>
                         <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="light_user_list.html"></a>
+                                <a class="nav-link" href="/Quizzicle/admin/question">Question List</a>
+                                <a class="nav-link" href="/Quizzicle/admin/question/create">Create New Question</a>
                             </nav>
                         </div>
                     </div>
@@ -120,7 +123,7 @@
                             <div class="card bg-warning text-white mb-4">
                                 <div class="card-body">Room Management</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="./room">View Details</a>
+                                    <a class="small text-white stretched-link" href="/Quizzicle/admin/room">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -129,7 +132,7 @@
                             <div class="card bg-success text-white mb-4">
                                 <div class="card-body">Set Management</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="Quizzicle/admin/set">View Details</a>
+                                    <a class="small text-white stretched-link" href="/Quizzicle/admin/set">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -138,7 +141,7 @@
                             <div class="card bg-danger text-white mb-4">
                                 <div class="card-body">Question Bank</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="Quizzicle/admin/question-bank">View Details</a>
+                                    <a class="small text-white stretched-link" href="/Quizzicle/admin/question">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -211,18 +214,6 @@
                     </div>
                 </div>
             </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

@@ -9,15 +9,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60da0121-08d9-4a14-a506-ee711ed49385" name="Changes" comment="Fix error, forget hardcode">
+    <list default="true" id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/question/CreateQuestion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/question/DeleteQuestion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/question/QuestionManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/question/UpdateQuestion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/set/AdminCreateSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/set/AdminDeleteSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/set/AdminUpdateSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/set/SetManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/UpdateSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/HashtagSetMappingDBContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionOptionsDBContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/QuestionBankButton.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateSet.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/QuestionManagement.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/SetManagement.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/UpdateSet.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/profile/UserProfileControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/profile/UserProfileControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/search/SearchControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/search/SearchControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/UpdateRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/UpdateRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/HashtagDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/HashtagDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TypeDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TypeDBContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/Profile/UserProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/Profile/UserProfile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/SearchPage/Search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/SearchPage/Search.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/SearchPage/SearchResult.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/SearchPage/SearchResult.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateRoom.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateRoom.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UpdateUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UpdateUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UserProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewTestDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewTestDetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,19 +56,19 @@
         <option value="JavaScript File" />
         <option value="Class" />
         <option value="Jsp File" />
+        <option value="Servlet" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Vinh" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Login.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/view/user/room/ManageRoomScreen.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LogFilters">
@@ -72,21 +97,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/ProjectSWP/OnlineQuizz/src/main/webapp/imagines&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "E:/ProjectSWP/OnlineQuizz/src/main/webapp/imagines",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="entity" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\imagines" />
     </key>
@@ -97,7 +127,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
+      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
       <option name="UPDATING_POLICY" value="update-resources" />
       <deployment>
         <artifact name="Quizzicle:war exploded">
@@ -107,17 +137,26 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="f7d06a1c-6ea4-4af7-9f64-d0cf1a368304" />
-        <option name="HTTP_PORT" value="8888" />
-        <option name="JNDI_PORT" value="1999" />
+        <option name="BASE_DIRECTORY_NAME" value="75f005a9-0ba8-41c9-aeb4-a305cdc2c355" />
+        <option name="JNDI_PORT" value="1098" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
       <predefined_log_file id="Tomcat Manager" />
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="64001" />
+        <option name="DEBUG_PORT" value="50804" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -183,6 +222,7 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="Quizzicle:war exploded" />
+          <artifact name="OnlineQuizz:war exploded" />
         </option>
       </method>
     </configuration>
@@ -190,7 +230,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="60da0121-08d9-4a14-a506-ee711ed49385" name="Changes" comment="Fix error, forget hardcode" />
+      <changelist id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="" />
       <created>1704853520966</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -218,12 +258,25 @@
       <workItem from="1706553086646" duration="316000" />
       <workItem from="1706549346789" duration="7570000" />
       <workItem from="1706610170728" duration="8770000" />
-      <workItem from="1708857461492" duration="10102000" />
-      <workItem from="1708891239688" duration="843000" />
-      <workItem from="1708892183947" duration="1478000" />
-      <workItem from="1708893675611" duration="8871000" />
-      <workItem from="1708908086002" duration="1964000" />
-      <workItem from="1708913623768" duration="7177000" />
+      <workItem from="1706793133895" duration="1106000" />
+      <workItem from="1706866862197" duration="11062000" />
+      <workItem from="1706926525114" duration="3706000" />
+      <workItem from="1708312096805" duration="6102000" />
+      <workItem from="1708563063169" duration="8553000" />
+      <workItem from="1708312096805" duration="7317000" />
+      <workItem from="1708391316336" duration="10322000" />
+      <workItem from="1708475502782" duration="7008000" />
+      <workItem from="1708513513582" duration="904000" />
+      <workItem from="1708566770626" duration="26602000" />
+      <workItem from="1708651568635" duration="20388000" />
+      <workItem from="1708738224340" duration="18256000" />
+      <workItem from="1708566770626" duration="5296000" />
+      <workItem from="1708616425416" duration="3168000" />
+      <workItem from="1708620552116" duration="5669000" />
+      <workItem from="1708702591069" duration="78000" />
+      <workItem from="1708714324835" duration="19068000" />
+      <workItem from="1708792792524" duration="20472000" />
+      <workItem from="1708714324835" duration="19441000" />
     </task>
     <servers />
   </component>
@@ -248,10 +301,9 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="2" />
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/webapp/js/Dashboard.js</url>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -260,7 +312,6 @@
         <watch expression="listRoomName.get(0).hashIsZero" />
         <watch expression="listRoomName.get(1)" />
         <watch expression="listRoom" />
-        <watch expression="req" />
       </configuration>
     </watches-manager>
   </component>
