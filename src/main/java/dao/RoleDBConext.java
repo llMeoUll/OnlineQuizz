@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RoleDBConext extends DBContext{
+public class RoleDBConext extends DBContext {
     public Role get(Role entity) {
         String sqlGetIdUserRole =
                 "SELECT `role`.`rid`\n" +

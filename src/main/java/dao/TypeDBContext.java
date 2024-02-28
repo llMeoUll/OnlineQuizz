@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+
 public class TypeDBContext extends DBContext{
     public Type get(int typeId, Connection connection) {
         Type type = new Type();

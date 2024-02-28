@@ -36,7 +36,7 @@ public class QuestionDBContext extends DBContext{
 
         return questions;
     }
-    public void insertAll(ArrayList<Question> questions, int setId, Connection connection) throws SQLException {
+   public void insertQuestions(ArrayList<Question> questions, int setId, Connection connection) throws SQLException {
             String insertQuestionQuery = "INSERT INTO `online_quizz`.`question`\n" +
                     "(`question`,\n" +
                     "`answer`,\n" +
