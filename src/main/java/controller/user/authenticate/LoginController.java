@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request,response);
+        request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request, response);
     }
 
     @Override
@@ -27,25 +27,18 @@ public class LoginController extends HttpServlet {
             email = email.trim();
             password = password.trim();
             // check if email is registered
-            if (!db.checkEmail(email)){
+            if (!db.checkEmail(email)) {
 
                 User loggedUser = db.get(email, password);
                 if (loggedUser == null) {
                     request.setAttribute("error", "Email/Password is invalid!");
                     request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request, response);
-                } else {
-                    try {
-                        RoleDBConext roleDBConext = new RoleDBConext();
-                        loggedUser.setRoles(roleDBConext.list(loggedUser.getEmail()));
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    HttpSession session = request.getSession();
-                    session.setAttribute("user", loggedUser);
-                    request.getRequestDispatcher("./").forward(request, response);
                 }
-            }
-            else {
+                HttpSession session = request.getSession();
+                session.setAttribute("user", loggedUser);
+                request.getRequestDispatcher("./").forward(request, response);
+
+            } else {
                 request.setAttribute("error", "Email is not registered!");
                 request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request, response);
                 return;

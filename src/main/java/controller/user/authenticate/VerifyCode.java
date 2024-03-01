@@ -1,6 +1,8 @@
 package controller.user.authenticate;
 
 import com.lambdaworks.crypto.SCryptUtil;
+import dao.UserDBContext;
+import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
@@ -27,7 +29,7 @@ public class VerifyCode extends HttpServlet {
             checkCode(request, response, code, verifyType);
 
         } else {
-            request.setAttribute("error", "Mã xác nhận không đúng");
+            request.setAttribute("error", "Please enter the code sent to your email.");
             request.getRequestDispatcher("./view/user/authenticate/Verify.jsp").forward(request, response);
         }
     }
@@ -37,19 +39,24 @@ public class VerifyCode extends HttpServlet {
         String sessionCode = (String) session.getAttribute("code");
         if(sessionCode != null) {
             if (sessionCode.equals(code) || SCryptUtil.check(code, sessionCode)) {
+                session.removeAttribute("code");
+                session.removeAttribute("uri");
+                session.removeAttribute("verifyType");
                 if(verifyType.equals("verify-email")){
-                    response.sendRedirect("./");
+                    User sessionUser = (User) session.getAttribute("user");
+                    UserDBContext userDB = new UserDBContext();
+                    userDB.verifiedEmail(sessionUser.getEmail());
+                    response.sendRedirect("./login");
                 } else if(verifyType.equals("reset-password")){
                     response.sendRedirect("./reset-password");
                 }
             } else {
-                request.setAttribute("error", "Mã xác nhận không đúng");
+                request.setAttribute("error", "Incorrect code. Please try again.");
                 request.getRequestDispatcher("./view/user/authenticate/Verify.jsp").forward(request, response);
             }
         } else {
             request.setAttribute("error", "You have not requested a verification code");
             request.getRequestDispatcher("./view/user/authenticate/Verify.jsp").forward(request, response);
         }
-
     }
 }

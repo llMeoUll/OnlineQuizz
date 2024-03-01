@@ -11,12 +11,12 @@
     <title>Verify</title>
     <link rel="shortcut icon" type="image/x-icon" href="./icons/logo64x64.ico"/>
     <link rel="stylesheet" href="./css/Verify.css">
-<%--    <link rel="stylesheet" href="webjars/bootstrap/5.3.2/css/bootstrap.min.css">--%>
-<%--    <script src="webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>--%>
+    <link rel="stylesheet" href="webjars/bootstrap/5.3.2/css/bootstrap.min.css">
+    <script src="webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 <form method="post" action="./verify-code">
-<div class="container">
+<div class="container d-flex flex-column">
     <h2 class="text-center mb-4">Verify Your Code</h2>
     <p>
         We emailed you the six-digit code to verify your email address, please enter it below.
@@ -35,10 +35,11 @@
         ${requestScope.error}
     </p>
     <div>
-        <button type="button" id="sumbit-btn" class="btn btn-primary" onclick="submitCode()">Verify</button>
+        <button type="button" class="btn btn-primary btn-custom" onclick="submitCode()">Verify</button>
     </div>
-    <small>
-        If you didn't receive the code within 3 minutes, <strong>RESEND</strong>
+    <small class="d-flex align-items-center align-self-center">
+        If you didn't receive the code within&nbsp<span id="countdown" class="countdown">2:00</span>,
+        <a href="${sessionScope.uri}?resend=true" id="btn-resend" class="btn btn-link disabled">RESEND</a>
     </small>
 </div>
 </form>
