@@ -28,7 +28,6 @@ public class LoginController extends HttpServlet {
             password = password.trim();
             // check if email is registered
             if (!db.checkEmail(email)) {
-
                 User loggedUser = db.get(email, password);
                 if (loggedUser == null) {
                     request.setAttribute("error", "Email/Password is invalid!");
