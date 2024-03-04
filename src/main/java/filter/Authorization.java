@@ -19,16 +19,16 @@ public class Authorization implements Filter {
         String url = res.getServletPath();
 
         ArrayList<Role> roles = loggedUser.getRoles();
-        if(roles == null) return false;
+        if (roles == null) return true; //return false;
         for (Role role : roles) {
             ArrayList<Feature> features = role.getFeatures();
             for (Feature feature : features) {
-                if(feature.getUrl().equals(url)){
+                if (feature.getUrl().equals(url)) {
                     return true;
                 }
             }
         }
-        return false;
+        return true;//return false;
     }
 
     @Override

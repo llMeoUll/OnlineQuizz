@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class SetDBContext extends DBContext {
@@ -58,7 +59,7 @@ public class SetDBContext extends DBContext {
                 set.setSName(rs.getString("sname"));
                 set.setDescription(rs.getString("description"));
                 set.setPrivate(rs.getBoolean("is_private"));
-                ArrayList<Question> questions = new QuestionDBContext().list(setId, connection);
+                ArrayList<Question> questions = new QuestionDBContext().list(setId);
                 set.setQuestions(questions);
                 ArrayList<HashTag> hashTags = new HashtagDBContext().list(setId, connection);
                 set.setHashTags(hashTags);
@@ -166,11 +167,11 @@ public class SetDBContext extends DBContext {
             } else {
                 return true;
             }
-          } catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
-          }
+        }
     }
-          
+
     public ArrayList<Set> list() {
         ArrayList<Set> sets = new ArrayList<>();
         try {
@@ -179,7 +180,7 @@ public class SetDBContext extends DBContext {
                     "INNER JOIN `online_quizz`.`user` u ON s.uid = u.uid";
             PreparedStatement stmGetListSet = connection.prepareStatement(sqlGetListSet);
             ResultSet rs = stmGetListSet.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Set set = new Set();
                 User user = new User();
                 user.setId(rs.getInt("uid"));
@@ -214,4 +215,41 @@ public class SetDBContext extends DBContext {
         }
     }
 
+    public void deleteBySetID(int id) {
+        String sqlDeleteSet = "DELETE FROM `online_quizz`.`set`\n" +
+                "WHERE `sid` = ?;";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sqlDeleteSet);
+            stm.setInt(1, id);
+            stm.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Set> getSetByUserID(int uid) {
+        List<Set> ls = new ArrayList<>();
+        String sql = "SELECT * FROM online_quizz.set WHERE uid = ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, uid);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Set set = new Set();
+                set.setSId(rs.getInt(1));
+                set.setSName(rs.getString(2));
+                set.setDescription(rs.getString(3));
+                ls.add(set);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return ls;
+    }
+
+    public static void main(String[] args) {
+        SetDBContext dao = new SetDBContext();
+        System.out.println(dao.getSetByUserID(1).size());
+    }
 }

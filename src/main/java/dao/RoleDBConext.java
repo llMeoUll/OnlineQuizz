@@ -1,5 +1,6 @@
 package dao;
 
+import com.lambdaworks.crypto.SCryptUtil;
 import entity.Feature;
 import entity.Role;
 import entity.User;
@@ -91,4 +92,7 @@ public class RoleDBConext extends DBContext{
         return roles;
     }
 
+    public static void main(String[] args) {
+        System.out.println(SCryptUtil.scrypt("Kien123456@", 16, 16, 16));
+    }
 }

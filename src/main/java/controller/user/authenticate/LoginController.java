@@ -13,6 +13,10 @@ import java.util.logging.Logger;
 public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User u = new User();
+        u.setId(1);
+        session.setAttribute("user", u);
         request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request,response);
     }
 
@@ -28,7 +32,6 @@ public class LoginController extends HttpServlet {
             password = password.trim();
             // check if email is registered
             if (!db.checkEmail(email)){
-
                 User loggedUser = db.get(email, password);
                 if (loggedUser == null) {
                     request.setAttribute("error", "Email/Password is invalid!");

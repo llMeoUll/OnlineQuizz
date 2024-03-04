@@ -212,6 +212,24 @@
         <servlet-name>UpdateSet</servlet-name>
         <url-pattern>/user/set/update</url-pattern>
     </servlet-mapping>
+<!--    delete set-->
+    <servlet>
+        <servlet-name>DeleteSet</servlet-name>
+        <servlet-class>controller.user.set.DeleteSet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteSet</servlet-name>
+        <url-pattern>/user/set/delete</url-pattern>
+    </servlet-mapping>
+<!--    get set-->
+    <servlet>
+        <servlet-name>GetSet</servlet-name>
+        <servlet-class>controller.user.set.GetSet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetSet</servlet-name>
+        <url-pattern>/user/set/get</url-pattern>
+    </servlet-mapping>
 <!--    *********************************************ADMINISTRATOR******************************************************-->
 <!--    Authenticate Feature-->
 <!--    dashboard-->

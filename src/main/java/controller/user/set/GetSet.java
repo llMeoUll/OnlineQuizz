@@ -1,5 +1,7 @@
 package controller.user.set;
 
+
+import dao.QuestionDBContext;
 import dao.SetDBContext;
 import dao.TypeDBContext;
 import entity.*;
@@ -10,20 +12,28 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CreateSet extends HttpServlet {
+
+public class GetSet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("../.././view/user/set/CreateSet.jsp").forward(request, response);
+        int setID = Integer.parseInt(request.getParameter("setID"));
+        QuestionDBContext questionDBContext = new QuestionDBContext();
+        request.setAttribute("listQuestion", questionDBContext.list(setID));
+        request.setAttribute("setID", setID);
+        request.getRequestDispatcher("../.././view/user/set/GetSet.jsp").forward(request, response);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String title = request.getParameter("title");
+        int setId = Integer.parseInt(request.getParameter("set-id"));
         String description = request.getParameter("description");
         String[] hashTags = request.getParameterValues("hashtags") != null ? request.getParameterValues("hashtags") : new String[0];
         boolean privacy = request.getParameter("privacy") != null && request.getParameter("privacy").equals("private") ? true : false;
         Set set = new Set();
-        if(hashTags.length != 0){
+        set.setSId(setId);
+        if (hashTags.length != 0) {
             ArrayList<HashTag> hashTagList = new ArrayList<>();
             for (String hashTag : hashTags) {
                 HashTag entity = new HashTag();
@@ -37,6 +47,10 @@ public class CreateSet extends HttpServlet {
         set.setPrivate(privacy);
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        if (user == null) {
+            response.getWriter().println("You are not logged in");
+            return;
+        }
         set.setUser(user);
 
         ArrayList<Question> questions = new ArrayList<>();
@@ -81,13 +95,14 @@ public class CreateSet extends HttpServlet {
             }
         }
         set.setQuestions(questions);
-        SetDBContext setDBContext = new SetDBContext();
+        SetDBContext setDB = new SetDBContext();
         try {
-            setDBContext.insert(set);
+            setDB.update(set);
+            response.getWriter().println("Update set successfully");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-        response.sendRedirect("user/set/viewAll");
+
     }
 
     private int getIdType(String typeName) {

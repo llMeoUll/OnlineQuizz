@@ -285,4 +285,16 @@ public class UserDBContext extends DBContext {
 
         return users;
     }
+
+    public static void main(String[] args) {
+        UserDBContext dao = new UserDBContext();
+
+        User newUser = new User();
+        newUser.setEmail("kien@kien.com");
+        newUser.setGivenName("firstName");
+        newUser.setFamilyName("lastName");
+        newUser.setPassword("$s0$41010$RHRbWNCDCZV5eyiCCNj4gA==$oBI8yT7T2u2DSnYJlVDz3uhr/Fc5a2umxBr0rHkiRTs=");
+        newUser.setUsername("userName");
+        dao.insert(newUser);
+    }
 }
