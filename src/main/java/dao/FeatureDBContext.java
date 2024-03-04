@@ -2,7 +2,7 @@ package dao;
 
 import entity.Feature;
 
-public class FeatureDBContext extends DBContext{
+public class FeatureDBContext extends DBContext {
     public Feature get(Feature entity) {
         return null;
     }

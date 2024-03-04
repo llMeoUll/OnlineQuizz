@@ -201,10 +201,6 @@
             <div class="container mt-3 bg-light-purple p-3 rounded room-item">
                 <!-- Information Block -->
                 <div class="row">
-                    <p class="text-light ml-4">Number of Tests: 10 | Number of Users: 100 | Workplace: XYZ Corp</p>
-                </div>
-
-                <div class="row">
                     <p class="font-weight-bold ml-4 text-light">Name: ${room.roomName} | Owner: ${room.user.username}</p>
                 </div>
             </div>

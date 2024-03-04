@@ -1,11 +1,5 @@
 package dao;
 
-import controller.admin.schedule.DailyUpdateActiveUsers;
-import controller.admin.schedule.HourlyUpdateActiveUsers;
-import entity.ActiveUsers;
-import org.quartz.*;
-import org.quartz.impl.StdSchedulerFactory;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

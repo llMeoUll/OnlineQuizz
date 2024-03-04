@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class StarRateDBContext extends DBContext{
+public class StarRateDBContext extends DBContext {
     public ArrayList<StarRate> list(User entity) {
         ArrayList<StarRate> ratedStars = new ArrayList<>();
         String sqlGetRatedStar = "SELECT `star_rate`.`uid`,\n" +

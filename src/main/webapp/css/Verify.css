@@ -5,7 +5,7 @@
 }
 
 body {
-    background-image: linear-gradient(142deg, #9861c2, #5cc0de);
+    background-image: linear-gradient(142deg, #ffffff, #5cc0de);
     font-family: "Lato", sans-serif;
     height: 100vh;
     display: flex;
@@ -62,31 +62,14 @@ body {
 }
 
 .code:valid {
-    border-color: #9861c2;
+    border-color: #458bb4;
     box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.25);
 }
 
-.btn {
-    font-family: "Lato", sans-serif;
+.btn-custom {
     min-width: 400px;
-    display: inline-block;
-    text-align: center;
     white-space: nowrap;
-    vertical-align: middle;
-    user-select: none;
-    cursor: pointer;
-    border: 1px solid transparent;
     margin: 0px 0px 20px 0px;
-    padding: 0.775rem 0.75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 10px;
     text-transform: uppercase;
     letter-spacing: 0.7;
-}
-
-.btn-primary{
-    color: #fff;
-    background-color: #9861c2;
-    border-color: #9861c2;
 }

@@ -1,9 +1,6 @@
 package dao;
 
-import entity.HashTag;
-import entity.Question;
-import entity.Set;
-import entity.User;
+import entity.*;
 import org.checkerframework.checker.units.qual.A;
 
 import java.sql.PreparedStatement;
@@ -233,7 +230,30 @@ public class SetDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
-
-
-
+    public ArrayList<Set> search(String name) {
+        ArrayList<Set> sets = new ArrayList<>();
+        String sql = "SELECT * FROM online_quizz.set\n" +
+                "where sname like ?;";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, "%" + name + "%");
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                Set set = new Set();
+                set.setSId(rs.getInt("sid"));
+                set.setSName(rs.getString("sname"));
+                set.setDescription(rs.getString("description"));
+                set.setPrivate(rs.getBoolean("is_private"));
+                set.setCreatedAt(rs.getTimestamp("created_at"));
+                set.setUpdatedAt(rs.getTimestamp("updated_at"));
+                UserDBContext udb = new UserDBContext();
+                User user = udb.get(rs.getInt("uid"));
+                set.setUser(user);
+                sets.add(set);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return sets;
+    }
 }
