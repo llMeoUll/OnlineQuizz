@@ -20,7 +20,9 @@ public class DeleteSet extends HttpServlet {
         SetDBContext setDB = new SetDBContext();
         //check user is owner of set
         if (setDB.isOwner(user.getId(), setId)) {
-            setDB.deleteBySetID(setId);
+            Set entity = new Set();
+            entity.setSId(setId);
+            setDB.delete(entity);
             response.sendRedirect("viewAll");
         } else {
             response.getWriter().println("You are not owner of this set");

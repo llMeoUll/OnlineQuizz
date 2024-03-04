@@ -116,7 +116,7 @@
 <%--              <div class="col-lg-3 col-md-4">--%>
 <%--                <div class="icon-box">--%>
 <%--                  <i class="ri-store-line" style="color: #ffbb2c;"></i>--%>
-                  <h3><a href="../set/get?setID=${c.getSId()}">${c.getSName()}</a></h3>
+                  <h3><a href="./set/get?setID=${c.getSId()}">${c.getSName()}</a></h3>
 <%--                </div>--%>
 <%--              </div>--%>
             </c:forEach>

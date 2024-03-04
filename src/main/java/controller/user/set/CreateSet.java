@@ -87,7 +87,7 @@ public class CreateSet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        response.sendRedirect("user/set/viewAll");
+        response.sendRedirect("./");
     }
 
     private int getIdType(String typeName) {

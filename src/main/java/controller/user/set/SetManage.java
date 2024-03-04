@@ -4,19 +4,16 @@ import dao.SetDBContext;
 import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "ViewAllSet", value = "/user/set/viewAll")
-public class ViewAllSet extends HttpServlet {
+public class SetManage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int setID = Integer.parseInt(request.getParameter("setID"));
-        User u = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("user");
         SetDBContext dao = new SetDBContext();
-        request.setAttribute("listSet", dao.getSetByUserID(u.getId()));
-        request.getRequestDispatcher("../.././view/user/set/ViewSet.jsp").forward(request, response);
+        request.setAttribute("listSet", dao.list(user));
+        request.getRequestDispatcher(".././view/user/set/Manage.jsp").forward(request, response);
     }
 
     @Override

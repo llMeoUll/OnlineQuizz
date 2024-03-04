@@ -194,6 +194,15 @@
     </servlet-mapping>
 
     <!--    Management Set Feature-->
+<!--    set management-->
+    <servlet>
+        <servlet-name>manageSet</servlet-name>
+        <servlet-class>controller.user.set.SetManage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>manageSet</servlet-name>
+        <url-pattern>/user/set</url-pattern>
+    </servlet-mapping>
     <!--    create set-->
     <servlet>
         <servlet-name>CreateSet</servlet-name>

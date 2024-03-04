@@ -201,39 +201,13 @@ public class SetDBContext extends DBContext {
         }
         return sets;
     }
-
-    public void delete(Set set) {
-        String sqlDeleteSet = "DELETE FROM `online_quizz`.`set`\n" +
-                "WHERE `sid` = ?;";
-        try {
-            PreparedStatement stm = connection.prepareStatement(sqlDeleteSet);
-            stm.setInt(1, set.getSId());
-            stm.executeUpdate();
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void deleteBySetID(int id) {
-        String sqlDeleteSet = "DELETE FROM `online_quizz`.`set`\n" +
-                "WHERE `sid` = ?;";
-        try {
-            PreparedStatement stm = connection.prepareStatement(sqlDeleteSet);
-            stm.setInt(1, id);
-            stm.executeUpdate();
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public List<Set> getSetByUserID(int uid) {
-        List<Set> ls = new ArrayList<>();
+    //    get all set of user
+    public ArrayList<Set> list(User user) {
+        ArrayList<Set> ls = new ArrayList<>();
         String sql = "SELECT * FROM online_quizz.set WHERE uid = ?";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, uid);
+            stm.setInt(1, user.getId());
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Set set = new Set();
@@ -247,9 +221,19 @@ public class SetDBContext extends DBContext {
         }
         return ls;
     }
+    public void delete(Set set) {
+        String sqlDeleteSet = "DELETE FROM `online_quizz`.`set`\n" +
+                "WHERE `sid` = ?;";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sqlDeleteSet);
+            stm.setInt(1, set.getSId());
+            stm.executeUpdate();
 
-    public static void main(String[] args) {
-        SetDBContext dao = new SetDBContext();
-        System.out.println(dao.getSetByUserID(1).size());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+
+
 }
