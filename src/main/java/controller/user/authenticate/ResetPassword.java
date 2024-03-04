@@ -2,6 +2,7 @@ package controller.user.authenticate;
 
 import com.lambdaworks.crypto.SCryptUtil;
 import dao.UserDBContext;
+import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
@@ -25,6 +26,8 @@ public class ResetPassword extends HttpServlet {
                 UserDBContext db = new UserDBContext();
                 String generatedSecuredPasswordHash = SCryptUtil.scrypt(password, 16, 16, 16);
                 db.updatePassword(email, generatedSecuredPasswordHash);
+                User user = db.get(email, password);
+                session.setAttribute("user", user);
                 response.sendRedirect("./login");
             } else {
                 request.setAttribute("error", "Mật khẩu không khớp");

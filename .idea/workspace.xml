@@ -11,22 +11,33 @@
   <component name="ChangeListManager">
     <list default="true" id="f2da6b60-4134-419e-bec9-7a0a1c84e0be" name="Changes" comment="Fix error, forget hardcode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/profile/UserProfileControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/profile/UserProfileControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/search/SearchControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/search/SearchControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TypeDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TypeDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/ForgotPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/ForgotPassword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/ResetPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/ResetPassword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/VerifyCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/VerifyCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoleDBConext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoleDBConext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Feature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Feature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Role.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/components/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/components/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/Profile/UserProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/Profile/UserProfile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/SearchPage/Search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/SearchPage/Search.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/SearchPage/SearchResult.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/SearchPage/SearchResult.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/Verify.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/Verify.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/Verify.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/Verify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Verify.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/authenticate/Verify.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jsp File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,6 +64,9 @@
     </option>
   </component>
   <component name="ProjectId" id="2cyaVHupl8FgHnvNbqPTv12HaHb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -62,10 +76,6 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
     &quot;last_opened_file_path&quot;: &quot;E:/ProjectSWP/OnlineQuizz/src/main/webapp/imagines&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -74,6 +84,9 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.53908044&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
@@ -244,6 +257,8 @@
       <workItem from="1708934417458" duration="30000" />
       <workItem from="1709083758670" duration="239000" />
       <workItem from="1709087874353" duration="996000" />
+      <workItem from="1709089098107" duration="563000" />
+      <workItem from="1709280704934" duration="14606000" />
     </task>
     <servers />
   </component>

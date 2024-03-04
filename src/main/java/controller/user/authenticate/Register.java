@@ -13,7 +13,19 @@ import java.io.IOException;
 public class Register extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("./view/user/authenticate/Register.jsp").forward(request, response);
+        boolean resend = request.getParameter("resend").equals("true") ? true : false;
+        if (resend) {
+            HttpSession session = request.getSession();
+            User user = (User) session.getAttribute("user");
+            String verifyType = (String) session.getAttribute("verifyType");
+            String subject = "Verify your email address";
+            String content = "Please confirm that you want to use this email as your Quizzicle account email address";
+            Email sendEmail = new Email();
+            sendEmail.sendVerifyCode(request, user.getEmail(), subject, content, verifyType);
+            response.sendRedirect("./verify-code");
+        } else {
+            request.getRequestDispatcher("./view/user/authenticate/Register.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -51,6 +63,8 @@ public class Register extends HttpServlet {
                         // Thêm người dùng vào cơ sở dữ liệu
                         db.insert(newUser);
                         //set verify type to verify email
+                        String uri = request.getRequestURI();
+                        session.setAttribute("uri", uri);
                         session.setAttribute("verifyType", verifyType);
                         response.sendRedirect("./verify-code");
                     } else {

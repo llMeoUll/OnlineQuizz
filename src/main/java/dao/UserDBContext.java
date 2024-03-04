@@ -41,10 +41,15 @@ public class UserDBContext extends DBContext {
             ResultSet resultSet = stm.executeQuery();
             if (resultSet.next()) {
                 User user = initUserInfo(resultSet);
+                RoleDBConext roleDBConext = new RoleDBConext();
+                ArrayList<Role> roles = roleDBConext.list(user.getEmail());
+                user.setRoles(roles);
                 return user;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -58,12 +63,17 @@ public class UserDBContext extends DBContext {
             if (resultSet.next()) {
                 User user = initUserInfo(resultSet);
                 if (SCryptUtil.check(password, user.getPassword())) {
+                    RoleDBConext roleDBConext = new RoleDBConext();
+                    ArrayList<Role> roles = roleDBConext.list(user.getEmail());
+                    user.setRoles(roles);
                     return user;
                 }
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -358,5 +368,19 @@ public class UserDBContext extends DBContext {
             throw new RuntimeException(e);
         }
         return users;
+    }
+
+    public void verifiedEmail(String email) {
+        String sqlVerifiedEmail = "UPDATE `online_quizz`.`user`\n" +
+                "SET\n" +
+                "`is_verify` = 1\n" +
+                "WHERE `email` = ?;";
+        try {
+            PreparedStatement stmVerifiedEmail = connection.prepareStatement(sqlVerifiedEmail);
+            stmVerifiedEmail.setString(1, email);
+            stmVerifiedEmail.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
