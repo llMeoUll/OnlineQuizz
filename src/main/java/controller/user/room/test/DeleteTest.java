@@ -1,4 +1,4 @@
-package controller.user.room;
+package controller.user.room.test;
 
 import dao.TestDBContext;
 import entity.Test;

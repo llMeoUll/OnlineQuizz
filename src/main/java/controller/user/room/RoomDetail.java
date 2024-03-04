@@ -1,6 +1,6 @@
 package controller.user.room;
 
-import controller.user.room.utilities.GenerateCodeToJoin;
+import util.GenerateCodeToJoin;
 import dao.RoomDBContext;
 import dao.TestDBContext;
 import dao.UserDBContext;
@@ -9,7 +9,6 @@ import entity.Test;
 import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
