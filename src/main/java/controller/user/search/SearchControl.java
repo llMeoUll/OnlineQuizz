@@ -19,7 +19,7 @@ public class SearchControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        request.getRequestDispatcher("./view/user/SearchPage/Search.jsp").forward(request, response);
+        request.getRequestDispatcher("./view/user/search/Search.jsp").forward(request, response);
     }
 
     @Override
@@ -58,6 +58,6 @@ public class SearchControl extends HttpServlet {
         request.setAttribute("listRoom", listRoom);
 
         request.setAttribute("txtSearch",query);
-        request.getRequestDispatcher("./view/user/SearchPage/SearchResult.jsp").forward(request, response);
+        request.getRequestDispatcher("./view/user/search/SearchResult.jsp").forward(request, response);
     }
 }

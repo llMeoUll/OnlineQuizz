@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="OnlineQuizz:war exploded" />
+      <artifact name="Quizzicle:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -11,28 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f2da6b60-4134-419e-bec9-7a0a1c84e0be" name="Changes" comment="Fix error, forget hardcode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/schedule/ActiveSessionCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/ActiveSessionCounter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/schedule/AutoSchedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/AutoSchedule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/schedule/HourlyUpdateActiveUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/schedule/HourlyUpdateActiveUsers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/HomeController/HomeControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/home/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/profile/UserProfileControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/profile/UserProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/CreateRoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/CreateRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/DeleteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/DeleteTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/InviteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/Invite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/RoomDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/RoomDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/RoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/RoomManage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/UpdateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/UpdateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/utilities/GenerateCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/GenerateCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/utilities/GenerateCodeToJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/GenerateCodeToJoin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/HomePage/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/homepage/Home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/Profile/UserProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/profile/UserProfile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/SearchPage/Search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/search/Search.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/SearchPage/SearchResult.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/search/SearchResult.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/Test/CreateTest.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/test/CreateTest.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/ManageRoomScreen.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/ManageRoomScreen.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewRoomDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewRoomDetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/search/SearchControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/search/SearchControl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,18 +146,17 @@
     </configuration>
     <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
-      <option name="UPDATING_POLICY" value="update-resources" />
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="OnlineQuizz:war exploded">
+        <artifact name="Quizzicle:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="Quizzicle" />
+            <option name="CONTEXT_PATH" value="/Quizzicle" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="75f005a9-0ba8-41c9-aeb4-a305cdc2c355" />
-        <option name="HTTP_PORT" value="8888" />
-        <option name="JNDI_PORT" value="1433" />
+        <option name="JNDI_PORT" value="1098" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -339,6 +317,7 @@
       <workItem from="1709089098107" duration="563000" />
       <workItem from="1709280704934" duration="15890000" />
       <workItem from="1709368667504" duration="10406000" />
+      <workItem from="1709524173131" duration="1032000" />
     </task>
     <servers />
   </component>
