@@ -7,13 +7,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import controller.user.room.utilities.GenerateCode;
+import util.GenerateCode;
 
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class CreateRoomServlet extends HttpServlet {
+public class CreateRoom extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

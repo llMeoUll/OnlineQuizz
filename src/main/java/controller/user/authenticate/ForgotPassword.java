@@ -10,7 +10,17 @@ import java.io.IOException;
 public class ForgotPassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("./view/user/authenticate/ForgotPassword.jsp").forward(request, response);
+        boolean resend = request.getParameter("resend").equals("true") ? true : false;
+        if (resend) {
+            HttpSession session = request.getSession();
+            String email = (String) session.getAttribute("email");
+            String verifyType = (String) session.getAttribute("verifyType");
+            Email emailUtil = new Email();
+            emailUtil.sendVerifyCode(request, email, "Reset Password", "Please confirm that you want to reset your password.", verifyType);
+            response.sendRedirect("./verify-code");
+        } else{
+            request.getRequestDispatcher("./view/user/authenticate/ForgotPassword.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -25,6 +35,8 @@ public class ForgotPassword extends HttpServlet {
                 Email emailUtil = new Email();
                 emailUtil.sendVerifyCode(request, email, "Reset Password", "Please confirm that you want to reset your password.", verifyType);
                 //set verify type to reset password
+                String uri = request.getRequestURI();
+                session.setAttribute("uri", uri);
                 session.setAttribute("verifyType", verifyType);
                 response.sendRedirect("./verify-code");
             } else {

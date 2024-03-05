@@ -1,5 +1,6 @@
 package dao;
 
+import com.lambdaworks.crypto.SCryptUtil;
 import entity.Feature;
 import entity.Role;
 import entity.User;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RoleDBConext extends DBContext{
+public class RoleDBConext extends DBContext {
     public Role get(Role entity) {
         String sqlGetIdUserRole =
                 "SELECT `role`.`rid`\n" +
@@ -55,7 +56,7 @@ public class RoleDBConext extends DBContext{
     public ArrayList<Role> list(String email) throws ClassNotFoundException {
         ArrayList<Role> roles = new ArrayList<>();
         try {
-            String sql = "select r.rid, r.name as rname, f.fid, f.url from `user` u\n" +
+            String sql = "select r.rid, r.name as rname, f.fid, f.fname, f.url from `user` u\n" +
                     "inner join `role_user_mapping` ru on u.uid = ru.uid\n" +
                     "inner join `role` r on r.rid = ru.rid\n" +
                     "inner join `role_feature_mapping` rf on rf.rid = r.rid\n" +
@@ -73,6 +74,7 @@ public class RoleDBConext extends DBContext{
 
                 Feature f = new Feature();
                 f.setFId(rs.getInt("fid"));
+                f.setFName(rs.getString("fname"));
                 f.setUrl(rs.getString("url"));
 
                 r.getFeatures().add(f);
@@ -91,4 +93,7 @@ public class RoleDBConext extends DBContext{
         return roles;
     }
 
+    public static void main(String[] args) {
+        System.out.println(SCryptUtil.scrypt("Kien123456@", 16, 16, 16));
+    }
 }

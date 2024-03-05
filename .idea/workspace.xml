@@ -9,44 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/UpdateSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/HashtagSetMappingDBContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionOptionsDBContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/UpdateSet.jsp" afterDir="false" />
+    <list default="true" id="f2da6b60-4134-419e-bec9-7a0a1c84e0be" name="Changes" comment="Fix error, forget hardcode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/HashtagDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/HashtagDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TypeDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TypeDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/CreateSet.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/question/CreateQuestion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/question/DeleteQuestion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/question/QuestionManagement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/question/UpdateQuestion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/set/AdminCreateSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/set/AdminDeleteSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/set/AdminUpdateSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/admin/set/SetManagement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/QuestionBankButton.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateSet.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/QuestionManagement.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/SetManagement.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/dashboard/DashBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/UpdateRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/UpdateRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoomDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewTestDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewTestDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SetDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateRoom.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateRoom.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/CreateUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/DashBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UpdateUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UpdateUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserManagement.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/admin/UserProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/admin/UserProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/search/SearchControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/search/SearchControl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,20 +21,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="Class" />
         <option value="Jsp File" />
-        <option value="Servlet" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -93,26 +51,33 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="2bECyPiZYibc9RSNg9jtWkbzdGg" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
+  <component name="ProjectId" id="2cyaVHupl8FgHnvNbqPTv12HaHb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
-        &quot;keyToString&quot;: {
-        &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-        &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-        &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-        &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-        &quot;last_opened_file_path&quot;: &quot;E:/ProjectSWP/OnlineQuizz/src/main/webapp/imagines&quot;,
-        &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-        &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-        &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
-        }
-        }</component>
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/ProjectSWP/OnlineQuizz/src/main/webapp/imagines&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.53908044&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="entity" />
@@ -121,14 +86,67 @@
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\imagines" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\webapp\view\user\room" />
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\js" />
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\css" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.0.20">
+    <configuration name="QuestionDBContext" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.QuestionDBContext" />
+      <module name="OnlineQuizz" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RoleDBConext" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.RoleDBConext" />
+      <module name="OnlineQuizz" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SetDBContext" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.SetDBContext" />
+      <module name="OnlineQuizz" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDBContext" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.UserDBContext" />
+      <module name="OnlineQuizz" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 10.0.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
-      <option name="UPDATING_POLICY" value="update-resources" />
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="Quizzicle:war exploded">
           <settings>
@@ -222,16 +240,29 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="Quizzicle:war exploded" />
-          <artifact name="OnlineQuizz:war exploded" />
-
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.QuestionDBContext" />
+      <item itemvalue="Application.RoleDBConext" />
+      <item itemvalue="Application.SetDBContext" />
+      <item itemvalue="Application.UserDBContext" />
+      <item itemvalue="Tomcat Server.Tomcat 10.0.20" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.QuestionDBContext" />
+        <item itemvalue="Application.SetDBContext" />
+        <item itemvalue="Application.UserDBContext" />
+        <item itemvalue="Application.RoleDBConext" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1dc74b1b-40e2-4bf8-9ea5-066e026ea6ad" name="Changes" comment="" />
+      <changelist id="f2da6b60-4134-419e-bec9-7a0a1c84e0be" name="Changes" comment="Fix error, forget hardcode" />
       <created>1704853520966</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -278,6 +309,15 @@
       <workItem from="1708714324835" duration="19068000" />
       <workItem from="1708792792524" duration="20472000" />
       <workItem from="1708714324835" duration="19441000" />
+      <workItem from="1708883152760" duration="721000" />
+      <workItem from="1708915867131" duration="1829000" />
+      <workItem from="1708934417458" duration="30000" />
+      <workItem from="1709083758670" duration="239000" />
+      <workItem from="1709087874353" duration="996000" />
+      <workItem from="1709089098107" duration="563000" />
+      <workItem from="1709280704934" duration="15890000" />
+      <workItem from="1709368667504" duration="10406000" />
+      <workItem from="1709524173131" duration="1032000" />
     </task>
     <servers />
   </component>
@@ -305,6 +345,16 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/webapp/js/Dashboard.js</url>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

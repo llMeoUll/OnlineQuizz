@@ -1,15 +1,13 @@
 package dao;
 
-import entity.HashTag;
-import entity.Question;
-import entity.Set;
-import entity.User;
+import entity.*;
 import org.checkerframework.checker.units.qual.A;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class SetDBContext extends DBContext {
@@ -58,7 +56,7 @@ public class SetDBContext extends DBContext {
                 set.setSName(rs.getString("sname"));
                 set.setDescription(rs.getString("description"));
                 set.setPrivate(rs.getBoolean("is_private"));
-                ArrayList<Question> questions = new QuestionDBContext().list(setId, connection);
+                ArrayList<Question> questions = new QuestionDBContext().list(setId);
                 set.setQuestions(questions);
                 ArrayList<HashTag> hashTags = new HashtagDBContext().list(setId, connection);
                 set.setHashTags(hashTags);
@@ -166,11 +164,11 @@ public class SetDBContext extends DBContext {
             } else {
                 return true;
             }
-          } catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
-          }
+        }
     }
-          
+
     public ArrayList<Set> list() {
         ArrayList<Set> sets = new ArrayList<>();
         try {
@@ -179,7 +177,7 @@ public class SetDBContext extends DBContext {
                     "INNER JOIN `online_quizz`.`user` u ON s.uid = u.uid";
             PreparedStatement stmGetListSet = connection.prepareStatement(sqlGetListSet);
             ResultSet rs = stmGetListSet.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Set set = new Set();
                 User user = new User();
                 user.setId(rs.getInt("uid"));
@@ -200,7 +198,26 @@ public class SetDBContext extends DBContext {
         }
         return sets;
     }
-
+    //    get all set of user
+    public ArrayList<Set> list(User user) {
+        ArrayList<Set> ls = new ArrayList<>();
+        String sql = "SELECT * FROM online_quizz.set WHERE uid = ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, user.getId());
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Set set = new Set();
+                set.setSId(rs.getInt(1));
+                set.setSName(rs.getString(2));
+                set.setDescription(rs.getString(3));
+                ls.add(set);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return ls;
+    }
     public void delete(Set set) {
         String sqlDeleteSet = "DELETE FROM `online_quizz`.`set`\n" +
                 "WHERE `sid` = ?;";
@@ -213,5 +230,30 @@ public class SetDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
-
+    public ArrayList<Set> search(String name) {
+        ArrayList<Set> sets = new ArrayList<>();
+        String sql = "SELECT * FROM online_quizz.set\n" +
+                "where sname like ?;";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, "%" + name + "%");
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                Set set = new Set();
+                set.setSId(rs.getInt("sid"));
+                set.setSName(rs.getString("sname"));
+                set.setDescription(rs.getString("description"));
+                set.setPrivate(rs.getBoolean("is_private"));
+                set.setCreatedAt(rs.getTimestamp("created_at"));
+                set.setUpdatedAt(rs.getTimestamp("updated_at"));
+                UserDBContext udb = new UserDBContext();
+                User user = udb.get(rs.getInt("uid"));
+                set.setUser(user);
+                sets.add(set);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return sets;
+    }
 }

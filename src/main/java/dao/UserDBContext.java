@@ -10,13 +10,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class UserDBContext extends DBContext {
     public User get(int id) {
         String query = "SELECT * FROM `online_quizz`.`user` "
-                        + "WHERE uid = ?;";
+                + "WHERE uid = ?;";
         try {
             PreparedStatement stm = connection.prepareStatement(query);
             stm.setInt(1, id);
@@ -40,10 +41,15 @@ public class UserDBContext extends DBContext {
             ResultSet resultSet = stm.executeQuery();
             if (resultSet.next()) {
                 User user = initUserInfo(resultSet);
+                RoleDBConext roleDBConext = new RoleDBConext();
+                ArrayList<Role> roles = roleDBConext.list(user.getEmail());
+                user.setRoles(roles);
                 return user;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -57,13 +63,18 @@ public class UserDBContext extends DBContext {
             if (resultSet.next()) {
                 User user = initUserInfo(resultSet);
                 if (SCryptUtil.check(password, user.getPassword())) {
+                    RoleDBConext roleDBConext = new RoleDBConext();
+                    ArrayList<Role> roles = roleDBConext.list(user.getEmail());
+                    user.setRoles(roles);
                     return user;
                 }
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }         
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
     public ArrayList<User> list() {
@@ -284,5 +295,92 @@ public class UserDBContext extends DBContext {
         }
 
         return users;
+    }
+    // countSetByUid
+    public int CountSet(int uid) {
+        String sqlCountSet = "SELECT count(sid) as numberofset from user u\n" +
+                "inner join `set` as s on u.uid = s.uid\n" +
+                "where u.uid = ?";
+        try {
+            PreparedStatement stmCountSet = connection.prepareStatement(sqlCountSet);
+            stmCountSet.setInt(1, uid);
+
+            ResultSet resultSet = stmCountSet.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("numberofset");
+            } else {
+                return 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    // countRoom by uid
+    public int CountRoom(int uid) {
+        String sqlCountRoom = "SELECT count(room_id) as numberofroom from user u\n" +
+                "inner join room as r on u.uid = r.uid\n" +
+                "where u.uid = ?";
+        try {
+            PreparedStatement stmCountRoom = connection.prepareStatement(sqlCountRoom);
+            stmCountRoom.setInt(1, uid);
+
+            ResultSet resultSet = stmCountRoom.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("numberofroom");
+            } else {
+                return 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    // search by name or email
+    public ArrayList<User> search(String query) {
+        ArrayList<User> users = new ArrayList<>();
+        String sqlSearchUsersByName = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`,\n" +
+                "    `user`.`username`,\n" +
+                "    `user`.`given_name`,\n" +
+                "    `user`.`family_name`,\n" +
+                "    `user`.`avatar`,\n" +
+                "    `user`.`created_at`,\n" +
+                "    `user`.`updated_at`\n" +
+                "FROM `online_quizz`.`user`\n" +
+                "WHERE `user`.`username` LIKE ? or `user`.`email` like ?";
+        try {
+            PreparedStatement stmSearchUsersByName = connection.prepareStatement(sqlSearchUsersByName);
+            stmSearchUsersByName.setString(1, "%" + query + "%");
+            stmSearchUsersByName.setString(2, "%" + query + "%");
+            ResultSet rs = stmSearchUsersByName.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("uid"));
+                user.setEmail(rs.getString("email"));
+                user.setUsername(rs.getString("username"));
+                user.setGivenName(rs.getString("given_name"));
+                user.setFamilyName(rs.getString("family_name"));
+                user.setAvatar(rs.getString("avatar"));
+                user.setCreatedAt(rs.getTimestamp("created_at"));
+                user.setUpdatedAt(rs.getTimestamp("updated_at"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return users;
+    }
+
+    public void verifiedEmail(String email) {
+        String sqlVerifiedEmail = "UPDATE `online_quizz`.`user`\n" +
+                "SET\n" +
+                "`is_verify` = 1\n" +
+                "WHERE `email` = ?;";
+        try {
+            PreparedStatement stmVerifiedEmail = connection.prepareStatement(sqlVerifiedEmail);
+            stmVerifiedEmail.setString(1, email);
+            stmVerifiedEmail.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

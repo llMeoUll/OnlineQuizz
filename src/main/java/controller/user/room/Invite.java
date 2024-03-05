@@ -1,6 +1,6 @@
 package controller.user.room;
 
-import controller.user.room.utilities.GenerateCodeToJoin;
+import util.GenerateCodeToJoin;
 import dao.RoomDBContext;
 import dao.UserDBContext;
 import entity.Room;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InviteServlet extends HttpServlet {
+public class Invite extends HttpServlet {
     private static Map<Room, String> roomCodes = new HashMap<>();
 
     @Override

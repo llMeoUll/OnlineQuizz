@@ -1,6 +1,7 @@
 package controller.admin.schedule;
 
 import dao.ActiveUsersDBContext;
+import listener.ActiveSessionCounter;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;

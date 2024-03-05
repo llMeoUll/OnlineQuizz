@@ -20,6 +20,8 @@ public class Test {
     private String testDescription;
     private Timestamp startTime;
     private Timestamp endTime;
+    private int duration;
+    private int attempt;
     private ArrayList<Question> questions;
     private ArrayList<User> usersDoTest;
 }
