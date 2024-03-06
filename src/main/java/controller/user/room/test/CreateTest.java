@@ -1,12 +1,16 @@
 package controller.user.room.test;
 
+import dao.SetDBContext;
+import entity.Set;
 import entity.Test;
+import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import util.DateTimeLocalConverter;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class CreateTest extends HttpServlet {
     @Override
@@ -34,10 +38,13 @@ public class CreateTest extends HttpServlet {
         test.setAttempt(attempt);
         test.setStartTime(startTime);
         test.setEndTime(endTime);
-
         HttpSession session = request.getSession();
         session.setAttribute("test", test);
-        response.sendRedirect("../../.././view/user/room/test/AddQuestion.jsp");
+        SetDBContext setDBContext = new SetDBContext();
+//        User user = (User) session.getAttribute("user");
+//        ArrayList<Set> list = setDBContext.getOwnedSet(user);
+
+        request.getRequestDispatcher("../../.././view/user/room/test/AddQuestion.jsp").forward(request, response);
 
     }
 }

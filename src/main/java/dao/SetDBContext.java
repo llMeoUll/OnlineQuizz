@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class SetDBContext extends DBContext {
-    public ArrayList<Set> getOwnedSet(User entity) {
+    public ArrayList<Set> getOwnedSet(User owner) {
         ArrayList<Set> ownedSets = new ArrayList<>();
         String sqlGetOwnedSet = "SELECT `set`.`sid`,\n" +
                 "    `set`.`sname`,\n" +
@@ -24,7 +24,7 @@ public class SetDBContext extends DBContext {
                 "WHERE `set`.`uid` = ?";
         try {
             PreparedStatement stmGetOwnedSet = connection.prepareStatement(sqlGetOwnedSet);
-            stmGetOwnedSet.setString(1, String.valueOf(entity.getId()));
+            stmGetOwnedSet.setString(1, String.valueOf(owner.getId()));
             ResultSet rs = stmGetOwnedSet.executeQuery();
             while (rs.next()) {
                 Set ownedSet = new Set();
@@ -32,7 +32,7 @@ public class SetDBContext extends DBContext {
                 ownedSet.setSName(rs.getString("sname"));
                 ownedSet.setDescription(rs.getString("description"));
                 ownedSet.setPrivate(rs.getBoolean("is_private"));
-                ownedSet.setUser(entity);
+                ownedSet.setUser(owner);
                 ownedSets.add(ownedSet);
             }
         } catch (SQLException e) {
