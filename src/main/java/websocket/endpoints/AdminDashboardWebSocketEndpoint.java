@@ -10,7 +10,7 @@ import java.util.HashSet;
 import entity.User;
 import java.util.Set;
 
-@ServerEndpoint("/admin/{path:.*}")
+@ServerEndpoint("/admin/notification")
 public class AdminDashboardWebSocketEndpoint {
     private static final Set<Session> adminSessions = new HashSet<>();
     @OnOpen
