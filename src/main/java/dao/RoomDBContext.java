@@ -336,5 +336,36 @@ public class RoomDBContext extends DBContext {
         }
         return rooms;
     }
+
+    public ArrayList<Room> listRoomAndOwner() {
+        ArrayList<Room> rooms = new ArrayList<>();
+        String sqlListRoomAndOwner = "SELECT r.room_id, r.room_name, r.`code`, r.`description`, \n" +
+                "u.uid, u.given_name, u.family_name, u.avatar, r.created_at, \n" +
+                "r.updated_at FROM online_quizz.room r\n" +
+                "INNER JOIN online_quizz.`user` u ON u.uid = r.uid";
+        try {
+            PreparedStatement stmListRoomAndOwner = connection.prepareStatement(sqlListRoomAndOwner);
+            ResultSet rs = stmListRoomAndOwner.executeQuery();
+            while(rs.next()) {
+                Room room = new Room();
+                room.setRoomId(rs.getInt("room_id"));
+                room.setRoomName(rs.getString("room_name"));
+                room.setCode(rs.getString("code"));
+                room.setDescription(rs.getString("description"));
+                room.setCreatedAt(rs.getTimestamp("created_at"));
+                room.setUpdatedAt(rs.getTimestamp("updated_at"));
+                User owner = new User();
+                owner.setFamilyName(rs.getString("family_name"));
+                owner.setId(rs.getInt("uid"));
+                owner.setGivenName(rs.getString("given_name"));
+                owner.setAvatar(rs.getString("avatar"));
+                room.setUser(owner);
+                rooms.add(room);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rooms;
+    }
 }
 

@@ -1,13 +1,15 @@
 package dao;
 
-import entity.*;
+import entity.HashTag;
+import entity.Question;
+import entity.Set;
+import entity.User;
 import org.checkerframework.checker.units.qual.A;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class SetDBContext extends DBContext {
@@ -56,6 +58,9 @@ public class SetDBContext extends DBContext {
                 set.setSName(rs.getString("sname"));
                 set.setDescription(rs.getString("description"));
                 set.setPrivate(rs.getBoolean("is_private"));
+                UserDBContext userDBContext = new UserDBContext();
+                User user = userDBContext.get(rs.getInt("uid"));
+                set.setUser(user);
                 ArrayList<Question> questions = new QuestionDBContext().list(setId);
                 set.setQuestions(questions);
                 ArrayList<HashTag> hashTags = new HashtagDBContext().list(setId, connection);
@@ -177,7 +182,7 @@ public class SetDBContext extends DBContext {
                     "INNER JOIN `online_quizz`.`user` u ON s.uid = u.uid";
             PreparedStatement stmGetListSet = connection.prepareStatement(sqlGetListSet);
             ResultSet rs = stmGetListSet.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 Set set = new Set();
                 User user = new User();
                 user.setId(rs.getInt("uid"));

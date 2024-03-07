@@ -14,6 +14,7 @@ public class HashtagSetMappingDBContext extends DBContext{
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, tagId);
+
             stm.setInt(2, setId);
             stm.executeUpdate();
         } catch (SQLException e) {

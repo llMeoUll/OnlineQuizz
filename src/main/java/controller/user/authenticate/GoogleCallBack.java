@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dao.RoleDBConext;
 import dao.UserDBContext;
+import entity.Notification;
 import entity.User;
 import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.servlet.*;
@@ -18,6 +19,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import websocket.endpoints.AdminDashboardWebSocketEndpoint;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -108,6 +110,9 @@ public class GoogleCallBack extends HttpServlet {
             if (db.checkEmail(user.getEmail())) {
                 try {
                     db.insert(user);
+                    Notification notification = new Notification();
+                    notification.setFrom(db.get(user.getEmail()));
+                    AdminDashboardWebSocketEndpoint.notifyAdminsNewUserRegistered(notification);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
