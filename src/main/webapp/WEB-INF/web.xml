@@ -9,31 +9,31 @@
         <listener-class>listener.ActiveSessionCounter</listener-class>
     </listener>
     <!--    *********************************************Filter******************************************************-->
-<!--    <filter>-->
-<!--        <filter-name>AuthenticateFilter</filter-name>-->
-<!--        <filter-class>filter.Authenticate</filter-class>-->
-<!--    </filter>-->
-<!--    <filter>-->
-<!--        <filter-name>AuthorizationFilter</filter-name>-->
-<!--        <filter-class>filter.Authorization</filter-class>-->
-<!--    </filter>-->
+    <filter>
+        <filter-name>AuthenticateFilter</filter-name>
+        <filter-class>filter.Authenticate</filter-class>
+    </filter>
+    <filter>
+        <filter-name>AuthorizationFilter</filter-name>
+        <filter-class>filter.Authorization</filter-class>
+    </filter>
 
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthenticateFilter</filter-name>-->
-<!--        <url-pattern>/user/*</url-pattern>-->
-<!--    </filter-mapping>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthenticateFilter</filter-name>-->
-<!--        <url-pattern>/admin/*</url-pattern>-->
-<!--    </filter-mapping>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthorizationFilter</filter-name>-->
-<!--        <url-pattern>/user/*</url-pattern>-->
-<!--    </filter-mapping>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthorizationFilter</filter-name>-->
-<!--        <url-pattern>/admin/*</url-pattern>-->
-<!--    </filter-mapping>-->
+    <filter-mapping>
+        <filter-name>AuthenticateFilter</filter-name>
+        <url-pattern>/user/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthenticateFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/user/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
 
     <!--    *********************************************PUBLIC******************************************************-->
 
@@ -233,7 +233,6 @@
         <url-pattern>/user/room/test/update</url-pattern>
     </servlet-mapping>
 
-
     <!--    Management Set Feature-->
 <!--    set management-->
     <servlet>
@@ -396,14 +395,14 @@
         <servlet-name>AdminCreateSet</servlet-name>
         <url-pattern>/admin/set/create</url-pattern>
     </servlet-mapping>
-    <!--    Update set-->
+    <!--    View set-->
     <servlet>
         <servlet-name>AdminUpdateSet</servlet-name>
-        <servlet-class>controller.admin.set.AdminUpdateSet</servlet-class>
+        <servlet-class>controller.admin.set.AdminViewSetDetails</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminUpdateSet</servlet-name>
-        <url-pattern>/admin/set/update</url-pattern>
+        <url-pattern>/admin/set/details</url-pattern>
     </servlet-mapping>
     <!--    Delete set-->
     <servlet>
@@ -423,15 +422,6 @@
     <servlet-mapping>
         <servlet-name>AdminQuestionManagement</servlet-name>
         <url-pattern>/admin/question</url-pattern>
-    </servlet-mapping>
-    <!--    Create set-->
-    <servlet>
-        <servlet-name>AdminCreateQuestion</servlet-name>
-        <servlet-class>controller.admin.question.CreateQuestion</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminCreateQuestion</servlet-name>
-        <url-pattern>/admin/question/create</url-pattern>
     </servlet-mapping>
     <!--    Update set-->
     <servlet>
