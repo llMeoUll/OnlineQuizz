@@ -20,13 +20,6 @@
         </a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-        <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-            </div>
-        </form>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
@@ -92,7 +85,6 @@
                         <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="/Quizzicle/admin/question">Question List</a>
-                                <a class="nav-link" href="/Quizzicle/admin/question/create">Create New Question</a>
                             </nav>
                         </div>
                     </div>
@@ -105,14 +97,152 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                <jsp:include page="../user/set/CreateSet.jsp"></jsp:include>
+                <form action="./create" method="post">
+                    <div class="w-50 container-fluid bg-white p-4 d-flex align-items-center justify-content-between sticky-top z-3">
+                        <h3 class="d-inline mx-3">Create a new Set</h3>
+                        <button type="submit" class="btn btn-primary mx-3">Create</button>
+                    </div>
+                    <div class="w-50 container d-flex flex-column my-3 z-1">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter a title" required/>
+                            <label for="title">Title</label>
+                        </div>
+                        <div class="form-floating mb-3">
+            <textarea type="text" class="form-control" id="description" name="description"
+                      placeholder="Add a description"
+                      style="height: 100px"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+                        <div class="form-floating mb-3" id="hashtag-input">
+                            <input type="text" class="form-control" id="hashtag-text"
+                                   placeholder="Enter hashtag (comma-separated)"/>
+                            <label for="hashtag-text">Hashtags</label>
+                            <div class="mt-4" id="hashtag-container"></div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="privacy" name="privacy">
+                                <option value="public">Public</option>
+                                <option value="private">Private</option>
+                            </select>
+                            <label for="privacy">Privacy</label>
+                        </div>
+
+                        <div id="question-list" class="d-flex flex-column">
+                            <div class="card mb-3 question" id="question-container-1">
+                                <div class="card-header">
+                                    <div class="d-flex align-items-center justify-content-between mb-1 mx-2">
+                                        <div>
+                                            <span class="index">1</span>
+                                        </div>
+                                        <div>
+                            <span role="button" class="text-primary trash-icon" onclick="handleRemoveQuestion(1)">
+                                <i class="fa-solid fa-trash"></i>
+                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating">
+                                        <select class="form-select question-type" id="question-type-1" name="question-type-1"
+                                                onchange="handleSelectType(1);">
+                                            <option value="Multiple choice">Multiple choice</option>
+                                            <option value="True/False">True/False</option>
+                                            <option value="Essay">Essay</option>
+                                        </select>
+                                        <label class="question-type-label" for="question-type-1">Type</label>
+                                    </div>
+                                </div>
+
+                                <div class="card-body multiple-choice" id="multiple-choice-1">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control mul-question" name="mul-question-1"
+                                               id="mul-question-1"
+                                               placeholder="Enter a question" required/>
+                                        <label class="mul-question-label" for="mul-question-1">Question</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control mul-answer" id="mul-answer-1" name="mul-answer-1"
+                                               placeholder="Enter a answer" required/>
+                                        <label class="mul-answer-label" for="mul-answer-1">Answer</label>
+                                    </div>
+                                    <div class="opt-container" id="opt-container-1">
+                                        <input type="hidden" name="number-opt-mul-1" id="number-opt-mul-1">
+                                        <div class="input-group mb-3 align-items-center opt">
+                                            <input type="text" name="mul-question-1-opt-1" class="form-control"
+                                                   placeholder="Option 1" required/>
+                                            <span class="text-primary mx-1 xmark-icon" role="button"
+                                                  onclick="handleRemoveOpt(1,1);">
+                                <i class="fa-solid fa-xmark"></i>
+                            </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="text-center">
+                        <span role="button" class="text-primary btn-add-opt" onclick="handleAddOpt(1);"><i
+                                class="fa-solid fa-circle-plus"></i></span>
+                                    </div>
+                                </div>
+
+                                <div class="card-body true-false" id="true-false-1" style="display: none;">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control tf-question" id="tf-question-1" name="tf-question-1"
+                                               placeholder="Enter a question"/>
+                                        <label class="tf-question-label" for="tf-question-1">Question</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select tf-answer" id="tf-answer-1" name="tf-answer-1">
+                                            <option value="true">True</option>
+                                            <option value="false">False</option>
+                                        </select>
+                                        <label class="tf-answer-label" for="tf-answer-1">Answer</label>
+                                    </div>
+                                </div>
+
+                                <div class="card-body essay" id="essay-1" style="display: none;">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control essay-question" id="essay-question-1"
+                                               name="essay-question-1" placeholder="Enter a question"/>
+                                        <label class="essay-question-label" for="essay-question-1">Question</label>
+                                    </div>
+                                    <textarea class="form-control essay-answer" id="essay-answer-1" name="essay-answer-1"
+                                              placeholder="Enter a answer"
+                                              style="height: 100px"></textarea>
+                                </div>
+                            </div>
+                            <button type="button" onclick="handleAddQuestion();" class="btn btn-outline-primary">+ADD QUESTION
+                            </button>
+                        </div>
+                        <input type="hidden" name="number-of-question" id="number-of-question">
+                        <button type="submit" class="btn btn-primary mt-3">Create</button>
+                    </div>
+
+                </form>
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="submit-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body text-danger">
+                            You can't create set! you must have at least 2 questions.
+                        </div>
+                    </div>
+                </div>
             </main>
+        </div>
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="mr-auto">Notification</strong>
+                </div>
+                <div class="toast-body">
+                    New User registered! Click to view details.
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="../../js/Dashboard.js"></script>
     <script src="../../js/Register.js"></script>
+    <script src="../.././js/CreateSet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     </body>
 </html>
