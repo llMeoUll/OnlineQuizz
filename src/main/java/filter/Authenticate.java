@@ -24,6 +24,15 @@ public class Authenticate implements Filter {
         HttpServletRequest request = (HttpServletRequest) sr;
         HttpServletResponse response = (HttpServletResponse) sr1;
 
+        String upgradeHeader = request.getHeader("Upgrade");
+
+        if (upgradeHeader != null && upgradeHeader.equalsIgnoreCase("websocket")) {
+            // Cho phép yêu cầu WebSocket đi qua
+            System.out.println(upgradeHeader);
+            fc.doFilter(request, response);
+            return;
+        }
+
         // Kiểm tra URL của request
         String requestURI = request.getRequestURI();
         String requestContextPath = request.getContextPath();
