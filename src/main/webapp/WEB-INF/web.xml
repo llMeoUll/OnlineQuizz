@@ -37,33 +37,6 @@
 
     <!--    *********************************************PUBLIC******************************************************-->
 
-    <servlet>
-        <servlet-name>SearchControl</servlet-name>
-        <servlet-class>controller.user.search.SearchControl</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SearchControl</servlet-name>
-        <url-pattern>/search</url-pattern>
-    </servlet-mapping>
-    <!--HomePage-->
-    <servlet>
-        <servlet-name>HomeControl</servlet-name>
-        <servlet-class>controller.user.home.Home</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>HomeControl</servlet-name>
-        <url-pattern>/home</url-pattern>
-    </servlet-mapping>
-    <!--    Profile-->
-    <servlet>
-        <servlet-name>UserProfileControl</servlet-name>
-        <servlet-class>controller.user.profile.UserProfile</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserProfileControl</servlet-name>
-        <url-pattern>/profile</url-pattern>
-    </servlet-mapping>
-
     <!--    *********************************************USER******************************************************-->
     <!--    Authenticate Feature-->
     <!--    log in with Google-->
@@ -204,7 +177,7 @@
         <servlet-name>viewTestDetail</servlet-name>
         <url-pattern>/user/room/test/get</url-pattern>
     </servlet-mapping>
-<!--    Test Management Feature-->
+    <!--    Test Management Feature-->
     <!--  create test -->
     <servlet>
         <servlet-name>CreateTest</servlet-name>
@@ -234,7 +207,7 @@
     </servlet-mapping>
 
     <!--    Management Set Feature-->
-<!--    set management-->
+    <!--    set management-->
     <servlet>
         <servlet-name>manageSet</servlet-name>
         <servlet-class>controller.user.set.SetManage</servlet-class>
@@ -262,7 +235,7 @@
         <url-pattern>/user/set/update</url-pattern>
     </servlet-mapping>
 
-<!--    delete set-->
+    <!--    delete set-->
     <servlet>
         <servlet-name>DeleteSet</servlet-name>
         <servlet-class>controller.user.set.DeleteSet</servlet-class>
@@ -271,7 +244,7 @@
         <servlet-name>DeleteSet</servlet-name>
         <url-pattern>/user/set/delete</url-pattern>
     </servlet-mapping>
-<!--    get set-->
+    <!--    get set-->
     <servlet>
         <servlet-name>GetSet</servlet-name>
         <servlet-class>controller.user.set.GetSet</servlet-class>
@@ -440,5 +413,41 @@
     <servlet-mapping>
         <servlet-name>AdminDeleteQuestion</servlet-name>
         <url-pattern>/admin/question/delete</url-pattern>
+    </servlet-mapping>
+<!--    search-->
+    <servlet>
+        <servlet-name>SearchControl</servlet-name>
+        <servlet-class>controller.user.search.SearchControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchControl</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <!--HomePage-->
+    <servlet>
+        <servlet-name>HomeControl</servlet-name>
+        <servlet-class>controller.user.home.Home</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeControl</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <!--    Profile-->
+    <servlet>
+        <servlet-name>UserProfileControl</servlet-name>
+        <servlet-class>controller.user.profile.UserProfileUpdateControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserProfileControl</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <!--    Profile Update-->
+    <servlet>
+        <servlet-name>UserProfileUpdateControl</servlet-name>
+        <servlet-class>controller.user.profile.UserProfileUpdateControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserProfileUpdateControl</servlet-name>
+        <url-pattern>/update</url-pattern>
     </servlet-mapping>
 </web-app>

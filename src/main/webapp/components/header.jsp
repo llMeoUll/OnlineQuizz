@@ -18,7 +18,7 @@
             <span class='fas fa-align-right'></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav" >
                 <li class="nav-item active mr-5">
                     <a class="nav-link" href="#"><i class="fas fa-home"></i> Homepage</a>
                 </li>
@@ -26,7 +26,7 @@
                     <a class="nav-link" href="./user/room"><i class='fas fa-book'></i> Your room</a>
                 </li>
                 <li class="nav-item active mr-5">
-                    <a class="nav-link" href="#"><i class='fas fa-book'></i> Your set</a>
+                    <a class="nav-link" href="./user/set"><i class='fas fa-book'></i> Your set</a>
                 </li>
                 <li class="nav-item mr-5 mt-1">
                     <form action="search" method="post" class="form-inline my-2 my-lg-0"
@@ -52,8 +52,8 @@
                         <div class="dropdown-menu custom-dropdown" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item custom-dropdown-item" href="./user/set/create"><i class="fas fa-cog"></i>
                                 Set</a>
-                            <a class="dropdown-item custom-dropdown-item" href="./user/set/create"><i class="fas fa-folder"></i>
-                                Question</a>
+<%--                            <a class="dropdown-item custom-dropdown-item" href="./user/set/create"><i class="fas fa-folder"></i>--%>
+<%--                                Question</a>--%>
                             <a class="dropdown-item custom-dropdown-item" href="./user/room"><i
                                     class="fa-solid fa-people-group"></i>
                                 Room</a>
@@ -85,7 +85,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="./profile"><i class=" sfa-solid fa-gear"></i> Brief</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cogs"></i> Settings</a>
+                                <a class="dropdown-item" href="./update"><i class="fas fa-cogs"></i> Settings</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="./logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
                             </div>
