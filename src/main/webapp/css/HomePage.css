@@ -106,9 +106,14 @@ main{
 /* CSS cho màn hình table (<= 769px) */
 @media screen and (max-width: 769px) {
     .navbar-nav {
-        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        margin-top: 5px;
     }
-
+    .navbar-nav .nav-item .form-inline{
+        width: 50vw;
+    }
     .navbar-nav .nav-item {
         margin-right: 0 !important;
         margin-bottom: 1rem;
@@ -130,7 +135,9 @@ main{
         left: 50%;
         transform: translateX(95%);
     }
-
+    #custom-dropdown-li{
+        margin-left: 0;
+    }
     /* Position custom-dropdown-li, login, signup to the right */
     #custom-dropdown-li,
     .btn.sign-in-btn,
