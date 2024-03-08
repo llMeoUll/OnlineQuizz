@@ -208,6 +208,22 @@ public class UserDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
+    public void updatePassword(String email, String passwordHash) {
+        String sqlUpdatePassword = "UPDATE `online_quizz`.`user`\n" +
+                "SET\n" +
+                "`password` = ?,\n" +
+                "`updated_at` = current_timestamp()\n" +
+                "WHERE `email` = ?;";
+        try {
+            PreparedStatement stmUpdatePassword = connection.prepareStatement(sqlUpdatePassword);
+            stmUpdatePassword.setString(1, passwordHash);
+            stmUpdatePassword.setString(2, email);
+            stmUpdatePassword.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void delete(User entity) {
         String sqlDeleteUser = "DELETE FROM `online_quizz`.`user`\n" +
                 "WHERE `user`.`uid` = ?;";
@@ -252,21 +268,6 @@ public class UserDBContext extends DBContext {
             throw new RuntimeException(e);
         }
         return true;
-    }
-    public void updatePassword(String email, String passwordHash) {
-        String sqlUpdatePassword = "UPDATE `online_quizz`.`user`\n" +
-                "SET\n" +
-                "`password` = ?,\n" +
-                "`updated_at` = current_timestamp()\n" +
-                "WHERE `email` = ?;";
-        try {
-            PreparedStatement stmUpdatePassword = connection.prepareStatement(sqlUpdatePassword);
-            stmUpdatePassword.setString(1, passwordHash);
-            stmUpdatePassword.setString(2, email);
-            stmUpdatePassword.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
     public ArrayList<User> getNewUserInWeek() {
         ArrayList<User> users = new ArrayList<>();
@@ -359,4 +360,32 @@ public class UserDBContext extends DBContext {
         }
         return users;
     }
+
+    public void updateUserProfile(User entity) {
+        try {
+            String sqlUpdateUser = "UPDATE `online_quizz`.`user`\n" +
+                    "SET\n" +
+                    "`email` = ?,\n" +
+                    "`username` = ?,\n" +
+                    "`given_name` = ?,\n" +
+                    "`family_name` = ?,\n" +
+                    "`password` = ?,\n" +
+                    "`avatar` = ?,\n" +
+                    "`updated_at` = ?\n" +
+                    "WHERE `uid` = ?;";
+            PreparedStatement stmUpdateUser = connection.prepareStatement(sqlUpdateUser);
+            stmUpdateUser.setString(1, entity.getEmail());
+            stmUpdateUser.setString(2, entity.getUsername());
+            stmUpdateUser.setString(3, entity.getGivenName());
+            stmUpdateUser.setString(4, entity.getFamilyName());
+            stmUpdateUser.setString(5, entity.getPassword());
+            stmUpdateUser.setString(6, entity.getAvatar());
+            stmUpdateUser.setTimestamp(7, entity.getUpdatedAt());
+            stmUpdateUser.setInt(8, entity.getId());
+            stmUpdateUser.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

@@ -212,7 +212,7 @@ public class SetDBContext extends DBContext {
     }
     public ArrayList<Set> search(String name) {
         ArrayList<Set> sets = new ArrayList<>();
-        String sql = "select * from set \n" +
+        String sql = "select * from `set` \n" +
                 "where sname like ?";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
