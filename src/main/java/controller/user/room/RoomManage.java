@@ -1,6 +1,6 @@
 package controller.user.room;
 
-import controller.user.room.utilities.GenerateCodeToJoin;
+import util.GenerateCodeToJoin;
 import dao.RoomDBContext;
 import dao.UserDBContext;
 import entity.Room;
@@ -18,7 +18,7 @@ import java.util.*;
  * room của mình. (Tự tạo hoặc đã joined ở room khác)
  */
 
-public class RoomServlet extends HttpServlet {
+public class RoomManage extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // User này lấy từ session nên chỉ có mỗi email và password

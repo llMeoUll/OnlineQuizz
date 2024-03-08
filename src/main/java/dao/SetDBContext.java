@@ -1,6 +1,9 @@
 package dao;
 
-import entity.*;
+import entity.HashTag;
+import entity.Question;
+import entity.Set;
+import entity.User;
 import org.checkerframework.checker.units.qual.A;
 
 import java.sql.PreparedStatement;
@@ -55,7 +58,10 @@ public class SetDBContext extends DBContext {
                 set.setSName(rs.getString("sname"));
                 set.setDescription(rs.getString("description"));
                 set.setPrivate(rs.getBoolean("is_private"));
-                ArrayList<Question> questions = new QuestionDBContext().list(setId, connection);
+                UserDBContext userDBContext = new UserDBContext();
+                User user = userDBContext.get(rs.getInt("uid"));
+                set.setUser(user);
+                ArrayList<Question> questions = new QuestionDBContext().list(setId);
                 set.setQuestions(questions);
                 ArrayList<HashTag> hashTags = new HashtagDBContext().list(setId, connection);
                 set.setHashTags(hashTags);
@@ -197,7 +203,26 @@ public class SetDBContext extends DBContext {
         }
         return sets;
     }
-
+    //    get all set of user
+    public ArrayList<Set> list(User user) {
+        ArrayList<Set> ls = new ArrayList<>();
+        String sql = "SELECT * FROM online_quizz.set WHERE uid = ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, user.getId());
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Set set = new Set();
+                set.setSId(rs.getInt(1));
+                set.setSName(rs.getString(2));
+                set.setDescription(rs.getString(3));
+                ls.add(set);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return ls;
+    }
     public void delete(Set set) {
         String sqlDeleteSet = "DELETE FROM `online_quizz`.`set`\n" +
                 "WHERE `sid` = ?;";
@@ -212,8 +237,13 @@ public class SetDBContext extends DBContext {
     }
     public ArrayList<Set> search(String name) {
         ArrayList<Set> sets = new ArrayList<>();
+<<<<<<< HEAD
         String sql = "select * from `set` \n" +
                 "where sname like ?";
+=======
+        String sql = "SELECT * FROM online_quizz.set\n" +
+                "where sname like ?;";
+>>>>>>> 4530f6c8eeb27dc69c2a5615362d08ee6c8cde90
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, "%" + name + "%");

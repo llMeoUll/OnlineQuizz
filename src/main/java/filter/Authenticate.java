@@ -11,7 +11,7 @@ public class Authenticate implements Filter {
 
     private boolean isAuthenticated(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
-        return user != null;
+       return user != null;
     }
 
     @Override
@@ -23,6 +23,15 @@ public class Authenticate implements Filter {
     public void doFilter(ServletRequest sr, ServletResponse sr1, FilterChain fc) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) sr;
         HttpServletResponse response = (HttpServletResponse) sr1;
+
+        String upgradeHeader = request.getHeader("Upgrade");
+
+        if (upgradeHeader != null && upgradeHeader.equalsIgnoreCase("websocket")) {
+            // Cho phép yêu cầu WebSocket đi qua
+            System.out.println(upgradeHeader);
+            fc.doFilter(request, response);
+            return;
+        }
 
         // Kiểm tra URL của request
         String requestURI = request.getRequestURI();

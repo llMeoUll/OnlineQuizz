@@ -39,7 +39,7 @@ public class CreateUser extends HttpServlet {
             roles.add(role);
             newUser.setRoles(roles);
             userDBContext.insert(newUser);
-            response.sendRedirect("../user_management");
+            response.sendRedirect("../user");
         }
         else {
 

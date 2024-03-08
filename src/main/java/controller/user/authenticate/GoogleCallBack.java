@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dao.RoleDBConext;
 import dao.UserDBContext;
+import entity.Notification;
 import entity.User;
 import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.servlet.*;
@@ -18,7 +19,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-import websocket.endpoints.DashboardWebSocketEndpoint;
+import websocket.endpoints.AdminDashboardWebSocketEndpoint;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -29,7 +30,7 @@ import java.util.logging.Logger;
 
 public class GoogleCallBack extends HttpServlet {
     Dotenv dotenv = Dotenv.configure().load();
-    private  String GOOGLE_CLIENT_ID = dotenv.get("GOOGLE_CLIENT_ID");
+    private String GOOGLE_CLIENT_ID = dotenv.get("GOOGLE_CLIENT_ID");
     private String GOOGLE_CLIENT_SECRET = dotenv.get("GOOGLE_CLIENT_SECRET");
     private String GOOGLE_LINK_GET_TOKEN = dotenv.get("GOOGLE_LINK_GET_TOKEN");
     private String GOOGLE_LINK_AUTH = dotenv.get("GOOGLE_LINK_AUTH");
@@ -37,7 +38,6 @@ public class GoogleCallBack extends HttpServlet {
     private String[] GOOGLE_SCOPES = dotenv.get("GOOGLE_SCOPES").split(", ");
     private AuthorizationCodeFlow flow;
     private final Lock lock = new ReentrantLock();
-
 
 
     @Override
@@ -106,27 +106,20 @@ public class GoogleCallBack extends HttpServlet {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            HttpSession userSession = request.getSession();
-            userSession.setAttribute("user", user);
             // Check if user is already in database, if not, insert
-            if(db.checkEmail(user.getEmail())){
+            if (db.checkEmail(user.getEmail())) {
                 try {
                     db.insert(user);
+                    Notification notification = new Notification();
+                    notification.setFrom(db.get(user.getEmail()));
+                    AdminDashboardWebSocketEndpoint.notifyAdminsNewUserRegistered(notification);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-            } else {
-                try {
-                    RoleDBConext roleDBConext = new RoleDBConext();
-                    user.setRoles(roleDBConext.list(user.getEmail()));
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                User registedUser = db.get(user.getEmail());
-                user.setId(registedUser.getId());
-                HttpSession session = request.getSession();
-                session.setAttribute("user", user);
             }
+            User registeredUser = db.get(user.getEmail());
+            HttpSession session = request.getSession();
+            session.setAttribute("user", registeredUser);
             response.sendRedirect("./");
         } else {
             // Handle the case where the response entity is null

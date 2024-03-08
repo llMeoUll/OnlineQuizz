@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class QuestionDBContext extends DBContext{
-    public ArrayList<Question> list(int setId, Connection connection) {
+    public ArrayList<Question> list(int setId) {
         ArrayList<Question> questions = new ArrayList<>();
         String sql = "SELECT * FROM `online_quizz`.`question` WHERE `question`.`sid` = ?";
         try {
@@ -87,7 +87,7 @@ public class QuestionDBContext extends DBContext{
 
     public void deleteAll(int sId, Connection connection) throws SQLException {
         QuestionOptionsDBContext questionOptionsDBContext = new QuestionOptionsDBContext();
-        ArrayList<Question> questions = list(sId, connection);
+        ArrayList<Question> questions = list(sId);
         for (Question question : questions) {
             if (question.getType().getTypeName().equals("Multiple choice")) {
                 questionOptionsDBContext.deleteAll(question.getQId(), connection);

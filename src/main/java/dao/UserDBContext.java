@@ -4,6 +4,7 @@ import entity.*;
 
 
 import com.lambdaworks.crypto.SCryptUtil;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,6 +33,7 @@ public class UserDBContext extends DBContext {
         }
         return null;
     }
+
     public User get(String email) {
         try {
             String sql = "SELECT * FROM `online_quizz`.`user` "
@@ -41,13 +43,19 @@ public class UserDBContext extends DBContext {
             ResultSet resultSet = stm.executeQuery();
             if (resultSet.next()) {
                 User user = initUserInfo(resultSet);
+                RoleDBConext roleDBConext = new RoleDBConext();
+                ArrayList<Role> roles = roleDBConext.list(user.getEmail());
+                user.setRoles(roles);
                 return user;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return null;
     }
+
     public User get(String email, String password) {
         try {
             String sql = "SELECT * FROM `online_quizz`.`user` "
@@ -58,22 +66,28 @@ public class UserDBContext extends DBContext {
             if (resultSet.next()) {
                 User user = initUserInfo(resultSet);
                 if (SCryptUtil.check(password, user.getPassword())) {
+                    RoleDBConext roleDBConext = new RoleDBConext();
+                    ArrayList<Role> roles = roleDBConext.list(user.getEmail());
+                    user.setRoles(roles);
                     return user;
                 }
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return null;
     }
+
     public ArrayList<User> list() {
         ArrayList<User> users = new ArrayList<>();
         String sqlGetListUser = "SELECT * FROM `online_quizz`.`user`";
         try {
             PreparedStatement stmGetListUser = connection.prepareStatement(sqlGetListUser);
             ResultSet rs = stmGetListUser.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 User user = initUserInfo(rs);
                 users.add(user);
             }
@@ -82,6 +96,7 @@ public class UserDBContext extends DBContext {
         }
         return users;
     }
+
     public ArrayList<User> list(String email) {
         ArrayList<User> users = new ArrayList<>();
         String sqlGetUsersByEmail = "SELECT `user`.`uid`,\n" +
@@ -100,7 +115,7 @@ public class UserDBContext extends DBContext {
             stmGetUsersByEmail.setString(2, "%" + email + "%");
             stmGetUsersByEmail.setString(3, email + "%");
             ResultSet rs = stmGetUsersByEmail.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 User user = initUserInfo(rs);
                 users.add(user);
             }
@@ -110,6 +125,7 @@ public class UserDBContext extends DBContext {
 
         return users;
     }
+
     public void insert(User entity) {
         try {
             connection.setAutoCommit(false);
@@ -172,6 +188,7 @@ public class UserDBContext extends DBContext {
             }
         }
     }
+
     private User initUserInfo(ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setId(resultSet.getInt("uid"));
@@ -186,6 +203,7 @@ public class UserDBContext extends DBContext {
         user.setUpdatedAt(resultSet.getTimestamp("updated_at"));
         return user;
     }
+
     public void update(User entity) {
         try {
             String sqlUpdateUser = "UPDATE `online_quizz`.`user`\n" +
@@ -208,6 +226,7 @@ public class UserDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
+
     public void updatePassword(String email, String passwordHash) {
         String sqlUpdatePassword = "UPDATE `online_quizz`.`user`\n" +
                 "SET\n" +
@@ -237,6 +256,7 @@ public class UserDBContext extends DBContext {
         }
 
     }
+
     // if email is existed, return false
     public boolean checkEmail(String email) {
         String sql = "SELECT email FROM user\n" +
@@ -253,6 +273,7 @@ public class UserDBContext extends DBContext {
         }
         return true;
     }
+
     // if username is existed, return false
     public boolean checkUsername(String userName) {
         String sql = "SELECT username FROM user\n" +
@@ -269,6 +290,7 @@ public class UserDBContext extends DBContext {
         }
         return true;
     }
+
     public ArrayList<User> getNewUserInWeek() {
         ArrayList<User> users = new ArrayList<>();
         String sqlGetNewUserInWeek = "SELECT *\n" +
@@ -277,7 +299,7 @@ public class UserDBContext extends DBContext {
         try {
             PreparedStatement stmGetNewUserInWeek = connection.prepareStatement(sqlGetNewUserInWeek);
             ResultSet rs = stmGetNewUserInWeek.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 User user = initUserInfo(rs);
                 users.add(user);
             }
@@ -287,6 +309,7 @@ public class UserDBContext extends DBContext {
 
         return users;
     }
+
     // countSetByUid
     public int CountSet(int uid) {
         String sqlCountSet = "SELECT count(sid) as numberofset from user u\n" +
@@ -306,6 +329,7 @@ public class UserDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
+
     // countRoom by uid
     public int CountRoom(int uid) {
         String sqlCountRoom = "SELECT count(room_id) as numberofroom from user u\n" +
@@ -325,6 +349,7 @@ public class UserDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
+
     // search by name or email
     public ArrayList<User> search(String query) {
         ArrayList<User> users = new ArrayList<>();
@@ -388,4 +413,17 @@ public class UserDBContext extends DBContext {
         }
     }
 
+    public void verifiedEmail(String email) {
+        String sqlVerifiedEmail = "UPDATE `online_quizz`.`user`\n" +
+                "SET\n" +
+                "`is_verify` = 1\n" +
+                "WHERE `email` = ?;";
+        try {
+            PreparedStatement stmVerifiedEmail = connection.prepareStatement(sqlVerifiedEmail);
+            stmVerifiedEmail.setString(1, email);
+            stmVerifiedEmail.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

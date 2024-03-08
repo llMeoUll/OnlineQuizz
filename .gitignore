@@ -8,6 +8,7 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/workspace.xml
 *.iws
 *.iml
 *.ipr
@@ -15,6 +16,7 @@ target/
 !.env.example
 .idea
 .client_secret.json
+
 
 ### Eclipse ###
 .apt_generated
