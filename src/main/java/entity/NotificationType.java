@@ -11,11 +11,8 @@ import java.util.ArrayList;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Notification {
-    private int notificationId;
-    private User from;
-    private ArrayList<User> tos;
-    private String url;
-    private NotificationType type;
-    private boolean isRead;
+public class NotificationType {
+    private int notificationTypeId;
+    private String action;
+    private ArrayList<Notification> notifications;
 }

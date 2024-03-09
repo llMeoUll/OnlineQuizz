@@ -71,8 +71,17 @@
                 </c:if>
                 <c:if test="${sessionScope.user != null}">
                     <div class="navbar-nav" style="margin-left: 30px;">
-                        <li class="nav-item mr-3">
-                            <a class="nav-link" href="#"><i class="fas fa-bell" style="font-size: 25px;"></i></a>
+                        <li class="nav-item dropdown">
+                            <a href="" class="nav-link dropdown-toggle" aria-haspopup="true" id="navbarDropdownNotification" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-sharp fa-solid fa-bell"></i>
+                            </a>
+                            <ul class="dropdown-menu" style="overflow-y: auto; max-height: 400px" aria-labelledby="navbarDropdownNotification">
+                                <c:forEach items="${requestScope.notifications}" var="notification">
+                                    <li class="dropdown-item">
+
+                                    </li>
+                                </c:forEach>
+                            </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle mt-0" href="#" id="navbarDropdown" role="button"
