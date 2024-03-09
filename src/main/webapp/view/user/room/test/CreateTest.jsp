@@ -19,7 +19,7 @@
 <div class="container">
     <form action="./create" method="post">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 text-center">
                 <h1>Create Test</h1>
             </div>
         </div>
@@ -27,31 +27,35 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="name">Test Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input type="text" class="form-control" id="name" name="name" required value="${sessionScope.test.testName}"/>
                 </div>
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="start">Start time</label>
-                        <input type="datetime-local" class="form-control" id="start" name="start" required>
+                        <input type="datetime-local" class="form-control" id="start" name="start" required value="${sessionScope.test.startTime}"/>
                     </div>
                     <div class="col-md-3 form-group">
                         <label for="duration">Test duration</label>
-                        <input type="number" class="form-control" id="duration" name="duration" required>
+                        <input type="number" class="form-control" id="duration" name="duration" required
+                               value="${((sessionScope.test.endTime.getTime() - sessionScope.test.startTime.getTime())/60000).intValue()}"/>
                     </div>
                     <div class="col-md-3 form-group">
                         <label for="attempt">Attempt</label>
-                        <input type="number" class="form-control" id="attempt" name="attempt" required>
+                        <input type="number" class="form-control" id="attempt" name="attempt" required value="${sessionScope.test.attempt}"/>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="description">Test description</label>
-                    <textarea type="text" class="form-control" id="description" name="description" style="height: 85%" required></textarea>
+                    <textarea type="text" class="form-control" id="description" name="description" style="height: 85%" required>${sessionScope.test.testDescription}</textarea>
                 </div>
             </div>
         </div>
-        <button type="submit" id="btn-next" class="btn btn-primary">Next</button>
+        <div class="container-fluid d-flex justify-content-between pb-3 px-5">
+            <a href="./create/cancel" class="btn btn-outline-primary">Cancel</a>
+            <button type="submit" id="btn-next" class="btn btn-outline-primary">Next</button>
+        </div>
     </form>
 </div>
 

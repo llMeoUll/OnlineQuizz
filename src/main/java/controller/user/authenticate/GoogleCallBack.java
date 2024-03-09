@@ -6,7 +6,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import dao.RoleDBConext;
+import dao.RoleDBContext;
 import dao.UserDBContext;
 import entity.User;
 import io.github.cdimascio.dotenv.Dotenv;
@@ -99,8 +99,8 @@ public class GoogleCallBack extends HttpServlet {
             user.setAvatar(picture);
             user.setVerified(verified);
             try {
-                RoleDBConext roleDBConext = new RoleDBConext();
-                user.setRoles(roleDBConext.list(user.getEmail()));
+                RoleDBContext roleDBContext = new RoleDBContext();
+                user.setRoles(roleDBContext.list(user.getEmail()));
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }

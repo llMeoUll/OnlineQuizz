@@ -201,7 +201,9 @@ public class SetDBContext extends DBContext {
     //    get all set of user
     public ArrayList<Set> list(User user) {
         ArrayList<Set> ls = new ArrayList<>();
-        String sql = "SELECT * FROM online_quizz.set WHERE uid = ?";
+        String sql = "SELECT * FROM online_quizz.set " +
+                "WHERE uid = ? " +
+                "order by `updated_at` desc";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, user.getId());

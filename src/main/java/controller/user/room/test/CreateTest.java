@@ -1,5 +1,6 @@
 package controller.user.room.test;
 
+import dao.QuestionDBContext;
 import dao.SetDBContext;
 import entity.Set;
 import entity.Test;
@@ -30,7 +31,6 @@ public class CreateTest extends HttpServlet {
         int duration = Integer.parseInt(request.getParameter("duration"));
         int attempt = Integer.parseInt(request.getParameter("attempt"));
         Timestamp endTime = new Timestamp(startTime.getTime() + duration * 60000);
-
         Test test = new Test();
         test.setTestName(Name);
         test.setTestDescription(Description);
@@ -39,12 +39,10 @@ public class CreateTest extends HttpServlet {
         test.setStartTime(startTime);
         test.setEndTime(endTime);
         HttpSession session = request.getSession();
+        if(session.getAttribute("test") != null){
+            session.removeAttribute("test");
+        }
         session.setAttribute("test", test);
-        SetDBContext setDBContext = new SetDBContext();
-//        User user = (User) session.getAttribute("user");
-//        ArrayList<Set> list = setDBContext.getOwnedSet(user);
-
-        request.getRequestDispatcher("../../.././view/user/room/test/AddQuestion.jsp").forward(request, response);
-
+        response.sendRedirect("create/add-question");
     }
 }
