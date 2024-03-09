@@ -90,6 +90,11 @@
         .controls button:hover {
             background-color: #8936a0;
         }
+        #ratingStars {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
 
     </style>
     <script>
@@ -141,6 +146,8 @@
 
 </head>
 <body>
+
+</div>
 <%--header--%>
 <div class="fixed-top shadow z-2" style="height: 64px; background-color: #0d6efd">
     <main id="main">
@@ -175,10 +182,13 @@
         <div class="container">
             <!-- Button trigger modal -->
             <a class="btn-success" href="#" onclick="confirmDelete()">Delete</a>
-
+            <div style="justify-content: center;">
+                <!--  Update -->
+                <a class="btn btn-primary" href="/Quizzicle/user/set/update">Update</a>
+            </div>
             <script>
                 function confirmDelete() {
-                    var confirmation = window.confirm("Are you sure you want to delete set ${setID}?");
+                    var confirmation = window.confirm("Are you sure you want to delete this set ${setID}?");
                     if (confirmation) {
                         window.location.href = "../set/delete?set-id=${setID}";
                     } else {
@@ -214,6 +224,24 @@
                 </style>
 
             </table>
+            <form id="myForm" action="./get" method="post">
+                <div id="ratingStars" class="rating">
+                    <select onchange="submitForm()" name="numberOfStar">
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                    </select>
+                    <input type="hidden" name="setId" value="${requestScope.setID}">
+                </div>
+                <button type="submit">Rate</button>
+            </form>
+            <script>
+                function submitForm() {
+                    document.getElementById("myForm").submit();
+                }
+            </script>
             <style>
                 .fl {
                     width: 100%;
@@ -241,6 +269,7 @@
                 tr:hover {
                     background-color: #e9e9e9;
                 }
+
             </style>
 
 
