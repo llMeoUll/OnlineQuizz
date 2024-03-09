@@ -29,7 +29,7 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdownNotification" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-sharp fa-thin fa-bell"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownNotification">
                     <c:forEach items="${requestScope.notifications}" var="notification">
-                        <li><a href="${notification.url}" class="dropdown-item">New User registered</a></li>
+                        <li><a href="${notification.url}" class="dropdown-item">${notification.getType().getAction()}</a></li>
                         <li><hr class="dropdown-divider"></li>
                     </c:forEach>
                 </ul>

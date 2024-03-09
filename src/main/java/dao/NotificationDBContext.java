@@ -13,12 +13,14 @@ import entity.User;
 public class NotificationDBContext extends DBContext<Notification> {
     public ArrayList<Notification> list(User user) {
         ArrayList<Notification> notifications = new ArrayList<>();
-        String sqlListNotification = "SELECT n.noti_id, n.`from`, n.url, num.is_read, n.type_id, num.`to`\n" +
+        String sqlListNotification = "SELECT n.noti_id, n.`from`, n.url, num.is_read, n.type_id, nt.`action`, num.`to`\n" +
                 "                FROM online_quizz.notification n\n" +
                 "                INNER JOIN online_quizz.`notification_user_mapping` num\n" +
                 "                ON n.noti_id = num.noti_id\n" +
+                "                INNER JOIN online_quizz.`notification_type` nt \n" +
+                "                ON nt.type_id = n.type_id\n" +
                 "                WHERE num.`to` = ?\n" +
-                "\t\t\t\tORDER BY n.noti_id DESC";
+                "                ORDER BY n.noti_id DESC";
         try {
             PreparedStatement stmListNotification = connection.prepareStatement(sqlListNotification);
             stmListNotification.setInt(1, user.getId());
@@ -31,6 +33,7 @@ public class NotificationDBContext extends DBContext<Notification> {
                 notification.setFrom(from);
                 notification.setUrl(rs.getString("url"));
                 NotificationType notificationType = new NotificationType();
+                notificationType.setAction(rs.getString("action"));
                 notificationType.setNotificationTypeId(rs.getInt("type_id"));
                 notification.setType(notificationType);
                 notification.setRead(rs.getBoolean("is_read"));

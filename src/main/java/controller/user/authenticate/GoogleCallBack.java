@@ -7,6 +7,7 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dao.NotificationDBContext;
+import dao.NotificationTypeDBContext;
 import dao.RoleDBConext;
 import dao.UserDBContext;
 import entity.Notification;
@@ -151,9 +152,9 @@ public class GoogleCallBack extends HttpServlet {
 
     private Notification createNotification(ArrayList<User> tos, User from) {
         Notification notification = new Notification();
+        NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
         notification.setRead(false);
-        NotificationType notificationType = new NotificationType();
-        notificationType.setNotificationTypeId(1);
+        NotificationType notificationType = notificationTypeDBContext.get(1);
         notification.setType(notificationType);
         notification.setTos(tos);
         notification.setFrom(from);

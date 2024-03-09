@@ -76,9 +76,9 @@
                                 <i class="fa-sharp fa-solid fa-bell"></i>
                             </a>
                             <ul class="dropdown-menu" style="overflow-y: auto; max-height: 400px" aria-labelledby="navbarDropdownNotification">
-                                <c:forEach items="${requestScope.notifications}" var="notification">
-                                    <li class="dropdown-item">
-
+                                <c:forEach items="${sessionScope.notifications}" var="notification">
+                                    <li>
+                                        <a href="${notification.url}" class="dropdown-item">${notification.getType().getAction()}</a>
                                     </li>
                                 </c:forEach>
                             </ul>

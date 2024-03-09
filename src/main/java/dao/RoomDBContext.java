@@ -288,7 +288,8 @@ public class RoomDBContext extends DBContext {
                 "    `room`.`room_name`,\n" +
                 "    `room`.`code`,\n" +
                 "    `room`.`password`,\n" +
-                "    `room`.`description`\n" +
+                "    `room`.`description`,\n" +
+                "    `room`.`uid`\n" +
                 "FROM `online_quizz`.`room` WHERE room_id = ?;\n";
 
         try {
@@ -296,10 +297,13 @@ public class RoomDBContext extends DBContext {
             stm.setInt(1, r.getRoomId());
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
+                UserDBContext userDBContext = new UserDBContext();
+                User owner = userDBContext.get(rs.getInt("uid"));
                 r.setRoomName(rs.getString("room_name"));
                 r.setDescription(rs.getString("description"));
                 r.setCode(rs.getString("code"));
                 r.setPassword(rs.getString("password"));
+                r.setUser(owner);
                 return r;
             }
         } catch (SQLException e) {

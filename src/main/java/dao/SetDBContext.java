@@ -230,7 +230,6 @@ public class SetDBContext extends DBContext {
             PreparedStatement stm = connection.prepareStatement(sqlDeleteSet);
             stm.setInt(1, set.getSId());
             stm.executeUpdate();
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
