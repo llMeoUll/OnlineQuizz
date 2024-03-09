@@ -6,9 +6,11 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import dao.NotificationDBContext;
 import dao.RoleDBConext;
 import dao.UserDBContext;
 import entity.Notification;
+import entity.NotificationType;
 import entity.User;
 import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.servlet.*;
@@ -22,6 +24,7 @@ import org.apache.http.util.EntityUtils;
 import websocket.endpoints.AdminDashboardWebSocketEndpoint;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -110,8 +113,13 @@ public class GoogleCallBack extends HttpServlet {
             if (db.checkEmail(user.getEmail())) {
                 try {
                     db.insert(user);
-                    Notification notification = new Notification();
-                    notification.setFrom(db.get(user.getEmail()));
+                    User userAfterInsert = db.get(email);
+                    User admin = db.getAdmin("Admin");
+                    ArrayList<User> tos = new ArrayList<>();
+                    tos.add(admin);
+                    Notification notification = createNotification(tos, userAfterInsert);
+                    NotificationDBContext notificationDBContext = new NotificationDBContext();
+                    notificationDBContext.insert(notification);
                     AdminDashboardWebSocketEndpoint.notifyAdminsNewUserRegistered(notification);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -141,5 +149,15 @@ public class GoogleCallBack extends HttpServlet {
         ).setScopes(Arrays.asList(GOOGLE_SCOPES)).build();
     }
 
-
+    private Notification createNotification(ArrayList<User> tos, User from) {
+        Notification notification = new Notification();
+        notification.setRead(false);
+        NotificationType notificationType = new NotificationType();
+        notificationType.setNotificationTypeId(1);
+        notification.setType(notificationType);
+        notification.setTos(tos);
+        notification.setFrom(from);
+        notification.setUrl("/Quizzicle/admin/user/profile?uid=" + from.getId());
+        return notification;
+    }
 }

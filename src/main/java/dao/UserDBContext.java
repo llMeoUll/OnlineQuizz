@@ -426,4 +426,25 @@ public class UserDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
+
+    public User getAdmin(String username) {
+        String sqlGetAdmin = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`\n" +
+                "FROM `online_quizz`.`user`\n" +
+                "WHERE `user`.`username` = ?";
+        try {
+            PreparedStatement stmGetAdmin = connection.prepareStatement(sqlGetAdmin);
+            stmGetAdmin.setString(1, username);
+            ResultSet rs = stmGetAdmin.executeQuery();
+            while(rs.next()) {
+                User admin = new User();
+                admin.setId(rs.getInt("uid"));
+                admin.setEmail(rs.getString("email"));
+                return admin;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

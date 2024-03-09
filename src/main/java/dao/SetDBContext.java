@@ -237,13 +237,8 @@ public class SetDBContext extends DBContext {
     }
     public ArrayList<Set> search(String name) {
         ArrayList<Set> sets = new ArrayList<>();
-<<<<<<< HEAD
-        String sql = "select * from `set` \n" +
-                "where sname like ?";
-=======
         String sql = "SELECT * FROM online_quizz.set\n" +
                 "where sname like ?;";
->>>>>>> 4530f6c8eeb27dc69c2a5615362d08ee6c8cde90
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, "%" + name + "%");
