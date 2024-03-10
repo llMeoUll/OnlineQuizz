@@ -1,5 +1,9 @@
 package controller.user.room;
 
+import dao.NotificationDBContext;
+import dao.NotificationTypeDBContext;
+import entity.Notification;
+import entity.NotificationType;
 import util.GenerateCodeToJoin;
 import dao.RoomDBContext;
 import dao.UserDBContext;
@@ -35,6 +39,9 @@ public class Invite extends HttpServlet {
         if (r != null) {
             // insert to Many-Many table (uid, roomid) = (ownerUserId, r.room_id)
             rDB.insertIntoUser_Join_Room(u.getId(), r.getRoomId());
+            Notification notification = createNotification(request, r);
+            NotificationDBContext notificationDBContext = new NotificationDBContext();
+            notificationDBContext.insert(notification);
             response.sendRedirect("../../../Quizzicle/user/room");
         } else {
             request.getRequestDispatcher("/view/user/RoomScreen/NotFound.jsp").forward(request, response);
@@ -56,6 +63,9 @@ public class Invite extends HttpServlet {
         if (r != null) {
             // insert to Many-Many table (uid, roomid) = (ownerUserId, r.room_id)
             rDB.insertIntoUser_Join_Room(u.getId(), r.getRoomId());
+            Notification notification = createNotification(request, r);
+            NotificationDBContext notificationDBContext = new NotificationDBContext();
+            notificationDBContext.insert(notification);
             response.sendRedirect("../../../Quizzicle/user/room");
         } else {
             request.getRequestDispatcher("/view/user/RoomScreen/NotFound.jsp").forward(request, response);
@@ -69,5 +79,26 @@ public class Invite extends HttpServlet {
             }
         }
         return null; // No room found for the given fakeCode
+    }
+
+    private Notification createNotification(HttpServletRequest request, Room room) {
+        NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
+        RoomDBContext roomDBContext = new RoomDBContext();
+        HttpSession session = request.getSession();
+        User from = (User) session.getAttribute("user");
+        Room fullInfoRoom = roomDBContext.getRoomById(room);
+        Notification notification = new Notification();
+        NotificationType notificationType = notificationTypeDBContext.get(12);
+        notification.setType(notificationType);
+        notification.setFrom(from);
+        ArrayList<User> tos = new ArrayList<>();
+        tos.add(fullInfoRoom.getUser());
+        notification.setTos(tos);
+        notification.setRead(false);
+        notification.setUrl("/Quizzicle/user/room/get?roomId=" + room.getRoomId());
+        notification.setContent(from.getFamilyName() + " " +
+                from.getGivenName() + " " + notificationType.getAction() + " " + room.getRoomName());
+
+        return notification;
     }
 }

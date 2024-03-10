@@ -9,60 +9,33 @@
         <listener-class>listener.ActiveSessionCounter</listener-class>
     </listener>
     <!--    *********************************************Filter******************************************************-->
-    <!--    <filter>-->
-    <!--        <filter-name>AuthenticateFilter</filter-name>-->
-    <!--        <filter-class>filter.Authenticate</filter-class>-->
-    <!--    </filter>-->
-    <!--    <filter>-->
-    <!--        <filter-name>AuthorizationFilter</filter-name>-->
-    <!--        <filter-class>filter.Authorization</filter-class>-->
-    <!--    </filter>-->
+    <filter>
+        <filter-name>AuthenticateFilter</filter-name>
+        <filter-class>filter.Authenticate</filter-class>
+    </filter>
+    <filter>
+        <filter-name>AuthorizationFilter</filter-name>
+        <filter-class>filter.Authorization</filter-class>
+    </filter>
 
-    <!--    <filter-mapping>-->
-    <!--        <filter-name>AuthenticateFilter</filter-name>-->
-    <!--        <url-pattern>/user/*</url-pattern>-->
-    <!--    </filter-mapping>-->
-    <!--    <filter-mapping>-->
-    <!--        <filter-name>AuthenticateFilter</filter-name>-->
-    <!--        <url-pattern>/admin/*</url-pattern>-->
-    <!--    </filter-mapping>-->
-    <!--    <filter-mapping>-->
-    <!--        <filter-name>AuthorizationFilter</filter-name>-->
-    <!--        <url-pattern>/user/*</url-pattern>-->
-    <!--    </filter-mapping>-->
-    <!--    <filter-mapping>-->
-    <!--        <filter-name>AuthorizationFilter</filter-name>-->
-    <!--        <url-pattern>/admin/*</url-pattern>-->
-    <!--    </filter-mapping>-->
+    <filter-mapping>
+        <filter-name>AuthenticateFilter</filter-name>
+        <url-pattern>/user/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthenticateFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/user/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
 
     <!--    *********************************************PUBLIC******************************************************-->
-
-    <servlet>
-        <servlet-name>SearchControl</servlet-name>
-        <servlet-class>controller.user.search.SearchControl</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SearchControl</servlet-name>
-        <url-pattern>/search</url-pattern>
-    </servlet-mapping>
-    <!--HomePage-->
-    <servlet>
-        <servlet-name>HomeControl</servlet-name>
-        <servlet-class>controller.user.home.Home</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>HomeControl</servlet-name>
-        <url-pattern>/home</url-pattern>
-    </servlet-mapping>
-    <!--    Profile-->
-    <servlet>
-        <servlet-name>UserProfileControl</servlet-name>
-        <servlet-class>controller.user.profile.UserProfile</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserProfileControl</servlet-name>
-        <url-pattern>/profile</url-pattern>
-    </servlet-mapping>
 
     <!--    *********************************************USER******************************************************-->
     <!--    Authenticate Feature-->
@@ -214,6 +187,33 @@
         <servlet-name>CreateTest</servlet-name>
         <url-pattern>/user/room/test/create</url-pattern>
     </servlet-mapping>
+<!--    add question to test-->
+    <servlet>
+        <servlet-name>AddQuestion</servlet-name>
+        <servlet-class>controller.user.room.test.AddQuestion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddQuestion</servlet-name>
+        <url-pattern>/user/room/test/create/add-question</url-pattern>
+    </servlet-mapping>
+<!--    review before create test-->
+    <servlet>
+        <servlet-name>ReviewBeforeCreate</servlet-name>
+        <servlet-class>controller.user.room.test.ReviewBeforeCreate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReviewBeforeCreate</servlet-name>
+        <url-pattern>/user/room/test/create/review</url-pattern>
+    </servlet-mapping>
+<!--    cancel create test-->
+    <servlet>
+        <servlet-name>CancelCreateTest</servlet-name>
+        <servlet-class>controller.user.room.test.CancelCreateTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CancelCreateTest</servlet-name>
+        <url-pattern>/user/room/test/create/cancel</url-pattern>
+    </servlet-mapping>
     <!--  delete test -->
     <servlet>
         <servlet-name>deleteTest</servlet-name>
@@ -232,7 +232,6 @@
         <servlet-name>updateTest</servlet-name>
         <url-pattern>/user/room/test/update</url-pattern>
     </servlet-mapping>
-
 
     <!--    Management Set Feature-->
     <!--    set management-->
@@ -281,8 +280,12 @@
         <servlet-name>GetSet</servlet-name>
         <url-pattern>/user/set/get</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
 
 
+=======
+  
+>>>>>>> 57268a4e9920b6283ff1ea8f1c368c8f314406fe
     <!--    Do test Feature-->
     <servlet>
         <servlet-name>DoTest</servlet-name>
@@ -417,14 +420,14 @@
         <servlet-name>AdminCreateSet</servlet-name>
         <url-pattern>/admin/set/create</url-pattern>
     </servlet-mapping>
-    <!--    Update set-->
+    <!--    View set-->
     <servlet>
         <servlet-name>AdminUpdateSet</servlet-name>
-        <servlet-class>controller.admin.set.AdminUpdateSet</servlet-class>
+        <servlet-class>controller.admin.set.AdminViewSetDetails</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminUpdateSet</servlet-name>
-        <url-pattern>/admin/set/update</url-pattern>
+        <url-pattern>/admin/set/details</url-pattern>
     </servlet-mapping>
     <!--    Delete set-->
     <servlet>
@@ -445,24 +448,6 @@
         <servlet-name>AdminQuestionManagement</servlet-name>
         <url-pattern>/admin/question</url-pattern>
     </servlet-mapping>
-    <!--    Create set-->
-    <servlet>
-        <servlet-name>AdminCreateQuestion</servlet-name>
-        <servlet-class>controller.admin.question.CreateQuestion</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminCreateQuestion</servlet-name>
-        <url-pattern>/admin/question/create</url-pattern>
-    </servlet-mapping>
-    <!--    Update set-->
-    <servlet>
-        <servlet-name>AdminUpdateQuestion</servlet-name>
-        <servlet-class>controller.admin.question.UpdateQuestion</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminUpdateQuestion</servlet-name>
-        <url-pattern>/admin/question/update</url-pattern>
-    </servlet-mapping>
     <!--    Delete set-->
     <servlet>
         <servlet-name>AdminDeleteQuestion</servlet-name>
@@ -471,5 +456,41 @@
     <servlet-mapping>
         <servlet-name>AdminDeleteQuestion</servlet-name>
         <url-pattern>/admin/question/delete</url-pattern>
+    </servlet-mapping>
+<!--    search-->
+    <servlet>
+        <servlet-name>SearchControl</servlet-name>
+        <servlet-class>controller.user.search.SearchControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchControl</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <!--HomePage-->
+    <servlet>
+        <servlet-name>HomeControl</servlet-name>
+        <servlet-class>controller.user.home.Home</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeControl</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <!--    Profile-->
+    <servlet>
+        <servlet-name>UserProfileControl</servlet-name>
+        <servlet-class>controller.user.profile.UserProfileUpdateControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserProfileControl</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <!--    Profile Update-->
+    <servlet>
+        <servlet-name>UserProfileUpdateControl</servlet-name>
+        <servlet-class>controller.user.profile.UserProfileUpdateControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserProfileUpdateControl</servlet-name>
+        <url-pattern>/update</url-pattern>
     </servlet-mapping>
 </web-app>
