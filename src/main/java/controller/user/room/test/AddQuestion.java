@@ -37,12 +37,25 @@ public class AddQuestion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String questions = request.getParameter("questions");
-        String[] questionArray = questions.split(",");
-        HttpSession session = request.getSession();
-        if(session.getAttribute("questions") != null){
-            session.removeAttribute("questions");
+
+        if(questions != null && questions.length() > 0){
+            String[] questionArray = questions.split(",");
+
+            int[] intQuestionArray = new int[questionArray.length];
+            for (int i = 0; i < questionArray.length; i++) {
+                intQuestionArray[i] = Integer.parseInt(questionArray[i]);
+            }
+            HttpSession session = request.getSession();
+            if(session.getAttribute("questions") != null){
+                session.removeAttribute("questions");
+            }
+            session.setAttribute("questions", intQuestionArray);
+            response.sendRedirect("./review");
+        } else {
+            request.setAttribute("error", "Please select at least one question");
+            request.getRequestDispatcher("../../../.././view/user/room/test/AddQuestion.jsp").forward(request, response);
         }
-        session.setAttribute("questions", questionArray);
-        response.sendRedirect("./review");
+
+
     }
 }

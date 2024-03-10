@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add set to the test</title>
+    <title>Add question to the test</title>
     <link rel="stylesheet" href="../../../.././webjars/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../.././css/CreateSet.css">
     <link rel="stylesheet" href="../../../.././webjars/font-awesome/6.5.1/css/all.min.css">
@@ -84,6 +84,13 @@
                                         <span>${questionLoop.count}</span>
                                         <input type="checkbox" class="question-checkbox-${setLoop.count}"
                                                name="question-ids"
+                                                <c:if test="${sessionScope.questions ne null}">
+                                                    <c:forEach items="${sessionScope.questions}" var="chosenQuestion">
+                                                        <c:if test="${chosenQuestion eq question.getQId()}">
+                                                            checked
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </c:if>
                                                value="${question.getQId()}"/>
                                     </div>
                                     <div class="card-body">
@@ -109,6 +116,9 @@
         </div>
         <div class="container-fluid d-flex justify-content-between fixed-bottom pb-3 px-5">
             <a href="../create" class="btn btn-outline-primary mt-3">Back</a>
+            <c:if test="${requestScope.error ne null}">
+                <p class="text-danger">${requestScope.error}</p>
+            </c:if>
             <button class="btn btn-outline-primary mt-3" onclick="submitFormAddQuestion()">Next</button>
         </div>
     </div>
@@ -237,20 +247,20 @@
                 </div>
 
             </form>
-            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                <div id="submit-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body text-danger">
-                        You can't create set! you must have at least 2 questions.
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
-
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="submit-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body text-danger">
+            You can't next step! you must have at least 1 questions.
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>

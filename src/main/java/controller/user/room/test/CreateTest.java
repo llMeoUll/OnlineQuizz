@@ -1,17 +1,12 @@
 package controller.user.room.test;
 
-import dao.QuestionDBContext;
-import dao.SetDBContext;
-import entity.Set;
 import entity.Test;
-import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import util.DateTimeLocalConverter;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 
 public class CreateTest extends HttpServlet {
     @Override
@@ -30,7 +25,7 @@ public class CreateTest extends HttpServlet {
         Timestamp startTime = DateTimeLocalConverter.DateTimeLocalToTimestamp(request.getParameter("start"));
         int duration = Integer.parseInt(request.getParameter("duration"));
         int attempt = Integer.parseInt(request.getParameter("attempt"));
-        Timestamp endTime = new Timestamp(startTime.getTime() + duration * 60000);
+        Timestamp endTime = DateTimeLocalConverter.DateTimeLocalToTimestamp(request.getParameter("end"));
         Test test = new Test();
         test.setTestName(Name);
         test.setTestDescription(Description);

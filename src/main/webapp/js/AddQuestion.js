@@ -70,6 +70,13 @@ function getCheckedQuestions() {
 
 function submitFormAddQuestion() {
     let form = document.getElementById('add-question');
+    let checkboxes = document.querySelectorAll('input[name="question-ids"]:checked');
+
+    if (checkboxes.length < 1) {
+        let submitToast = new bootstrap.Toast(document.getElementById('submit-toast'));
+        submitToast.show();
+        return; // Prevent form submission if conditions are not met
+    }
     let questionsInput = form.querySelector('input[name="questions"]');
     questionsInput.value = getCheckedQuestions();
     form.submit();
