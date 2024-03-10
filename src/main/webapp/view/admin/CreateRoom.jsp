@@ -20,13 +20,6 @@
         </a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-        <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-            </div>
-        </form>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
@@ -92,7 +85,6 @@
                         <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="/Quizzicle/admin/question">Question List</a>
-                                <a class="nav-link" href="/Quizzicle/admin/question/create">Create New Question</a>
                             </nav>
                         </div>
                     </div>
@@ -106,7 +98,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Create User</h1>
+                    <h1 class="mt-4">Create Room</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Input information here</li>
                     </ol>
@@ -115,25 +107,16 @@
                         <form action="./create" method="post" class="mx-1 mx-md-4">
 
                             <div class="d-flex flex-row align-items-center mb-4">
-                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                <div class="input-group form-outline flex-fill mb-0">
-                                    <input type="text" name="given-name" placeholder="First Name"
-                                           class="form-control" required/>
-                                    <input type="text" name="family-name" placeholder="Last Name"
-                                           class="form-control" required/>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center mb-4">
                                 <i class="fa-solid fa-address-card fa-lg me-3 fa-fw"></i>
                                 <div class="form-outline flex-fill mb-0">
-                                    <input type="text" name="username" placeholder="Username" class="form-control"
+                                    <input type="text" name="roomName" placeholder="Room Name" class="form-control"
                                            required/>
                                 </div>
                             </div>
                             <div class="d-flex flex-row align-items-center mb-4">
                                 <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                 <div class="form-outline flex-fill mb-0">
-                                    <input type="email" name="email" placeholder="Email" class="form-control"
+                                    <input type="text" name="description" placeholder="Description" class="form-control"
                                            required/>
                                 </div>
                             </div>
@@ -155,51 +138,12 @@
                                             name="password"
                                             id="password-input"
                                     />
-                                    <div class="valid-feedback">Good</div>
-                                    <div class="invalid-feedback">Wrong</div>
-                                </div>
-                                <div
-                                        class="alert px-4 py-3 mb-0 d-none"
-                                        role="alert"
-                                        data-mdb-color="warning"
-                                        id="password-alert"
-                                >
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="requirements leng">
-                                            <i class="fas fa-check text-success me-2"></i>
-                                            <i class="fas fa-times text-danger me-3"></i>
-                                            Your password must have at least 8 chars
-                                        </li>
-                                        <li class="requirements big-letter">
-                                            <i class="fas fa-check text-success me-2"></i>
-                                            <i class="fas fa-times text-danger me-3"></i>
-                                            Your password must have at least 1 big letter.
-                                        </li>
-                                        <li class="requirements num">
-                                            <i class="fas fa-check text-success me-2"></i>
-                                            <i class="fas fa-times text-danger me-3"></i>
-                                            Your password must have at least 1 number.
-                                        </li>
-                                        <li class="requirements special-char">
-                                            <i class="fas fa-check text-success me-2"></i>
-                                            <i class="fas fa-times text-danger me-3"></i>
-                                            Your password must have at least 1 special char.
-                                        </li>
-                                    </ul>
                                 </div>
 
                             </div>
-                            <div class="d-flex flex-row align-items-center mb-4">
-                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                                <div class="form-outline flex-fill mb-0">
-                                    <input type="password" name="verify-password" placeholder="Verify password"
-                                           class="form-control password" required/>
-                                </div>
-                            </div>
-
 
                             <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                                <button type="submit" class="btn btn-primary btn-lg">Create</button>
                             </div>
 
                         </form>
@@ -207,23 +151,20 @@
                     </div>
                 </div>
             </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
+        </div>
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="mr-auto">Notification</strong>
                 </div>
-            </footer>
+                <div class="toast-body">
+                    New User registered! Click to view details.
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="../../js/Dashboard.js"></script>
-    <script src="../../js/Register.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     </body>
