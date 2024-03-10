@@ -123,22 +123,7 @@
                 <p class="text-light fs-5 font-weight-bold">${requestScope.currentTest.testDescription}</p>
                 <p class="text-light fs-5 font-weight-bold">Start time: ${requestScope.currentTest.startTime}
                     - End time: ${requestScope.currentTest.endTime} </p>
-
-                <p id="timer" class="text-light fs-5 font-weight-bold"></p>
-
-
-            </div>
-
-            <!-- Settings Dropdown -->
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="visually-hidden">Settings</span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" onclick="showEditModal()">Edit</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="showDeleteConfirmation()">Delete</a></li>
-                </ul>
+                <p id="timer" class="text-light fs-3 font-weight-bold text-center mb-4"></p>
             </div>
         </div>
     </div>
@@ -164,43 +149,75 @@
                             </div>
                         </div>
                     </td>
-                    <!-- Column for Answers -->
+                        <%--Column for Answers For ABCD --%>
                     <td>
-                        <div class="row text-light">
-                            <div class="answer-option">
-                                A.
-                                <input type="radio" id="optionA_${question.getQId()}" name="answer_${question.getQId()}"
-                                       value="${question.questionOptions.get(0).optContent}">
-                                <label for="optionA_${question.getQId()}">${question.questionOptions.get(0).optContent}</label>
-                            </div>
-                        </div>
+                        <c:choose>
+                            <c:when test="${question.type.getTypeId() == 1}">
+                                <%--<!-- For type_id = 1 (ABCD) -->--%>
+                                <div class="row text-light">
+                                    <div class="answer-option">
+                                        A.
+                                        <input type="radio" id="optionA_${question.getQId()}"
+                                               name="answer_${question.getQId()}"
+                                               value="${question.questionOptions.get(0).optContent}">
+                                        <label for="optionA_${question.getQId()}">${question.questionOptions.get(0).optContent}</label>
+                                    </div>
+                                </div>
 
-                        <div class="row text-light">
-                            <div class="answer-option">
-                                B.
-                                <input type="radio" id="optionB_${question.getQId()}" name="answer_${question.getQId()}"
-                                       value="${question.questionOptions.get(1).optContent}">
-                                <label for="optionB_${question.getQId()}">${question.questionOptions.get(1).optContent}</label>
-                            </div>
-                        </div>
+                                <div class="row text-light">
+                                    <div class="answer-option">
+                                        B.
+                                        <input type="radio" id="optionB_${question.getQId()}"
+                                               name="answer_${question.getQId()}"
+                                               value="${question.questionOptions.get(1).optContent}">
+                                        <label for="optionB_${question.getQId()}">${question.questionOptions.get(1).optContent}</label>
+                                    </div>
+                                </div>
 
-                        <div class="row text-light">
-                            <div class="answer-option">
-                                C.
-                                <input type="radio" id="optionC_${question.getQId()}" name="answer_${question.getQId()}"
-                                       value="${question.questionOptions.get(2).optContent}">
-                                <label for="optionC_${question.getQId()}">${question.questionOptions.get(2).optContent}</label>
-                            </div>
-                        </div>
+                                <div class="row text-light">
+                                    <div class="answer-option">
+                                        C.
+                                        <input type="radio" id="optionC_${question.getQId()}"
+                                               name="answer_${question.getQId()}"
+                                               value="${question.questionOptions.get(2).optContent}">
+                                        <label for="optionC_${question.getQId()}">${question.questionOptions.get(2).optContent}</label>
+                                    </div>
+                                </div>
 
-                        <div class="row text-light">
-                            <div class="answer-option">
-                                D.
-                                <input type="radio" id="optionD_${question.getQId()}" name="answer_${question.getQId()}"
-                                       value="${question.questionOptions.get(3).optContent}">
-                                <label for="optionD_${question.getQId()}">${question.questionOptions.get(3).optContent}</label>
-                            </div>
-                        </div>
+                                <div class="row text-light">
+                                    <div class="answer-option">
+                                        D.
+                                        <input type="radio" id="optionD_${question.getQId()}"
+                                               name="answer_${question.getQId()}"
+                                               value="${question.questionOptions.get(3).optContent}">
+                                        <label for="optionD_${question.getQId()}">${question.questionOptions.get(3).optContent}</label>
+                                    </div>
+                                </div>
+                            </c:when>
+                            <c:when test="${question.type.getTypeId() == 2}">
+                                <%--For type_id = 2 (True/False) --%>
+                                <div class="row text-light">
+                                    <div class="answer-option">
+                                        A.
+                                        <input type="radio" id="optionTrue_${question.getQId()}"
+                                               name="answer_${question.getQId()}" value="True">
+                                        <label for="optionTrue_${question.getQId()}">True</label>
+                                    </div>
+                                </div>
+
+                                <div class="row text-light">
+                                    <div class="answer-option">
+                                        B.
+                                        <input type="radio" id="optionFalse_${question.getQId()}"
+                                               name="answer_${question.getQId()}" value="False">
+                                        <label for="optionFalse_${question.getQId()}">False</label>
+                                    </div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <p>Unsupported question type</p>
+                            </c:otherwise>
+                        </c:choose>
                     </td>
                 </tr>
             </c:forEach>
@@ -228,6 +245,9 @@
 
                     // Retrieve option elements by their IDs for all questions
                     <c:forEach items="${requestScope.listQuestions}" var="question">
+                    <c:choose>
+                    <c:when test="${question.type.getTypeId() == 1}">
+                    // For type_id = 1 (ABCD)
                     const optionA_${question.getQId()} = document.getElementById('optionA_${question.getQId()}');
                     const optionB_${question.getQId()} = document.getElementById('optionB_${question.getQId()}');
                     const optionC_${question.getQId()} = document.getElementById('optionC_${question.getQId()}');
@@ -256,6 +276,32 @@
 
                     optionD_${question.getQId()}.nextElementSibling.innerHTML = shuffledOptionsContent_${question.getQId()}[3];
                     optionD_${question.getQId()}.value = shuffledOptionsContent_${question.getQId()}[3];
+                    </c:when>
+                    <c:when test="${question.type.getTypeId() == 2}">
+                    // For type_id = 2 (True/False)
+                    const optionTrue_${question.getQId()} = document.getElementById('optionTrue_${question.getQId()}');
+                    const optionFalse_${question.getQId()} = document.getElementById('optionFalse_${question.getQId()}');
+
+                    // Extract option content from the original HTML
+                    const optionsContent_${question.getQId()} = [
+                        optionTrue_${question.getQId()}.nextElementSibling.innerHTML,
+                        optionFalse_${question.getQId()}.nextElementSibling.innerHTML
+                    ];
+
+                    // Shuffle the options content array while keeping order
+                    const shuffledOptionsContent_${question.getQId()} = shuffleArrayWithOrder(optionsContent_${question.getQId()});
+
+                    // Update the HTML with the shuffled options content
+                    optionTrue_${question.getQId()}.nextElementSibling.innerHTML = shuffledOptionsContent_${question.getQId()}[0];
+                    optionTrue_${question.getQId()}.value = shuffledOptionsContent_${question.getQId()}[0];
+
+                    optionFalse_${question.getQId()}.nextElementSibling.innerHTML = shuffledOptionsContent_${question.getQId()}[1];
+                    optionFalse_${question.getQId()}.value = shuffledOptionsContent_${question.getQId()}[1];
+                    </c:when>
+                    <c:otherwise>
+                    // Handle other types or provide a default
+                    </c:otherwise>
+                    </c:choose>
                     </c:forEach>
                 }
             </script>
@@ -269,14 +315,11 @@
 </body>
 
 <script>
-    // Set the duration to 90 minutes in milliseconds
-    const duration = 0.1 * 60 * 1000;
+    const durationString = "${requestScope.currentTest.duration}";
+    const duration = parseInt(durationString, 10) * 1000 * 60;
 
     // Set the end time for the countdown by adding the duration to the current time
     const endTime = new Date().getTime() + duration;
-
-    // Get the form element
-    const quizForm = document.getElementById("quizForm");
 
     const submitButton = document.getElementById("submitButton");
 
@@ -303,5 +346,7 @@
                 "Time remaining: " + hours + "h " + minutes + "m " + seconds + "s";
         }
     }
+
+
 </script>
 </html>

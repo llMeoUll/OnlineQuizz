@@ -281,7 +281,8 @@
         <servlet-name>GetSet</servlet-name>
         <url-pattern>/user/set/get</url-pattern>
     </servlet-mapping>
-    <!--    *********************************************DO TEST IN ROOM******************************************************-->
+
+
     <!--    Do test Feature-->
     <servlet>
         <servlet-name>DoTest</servlet-name>

@@ -89,6 +89,7 @@ public class TestDBContext extends DBContext {
                 Room r = new Room();
                 r.setRoomId(rs.getInt("room_id"));
                 t.setRoom(r);
+                t.setDuration(rs.getInt("duration"));
                 t.setTestName(rs.getString("test_name"));
                 t.setTestDescription(rs.getString("test_description"));
                 t.setStartTime(rs.getTimestamp("start_time"));
@@ -371,7 +372,7 @@ public class TestDBContext extends DBContext {
                 leaderBoardViewModel.setUdtId(rs.getInt("udt_id"));
                 leaderBoardViewModel.setOrderAttempt(rs.getInt("attempt"));
                 leaderBoardViewModel.setCreatedAt(rs.getTimestamp("created_at"));
-                leaderBoardViewModel.setScore(rs.getInt("score"));
+                leaderBoardViewModel.setScore(rs.getFloat("score"));
                 leaderBoardViewModels.add(leaderBoardViewModel);
             }
             return leaderBoardViewModels;
@@ -386,5 +387,24 @@ public class TestDBContext extends DBContext {
         }
 
 
+    }
+
+    public User getOwnerTest(Test currentTest) {
+        String sql = "SELECT room.uid FROM online_quizz.test\n" +
+                "JOIN online_quizz.room ON test.room_id = room.room_id AND test.test_id = ?;";
+
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, currentTest.getTestId());
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("uid"));
+                return user;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 }
