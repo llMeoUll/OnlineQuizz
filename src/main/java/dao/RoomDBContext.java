@@ -288,7 +288,8 @@ public class RoomDBContext extends DBContext {
                 "    `room`.`room_name`,\n" +
                 "    `room`.`code`,\n" +
                 "    `room`.`password`,\n" +
-                "    `room`.`description`\n" +
+                "    `room`.`description`,\n" +
+                "    `room`.`uid`\n" +
                 "FROM `online_quizz`.`room` WHERE room_id = ?;\n";
 
         try {
@@ -296,10 +297,13 @@ public class RoomDBContext extends DBContext {
             stm.setInt(1, r.getRoomId());
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
+                UserDBContext userDBContext = new UserDBContext();
+                User owner = userDBContext.get(rs.getInt("uid"));
                 r.setRoomName(rs.getString("room_name"));
                 r.setDescription(rs.getString("description"));
                 r.setCode(rs.getString("code"));
                 r.setPassword(rs.getString("password"));
+                r.setUser(owner);
                 return r;
             }
         } catch (SQLException e) {
@@ -330,6 +334,37 @@ public class RoomDBContext extends DBContext {
                 r.setCreatedAt(rs.getTimestamp(7));
                 r.setUpdatedAt(rs.getTimestamp(8));
                 rooms.add(r);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rooms;
+    }
+
+    public ArrayList<Room> listRoomAndOwner() {
+        ArrayList<Room> rooms = new ArrayList<>();
+        String sqlListRoomAndOwner = "SELECT r.room_id, r.room_name, r.`code`, r.`description`, \n" +
+                "u.uid, u.given_name, u.family_name, u.avatar, r.created_at, \n" +
+                "r.updated_at FROM online_quizz.room r\n" +
+                "INNER JOIN online_quizz.`user` u ON u.uid = r.uid";
+        try {
+            PreparedStatement stmListRoomAndOwner = connection.prepareStatement(sqlListRoomAndOwner);
+            ResultSet rs = stmListRoomAndOwner.executeQuery();
+            while(rs.next()) {
+                Room room = new Room();
+                room.setRoomId(rs.getInt("room_id"));
+                room.setRoomName(rs.getString("room_name"));
+                room.setCode(rs.getString("code"));
+                room.setDescription(rs.getString("description"));
+                room.setCreatedAt(rs.getTimestamp("created_at"));
+                room.setUpdatedAt(rs.getTimestamp("updated_at"));
+                User owner = new User();
+                owner.setFamilyName(rs.getString("family_name"));
+                owner.setId(rs.getInt("uid"));
+                owner.setGivenName(rs.getString("given_name"));
+                owner.setAvatar(rs.getString("avatar"));
+                room.setUser(owner);
+                rooms.add(room);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

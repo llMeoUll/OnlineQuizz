@@ -15,16 +15,42 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-// let socket = new WebSocket("ws://localhost:8888/Quizzicle/dashboard_endpoint");
-//
-// socket.onopen = function () {
-//     console.log("WebSocket connection opened");
-// };
-//
-// socket.onclose = function () {
-//     console.log("WebSocket connection closed");
-// };
-//
-// socket.onmessage = function (event) {
-//     console.log("Notification: " + event.data);
-// };
+const socket = new WebSocket("ws://localhost:8888/Quizzicle/admin/notification");
+
+    // Xử lý sự kiện khi mở kết nối
+    socket.addEventListener('open', (event) => {
+        console.log('WebSocket connection opened:', event);
+    });
+
+    // Xử lý sự kiện khi nhận thông báo từ máy chủ
+document.addEventListener('DOMContentLoaded', function () {
+    var myToast = new bootstrap.Toast(document.querySelector('.toast'));
+    var userId;
+    socket.addEventListener('message', function (event) {
+        // Hiển thị toast khi có sự kiện message từ WebSocket
+        userId = event.data;
+        myToast.show();
+        setTimeout(function () {
+            myToast.hide();
+        }, 5000);
+    });
+    document.querySelector('.toast').addEventListener('click', function () {
+        console.log('Toast clicked!');
+        window.location.href = '/Quizzicle/admin/user/profile?uid=' + userId;
+    });
+    document.querySelector('.toast').addEventListener('mouseout', function () {
+       setTimeout(function () {
+            myToast.hide();
+       }, 5000);
+    });
+});
+
+    // Xử lý sự kiện khi có lỗi
+    socket.addEventListener('error', (event) => {
+        console.error('WebSocket error:', event);
+    });
+
+    // Xử lý sự kiện khi đóng kết nối
+    socket.addEventListener('close', (event) => {
+        console.log('WebSocket connection closed:', event);
+    });

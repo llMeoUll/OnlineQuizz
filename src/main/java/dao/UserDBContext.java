@@ -4,6 +4,7 @@ import entity.*;
 
 
 import com.lambdaworks.crypto.SCryptUtil;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,6 +33,7 @@ public class UserDBContext extends DBContext {
         }
         return null;
     }
+
     public User get(String email) {
         try {
             String sql = "SELECT * FROM `online_quizz`.`user` "
@@ -53,6 +55,7 @@ public class UserDBContext extends DBContext {
         }
         return null;
     }
+
     public User get(String email, String password) {
         try {
             String sql = "SELECT * FROM `online_quizz`.`user` "
@@ -77,13 +80,14 @@ public class UserDBContext extends DBContext {
         }
         return null;
     }
+
     public ArrayList<User> list() {
         ArrayList<User> users = new ArrayList<>();
         String sqlGetListUser = "SELECT * FROM `online_quizz`.`user`";
         try {
             PreparedStatement stmGetListUser = connection.prepareStatement(sqlGetListUser);
             ResultSet rs = stmGetListUser.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 User user = initUserInfo(rs);
                 users.add(user);
             }
@@ -92,6 +96,7 @@ public class UserDBContext extends DBContext {
         }
         return users;
     }
+
     public ArrayList<User> list(String email) {
         ArrayList<User> users = new ArrayList<>();
         String sqlGetUsersByEmail = "SELECT `user`.`uid`,\n" +
@@ -110,7 +115,7 @@ public class UserDBContext extends DBContext {
             stmGetUsersByEmail.setString(2, "%" + email + "%");
             stmGetUsersByEmail.setString(3, email + "%");
             ResultSet rs = stmGetUsersByEmail.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 User user = initUserInfo(rs);
                 users.add(user);
             }
@@ -120,6 +125,7 @@ public class UserDBContext extends DBContext {
 
         return users;
     }
+
     public void insert(User entity) {
         try {
             connection.setAutoCommit(false);
@@ -182,6 +188,7 @@ public class UserDBContext extends DBContext {
             }
         }
     }
+
     private User initUserInfo(ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setId(resultSet.getInt("uid"));
@@ -196,6 +203,7 @@ public class UserDBContext extends DBContext {
         user.setUpdatedAt(resultSet.getTimestamp("updated_at"));
         return user;
     }
+
     public void update(User entity) {
         try {
             String sqlUpdateUser = "UPDATE `online_quizz`.`user`\n" +
@@ -218,6 +226,23 @@ public class UserDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
+
+    public void updatePassword(String email, String passwordHash) {
+        String sqlUpdatePassword = "UPDATE `online_quizz`.`user`\n" +
+                "SET\n" +
+                "`password` = ?,\n" +
+                "`updated_at` = current_timestamp()\n" +
+                "WHERE `email` = ?;";
+        try {
+            PreparedStatement stmUpdatePassword = connection.prepareStatement(sqlUpdatePassword);
+            stmUpdatePassword.setString(1, passwordHash);
+            stmUpdatePassword.setString(2, email);
+            stmUpdatePassword.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void delete(User entity) {
         String sqlDeleteUser = "DELETE FROM `online_quizz`.`user`\n" +
                 "WHERE `user`.`uid` = ?;";
@@ -231,6 +256,7 @@ public class UserDBContext extends DBContext {
         }
 
     }
+
     // if email is existed, return false
     public boolean checkEmail(String email) {
         String sql = "SELECT email FROM user\n" +
@@ -247,6 +273,7 @@ public class UserDBContext extends DBContext {
         }
         return true;
     }
+
     // if username is existed, return false
     public boolean checkUsername(String userName) {
         String sql = "SELECT username FROM user\n" +
@@ -263,21 +290,7 @@ public class UserDBContext extends DBContext {
         }
         return true;
     }
-    public void updatePassword(String email, String passwordHash) {
-        String sqlUpdatePassword = "UPDATE `online_quizz`.`user`\n" +
-                "SET\n" +
-                "`password` = ?,\n" +
-                "`updated_at` = current_timestamp()\n" +
-                "WHERE `email` = ?;";
-        try {
-            PreparedStatement stmUpdatePassword = connection.prepareStatement(sqlUpdatePassword);
-            stmUpdatePassword.setString(1, passwordHash);
-            stmUpdatePassword.setString(2, email);
-            stmUpdatePassword.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
     public ArrayList<User> getNewUserInWeek() {
         ArrayList<User> users = new ArrayList<>();
         String sqlGetNewUserInWeek = "SELECT *\n" +
@@ -286,7 +299,7 @@ public class UserDBContext extends DBContext {
         try {
             PreparedStatement stmGetNewUserInWeek = connection.prepareStatement(sqlGetNewUserInWeek);
             ResultSet rs = stmGetNewUserInWeek.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 User user = initUserInfo(rs);
                 users.add(user);
             }
@@ -296,6 +309,7 @@ public class UserDBContext extends DBContext {
 
         return users;
     }
+
     // countSetByUid
     public int CountSet(int uid) {
         String sqlCountSet = "SELECT count(sid) as numberofset from user u\n" +
@@ -315,6 +329,7 @@ public class UserDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
+
     // countRoom by uid
     public int CountRoom(int uid) {
         String sqlCountRoom = "SELECT count(room_id) as numberofroom from user u\n" +
@@ -334,6 +349,7 @@ public class UserDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
+
     // search by name or email
     public ArrayList<User> search(String query) {
         ArrayList<User> users = new ArrayList<>();
@@ -370,6 +386,33 @@ public class UserDBContext extends DBContext {
         return users;
     }
 
+    public void updateUserProfile(User entity) {
+        try {
+            String sqlUpdateUser = "UPDATE `online_quizz`.`user`\n" +
+                    "SET\n" +
+                    "`email` = ?,\n" +
+                    "`username` = ?,\n" +
+                    "`given_name` = ?,\n" +
+                    "`family_name` = ?,\n" +
+                    "`password` = ?,\n" +
+                    "`avatar` = ?,\n" +
+                    "`updated_at` = ?\n" +
+                    "WHERE `uid` = ?;";
+            PreparedStatement stmUpdateUser = connection.prepareStatement(sqlUpdateUser);
+            stmUpdateUser.setString(1, entity.getEmail());
+            stmUpdateUser.setString(2, entity.getUsername());
+            stmUpdateUser.setString(3, entity.getGivenName());
+            stmUpdateUser.setString(4, entity.getFamilyName());
+            stmUpdateUser.setString(5, entity.getPassword());
+            stmUpdateUser.setString(6, entity.getAvatar());
+            stmUpdateUser.setTimestamp(7, entity.getUpdatedAt());
+            stmUpdateUser.setInt(8, entity.getId());
+            stmUpdateUser.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void verifiedEmail(String email) {
         String sqlVerifiedEmail = "UPDATE `online_quizz`.`user`\n" +
                 "SET\n" +
@@ -382,5 +425,26 @@ public class UserDBContext extends DBContext {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public User getAdmin(String username) {
+        String sqlGetAdmin = "SELECT `user`.`uid`,\n" +
+                "    `user`.`email`\n" +
+                "FROM `online_quizz`.`user`\n" +
+                "WHERE `user`.`username` = ?";
+        try {
+            PreparedStatement stmGetAdmin = connection.prepareStatement(sqlGetAdmin);
+            stmGetAdmin.setString(1, username);
+            ResultSet rs = stmGetAdmin.executeQuery();
+            while(rs.next()) {
+                User admin = new User();
+                admin.setId(rs.getInt("uid"));
+                admin.setEmail(rs.getString("email"));
+                return admin;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 }
