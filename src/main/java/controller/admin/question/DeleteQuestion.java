@@ -26,6 +26,7 @@ public class DeleteQuestion extends HttpServlet {
         notification.setType(notificationType);
         notification.setUrl("/Quizzicle/user/set/get?setID=" + deletedQuestion.getSet().getSId());
         notification.setRead(false);
+        notification.setContent("Admin delete your question in set: "  + deletedQuestion.getSet().getSName());
         NotificationDBContext notificationDBContext = new NotificationDBContext();
         notificationDBContext.insert(notification);
         questionDBContext.delete(qid);

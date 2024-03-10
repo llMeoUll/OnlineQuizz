@@ -13,7 +13,7 @@ import entity.User;
 public class NotificationDBContext extends DBContext<Notification> {
     public ArrayList<Notification> list(User user) {
         ArrayList<Notification> notifications = new ArrayList<>();
-        String sqlListNotification = "SELECT n.noti_id, n.`from`, n.url, num.is_read, n.type_id, nt.`action`, num.`to`\n" +
+        String sqlListNotification = "SELECT n.noti_id, n.`from`, n.url, num.is_read, n.type_id, nt.`action`, num.`to`, n.`content`\n" +
                 "                FROM online_quizz.notification n\n" +
                 "                INNER JOIN online_quizz.`notification_user_mapping` num\n" +
                 "                ON n.noti_id = num.noti_id\n" +
@@ -36,6 +36,7 @@ public class NotificationDBContext extends DBContext<Notification> {
                 notificationType.setAction(rs.getString("action"));
                 notificationType.setNotificationTypeId(rs.getInt("type_id"));
                 notification.setType(notificationType);
+                notification.setContent(rs.getString("content"));
                 notification.setRead(rs.getBoolean("is_read"));
                 notifications.add(notification);
             }
@@ -52,13 +53,15 @@ public class NotificationDBContext extends DBContext<Notification> {
             String sqlInsertNotification = "INSERT INTO `online_quizz`.`notification`\n" +
                     "(`from`,\n" +
                     "`url`,\n" +
-                    "`type_id`)\n" +
+                    "`type_id`,\n" +
+                    "`content`)\n" +
                     "VALUES\n" +
-                    "(?,?,?);";
+                    "(?,?,?,?);";
             PreparedStatement stmInsertNotification = connection.prepareStatement(sqlInsertNotification, PreparedStatement.RETURN_GENERATED_KEYS);
             stmInsertNotification.setInt(1, notification.getFrom().getId());
             stmInsertNotification.setString(2, notification.getUrl());
             stmInsertNotification.setInt(3, notification.getType().getNotificationTypeId());
+            stmInsertNotification.setString(4, notification.getContent());
             stmInsertNotification.executeUpdate();
             ResultSet getGenerateKeys = stmInsertNotification.getGeneratedKeys();
             if(getGenerateKeys.next()) {

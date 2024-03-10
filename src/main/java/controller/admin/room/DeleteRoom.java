@@ -33,6 +33,7 @@ public class DeleteRoom extends HttpServlet {
         notification.setTos(tos);
         notification.setType(notificationTypeDBContext.get(7));
         notification.setUrl("/Quizzicle/user/room");
+        notification.setContent("Admin delete your room: " + roomToDelete.getRoomName());
 
         notificationDBContext.insert(notification);
         roomDBContext.deleteRoom(room);
