@@ -284,12 +284,9 @@ public class RoomDBContext extends DBContext {
     }
 
     public Room getRoomById(Room r) {
-        String sql = "SELECT \n" +
-                "    `room`.`room_name`,\n" +
-                "    `room`.`code`,\n" +
-                "    `room`.`password`,\n" +
-                "    `room`.`description`\n" +
-                "FROM `online_quizz`.`room` WHERE room_id = ?;\n";
+        String sql = "SELECT room.room_name, room.code, room.password, room.description, room.uid \n" +
+                "FROM online_quizz.room \n" +
+                "WHERE room_id = ?";
 
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -300,6 +297,9 @@ public class RoomDBContext extends DBContext {
                 r.setDescription(rs.getString("description"));
                 r.setCode(rs.getString("code"));
                 r.setPassword(rs.getString("password"));
+                User u = new User();
+                u.setId(rs.getInt("uid"));
+                r.setUser(u);
                 return r;
             }
         } catch (SQLException e) {

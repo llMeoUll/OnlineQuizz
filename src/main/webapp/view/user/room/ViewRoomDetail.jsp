@@ -15,6 +15,10 @@
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="entity.User" %>
+<%@ page import="dao.UserDBContext" %>
+<%@ page import="entity.Test" %>
+<%@ page import="dao.TestDBContext" %>
 
 
 <html>
@@ -136,7 +140,8 @@
             </div>
 
             <div>
-                <p class="text-light fs-5 font-weight-bold">Invite: Quizzicle/user/room/invite?codeToJoin=${requestScope.codeToJoin}</p>
+                <p class="text-light fs-5 font-weight-bold">Invite:
+                    Quizzicle/user/room/invite?codeToJoin=${requestScope.codeToJoin}</p>
             </div>
 
             <!-- Settings Dropdown -->
@@ -240,9 +245,14 @@
                     <div class="row">
                         <p class="text-light ml-4">Test description: ${test.testDescription}</p>
                     </div>
-
                     <div class="row">
                         <p class="text-light ml-4">Start: ${test.startTime} | End: ${test.endTime}</p>
+                    </div>
+                    <div class="row">
+                        <a href="./test/dotest?testId=${test.testId}" class="btn btn-primary ml-4">Do Test</a>
+                    </div>
+                    <div class="row">
+                        <a href="./test/leaderboard?testId=${test.testId}" class="btn btn-primary ml-4">Leader board</a>
                     </div>
                 </div>
             </div>
@@ -250,8 +260,6 @@
     </c:forEach>
 </div>
 
-
 </body>
-
 
 </html>

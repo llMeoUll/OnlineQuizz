@@ -9,31 +9,31 @@
         <listener-class>listener.ActiveSessionCounter</listener-class>
     </listener>
     <!--    *********************************************Filter******************************************************-->
-<!--    <filter>-->
-<!--        <filter-name>AuthenticateFilter</filter-name>-->
-<!--        <filter-class>filter.Authenticate</filter-class>-->
-<!--    </filter>-->
-<!--    <filter>-->
-<!--        <filter-name>AuthorizationFilter</filter-name>-->
-<!--        <filter-class>filter.Authorization</filter-class>-->
-<!--    </filter>-->
+    <!--    <filter>-->
+    <!--        <filter-name>AuthenticateFilter</filter-name>-->
+    <!--        <filter-class>filter.Authenticate</filter-class>-->
+    <!--    </filter>-->
+    <!--    <filter>-->
+    <!--        <filter-name>AuthorizationFilter</filter-name>-->
+    <!--        <filter-class>filter.Authorization</filter-class>-->
+    <!--    </filter>-->
 
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthenticateFilter</filter-name>-->
-<!--        <url-pattern>/user/*</url-pattern>-->
-<!--    </filter-mapping>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthenticateFilter</filter-name>-->
-<!--        <url-pattern>/admin/*</url-pattern>-->
-<!--    </filter-mapping>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthorizationFilter</filter-name>-->
-<!--        <url-pattern>/user/*</url-pattern>-->
-<!--    </filter-mapping>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthorizationFilter</filter-name>-->
-<!--        <url-pattern>/admin/*</url-pattern>-->
-<!--    </filter-mapping>-->
+    <!--    <filter-mapping>-->
+    <!--        <filter-name>AuthenticateFilter</filter-name>-->
+    <!--        <url-pattern>/user/*</url-pattern>-->
+    <!--    </filter-mapping>-->
+    <!--    <filter-mapping>-->
+    <!--        <filter-name>AuthenticateFilter</filter-name>-->
+    <!--        <url-pattern>/admin/*</url-pattern>-->
+    <!--    </filter-mapping>-->
+    <!--    <filter-mapping>-->
+    <!--        <filter-name>AuthorizationFilter</filter-name>-->
+    <!--        <url-pattern>/user/*</url-pattern>-->
+    <!--    </filter-mapping>-->
+    <!--    <filter-mapping>-->
+    <!--        <filter-name>AuthorizationFilter</filter-name>-->
+    <!--        <url-pattern>/admin/*</url-pattern>-->
+    <!--    </filter-mapping>-->
 
     <!--    *********************************************PUBLIC******************************************************-->
 
@@ -204,7 +204,7 @@
         <servlet-name>viewTestDetail</servlet-name>
         <url-pattern>/user/room/test/get</url-pattern>
     </servlet-mapping>
-<!--    Test Management Feature-->
+    <!--    Test Management Feature-->
     <!--  create test -->
     <servlet>
         <servlet-name>CreateTest</servlet-name>
@@ -235,7 +235,7 @@
 
 
     <!--    Management Set Feature-->
-<!--    set management-->
+    <!--    set management-->
     <servlet>
         <servlet-name>manageSet</servlet-name>
         <servlet-class>controller.user.set.SetManage</servlet-class>
@@ -263,7 +263,7 @@
         <url-pattern>/user/set/update</url-pattern>
     </servlet-mapping>
 
-<!--    delete set-->
+    <!--    delete set-->
     <servlet>
         <servlet-name>DeleteSet</servlet-name>
         <servlet-class>controller.user.set.DeleteSet</servlet-class>
@@ -272,7 +272,7 @@
         <servlet-name>DeleteSet</servlet-name>
         <url-pattern>/user/set/delete</url-pattern>
     </servlet-mapping>
-<!--    get set-->
+    <!--    get set-->
     <servlet>
         <servlet-name>GetSet</servlet-name>
         <servlet-class>controller.user.set.GetSet</servlet-class>
@@ -281,6 +281,26 @@
         <servlet-name>GetSet</servlet-name>
         <url-pattern>/user/set/get</url-pattern>
     </servlet-mapping>
+    <!--    *********************************************DO TEST IN ROOM******************************************************-->
+    <!--    Do test Feature-->
+    <servlet>
+        <servlet-name>DoTest</servlet-name>
+        <servlet-class>controller.user.room.DoTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DoTest</servlet-name>
+        <url-pattern>/user/room/test/dotest</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LeaderBoard</servlet-name>
+        <servlet-class>controller.user.room.LeaderBoard</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LeaderBoard</servlet-name>
+        <url-pattern>/user/room/test/leaderboard</url-pattern>
+    </servlet-mapping>
+
     <!--    *********************************************ADMINISTRATOR******************************************************-->
     <!--    Authenticate Feature-->
     <!--    dashboard-->

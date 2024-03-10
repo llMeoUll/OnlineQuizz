@@ -69,7 +69,7 @@
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="../../">
-        <img src="../../../imagines/logo1250x1250.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        <img src="../../.././imagines/logo1250x1250.png" width="30" height="30" class="d-inline-block align-top" alt="">
         Quizzicle
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
