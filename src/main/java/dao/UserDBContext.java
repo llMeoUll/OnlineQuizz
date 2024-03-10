@@ -447,4 +447,25 @@ public class UserDBContext extends DBContext {
         }
         return null;
     }
+
+    public ArrayList<User> list(Room room) {
+        ArrayList<User> usersJoinedRoom = new ArrayList<>();
+        String sqlListUsersJoinedRoom = "SELECT ujr.uid FROM online_quizz.room r\n" +
+                "INNER JOIN online_quizz.`user_join_room` ujr ON r.room_id = ujr.room_id\n" +
+                "WHERE r.room_id = ?";
+        try {
+            PreparedStatement stmListUsersJoinedRoom = connection.prepareStatement(sqlListUsersJoinedRoom);
+            stmListUsersJoinedRoom.setInt(1, room.getRoomId());
+            ResultSet rs = stmListUsersJoinedRoom.executeQuery();
+            while(rs.next()) {
+                int uid = rs.getInt("uid");
+                User userJoinedRoom = get(uid);
+                usersJoinedRoom.add(userJoinedRoom);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return usersJoinedRoom;
+    }
 }

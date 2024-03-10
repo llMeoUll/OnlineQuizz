@@ -280,15 +280,6 @@
         <servlet-name>GetSet</servlet-name>
         <url-pattern>/user/set/get</url-pattern>
     </servlet-mapping>
-    <!--    star rate-->
-    <servlet>
-        <servlet-name>StarRate</servlet-name>
-        <servlet-class>controller.user.set.StarRate</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>StarRate</servlet-name>
-        <url-pattern>/user/set/rate</url-pattern>
-    </servlet-mapping>
 
     <!--    *********************************************ADMINISTRATOR******************************************************-->
     <!--    Authenticate Feature-->
@@ -432,15 +423,6 @@
     <servlet-mapping>
         <servlet-name>AdminQuestionManagement</servlet-name>
         <url-pattern>/admin/question</url-pattern>
-    </servlet-mapping>
-    <!--    Update set-->
-    <servlet>
-        <servlet-name>AdminUpdateQuestion</servlet-name>
-        <servlet-class>controller.admin.question.UpdateQuestion</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminUpdateQuestion</servlet-name>
-        <url-pattern>/admin/question/update</url-pattern>
     </servlet-mapping>
     <!--    Delete set-->
     <servlet>
