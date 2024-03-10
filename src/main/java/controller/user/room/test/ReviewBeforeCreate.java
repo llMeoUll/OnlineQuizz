@@ -1,9 +1,10 @@
 package controller.user.room.test;
 
+import dao.NotificationDBContext;
+import dao.NotificationTypeDBContext;
 import dao.TestDBContext;
-import entity.Room;
-import entity.Test;
-import entity.TestQuestion;
+import dao.UserDBContext;
+import entity.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import util.DateTimeLocalConverter;
@@ -50,6 +51,22 @@ public class ReviewBeforeCreate extends HttpServlet {
         }
         // insert test to database
         TestDBContext testDBContext = new TestDBContext();
+        NotificationDBContext notificationDBContext = new NotificationDBContext();
+        NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
+
+        Notification notification = new Notification();
+        NotificationType notificationType = notificationTypeDBContext.get(10);
+        UserDBContext userDBContext = new UserDBContext();
+        notification.setFrom(room.getUser());
+        notification.setType(notificationType);
+        notification.setRead(false);
+        notification.setUrl("/Quizzicle/user/room/test/get?testId=" + test.getTestId());
+        notification.setContent(room.getUser().getFamilyName() + " " + room.getUser().getGivenName() + " "
+                + notificationType.getAction() + " in room: " + room.getRoomName());
+        ArrayList<User> tos = userDBContext.list(room);
+        notification.setTos(tos);
+
+        notificationDBContext.insert(notification);
         try {
             testDBContext.insert(test, testQuestions);
             session.removeAttribute("room");

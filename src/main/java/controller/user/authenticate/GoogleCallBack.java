@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dao.NotificationDBContext;
 import dao.NotificationTypeDBContext;
-import dao.RoleDBConext;
+import dao.RoleDBContext;
 import dao.UserDBContext;
 import entity.Notification;
 import entity.NotificationType;
