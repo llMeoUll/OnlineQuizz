@@ -25,6 +25,7 @@ public class DoTest extends HttpServlet {
         int testId = Integer.parseInt(request.getParameter("testId"));
         Test currentTest = new Test();
         currentTest.setTestId(testId);
+        currentTest = testDBContext.getTestById(currentTest);
 
         // Get current user
         User userLogged = (User) request.getSession().getAttribute("user");
@@ -41,7 +42,7 @@ public class DoTest extends HttpServlet {
         }
 
         int currentAttempt = testDBContext.getCurrentAttemptOfThisTest(currentTest, userLogged);
-        if (currentAttempt == 3) {
+        if (currentAttempt >= currentTest.getAttempt()) {
             request.setAttribute("ExceededTimesDoTest", "The number of times you have taken the test has exceeded");
             request.getRequestDispatcher("../../../view/user/room/NotFound.jsp").forward(request, response);
         }
@@ -70,7 +71,7 @@ public class DoTest extends HttpServlet {
         // get current attempt
         TestDBContext testDBContext = new TestDBContext();
         int currentAttempt = testDBContext.getCurrentAttemptOfThisTest(currentTest, userLogged);
-        if (currentAttempt == 3) {
+        if (currentAttempt >= currentTest.getAttempt()) {
             request.setAttribute(" exceededTimesDoTest", "The number of times you have taken the test has exceeded");
             request.getRequestDispatcher("../../view/user/room/ViewRoomDetail.jsp").forward(request, response);
         } else {
@@ -126,7 +127,7 @@ public class DoTest extends HttpServlet {
                 }
             }
         }
-        //Get Id user_does_test corresponding it's attempt
+        // Get Id user_does_test corresponding it's attempt
         // Đã có uid, test_id, attempt
         int udt_id = testDBContext.getUserDoesTestId(userLogged, currentTest, currentAttempt);
 

@@ -89,6 +89,7 @@ public class TestDBContext extends DBContext {
                 Room r = new Room();
                 r.setRoomId(rs.getInt("room_id"));
                 t.setRoom(r);
+                t.setAttempt(rs.getInt("attempt"));
                 t.setDuration(rs.getInt("duration"));
                 t.setTestName(rs.getString("test_name"));
                 t.setTestDescription(rs.getString("test_description"));

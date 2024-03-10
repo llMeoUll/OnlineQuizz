@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
+
 
 <html>
 <head>
@@ -123,7 +126,7 @@
                 <p class="text-light fs-5 font-weight-bold">${requestScope.currentTest.testDescription}</p>
                 <p class="text-light fs-5 font-weight-bold">Start time: ${requestScope.currentTest.startTime}
                     - End time: ${requestScope.currentTest.endTime} </p>
-                <p id="timer" class="text-light fs-3 font-weight-bold text-center mb-4"></p>
+                <h2 id="timer" class="text-light fs-3 font-weight-bold text-center mb-4"></h2>
             </div>
         </div>
     </div>
@@ -135,6 +138,7 @@
         <tbody>
         <form id="quizForm" action="./dotest" method="post">
             <input type="hidden" name="testId" value="${requestScope.currentTest.testId}">
+
             <c:forEach items="${requestScope.listQuestions}" var="question">
                 <tr>
                     <!-- Column for Questions -->
@@ -153,46 +157,52 @@
                     <td>
                         <c:choose>
                             <c:when test="${question.type.getTypeId() == 1}">
-                                <%--<!-- For type_id = 1 (ABCD) -->--%>
-                                <div class="row text-light">
-                                    <div class="answer-option">
-                                        A.
-                                        <input type="radio" id="optionA_${question.getQId()}"
-                                               name="answer_${question.getQId()}"
-                                               value="${question.questionOptions.get(0).optContent}">
-                                        <label for="optionA_${question.getQId()}">${question.questionOptions.get(0).optContent}</label>
+                                <%-- For type_id = 1 (A to K) --%>
+                                <c:forEach items="${question.questionOptions}" var="option" varStatus="loop">
+                                    <div class="row text-light">
+                                        <div class="answer-option">
+                                            <c:choose>
+                                                <c:when test="${loop.index == 0}">
+                                                    A.
+                                                </c:when>
+                                                <c:when test="${loop.index == 1}">
+                                                    B.
+                                                </c:when>
+                                                <c:when test="${loop.index == 2}">
+                                                    C.
+                                                </c:when>
+                                                <c:when test="${loop.index == 3}">
+                                                    D.
+                                                </c:when>
+                                                <c:when test="${loop.index == 4}">
+                                                    E.
+                                                </c:when>
+                                                <c:when test="${loop.index == 5}">
+                                                    F.
+                                                </c:when>
+                                                <c:when test="${loop.index == 6}">
+                                                    G.
+                                                </c:when>
+                                                <c:when test="${loop.index == 7}">
+                                                    H.
+                                                </c:when>
+                                                <c:when test="${loop.index == 8}">
+                                                    I.
+                                                </c:when>
+                                                <c:when test="${loop.index == 9}">
+                                                    J.
+                                                </c:when>
+                                                <c:when test="${loop.index == 10}">
+                                                    K.
+                                                </c:when>
+                                            </c:choose>
+                                            <input type="radio" id="option${loop.index}_${question.getQId()}"
+                                                   name="answer_${question.getQId()}"
+                                                   value="${option.optContent}">
+                                            <label for="option${loop.index}_${question.getQId()}">${option.optContent}</label>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="row text-light">
-                                    <div class="answer-option">
-                                        B.
-                                        <input type="radio" id="optionB_${question.getQId()}"
-                                               name="answer_${question.getQId()}"
-                                               value="${question.questionOptions.get(1).optContent}">
-                                        <label for="optionB_${question.getQId()}">${question.questionOptions.get(1).optContent}</label>
-                                    </div>
-                                </div>
-
-                                <div class="row text-light">
-                                    <div class="answer-option">
-                                        C.
-                                        <input type="radio" id="optionC_${question.getQId()}"
-                                               name="answer_${question.getQId()}"
-                                               value="${question.questionOptions.get(2).optContent}">
-                                        <label for="optionC_${question.getQId()}">${question.questionOptions.get(2).optContent}</label>
-                                    </div>
-                                </div>
-
-                                <div class="row text-light">
-                                    <div class="answer-option">
-                                        D.
-                                        <input type="radio" id="optionD_${question.getQId()}"
-                                               name="answer_${question.getQId()}"
-                                               value="${question.questionOptions.get(3).optContent}">
-                                        <label for="optionD_${question.getQId()}">${question.questionOptions.get(3).optContent}</label>
-                                    </div>
-                                </div>
+                                </c:forEach>
                             </c:when>
                             <c:when test="${question.type.getTypeId() == 2}">
                                 <%--For type_id = 2 (True/False) --%>
@@ -211,6 +221,15 @@
                                         <input type="radio" id="optionFalse_${question.getQId()}"
                                                name="answer_${question.getQId()}" value="False">
                                         <label for="optionFalse_${question.getQId()}">False</label>
+                                    </div>
+                                </div>
+                            </c:when>
+                            <c:when test="${question.type.getTypeId() == 3}">
+                                <div class="row text-light">
+                                    <div class="answer-option">
+                                        <label for="textInput_${question.getQId()}">Answer:</label>
+                                        <input type="text" id="textInput_${question.getQId()}"
+                                               name="answer_${question.getQId()}">
                                     </div>
                                 </div>
                             </c:when>
@@ -247,36 +266,24 @@
                     <c:forEach items="${requestScope.listQuestions}" var="question">
                     <c:choose>
                     <c:when test="${question.type.getTypeId() == 1}">
-                    // For type_id = 1 (ABCD)
-                    const optionA_${question.getQId()} = document.getElementById('optionA_${question.getQId()}');
-                    const optionB_${question.getQId()} = document.getElementById('optionB_${question.getQId()}');
-                    const optionC_${question.getQId()} = document.getElementById('optionC_${question.getQId()}');
-                    const optionD_${question.getQId()} = document.getElementById('optionD_${question.getQId()}');
+                    <c:forEach items="${question.questionOptions}" var="option" varStatus="loop">
+                    const option${loop.index}_${question.getQId()} = document.getElementById('option${loop.index}_${question.getQId()}');
+                    </c:forEach>
 
-                    // Extract option content from the original HTML
                     const optionsContent_${question.getQId()} = [
-                        optionA_${question.getQId()}.nextElementSibling.innerHTML,
-                        optionB_${question.getQId()}.nextElementSibling.innerHTML,
-                        optionC_${question.getQId()}.nextElementSibling.innerHTML,
-                        optionD_${question.getQId()}.nextElementSibling.innerHTML
+                        <c:forEach items="${question.questionOptions}" var="option" varStatus="loop">
+                        option${loop.index}_${question.getQId()}.nextElementSibling.innerHTML${!loop.last ? ',' : ''}
+                        </c:forEach>
                     ];
 
-                    // Shuffle the options content array while keeping order
                     const shuffledOptionsContent_${question.getQId()} = shuffleArrayWithOrder(optionsContent_${question.getQId()});
 
-                    // Update the HTML with the shuffled options content
-                    optionA_${question.getQId()}.nextElementSibling.innerHTML = shuffledOptionsContent_${question.getQId()}[0];
-                    optionA_${question.getQId()}.value = shuffledOptionsContent_${question.getQId()}[0];
-
-                    optionB_${question.getQId()}.nextElementSibling.innerHTML = shuffledOptionsContent_${question.getQId()}[1];
-                    optionB_${question.getQId()}.value = shuffledOptionsContent_${question.getQId()}[1];
-
-                    optionC_${question.getQId()}.nextElementSibling.innerHTML = shuffledOptionsContent_${question.getQId()}[2];
-                    optionC_${question.getQId()}.value = shuffledOptionsContent_${question.getQId()}[2];
-
-                    optionD_${question.getQId()}.nextElementSibling.innerHTML = shuffledOptionsContent_${question.getQId()}[3];
-                    optionD_${question.getQId()}.value = shuffledOptionsContent_${question.getQId()}[3];
+                    <c:forEach items="${question.questionOptions}" var="option" varStatus="loop">
+                    option${loop.index}_${question.getQId()}.nextElementSibling.innerHTML = shuffledOptionsContent_${question.getQId()}[${loop.index}];
+                    option${loop.index}_${question.getQId()}.value = shuffledOptionsContent_${question.getQId()}[${loop.index}];
+                    </c:forEach>
                     </c:when>
+
                     <c:when test="${question.type.getTypeId() == 2}">
                     // For type_id = 2 (True/False)
                     const optionTrue_${question.getQId()} = document.getElementById('optionTrue_${question.getQId()}');
