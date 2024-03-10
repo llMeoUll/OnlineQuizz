@@ -1,20 +1,38 @@
 package controller.admin.set;
 
+import dao.NotificationDBContext;
+import dao.NotificationTypeDBContext;
 import dao.SetDBContext;
+import dao.UserDBContext;
+import entity.Notification;
 import entity.Set;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
-
+import entity.User;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AdminDeleteSet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SetDBContext setDBContext = new SetDBContext();
+        NotificationDBContext notificationDBContext = new NotificationDBContext();
+        UserDBContext userDBContext = new UserDBContext();
+        NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
+
         int id = Integer.parseInt(request.getParameter("sid"));
-        Set set = new Set();
-        set.setSId(id);
+        Set set = setDBContext.get(id);
+        Notification notification = new Notification();
+        notification.setUrl("/Quizzicle/user/set");
+        notification.setFrom(userDBContext.getAdmin("Admin"));
+        ArrayList<User> tos = new ArrayList<>();
+        tos.add(set.getUser());
+        notification.setType(notificationTypeDBContext.get(3));
+        notification.setTos(tos);
+        notification.setRead(false);
+        notification.setContent("Admin delete your set: " + set.getSName());
+
+        notificationDBContext.insert(notification);
         setDBContext.delete(set);
         response.sendRedirect("../set");
     }

@@ -40,7 +40,6 @@ public class RoomDetail extends HttpServlet {
 
         TestDBContext tDB = new TestDBContext();
         ArrayList<Test> listTestOfRoom = tDB.getTestsCorrespondingEachRoom(u, r);
-
         r = rDB.getRoomById(r);
         String codeToJoin = GenerateCodeToJoin.generateCode(r.getCode() + r.getPassword());
         String roomName = r.getRoomName();

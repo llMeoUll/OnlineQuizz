@@ -356,6 +356,11 @@
             </div>
         </section>
     </div>
+    <script>
+        function viewSet(sid) {
+            window.location.href = '/Quizzicle/user/set/get?setID=' + sid;
+        }
+    </script>
 </main>
 <jsp:include page="../../../components/footer.jsp"></jsp:include>
 <script>

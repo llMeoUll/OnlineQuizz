@@ -128,7 +128,10 @@
         </ul>
     </div>
 </nav>
-
+<%--create btn added by LinhNguyen--%>
+<div class="container mt-3">
+    <a href="./test/create?roomId=${requestScope.currentRoom.roomId}" class="btn btn-primary">Create Test</a>
+</div>
 <!-- Content -->
 <div class="container mt-3">
     <div class="card bg-light-purple mb-3">
@@ -158,6 +161,9 @@
         </div>
     </div>
 </div>
+
+
+
 <!-- Edit Room Modal -->
 <div class="modal" id="editRoomModal" tabindex="-1" aria-labelledby="editRoomModalLabel" aria-hidden="true">
     <div class="modal-dialog">
