@@ -1,10 +1,7 @@
 package controller.user.set;
 
 
-import dao.QuestionDBContext;
-import dao.SetDBContext;
-import dao.StarRateDBContext;
-import dao.TypeDBContext;
+import dao.*;
 import entity.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -32,10 +29,27 @@ public class GetSet extends HttpServlet {
         Set set = setDBContext.get(Integer.parseInt(request.getParameter("setId")));
         if(numOfStarRate != null) {
             StarRateDBContext starRateDBContext = new StarRateDBContext();
+            NotificationDBContext notificationDBContext = new NotificationDBContext();
+            NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
+            HttpSession session = request.getSession();
+            User from = (User) session.getAttribute("user");
+
+            Notification notification = new Notification();
+            NotificationType notificationType = notificationTypeDBContext.get(11);
+            notification.setType(notificationType);
+            notification.setFrom(from);
+            ArrayList<User> tos = new ArrayList<>();
+            tos.add(set.getUser());
+            notification.setTos(tos);
+            notification.setRead(false);
+            notification.setUrl("/Quizzicle/user/set/get?setID=" + set.getSId());
+            notification.setContent(from.getFamilyName() + " " +
+                    from.getGivenName() + " " + notificationType.getAction() + " " + set.getSName());
+            notificationDBContext.insert(notification);
+
             StarRate starRate = new StarRate();
             starRate.setRate(Integer.parseInt(numOfStarRate));
             starRate.setSet(set);
-            HttpSession session = request.getSession();
             starRate.setUser((User) session.getAttribute("user"));
             starRateDBContext.insert(starRate);
         }
