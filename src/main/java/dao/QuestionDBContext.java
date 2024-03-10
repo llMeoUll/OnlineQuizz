@@ -143,7 +143,7 @@ public class QuestionDBContext extends DBContext{
         }
     }
 
-    private Question get (int questionId) {
+    public Question get (int questionId) {
         Question question = new Question();
         String sql = "SELECT * FROM `online_quizz`.`question` WHERE `qid` = ?";
         try {
