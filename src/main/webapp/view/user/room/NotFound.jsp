@@ -5,7 +5,7 @@
   Time: 10:49 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>404 - Not found!</title>
@@ -14,7 +14,7 @@
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="./css/manageRoom/NotFound.css">
+    <link rel="stylesheet" href="../../../.././css/manageRoom/NotFound.css">
 
     <!-- Bootstrap and jQuery scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -109,11 +109,26 @@
     </div>
 </nav>
 
+<%--Style body--%>
+<style>
+    .error-container {
+        text-align: center;
+    }
+    body {
+        background-color: #7e57c2;
+        font-family: 'Quicksand', sans-serif;
+        color: #fff;
+    }
+</style>
 
 <div class="error-container">
-    <h1 class="display-4">404 - Not Found</h1>
-    <p class="lead">The requested page could not be found.</p>
-    <!-- Add additional content or links as needed -->
+    <c:if test="${requestScope.ExceededTimesDoTest ne null}">
+        <p>${requestScope.ExceededTimesDoTest}</p>
+    </c:if>
+    <c:if test="${requestScope.ExceededTimesDoTest eq null}">
+        <h1 class="display-4">404 - Not Found</h1>
+        <p class="lead">The requested page could not be found.</p>
+    </c:if>
 </div>
 
 </body>
