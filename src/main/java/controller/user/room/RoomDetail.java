@@ -33,10 +33,10 @@ public class RoomDetail extends HttpServlet {
         r.setRoomId(roomId);
         RoomDBContext rDB = new RoomDBContext();
         User userLogged = (User) request.getSession().getAttribute("user");
-        UserDBContext uDB = new UserDBContext();
-        User u = uDB.get(userLogged.getEmail());
+//        UserDBContext uDB = new UserDBContext();
+//        User u = uDB.get(userLogged.getEmail());
         TestDBContext tDB = new TestDBContext();
-        ArrayList<Test> listTestOfRoom = tDB.getTestsCorrespondingEachRoom(u, r);
+        ArrayList<Test> listTestOfRoom = tDB.getTestsCorrespondingEachRoom(userLogged, r);
         r = rDB.getRoomById(r);
         String codeToJoin = GenerateCodeToJoin.generateCode(r.getCode() + r.getPassword());
         String roomName = r.getRoomName();

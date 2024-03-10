@@ -105,8 +105,8 @@ public class GoogleCallBack extends HttpServlet {
             user.setAvatar(picture);
             user.setVerified(verified);
             try {
-                RoleDBConext roleDBConext = new RoleDBConext();
-                user.setRoles(roleDBConext.list(user.getEmail()));
+                RoleDBContext roleDBContext = new RoleDBContext();
+                user.setRoles(roleDBContext.list(user.getEmail()));
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }

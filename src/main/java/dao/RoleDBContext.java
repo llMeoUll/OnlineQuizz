@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RoleDBConext extends DBContext {
+public class RoleDBContext extends DBContext {
     public Role get(Role entity) {
         String sqlGetIdUserRole =
                 "SELECT `role`.`rid`\n" +
@@ -91,9 +91,5 @@ public class RoleDBConext extends DBContext {
             }
         }
         return roles;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(SCryptUtil.scrypt("Kien123456@", 16, 16, 16));
     }
 }

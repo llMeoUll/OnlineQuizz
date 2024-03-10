@@ -10,15 +10,14 @@ import java.io.IOException;
 public class ForgotPassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        boolean resend = request.getParameter("resend").equals("true") ? true : false;
-        if (resend) {
+        if (request.getParameter("resend") != null && request.getParameter("resend").equals("true")) {
             HttpSession session = request.getSession();
             String email = (String) session.getAttribute("email");
             String verifyType = (String) session.getAttribute("verifyType");
             Email emailUtil = new Email();
             emailUtil.sendVerifyCode(request, email, "Reset Password", "Please confirm that you want to reset your password.", verifyType);
             response.sendRedirect("./verify-code");
-        } else{
+        } else {
             request.getRequestDispatcher("./view/user/authenticate/ForgotPassword.jsp").forward(request, response);
         }
     }

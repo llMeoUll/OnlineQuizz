@@ -187,6 +187,33 @@
         <servlet-name>CreateTest</servlet-name>
         <url-pattern>/user/room/test/create</url-pattern>
     </servlet-mapping>
+<!--    add question to test-->
+    <servlet>
+        <servlet-name>AddQuestion</servlet-name>
+        <servlet-class>controller.user.room.test.AddQuestion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddQuestion</servlet-name>
+        <url-pattern>/user/room/test/create/add-question</url-pattern>
+    </servlet-mapping>
+<!--    review before create test-->
+    <servlet>
+        <servlet-name>ReviewBeforeCreate</servlet-name>
+        <servlet-class>controller.user.room.test.ReviewBeforeCreate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReviewBeforeCreate</servlet-name>
+        <url-pattern>/user/room/test/create/review</url-pattern>
+    </servlet-mapping>
+<!--    cancel create test-->
+    <servlet>
+        <servlet-name>CancelCreateTest</servlet-name>
+        <servlet-class>controller.user.room.test.CancelCreateTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CancelCreateTest</servlet-name>
+        <url-pattern>/user/room/test/create/cancel</url-pattern>
+    </servlet-mapping>
     <!--  delete test -->
     <servlet>
         <servlet-name>deleteTest</servlet-name>

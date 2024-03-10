@@ -43,8 +43,8 @@ public class UserDBContext extends DBContext {
             ResultSet resultSet = stm.executeQuery();
             if (resultSet.next()) {
                 User user = initUserInfo(resultSet);
-                RoleDBConext roleDBConext = new RoleDBConext();
-                ArrayList<Role> roles = roleDBConext.list(user.getEmail());
+                RoleDBContext roleDBContext = new RoleDBContext();
+                ArrayList<Role> roles = roleDBContext.list(user.getEmail());
                 user.setRoles(roles);
                 return user;
             }
@@ -66,8 +66,8 @@ public class UserDBContext extends DBContext {
             if (resultSet.next()) {
                 User user = initUserInfo(resultSet);
                 if (SCryptUtil.check(password, user.getPassword())) {
-                    RoleDBConext roleDBConext = new RoleDBConext();
-                    ArrayList<Role> roles = roleDBConext.list(user.getEmail());
+                    RoleDBContext roleDBContext = new RoleDBContext();
+                    ArrayList<Role> roles = roleDBContext.list(user.getEmail());
                     user.setRoles(roles);
                     return user;
                 }
@@ -158,7 +158,7 @@ public class UserDBContext extends DBContext {
                 if (generatedKeys.next()) {
                     Role role = new Role();
                     role.setName("User");
-                    RoleDBConext roleDBConext = new RoleDBConext();
+                    RoleDBContext roleDBContext = new RoleDBContext();
                     int userId = generatedKeys.getInt(1);
                     String sqlInsertRole = "INSERT INTO `online_quizz`.`role_user_mapping`\n" +
                             "(`rid`,\n" +
@@ -166,7 +166,7 @@ public class UserDBContext extends DBContext {
                             "VALUES\n" +
                             "(?, ?);\n";
                     PreparedStatement stmInsertRole = connection.prepareStatement(sqlInsertRole);
-                    stmInsertRole.setInt(1, roleDBConext.get(role).getRId());
+                    stmInsertRole.setInt(1, roleDBContext.get(role).getRId());
                     stmInsertRole.setInt(2, userId);
                     stmInsertRole.executeUpdate();
                 }
