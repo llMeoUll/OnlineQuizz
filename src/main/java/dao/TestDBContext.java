@@ -191,4 +191,56 @@ public class TestDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
+
+    public void insert(Test entity, ArrayList<TestQuestion> testQuestions) throws SQLException {
+        try {
+            connection.setAutoCommit(false);
+            String sql = "INSERT INTO `online_quizz`.`test`\n" +
+                    "(`room_id`,\n" +
+                    "`test_name`,\n" +
+                    "`test_description`,\n" +
+                    "`duration`,\n" +
+                    "`start_time`,\n" +
+                    "`end_time`,\n" +
+                    "`attempt`,\n" +
+                    "`created_at`,\n" +
+                    "`updated_at`)\n" +
+                    "VALUES\n" +
+                    "(?, ?, ?, ?, ?, ?, ?,\n" +
+                    "current_timestamp(),\n" +
+                    "current_timestamp());";
+            try {
+                PreparedStatement stm = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+                stm.setInt(1, entity.getRoom().getRoomId());
+                stm.setString(2, entity.getTestName());
+                stm.setString(3, entity.getTestDescription());
+                stm.setInt(4, entity.getDuration());
+                stm.setTimestamp(5, entity.getStartTime());
+                stm.setTimestamp(6, entity.getEndTime());
+                stm.setInt(7, entity.getAttempt());
+                stm.executeUpdate();
+                ResultSet rs = stm.getGeneratedKeys();
+                if (rs.next()) {
+                    for (TestQuestion testQuestion : testQuestions) {
+                        testQuestion.setTestId(rs.getInt(1));
+                    }
+                    TestQuestionDBContext testQuestionDBContext = new TestQuestionDBContext();
+                    testQuestionDBContext.insertAll(testQuestions, connection);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            connection.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
+    }
 }

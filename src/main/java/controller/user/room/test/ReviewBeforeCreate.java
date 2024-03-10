@@ -1,9 +1,17 @@
 package controller.user.room.test;
 
+import dao.TestDBContext;
+import entity.Room;
+import entity.Test;
+import entity.TestQuestion;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
+import util.DateTimeLocalConverter;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class ReviewBeforeCreate extends HttpServlet {
     @Override
@@ -13,11 +21,43 @@ public class ReviewBeforeCreate extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String Name = request.getParameter("name");
+        String Description = request.getParameter("description");
+        Timestamp startTime = DateTimeLocalConverter.DateTimeLocalToTimestamp(request.getParameter("start"));
+        int duration = Integer.parseInt(request.getParameter("duration"));
+        int attempt = Integer.parseInt(request.getParameter("attempt"));
+        Timestamp endTime = DateTimeLocalConverter.DateTimeLocalToTimestamp(request.getParameter("end"));
+        Test test = new Test();
+        test.setTestName(Name);
+        test.setTestDescription(Description);
+        test.setDuration(duration);
+        test.setAttempt(attempt);
+        test.setStartTime(startTime);
+        test.setEndTime(endTime);
+        HttpSession session = request.getSession();
+        Room room = (Room) session.getAttribute("room");
+        test.setRoom(room);
+
         String[] questions = request.getParameterValues("question-ids");
-        float[] scores = new float[questions.length];
+        ArrayList<TestQuestion> testQuestions = new ArrayList<>();
         for (int i = 0; i < questions.length; i++) {
-            scores[i] = Float.parseFloat(request.getParameter("score-question-" + questions[i]));
-            response.getWriter().println(scores[i] + " " + questions[i]);
+            float score = Float.parseFloat(request.getParameter("score-question-" + questions[i]));
+            int questionId = Integer.parseInt(questions[i]);
+            TestQuestion testQuestion = new TestQuestion();
+            testQuestion.setQId(questionId);
+            testQuestion.setScore(score);
+            testQuestions.add(testQuestion);
+        }
+        // insert test to database
+        TestDBContext testDBContext = new TestDBContext();
+        try {
+            testDBContext.insert(test, testQuestions);
+            session.removeAttribute("room");
+            session.removeAttribute("questions");
+            session.removeAttribute("test");
+            response.sendRedirect("../../../room/get?roomId=" + room.getRoomId());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
     }

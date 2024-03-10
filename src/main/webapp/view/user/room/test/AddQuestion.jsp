@@ -115,7 +115,7 @@
             </div>
         </div>
         <div class="container-fluid d-flex justify-content-between fixed-bottom pb-3 px-5">
-            <a href="../create" class="btn btn-outline-primary mt-3">Back</a>
+            <a href="../create?roomId=${sessionScope.room.roomId}" class="btn btn-outline-primary mt-3">Back</a>
             <c:if test="${requestScope.error ne null}">
                 <p class="text-danger">${requestScope.error}</p>
             </c:if>
