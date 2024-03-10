@@ -132,7 +132,7 @@
                     <span class="visually-hidden">Settings</span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" onclick="showEditModal()">Edit</a></li>
+                    <li><a class="dropdown-item" href="./update?testId=${requestScope.currentTest.testId}">Edit</a></li>
                     <li><a class="dropdown-item" href="#" onclick="showDeleteConfirmation()">Delete</a></li>
                 </ul>
             </div>
@@ -140,38 +140,38 @@
     </div>
 </div>
 <!-- Edit Room Modal -->
-<div class="modal" id="editTestModal" tabindex="-1" aria-labelledby="editTestModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editTestModalLabel">Edit Test</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-purple">
-                <!-- Your form or content for editing goes here -->
-                <!-- Example: -->
-                <form id="editTestForm" action="./update" method="post">
-                    <div class="mb-3">
-                        <label for="testName" class="form-label">Test Name:</label>
-                        <input type="text" class="form-control" id="testName" name="testName"
-                               value="${requestScope.currentTest.testName}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description:</label>
-                        <input type="text" class="form-control" id="description" name="testDescription"
-                               value="${requestScope.currentTest.testDescription}">
-                    </div>
-                    <!-- Add other form fields for editing -->
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                    <input type="hidden" value="${requestScope.currentTest.testId}" name="testId">
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<%--<div class="modal" id="editTestModal" tabindex="-1" aria-labelledby="editTestModalLabel" aria-hidden="true">--%>
+<%--    <div class="modal-dialog">--%>
+<%--        <div class="modal-content">--%>
+<%--            <div class="modal-header">--%>
+<%--                <h5 class="modal-title" id="editTestModalLabel">Edit Test</h5>--%>
+<%--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+<%--            </div>--%>
+<%--            <div class="modal-body text-purple">--%>
+<%--                <!-- Your form or content for editing goes here -->--%>
+<%--                <!-- Example: -->--%>
+<%--                <form id="editTestForm" action="./update" method="post">--%>
+<%--                    <div class="mb-3">--%>
+<%--                        <label for="testName" class="form-label">Test Name:</label>--%>
+<%--                        <input type="text" class="form-control" id="testName" name="testName"--%>
+<%--                               value="${requestScope.currentTest.testName}">--%>
+<%--                    </div>--%>
+<%--                    <div class="mb-3">--%>
+<%--                        <label for="description" class="form-label">Description:</label>--%>
+<%--                        <input type="text" class="form-control" id="description" name="testDescription"--%>
+<%--                               value="${requestScope.currentTest.testDescription}">--%>
+<%--                    </div>--%>
+<%--                    <!-- Add other form fields for editing -->--%>
+<%--                    <div class="modal-footer d-flex justify-content-center">--%>
+<%--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>--%>
+<%--                        <button type="submit" class="btn btn-primary">Save Changes</button>--%>
+<%--                    </div>--%>
+<%--                    <input type="hidden" value="${requestScope.currentTest.testId}" name="testId">--%>
+<%--                </form>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
 <!-- Delete Confirmation Modal -->
 <div class="modal" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"

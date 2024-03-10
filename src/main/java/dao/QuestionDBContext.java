@@ -1,17 +1,14 @@
 package dao;
 
-import entity.Question;
-import entity.QuestionOption;
-import entity.Set;
-import entity.Type;
+import entity.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import entity.Type;
-public class QuestionDBContext extends DBContext{
+
+public class QuestionDBContext extends DBContext {
     public ArrayList<Question> list(int setId) {
         ArrayList<Question> questions = new ArrayList<>();
         String sql = "SELECT * FROM `online_quizz`.`question` WHERE `question`.`sid` = ?";
@@ -19,13 +16,13 @@ public class QuestionDBContext extends DBContext{
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, setId);
             ResultSet rs = stm.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Question question = new Question();
                 question.setQId(rs.getInt("qid"));
                 question.setQuestion(rs.getString("question"));
                 question.setAnswer(rs.getString("answer"));
                 question.setType(new TypeDBContext().get(rs.getInt("type_id"), connection));
-                if (question.getType().getTypeName().equals("Multiple choice")){
+                if (question.getType().getTypeName().equals("Multiple choice")) {
                     question.setQuestionOptions(new QuestionOptionsDBContext().list(question.getQId(), connection));
                 }
                 questions.add(question);
@@ -36,6 +33,7 @@ public class QuestionDBContext extends DBContext{
 
         return questions;
     }
+
     public void insertAll(ArrayList<Question> questions, int setId, Connection connection) throws SQLException {
         String insertQuestionQuery = "INSERT INTO `online_quizz`.`question`\n" +
                 "(`question`,\n" +
@@ -114,7 +112,7 @@ public class QuestionDBContext extends DBContext{
         try {
             PreparedStatement stmListQuestion = connection.prepareStatement(sqlListQuestion);
             ResultSet rs = stmListQuestion.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Question question = new Question();
                 Set set = new Set();
                 set.setSId(rs.getInt("sid"));
@@ -153,7 +151,7 @@ public class QuestionDBContext extends DBContext{
             PreparedStatement stmGetQuestion = connection.prepareStatement(sqlGetQuestion);
             stmGetQuestion.setInt(1, qid);
             ResultSet rs = stmGetQuestion.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Question question = new Question();
                 question.setQId(qid);
                 question.setQuestion(rs.getString("question"));
@@ -170,5 +168,13 @@ public class QuestionDBContext extends DBContext{
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    public ArrayList<Question> list(ArrayList<TestQuestion> testQuestions) {
+        ArrayList<Question> questions = new ArrayList<>();
+        for (TestQuestion testQuestion : testQuestions) {
+            questions.add(get(testQuestion.getQId()));
+        }
+        return questions;
     }
 }

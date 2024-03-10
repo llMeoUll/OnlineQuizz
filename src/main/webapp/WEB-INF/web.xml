@@ -171,7 +171,7 @@
     <!-- view test detail-->
     <servlet>
         <servlet-name>viewTestDetail</servlet-name>
-        <servlet-class>controller.user.room.TestDetail</servlet-class>
+        <servlet-class>controller.user.room.test.TestDetail</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>viewTestDetail</servlet-name>
