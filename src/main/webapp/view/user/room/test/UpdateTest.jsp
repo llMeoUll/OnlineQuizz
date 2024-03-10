@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../../.././webjars/font-awesome/6.5.1/css/all.min.css">
     <script src="../../.././webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
     <script src="../../.././webjars/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../.././css/CreateTest.css">
 </head>
 <body>
 <form action="./update" method="post" id="review-form">
@@ -73,17 +74,11 @@
             </div>
         </div>
     </div>
-    <c:set var="totalScore" value="10"/>
-    <c:set var="totalQuestion" value="0"/>
-    <c:forEach items="${requestScope.questions}" var="question">
-        <c:set var="totalQuestion" value="${totalQuestion + 1}"/>
-    </c:forEach>
-    <fmt:formatNumber value="${totalScore / totalQuestion}" var="scorePerQuestion" maxFractionDigits="2"/>
     <div class="container">
         <div class="row mb-3">
             <div class="col-md-4">
                 <label for="total-score">Total score: </label>
-                <input type="number" step="0.01" id="total-score" value="${totalScore}"/>
+                <input type="number" step="0.01" id="total-score" value="${requestScope.totalScore}"/>
                 <button type="button" class="btn btn-primary" onclick="calculateScore()">Apply</button>
             </div>
         </div>
@@ -118,7 +113,7 @@
                         <input type="number" step="0.01" class="form-control score"
                                name="score-question-${question.getQId()}"
                                id="score-question-${question.getQId()}"
-                               value="${scorePerQuestion}" min="0" onchange="calculateTotalScore();"
+                               value="${requestScope.testQuestions.get(choseLoop.count - 1).score}" min="0" onchange="calculateTotalScore();"
                                required/>
                         <span class="input-group-text">Point</span>
                         <button class="btn btn-primary" onclick="deleteQuestionButton(${question.getQId()})">Delete

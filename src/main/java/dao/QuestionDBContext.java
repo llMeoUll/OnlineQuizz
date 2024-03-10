@@ -144,18 +144,21 @@ public class QuestionDBContext extends DBContext {
         }
     }
 
-    public Question get(int qid) {
-        String sqlGetQuestion = "SELECT * FROM online_quizz.question\n" +
-                "WHERE `question`.`qid` = ?";
+    public Question get (int questionId) {
+        Question question = new Question();
+        String sql = "SELECT * FROM `online_quizz`.`question` WHERE `qid` = ?";
         try {
-            PreparedStatement stmGetQuestion = connection.prepareStatement(sqlGetQuestion);
-            stmGetQuestion.setInt(1, qid);
+            PreparedStatement stmGetQuestion = connection.prepareStatement(sql);
+            stmGetQuestion.setInt(1, questionId);
             ResultSet rs = stmGetQuestion.executeQuery();
             while (rs.next()) {
-                Question question = new Question();
-                question.setQId(qid);
+                question.setQId(questionId);
                 question.setQuestion(rs.getString("question"));
                 question.setAnswer(rs.getString("answer"));
+                question.setType(new TypeDBContext().get(rs.getInt("type_id"), connection));
+                if (question.getType().getTypeName().equals("Multiple choice")){
+                    question.setQuestionOptions(new QuestionOptionsDBContext().list(question.getQId(), connection));
+                }
                 SetDBContext setDBContext = new SetDBContext();
                 Set set = setDBContext.get(rs.getInt("sid"));
                 question.setSet(set);
@@ -167,7 +170,7 @@ public class QuestionDBContext extends DBContext {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return question;
     }
 
     public ArrayList<Question> list(ArrayList<TestQuestion> testQuestions) {

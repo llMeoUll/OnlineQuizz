@@ -26,9 +26,15 @@ public class UpdateTest extends HttpServlet {
         request.setAttribute("test", test);
         TestQuestionDBContext testQuestionDB = new TestQuestionDBContext();
         ArrayList<TestQuestion> testQuestions = testQuestionDB.list(testId);
+        request.setAttribute("testQuestions", testQuestions);
         QuestionDBContext questionDB = new QuestionDBContext();
         ArrayList<Question> questions = questionDB.list(testQuestions);
         request.setAttribute("questions", questions);
+        float totalScore = 0;
+        for (TestQuestion testQuestion : testQuestions) {
+            totalScore += testQuestion.getScore();
+        }
+        request.setAttribute("totalScore", totalScore);
         request.getRequestDispatcher("../../.././view/user/room/test/UpdateTest.jsp").forward(request, response);
     }
 
