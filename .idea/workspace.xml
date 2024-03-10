@@ -11,13 +11,14 @@
   <component name="ChangeListManager">
     <list default="true" id="f2da6b60-4134-419e-bec9-7a0a1c84e0be" name="Changes" comment="Fix error, forget hardcode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/RoomDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/RoomDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/test/CancelCreateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/CancelCreateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/test/CreateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/CreateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/test/ReviewBeforeCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/ReviewBeforeCreate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/TestDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/TestDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/test/DeleteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/DeleteTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/test/UpdateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/UpdateTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/TestDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TestDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewRoomDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewRoomDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/test/AddQuestion.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/test/AddQuestion.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TestQuestionDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TestQuestionDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewTestDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/test/ViewTestDetail.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,10 +28,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -94,6 +95,7 @@
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\imagines" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\webapp\view\user\room\test" />
       <recent name="F:\Learn_SE\Spring2024\SWP391\OnlineQuizz\src\main\webapp\view\user\room" />
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\js" />
       <recent name="E:\ProjectSWP\OnlineQuizz\src\main\webapp\css" />
@@ -265,7 +267,7 @@
       <workItem from="1709775348188" duration="25468000" />
       <workItem from="1709862264605" duration="18695000" />
       <workItem from="1709968090343" duration="33335000" />
-      <workItem from="1710038125324" duration="7991000" />
+      <workItem from="1710038125324" duration="16180000" />
     </task>
     <servers />
   </component>
@@ -295,9 +297,9 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/dao/TestDBContext.java</url>
-          <line>196</line>
-          <option name="timeStamp" value="20" />
+          <url>file://$PROJECT_DIR$/src/main/java/controller/user/room/test/UpdateTest.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
