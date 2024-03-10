@@ -9,17 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2da6b60-4134-419e-bec9-7a0a1c84e0be" name="Changes" comment="Fix error, forget hardcode">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/TestDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/TestDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/test/DeleteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/DeleteTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/test/UpdateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/UpdateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TestDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TestDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TestQuestionDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TestQuestionDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/ViewTestDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/test/ViewTestDetail.jsp" afterDir="false" />
-    </list>
+    <list default="true" id="f2da6b60-4134-419e-bec9-7a0a1c84e0be" name="Changes" comment="Fix error, forget hardcode" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +27,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/webapp/view/user/room/ManageRoomScreen.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
@@ -267,7 +256,7 @@
       <workItem from="1709775348188" duration="25468000" />
       <workItem from="1709862264605" duration="18695000" />
       <workItem from="1709968090343" duration="33335000" />
-      <workItem from="1710038125324" duration="16180000" />
+      <workItem from="1710038125324" duration="16551000" />
     </task>
     <servers />
   </component>
@@ -295,11 +284,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/webapp/js/Dashboard.js</url>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/user/room/test/UpdateTest.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
