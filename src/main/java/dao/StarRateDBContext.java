@@ -37,14 +37,13 @@ public class StarRateDBContext extends DBContext {
         }
         return ratedStars;
     }
-
     public void insert(StarRate starRate) {
-        String sqlInsertStarRate = "INSERT INTO `online_quizz`.`star_rate`\n" +
-                "(`uid`,\n" +
-                "`sid`,\n" +
-                "`rate`,\n" +
-                "`created_at`,\n" +
-                "`updated_at`)\n" +
+        String sqlInsertStarRate = "INSERT INTO online_quizz.`star_rate`\n" +
+                "(uid,\n" +
+                "sid,\n" +
+                "rate,\n" +
+                "created_at,\n" +
+                "updated_at)\n" +
                 "VALUES\n" +
                 "(?,?,?,current_timestamp(), current_timestamp());";
         try {
