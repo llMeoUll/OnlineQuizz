@@ -1,12 +1,8 @@
 package controller.user.profile;
 
 import com.lambdaworks.crypto.SCryptUtil;
-import dao.RoomDBContext;
-import dao.SetDBContext;
-import dao.UserDBContext;
-import entity.Room;
-import entity.Set;
-import entity.User;
+import dao.*;
+import entity.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,11 +22,12 @@ public class UserProfileUpdateControl extends HttpServlet {
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
         int id = u.getId();
+
         UserDBContext udb = new UserDBContext();
         User user = udb.get(id);
 
         request.setAttribute("user", user);
-        request.getRequestDispatcher("./view/user/Profile/EditProfile.jsp").forward(request, response);
+        request.getRequestDispatcher("./view/user/profile/EditProfile.jsp").forward(request, response);
     }
 
     @Override
@@ -62,6 +59,23 @@ public class UserProfileUpdateControl extends HttpServlet {
             Date updatedAt = new Date();
             newUser.setUpdatedAt(new Timestamp(updatedAt.getTime()));
             userDBContext.updateUserProfile(newUser);
+
+            NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
+            NotificationDBContext notificationDBContext = new NotificationDBContext();
+            ArrayList<User> tos = new ArrayList<>();
+            tos.add(userDBContext.getAdmin("Admin"));
+            Notification notification = new Notification();
+
+            NotificationType notificationType = notificationTypeDBContext.get(9);
+
+            notification.setContent(newUser.getEmail() + " " + notificationType.getAction());
+            notification.setRead(false);
+            notification.setType(notificationType);
+            notification.setTos(tos);
+            notification.setUrl("/Quizzicle/admin/user/profile?uid=" + newUser.getId());
+            notification.setFrom(newUser);
+
+            notificationDBContext.insert(notification);
             session.setAttribute("user", newUser);
             // Thêm người dùng vào cơ sở dữ liệu
         } else {
