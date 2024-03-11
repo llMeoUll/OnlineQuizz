@@ -8,7 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>404 - Not found!</title>
+    <title>Error page!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </style>
@@ -114,6 +114,7 @@
     .error-container {
         text-align: center;
     }
+
     body {
         background-color: #7e57c2;
         font-family: 'Quicksand', sans-serif;
@@ -125,10 +126,12 @@
     <c:if test="${requestScope.ExceededTimesDoTest ne null}">
         <p>${requestScope.ExceededTimesDoTest}</p>
     </c:if>
-    <c:if test="${requestScope.ExceededTimesDoTest eq null}">
-        <h1 class="display-4">404 - Not Found</h1>
-        <p class="lead">The requested page could not be found.</p>
+
+    <c:if test="${requestScope.NoTestOwnerRights ne null}">
+        <p>${requestScope.NoTestOwnerRights}</p>
     </c:if>
+
+    <p>Error page!</p>
 </div>
 
 </body>

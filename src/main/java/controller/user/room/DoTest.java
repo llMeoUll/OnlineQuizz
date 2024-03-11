@@ -19,22 +19,33 @@ import java.util.*;
 public class DoTest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get current user
-        User userLogged = (User) request.getSession().getAttribute("user");
-        UserDBContext uDB = new UserDBContext();
-        User u = uDB.get(userLogged.getEmail());
 
         TestDBContext testDBContext = new TestDBContext();
         // Retrieve the testValue value
         int testId = Integer.parseInt(request.getParameter("testId"));
         Test currentTest = new Test();
         currentTest.setTestId(testId);
-        int currentAttempt = testDBContext.getCurrentAttemptOfThisTest(currentTest, userLogged);
-        if (currentAttempt == 3) {
-            request.setAttribute("ExceededTimesDoTest", "The number of times you have taken the test has exceeded");
+        currentTest = testDBContext.getTestById(currentTest);
+
+        // Get current user
+        User userLogged = (User) request.getSession().getAttribute("user");
+        UserDBContext uDB = new UserDBContext();
+        User u = uDB.get(userLogged.getEmail());
+        // if assume this is owner of this test. We need to find the owner of this room
+        // And check if they is one. Restrict them
+
+        User ownerTest = testDBContext.getOwnerTest(currentTest);
+
+        if (u.getId() == ownerTest.getId()) {
+            request.setAttribute("NoTestOwnerRights", "You do not have the right to take the test (because you are the owner)");
             request.getRequestDispatcher("../../../view/user/room/NotFound.jsp").forward(request, response);
         }
 
+        int currentAttempt = testDBContext.getCurrentAttemptOfThisTest(currentTest, userLogged);
+        if (currentAttempt >= currentTest.getAttempt()) {
+            request.setAttribute("ExceededTimesDoTest", "The number of times you have taken the test has exceeded");
+            request.getRequestDispatcher("../../../view/user/room/NotFound.jsp").forward(request, response);
+        }
 
         currentTest = testDBContext.getTestById(currentTest);
         request.setAttribute("currentTest", currentTest);
@@ -60,7 +71,7 @@ public class DoTest extends HttpServlet {
         // get current attempt
         TestDBContext testDBContext = new TestDBContext();
         int currentAttempt = testDBContext.getCurrentAttemptOfThisTest(currentTest, userLogged);
-        if (currentAttempt == 3) {
+        if (currentAttempt >= currentTest.getAttempt()) {
             request.setAttribute(" exceededTimesDoTest", "The number of times you have taken the test has exceeded");
             request.getRequestDispatcher("../../view/user/room/ViewRoomDetail.jsp").forward(request, response);
         } else {
@@ -116,7 +127,7 @@ public class DoTest extends HttpServlet {
                 }
             }
         }
-        //Get Id user_does_test corresponding it's attempt
+        // Get Id user_does_test corresponding it's attempt
         // Đã có uid, test_id, attempt
         int udt_id = testDBContext.getUserDoesTestId(userLogged, currentTest, currentAttempt);
 

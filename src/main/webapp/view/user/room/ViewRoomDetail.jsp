@@ -255,7 +255,7 @@
                         <p class="text-light ml-4">Start: ${test.startTime} | End: ${test.endTime}</p>
                     </div>
                     <div class="row">
-                        <a href="./test/dotest?testId=${test.testId}" class="btn btn-primary ml-4">Do Test</a>
+                        <a href="./test/dotest?testId=${test.testId}" class="btn btn-primary ml-4 mb-4">Do Test</a>
                     </div>
                     <div class="row">
                         <a href="./test/leaderboard?testId=${test.testId}" class="btn btn-primary ml-4">Leader board</a>
