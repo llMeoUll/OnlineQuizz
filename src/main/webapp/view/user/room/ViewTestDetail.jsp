@@ -213,6 +213,7 @@
 <div class="container mt-3">
     <table class="table table-striped">
         <tbody>
+
         <c:forEach items="${requestScope.listQuestions}" var="question">
             <tr>
                 <!-- Column for Questions -->
@@ -227,27 +228,90 @@
                         </div>
                     </div>
                 </td>
-
-                <!-- Column for Answers -->
+                    <%--Column for Answers For ABCD --%>
                 <td>
-                    <div class="container mt-3 bg-light-purple p-3 rounded room-item">
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <!-- Answer Options -->
-                            <div class="row">
-                                <p class="text-light ml-4">Option A: ${question.questionOptions.get(0).optContent}</p>
+                    <c:choose>
+                        <c:when test="${question.type.getTypeId() == 1}">
+                            <%-- For type_id = 1 (A to K) --%>
+                            <c:forEach items="${question.questionOptions}" var="option" varStatus="loop">
+                                <div class="row text-light">
+                                    <div class="answer-option">
+                                        <c:choose>
+                                            <c:when test="${loop.index == 0}">
+                                                A.
+                                            </c:when>
+                                            <c:when test="${loop.index == 1}">
+                                                B.
+                                            </c:when>
+                                            <c:when test="${loop.index == 2}">
+                                                C.
+                                            </c:when>
+                                            <c:when test="${loop.index == 3}">
+                                                D.
+                                            </c:when>
+                                            <c:when test="${loop.index == 4}">
+                                                E.
+                                            </c:when>
+                                            <c:when test="${loop.index == 5}">
+                                                F.
+                                            </c:when>
+                                            <c:when test="${loop.index == 6}">
+                                                G.
+                                            </c:when>
+                                            <c:when test="${loop.index == 7}">
+                                                H.
+                                            </c:when>
+                                            <c:when test="${loop.index == 8}">
+                                                I.
+                                            </c:when>
+                                            <c:when test="${loop.index == 9}">
+                                                J.
+                                            </c:when>
+                                            <c:when test="${loop.index == 10}">
+                                                K.
+                                            </c:when>
+                                        </c:choose>
+<%--                                        <input type="radio" id="option${loop.index}_${question.getQId()}"--%>
+<%--                                               name="answer_${question.getQId()}"--%>
+<%--                                               value="${option.optContent}">--%>
+                                        <label for="option${loop.index}_${question.getQId()}">${option.optContent}</label>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:when test="${question.type.getTypeId() == 2}">
+                            <%--For type_id = 2 (True/False) --%>
+                            <div class="row text-light">
+                                <div class="answer-option">
+                                    A.
+<%--                                    <input type="radio" id="optionTrue_${question.getQId()}"--%>
+<%--                                           name="answer_${question.getQId()}" value="True">--%>
+                                    <label for="optionTrue_${question.getQId()}">True</label>
+                                </div>
                             </div>
-                            <div class="row">
-                                <p class="text-light ml-4">Option B: ${question.questionOptions.get(1).optContent}</p>
+
+                            <div class="row text-light">
+                                <div class="answer-option">
+                                    B.
+<%--                                    <input type="radio" id="optionFalse_${question.getQId()}"--%>
+<%--                                           name="answer_${question.getQId()}" value="False">--%>
+                                    <label for="optionFalse_${question.getQId()}">False</label>
+                                </div>
                             </div>
-                            <div class="row">
-                                <p class="text-light ml-4">Option C: ${question.questionOptions.get(2).optContent}</p>
+                        </c:when>
+                        <c:when test="${question.type.getTypeId() == 3}">
+                            <div class="row text-light">
+                                <div class="answer-option">
+<%--                                    <label for="textInput_${question.getQId()}">Answer:</label>--%>
+<%--                                    <input type="text" id="textInput_${question.getQId()}"--%>
+<%--                                           name="answer_${question.getQId()}">--%>
+                                </div>
                             </div>
-                            <div class="row">
-                                <p class="text-light ml-4">Option D: ${question.questionOptions.get(3).optContent}</p>
-                            </div>
-                        </div>
-                    </div>
+                        </c:when>
+                        <c:otherwise>
+                            <p>Unsupported question type</p>
+                        </c:otherwise>
+                    </c:choose>
                 </td>
             </tr>
         </c:forEach>
