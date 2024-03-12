@@ -24,7 +24,7 @@ public class UpdateTest extends HttpServlet {
         Test test = new Test();
         test.setTestId(testId);
         TestDBContext testDB = new TestDBContext();
-         test = testDB.getTestById(test);
+        test = testDB.getTestById(test);
         request.setAttribute("test", test);
         TestQuestionDBContext testQuestionDB = new TestQuestionDBContext();
         ArrayList<TestQuestion> testQuestions = testQuestionDB.list(testId);

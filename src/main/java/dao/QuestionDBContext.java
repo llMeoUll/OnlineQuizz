@@ -148,10 +148,10 @@ public class QuestionDBContext extends DBContext {
         Question question = new Question();
         String sql = "SELECT * FROM `online_quizz`.`question` WHERE `qid` = ?";
         try {
-            PreparedStatement stmGetQuestion = connection.prepareStatement(sql);
-            stmGetQuestion.setInt(1, questionId);
-            ResultSet rs = stmGetQuestion.executeQuery();
-            while (rs.next()) {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, questionId);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
                 question.setQId(questionId);
                 question.setQuestion(rs.getString("question"));
                 question.setAnswer(rs.getString("answer"));
@@ -159,13 +159,6 @@ public class QuestionDBContext extends DBContext {
                 if (question.getType().getTypeName().equals("Multiple choice")){
                     question.setQuestionOptions(new QuestionOptionsDBContext().list(question.getQId(), connection));
                 }
-                SetDBContext setDBContext = new SetDBContext();
-                Set set = setDBContext.get(rs.getInt("sid"));
-                question.setSet(set);
-                Type type = new Type();
-                type.setTypeId(rs.getInt("type_id"));
-                question.setType(type);
-                return question;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
