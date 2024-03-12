@@ -1,102 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 <html>
 <head>
     <title>Get set</title>
     <link rel="stylesheet" href="../.././webjars/bootstrap/5.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../.././css/ViewSet.css">
+    <link rel="stylesheet" href="../.././css/GetSet.css">
     <link rel="stylesheet" href="../.././webjars/font-awesome/6.5.1/css/all.min.css">
     <script src="../.././webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
     <script src="../.././webjars/jquery/3.7.1/jquery.min.js"></script>
-    <style>
 
-
-        .flashcard-fl {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .flashcard {
-            position: relative;
-            width: 800px;
-            height: 450px;
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            cursor: pointer;
-            perspective: 1000px;
-        }
-
-        .question,
-        .answer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.5s;
-            backface-visibility: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #333;
-        }
-
-        .question {
-            transform: rotateY(0deg);
-            background-color: #F0F8FF;
-        }
-
-        .answer {
-            transform: rotateY(180deg);
-            background-color: #FFF8DC;
-        }
-
-        .flashcard.flipped .question {
-            transform: rotateY(160deg);
-        }
-
-        .flashcard.flipped .answer {
-            transform: rotateY(0deg);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .controls button {
-            margin: 0 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #8936a0;
-            color: #e2bdf3;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .controls button:hover {
-            background-color: #8936a0;
-        }
-        #ratingStars {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-        }
-
-    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var flashcards = document.getElementsByClassName('flashcard');
@@ -146,14 +59,30 @@
 
 </head>
 <body>
-
 </div>
 <%--header--%>
 <div class="fixed-top shadow z-2" style="height: 64px; background-color: #0d6efd">
     <main id="main">
 
         <%--        <h1 class="container h2" style="padding-top: 100px;">Flashcards: ${fl.getTitle()}</h1>--%>
-
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary container">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Quizzicle</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
+                            <!-- Add any additional navbar links here -->
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-light" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
 
         <hr class="container">
         <div class="flashcard-fl">
@@ -226,13 +155,17 @@
             </table>
             <form id="myForm" action="./get" method="post">
                 <div id="ratingStars" class="rating">
-                    <select onchange="submitForm()" name="numberOfStar">
-                        <option value="1">1 star</option>
-                        <option value="2">2 stars</option>
-                        <option value="3">3 stars</option>
-                        <option value="4">4 stars</option>
-                        <option value="5">5 stars</option>
-                    </select>
+                    <input type="radio" id="star5" name="numberOfStar" value="5" onclick="submitForm()">
+                    <label for="star5" title="5 stars"></label>
+                    <input type="radio" id="star4" name="numberOfStar" value="4" onclick="submitForm()">
+                    <label for="star4" title="4 stars"></label>
+                    <input type="radio" id="star3" name="numberOfStar" value="3" onclick="submitForm()">
+                    <label for="star3" title="3 stars"></label>
+                    <input type="radio" id="star2" name="numberOfStar" value="2" onclick="submitForm()">
+                    <label for="star2" title="2 stars"></label>
+                    <input type="radio" id="star1" name="numberOfStar" value="1" onclick="submitForm()">
+                    <label for="star1" title="1 star"></label>
+
                     <input type="hidden" name="setId" value="${requestScope.setID}">
                 </div>
                 <button type="submit">Rate</button>

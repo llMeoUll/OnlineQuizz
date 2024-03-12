@@ -56,4 +56,23 @@ public class StarRateDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
+    public void update(StarRate starRate) {
+        String sqlUpdateStarRate = "UPDATE online_quizz.`star_rate`\n" +
+                "(uid,\n" +
+                "sid,\n" +
+                "rate,\n" +
+                "created_at,\n" +
+                "updated_at)\n" +
+                "VALUES\n" +
+                "(?,?,?,current_timestamp(), current_timestamp());";
+        try {
+            PreparedStatement stmUpdateStarRate = connection.prepareStatement(sqlUpdateStarRate);
+            stmUpdateStarRate.setInt(1, starRate.getRate());
+            stmUpdateStarRate.setInt(2, starRate.getUser().getId());
+            stmUpdateStarRate.setInt(3, starRate.getSet().getSId());
+            stmUpdateStarRate.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -38,6 +38,7 @@ public class GetSet extends HttpServlet {
             HttpSession session = request.getSession();
             starRate.setUser((User) session.getAttribute("user"));
             starRateDBContext.insert(starRate);
+            starRateDBContext.update(starRate);
         }
         response.sendRedirect("./get?setID="+set.getSId());
     }
