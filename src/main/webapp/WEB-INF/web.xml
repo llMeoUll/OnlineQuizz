@@ -9,31 +9,31 @@
         <listener-class>listener.ActiveSessionCounter</listener-class>
     </listener>
     <!--    *********************************************Filter******************************************************-->
-<!--    <filter>-->
-<!--        <filter-name>AuthenticateFilter</filter-name>-->
-<!--        <filter-class>filter.Authenticate</filter-class>-->
-<!--    </filter>-->
-<!--    <filter>-->
-<!--        <filter-name>AuthorizationFilter</filter-name>-->
-<!--        <filter-class>filter.Authorization</filter-class>-->
-<!--    </filter>-->
+    <filter>
+        <filter-name>AuthenticateFilter</filter-name>
+        <filter-class>filter.Authenticate</filter-class>
+    </filter>
+    <filter>
+        <filter-name>AuthorizationFilter</filter-name>
+        <filter-class>filter.Authorization</filter-class>
+    </filter>
 
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthenticateFilter</filter-name>-->
-<!--        <url-pattern>/user/*</url-pattern>-->
-<!--    </filter-mapping>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthenticateFilter</filter-name>-->
-<!--        <url-pattern>/admin/*</url-pattern>-->
-<!--    </filter-mapping>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthorizationFilter</filter-name>-->
-<!--        <url-pattern>/user/*</url-pattern>-->
-<!--    </filter-mapping>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthorizationFilter</filter-name>-->
-<!--        <url-pattern>/admin/*</url-pattern>-->
-<!--    </filter-mapping>-->
+    <filter-mapping>
+        <filter-name>AuthenticateFilter</filter-name>
+        <url-pattern>/user/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthenticateFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/user/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
 
     <!--    *********************************************PUBLIC******************************************************-->
 
@@ -187,7 +187,7 @@
         <servlet-name>CreateTest</servlet-name>
         <url-pattern>/user/room/test/create</url-pattern>
     </servlet-mapping>
-<!--    add question to test-->
+    <!--    add question to test-->
     <servlet>
         <servlet-name>AddQuestion</servlet-name>
         <servlet-class>controller.user.room.test.AddQuestion</servlet-class>
@@ -196,7 +196,7 @@
         <servlet-name>AddQuestion</servlet-name>
         <url-pattern>/user/room/test/create/add-question</url-pattern>
     </servlet-mapping>
-<!--    review before create test-->
+    <!--    review before create test-->
     <servlet>
         <servlet-name>ReviewBeforeCreate</servlet-name>
         <servlet-class>controller.user.room.test.ReviewBeforeCreate</servlet-class>
@@ -205,7 +205,7 @@
         <servlet-name>ReviewBeforeCreate</servlet-name>
         <url-pattern>/user/room/test/create/review</url-pattern>
     </servlet-mapping>
-<!--    cancel create test-->
+    <!--    cancel create test-->
     <servlet>
         <servlet-name>CancelCreateTest</servlet-name>
         <servlet-class>controller.user.room.test.CancelCreateTest</servlet-class>
@@ -298,6 +298,15 @@
     <servlet-mapping>
         <servlet-name>LeaderBoard</servlet-name>
         <url-pattern>/user/room/test/leaderboard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReviewTest</servlet-name>
+        <servlet-class>controller.user.room.ReviewTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReviewTest</servlet-name>
+        <url-pattern>/user/room/test/reviewtest</url-pattern>
     </servlet-mapping>
 
     <!--    *********************************************ADMINISTRATOR******************************************************-->
@@ -452,7 +461,7 @@
         <servlet-name>AdminDeleteQuestion</servlet-name>
         <url-pattern>/admin/question/delete</url-pattern>
     </servlet-mapping>
-<!--    search-->
+    <!--    search-->
     <servlet>
         <servlet-name>SearchControl</servlet-name>
         <servlet-class>controller.user.search.SearchControl</servlet-class>

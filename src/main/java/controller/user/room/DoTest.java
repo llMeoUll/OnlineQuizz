@@ -71,12 +71,8 @@ public class DoTest extends HttpServlet {
         // get current attempt
         TestDBContext testDBContext = new TestDBContext();
         int currentAttempt = testDBContext.getCurrentAttemptOfThisTest(currentTest, userLogged);
-        if (currentAttempt >= currentTest.getAttempt()) {
-            request.setAttribute(" exceededTimesDoTest", "The number of times you have taken the test has exceeded");
-            request.getRequestDispatcher("../../view/user/room/ViewRoomDetail.jsp").forward(request, response);
-        } else {
-            currentAttempt++;
-        }
+        currentAttempt++;
+
         // Get time create at
         Date createdAtDate = new Date();
 

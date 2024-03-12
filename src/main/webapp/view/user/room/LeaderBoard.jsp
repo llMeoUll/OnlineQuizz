@@ -35,6 +35,7 @@
             <th>Submitter Name</th>
             <th>Score</th>
             <th>Grade / 10.00</th>
+            <th>Review</th>
         </tr>
         </thead>
         <tbody>
@@ -45,6 +46,7 @@
                 <td>${submission.user.username}</td>
                 <td>${submission.score}</td>
                 <td><c:out value="${String.format('%.2f', ((submission.score / submission.totalScore) * 100) / 10.00)}"/></td>
+                <td><a class="text-light" href="./reviewtest?testId=${submission.test.getTestId()}&&attempt=${submission.orderAttempt}&&userId=${submission.user.id}">Review test</a></td>
             </tr>
         </c:forEach>
         </tbody>

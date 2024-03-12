@@ -326,14 +326,14 @@ public class TestDBContext extends DBContext {
     }
 
     public ArrayList<LeaderBoardViewModel> getLeaderBoardViewModels(Test currentTest) {
-        String sql = "SELECT udt.udt_id, udt.attempt, u.username, udt.created_at, SUM(ua.score) AS score, test.test_name, test.test_description\n" +
+        String sql = "SELECT udt.udt_id, udt.attempt, u.uid, u.username, udt.created_at, SUM(ua.score) AS score, test.test_name, test.test_description, test.test_id\n" +
                 "FROM online_quizz.user_does_test as udt\n" +
                 "JOIN test ON udt.test_id = test.test_id\n" +
                 "JOIN room ON test.room_id = room.room_id\n" +
                 "JOIN user_join_room as ujr ON ujr.room_id = room.room_id AND ujr.uid = udt.uid\n" +
                 "JOIN user as u ON u.uid = ujr.uid\n" +
                 "JOIN user_answer as ua ON ua.udt_id = udt.udt_id\n" +
-                "GROUP BY udt.udt_id, udt.attempt, u.username, udt.created_at, test.test_name, test.test_description, test.test_id\n" +
+                "GROUP BY udt.udt_id, udt.attempt, u.uid, u.username, udt.created_at, test.test_name, test.test_description, test.test_id\n" +
                 "HAVING test.test_id = ?;";
         ArrayList<LeaderBoardViewModel> leaderBoardViewModels = new ArrayList<>();
 
@@ -361,10 +361,12 @@ public class TestDBContext extends DBContext {
                 LeaderBoardViewModel leaderBoardViewModel = new LeaderBoardViewModel();
                 leaderBoardViewModel.setTotalScore(totalScore);
                 User user = new User();
+                user.setId(rs.getInt("uid"));
                 user.setUsername(rs.getString("username"));
                 leaderBoardViewModel.setUser(user);
 
                 Test test = new Test();
+                test.setTestId(rs.getInt("test_id"));
                 test.setTestName(rs.getString("test_name"));
                 test.setTestDescription(rs.getString("test_description"));
                 leaderBoardViewModel.setTest(test);
@@ -387,6 +389,7 @@ public class TestDBContext extends DBContext {
             }
         }
     }
+
     public void insert(Test entity, ArrayList<TestQuestion> testQuestions) throws SQLException {
         try {
             connection.setAutoCommit(false);
@@ -454,5 +457,29 @@ public class TestDBContext extends DBContext {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    public ArrayList<Question> getListResultQuestionAnswer(int testId, int attempt, int userId) {
+        String sql = "SELECT t.test_id, t.room_id, udt.attempt, ua.qid, ua.user_answer FROM online_quizz.test t\n" +
+                "JOIN online_quizz.user_does_test udt ON t.test_id = udt.test_id\n" +
+                "JOIN online_quizz.user_answer ua ON ua.udt_id = udt.udt_id\n" +
+                "WHERE t.test_id = ? AND udt.attempt = ?;";
+        ArrayList<Question> listResultQuestionAnswer = new ArrayList<>();
+
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, testId);
+            stm.setInt(2, attempt);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Question q = new Question();
+                q.setQId(rs.getInt("qid"));
+                q.setAnswer(rs.getString("user_answer"));
+                listResultQuestionAnswer.add(q);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listResultQuestionAnswer;
     }
 }
