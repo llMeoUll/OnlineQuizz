@@ -40,7 +40,7 @@ public class UserProfile extends HttpServlet {
         request.setAttribute("countRoom",countRoom);
         request.setAttribute("listS",listS);
         request.setAttribute("listR",listR);
-        request.getRequestDispatcher("./view/user/Profile/UserProfile.jsp").forward(request, response);
+        request.getRequestDispatcher("../view/user/profile/UserProfile.jsp").forward(request, response);
     }
 
     @Override

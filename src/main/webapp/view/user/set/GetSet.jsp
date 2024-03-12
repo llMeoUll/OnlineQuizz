@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="../.././webjars/font-awesome/6.5.1/css/all.min.css">
     <script src="../.././webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
     <script src="../.././webjars/jquery/3.7.1/jquery.min.js"></script>
+
     <style>
-
-
         .flashcard-fl {
             display: flex;
             flex-direction: column;
@@ -91,6 +90,7 @@
             background-color: #8936a0;
         }
 
+
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -144,10 +144,7 @@
 <%--header--%>
 <div class="fixed-top shadow z-2" style="height: 64px; background-color: #0d6efd">
     <main id="main">
-
         <%--        <h1 class="container h2" style="padding-top: 100px;">Flashcards: ${fl.getTitle()}</h1>--%>
-
-
         <hr class="container">
         <div class="flashcard-fl">
             <c:forEach var="i" items="${listQuestion}" varStatus="status">
@@ -169,13 +166,10 @@
             </div>
         </div>
         <hr class="container">
-
-
         <h5 class="container text-success">All Terminology:</h5>
         <div class="container">
             <!-- Button trigger modal -->
             <a class="btn-success" href="#" onclick="confirmDelete()">Delete</a>
-
             <script>
                 function confirmDelete() {
                     var confirmation = window.confirm("Are you sure you want to delete set ${setID}?");
@@ -185,8 +179,6 @@
                     }
                 }
             </script>
-
-
             <table>
                 <thead>
                 <tr>
@@ -242,9 +234,9 @@
                     background-color: #e9e9e9;
                 }
             </style>
-
-
         </div>
+
+
     </main>
 
 </div>
@@ -252,8 +244,6 @@
 <div id="create-set-content" style="margin-top: 64px">
 
 </div>
-
-
 </body>
 </html>
 

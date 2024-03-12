@@ -1,9 +1,7 @@
 package controller.user.set;
 
 
-import dao.QuestionDBContext;
-import dao.SetDBContext;
-import dao.TypeDBContext;
+import dao.*;
 import entity.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -16,12 +14,25 @@ import java.util.ArrayList;
 public class GetSet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int setID = Integer.parseInt(request.getParameter("setID"));
-        QuestionDBContext questionDBContext = new QuestionDBContext();
-        request.setAttribute("listQuestion", questionDBContext.list(setID));
-        request.setAttribute("setID", setID);
-        request.getRequestDispatcher("../.././view/user/set/GetSet.jsp").forward(request, response);
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
+        // listSet
+//        int setID = Integer.parseInt(request.getParameter("setID"));
+//        QuestionDBContext questionDBContext = new QuestionDBContext();
+//        request.setAttribute("listQuestion", questionDBContext.list(setID));
+//        request.setAttribute("setID", setID);
 
+        int setID = 21;
+        // user(avatar, name)
+        // Comment(comment_id, content, reply_id, (count)likes, (count)unlikes, time)
+//        User u = (User) session.getAttribute("user");
+//        int id = u.getId();
+//        UserDBContext udb = new UserDBContext();
+//        User user = udb.get(id);
+
+        //comment
+
+        request.getRequestDispatcher("../.././view/user/set/GetSet.jsp").forward(request, response);
     }
 
     @Override
@@ -102,7 +113,6 @@ public class GetSet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     private int getIdType(String typeName) {
