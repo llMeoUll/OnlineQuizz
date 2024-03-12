@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 @Getter
@@ -15,6 +16,5 @@ import java.util.ArrayList;
 public class SelfTest {
     private int selfTestId;
     private User user;
-    private int numbOfQues;
-    private ArrayList<Question> questions;
+    private Timestamp createdAt;
 }

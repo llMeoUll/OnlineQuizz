@@ -83,7 +83,7 @@ public class DoTest extends HttpServlet {
         HashMap<Question, Float> ExactlyAnswerQuestions = new HashMap<Question, Float>();
         ExactlyAnswerQuestions = testDBContext.getExactlyAnswerQuestionsInCertainTest(userLogged, currentTest);
 
-        // Create hashmap contain key is question submitted and it's score after comparing with exactly answer
+        // Create hashmap contain key is question submitted, and it's score after comparing with exactly answer
         HashMap<Question, Float> QuestionSubmittedAndItsScoreAfterComparing = new HashMap<>();
 
 

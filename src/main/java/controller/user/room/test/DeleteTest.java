@@ -22,13 +22,10 @@ public class DeleteTest extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         TestDBContext tDb = new TestDBContext();
         int testId = Integer.parseInt(request.getParameter("testId"));
-        Test testToGetRoomId = new Test();
-        testToGetRoomId.setTestId(testId);
-        testToGetRoomId = tDb.getTestById(testToGetRoomId);
-        int roomId = testToGetRoomId.getRoom().getRoomId();
-        Test t = new Test();
-        t.setTestId(testId);
-        tDb.deleteById(t);
-        response.sendRedirect("../../room/get?roomId=" + roomId);
+        Test test = new Test();
+        test.setTestId(testId);
+         test = tDb.getTestById(test);
+        tDb.deleteById(test);
+        response.sendRedirect("../../room/get?roomId=" + test.getRoom().getRoomId());
     }
 }

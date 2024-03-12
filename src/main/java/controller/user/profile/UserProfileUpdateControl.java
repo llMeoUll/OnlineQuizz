@@ -62,8 +62,7 @@ public class UserProfileUpdateControl extends HttpServlet {
 
             NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
             NotificationDBContext notificationDBContext = new NotificationDBContext();
-            ArrayList<User> tos = new ArrayList<>();
-            tos.add(userDBContext.getAdmin("Admin"));
+            ArrayList<User> tos = userDBContext.getAdmin("Administrator");
             Notification notification = new Notification();
 
             NotificationType notificationType = notificationTypeDBContext.get(9);

@@ -24,10 +24,10 @@ public class DeleteRoom extends HttpServlet {
         Room room = new Room();
         room.setRoomId(roomId);
         Room roomToDelete = roomDBContext.getRoomById(room);
-
+        User from = (User) request.getSession().getAttribute("user");
         Notification notification = new Notification();
         notification.setRead(false);
-        notification.setFrom(userDBContext.getAdmin("Admin"));
+        notification.setFrom(from);
         ArrayList<User> tos = new ArrayList<>();
         tos.add(roomToDelete.getUser());
         notification.setTos(tos);

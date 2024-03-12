@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class GetSet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int setID = Integer.parseInt(request.getParameter("setID"));
+        int setID = Integer.parseInt(request.getParameter("setId"));
         QuestionDBContext questionDBContext = new QuestionDBContext();
         request.setAttribute("listQuestion", questionDBContext.list(setID));
         request.setAttribute("setID", setID);
@@ -24,7 +24,7 @@ public class GetSet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String  numOfStarRate = request.getParameter("numberOfStar");
+        String numOfStarRate = request.getParameter("numberOfStar");
         SetDBContext setDBContext = new SetDBContext();
         Set set = setDBContext.get(Integer.parseInt(request.getParameter("setId")));
         if(numOfStarRate != null) {
@@ -42,7 +42,7 @@ public class GetSet extends HttpServlet {
             tos.add(set.getUser());
             notification.setTos(tos);
             notification.setRead(false);
-            notification.setUrl("/Quizzicle/user/set/get?setID=" + set.getSId());
+            notification.setUrl("/Quizzicle/user/set/get?setId=" + set.getSId());
             notification.setContent(from.getFamilyName() + " " +
                     from.getGivenName() + " " + notificationType.getAction() + " " + set.getSName());
             notificationDBContext.insert(notification);

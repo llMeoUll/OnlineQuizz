@@ -246,9 +246,8 @@ public class UserDBContext extends DBContext {
     public void delete(User entity) {
         String sqlDeleteUser = "DELETE FROM `online_quizz`.`user`\n" +
                 "WHERE `user`.`uid` = ?;";
-        PreparedStatement stmDeleteUser = null;
         try {
-            stmDeleteUser = connection.prepareStatement(sqlDeleteUser);
+            PreparedStatement stmDeleteUser = connection.prepareStatement(sqlDeleteUser);
             stmDeleteUser.setInt(1, entity.getId());
             stmDeleteUser.executeUpdate();
         } catch (SQLException e) {
@@ -427,25 +426,26 @@ public class UserDBContext extends DBContext {
         }
     }
 
-    public User getAdmin(String username) {
-        String sqlGetAdmin = "SELECT `user`.`uid`,\n" +
-                "    `user`.`email`\n" +
-                "FROM `online_quizz`.`user`\n" +
-                "WHERE `user`.`username` = ?";
+    public ArrayList<User> getAdmin(String roleName) {
+        ArrayList<User> admins = new ArrayList<>();
+        String sqlGetAdmin = "SELECT u.uid, u.email FROM online_quizz.role r\n" +
+                "inner join online_quizz.role_user_mapping m on r.rid = m.rid\n" +
+                "inner join online_quizz.`user` u on u.uid = m.uid\n" +
+                "where name = ?";
         try {
             PreparedStatement stmGetAdmin = connection.prepareStatement(sqlGetAdmin);
-            stmGetAdmin.setString(1, username);
+            stmGetAdmin.setString(1, roleName);
             ResultSet rs = stmGetAdmin.executeQuery();
             while(rs.next()) {
                 User admin = new User();
                 admin.setId(rs.getInt("uid"));
                 admin.setEmail(rs.getString("email"));
-                return admin;
+                admins.add(admin);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return admins;
     }
 
     public ArrayList<User> list(Room room) {

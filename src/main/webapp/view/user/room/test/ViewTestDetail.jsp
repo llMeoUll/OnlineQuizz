@@ -68,7 +68,15 @@
     }
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark">
+<<<<<<< HEAD
     <a class="navbar-brand" href="../../">
+=======
+<<<<<<<< HEAD:src/main/webapp/view/user/room/ReviewTest.jsp
+    <a class="navbar-brand" href="../../">
+========
+    <a class="navbar-brand" href="../../..">
+>>>>>>>> 493f6fadd152aa7d8d09ab0caa01e7cee29e79a0:src/main/webapp/view/user/room/test/ViewTestDetail.jsp
+>>>>>>> 493f6fadd152aa7d8d09ab0caa01e7cee29e79a0
         <img src="../../.././imagines/logo1250x1250.png" width="30" height="30" class="d-inline-block align-top" alt="">
         Quizzicle
     </a>
@@ -132,7 +140,7 @@
                     <span class="visually-hidden">Settings</span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" onclick="showEditModal()">Edit</a></li>
+                    <li><a class="dropdown-item" href="./update?testId=${requestScope.currentTest.testId}">Edit</a></li>
                     <li><a class="dropdown-item" href="#" onclick="showDeleteConfirmation()">Delete</a></li>
                 </ul>
             </div>
@@ -140,38 +148,38 @@
     </div>
 </div>
 <!-- Edit Room Modal -->
-<div class="modal" id="editTestModal" tabindex="-1" aria-labelledby="editTestModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editTestModalLabel">Edit Test</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-purple">
-                <!-- Your form or content for editing goes here -->
-                <!-- Example: -->
-                <form id="editTestForm" action="./update" method="post">
-                    <div class="mb-3">
-                        <label for="testName" class="form-label">Test Name:</label>
-                        <input type="text" class="form-control" id="testName" name="testName"
-                               value="${requestScope.currentTest.testName}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description:</label>
-                        <input type="text" class="form-control" id="description" name="testDescription"
-                               value="${requestScope.currentTest.testDescription}">
-                    </div>
-                    <!-- Add other form fields for editing -->
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                    <input type="hidden" value="${requestScope.currentTest.testId}" name="testId">
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<%--<div class="modal" id="editTestModal" tabindex="-1" aria-labelledby="editTestModalLabel" aria-hidden="true">--%>
+<%--    <div class="modal-dialog">--%>
+<%--        <div class="modal-content">--%>
+<%--            <div class="modal-header">--%>
+<%--                <h5 class="modal-title" id="editTestModalLabel">Edit Test</h5>--%>
+<%--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+<%--            </div>--%>
+<%--            <div class="modal-body text-purple">--%>
+<%--                <!-- Your form or content for editing goes here -->--%>
+<%--                <!-- Example: -->--%>
+<%--                <form id="editTestForm" action="./update" method="post">--%>
+<%--                    <div class="mb-3">--%>
+<%--                        <label for="testName" class="form-label">Test Name:</label>--%>
+<%--                        <input type="text" class="form-control" id="testName" name="testName"--%>
+<%--                               value="${requestScope.currentTest.testName}">--%>
+<%--                    </div>--%>
+<%--                    <div class="mb-3">--%>
+<%--                        <label for="description" class="form-label">Description:</label>--%>
+<%--                        <input type="text" class="form-control" id="description" name="testDescription"--%>
+<%--                               value="${requestScope.currentTest.testDescription}">--%>
+<%--                    </div>--%>
+<%--                    <!-- Add other form fields for editing -->--%>
+<%--                    <div class="modal-footer d-flex justify-content-center">--%>
+<%--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>--%>
+<%--                        <button type="submit" class="btn btn-primary">Save Changes</button>--%>
+<%--                    </div>--%>
+<%--                    <input type="hidden" value="${requestScope.currentTest.testId}" name="testId">--%>
+<%--                </form>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
 <!-- Delete Confirmation Modal -->
 <div class="modal" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"
@@ -228,15 +236,25 @@
                         </div>
                     </div>
                 </td>
+<<<<<<< HEAD
                     <%--Column for Answers For ABCD --%>
                 <td>
                     <c:choose>
                         <c:when test="${question.type.getTypeId() == 1}">
                             <%-- For type_id = 1 (A to K) --%>
+=======
+
+                <!-- Column for Answers For ABCD -->
+                <td>
+                    <c:choose>
+                        <c:when test="${question.type.getTypeId() == 1}">
+                            <!-- For type_id = 1 (A to K) -->
+>>>>>>> 493f6fadd152aa7d8d09ab0caa01e7cee29e79a0
                             <c:forEach items="${question.questionOptions}" var="option" varStatus="loop">
                                 <div class="row text-light">
                                     <div class="answer-option">
                                         <c:choose>
+<<<<<<< HEAD
                                             <c:when test="${loop.index == 0}">
                                                 A.
                                             </c:when>
@@ -275,11 +293,39 @@
                                             <%--                                               name="answer_${question.getQId()}"--%>
                                             <%--                                               value="${option.optContent}">--%>
                                         <label for="option${loop.index}_${question.getQId()}">${option.optContent}</label>
+=======
+                                            <c:when test="${loop.index == 0}">A.</c:when>
+                                            <c:when test="${loop.index == 1}">B.</c:when>
+                                            <c:when test="${loop.index == 2}">C.</c:when>
+                                            <c:when test="${loop.index == 3}">D.</c:when>
+                                            <c:when test="${loop.index == 4}">E.</c:when>
+                                            <c:when test="${loop.index == 5}">F.</c:when>
+                                            <c:when test="${loop.index == 6}">G.</c:when>
+                                            <c:when test="${loop.index == 7}">H.</c:when>
+                                            <c:when test="${loop.index == 8}">I.</c:when>
+                                            <c:when test="${loop.index == 9}">J.</c:when>
+                                            <c:when test="${loop.index == 10}">K.</c:when>
+                                        </c:choose>
+
+                                        <input type="radio" id="option${loop.index}_${question.getQId()}"
+                                               name="answer_${question.getQId()}" value="${option.optContent}"
+                                        <c:if test="${not empty listResultQuestionAnswer}">
+                                        <c:forEach items="${listResultQuestionAnswer}" var="resultQuestion">
+                                        <c:if test="${resultQuestion.getQId() == question.getQId() && resultQuestion.getAnswer() == option.optContent}">
+                                               checked="checked"
+                                        </c:if>
+                                        </c:forEach>
+                                        </c:if>
+                                        >
+                                        <label for="option${loop.index}_${question.getQId()}">${option.optContent}</label>
+
+>>>>>>> 493f6fadd152aa7d8d09ab0caa01e7cee29e79a0
                                     </div>
                                 </div>
                             </c:forEach>
                         </c:when>
                         <c:when test="${question.type.getTypeId() == 2}">
+<<<<<<< HEAD
                             <%--For type_id = 2 (True/False) --%>
                             <div class="row text-light">
                                 <div class="answer-option">
@@ -287,12 +333,30 @@
                                         <%--                                    <input type="radio" id="optionTrue_${question.getQId()}"--%>
                                         <%--                                           name="answer_${question.getQId()}" value="True">--%>
                                     <label for="optionTrue_${question.getQId()}">True</label>
+=======
+                            <!-- For type_id = 2 (True/False) -->
+                            <div class="row text-light">
+                                <div class="answer-option">
+                                    A.
+                                    <label for="optionTrue_${question.getQId()}">True</label>
+                                    <input type="radio" id="optionTrue_${question.getQId()}"
+                                           name="answer_${question.getQId()}" value="True"
+                                    <c:if test="${not empty listResultQuestionAnswer}">
+                                    <c:forEach items="${listResultQuestionAnswer}" var="resultQuestion">
+                                    <c:if test="${resultQuestion.getQId() == question.getQId() && resultQuestion.getAnswer() == 'True'}">
+                                           checked="checked"
+                                    </c:if>
+                                    </c:forEach>
+                                    </c:if>
+                                    >
+>>>>>>> 493f6fadd152aa7d8d09ab0caa01e7cee29e79a0
                                 </div>
                             </div>
 
                             <div class="row text-light">
                                 <div class="answer-option">
                                     B.
+<<<<<<< HEAD
                                         <%--                                    <input type="radio" id="optionFalse_${question.getQId()}"--%>
                                         <%--                                           name="answer_${question.getQId()}" value="False">--%>
                                     <label for="optionFalse_${question.getQId()}">False</label>
@@ -311,6 +375,22 @@
                         <c:otherwise>
                             <p>Unsupported question type</p>
                         </c:otherwise>
+=======
+                                    <label for="optionFalse_${question.getQId()}">False</label>
+                                    <input type="radio" id="optionFalse_${question.getQId()}"
+                                           name="answer_${question.getQId()}" value="False"
+                                    <c:if test="${not empty listResultQuestionAnswer}">
+                                    <c:forEach items="${listResultQuestionAnswer}" var="resultQuestion">
+                                    <c:if test="${resultQuestion.getQId() == question.getQId() && resultQuestion.getAnswer() == 'False'}">
+                                           checked="checked"
+                                    </c:if>
+                                    </c:forEach>
+                                    </c:if>
+                                    >
+                                </div>
+                            </div>
+                        </c:when>
+>>>>>>> 493f6fadd152aa7d8d09ab0caa01e7cee29e79a0
                     </c:choose>
                 </td>
             </tr>

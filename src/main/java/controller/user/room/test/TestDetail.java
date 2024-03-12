@@ -1,4 +1,4 @@
-package controller.user.room;
+package controller.user.room.test;
 
 import dao.TestDBContext;
 import entity.Question;
@@ -26,15 +26,14 @@ public class TestDetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // currentTest
         int testId = Integer.parseInt(request.getParameter("testId"));
+        Test test = new Test();
+        test.setTestId(testId);
         TestDBContext tDb = new TestDBContext();
-        Test currentTest = new Test();
-        currentTest.setTestId(testId);
-        currentTest = tDb.getTestById(currentTest);
+        Test currentTest = tDb.getTestById(test);
         request.setAttribute("currentTest", currentTest);
         // list question of this test
-        ArrayList<Question> listQuestions = new ArrayList<>();
-        listQuestions = tDb.getListQuestionsOfTest(currentTest);
+        ArrayList<Question> listQuestions = tDb.getListQuestionsOfTest(currentTest);
         request.setAttribute("listQuestions", listQuestions);
-        request.getRequestDispatcher("../../../view/user/room/ViewTestDetail.jsp").forward(request, response);
+        request.getRequestDispatcher("../../.././view/user/room/test/ViewTestDetail.jsp").forward(request, response);
     }
 }

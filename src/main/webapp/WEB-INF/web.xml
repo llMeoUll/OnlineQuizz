@@ -171,7 +171,7 @@
     <!-- view test detail-->
     <servlet>
         <servlet-name>viewTestDetail</servlet-name>
-        <servlet-class>controller.user.room.TestDetail</servlet-class>
+        <servlet-class>controller.user.room.test.TestDetail</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>viewTestDetail</servlet-name>
@@ -280,7 +280,34 @@
         <servlet-name>GetSet</servlet-name>
         <url-pattern>/user/set/get</url-pattern>
     </servlet-mapping>
+<!--    self-test-->
+    <servlet>
+        <servlet-name>SelfTest</servlet-name>
+        <servlet-class>controller.user.set.DoSelfTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SelfTest</servlet-name>
+        <url-pattern>/user/set/self-test</url-pattern>
+    </servlet-mapping>
+<!--    self-test setting-->
+    <servlet>
+        <servlet-name>SelfTestSetting</servlet-name>
+        <servlet-class>controller.user.set.SelfTestSetting</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SelfTestSetting</servlet-name>
+        <url-pattern>/user/set/self-test-setting</url-pattern>
+    </servlet-mapping>
 
+<!--    self test history-->
+    <servlet>
+        <servlet-name>SelfTestHistory</servlet-name>
+        <servlet-class>controller.user.set.SelfTestHistory</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SelfTestHistory</servlet-name>
+        <url-pattern>/user/set/self-test/history</url-pattern>
+    </servlet-mapping>
     <!--    Do test Feature-->
     <servlet>
         <servlet-name>DoTest</servlet-name>
