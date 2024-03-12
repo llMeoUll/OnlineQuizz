@@ -27,11 +27,14 @@ public class TestDetail extends HttpServlet {
         // currentTest
         int testId = Integer.parseInt(request.getParameter("testId"));
         TestDBContext tDb = new TestDBContext();
-        Test currentTest = tDb.get(testId);
+        Test currentTest = new Test();
+        currentTest.setTestId(testId);
+        currentTest = tDb.getTestById(currentTest);
         request.setAttribute("currentTest", currentTest);
         // list question of this test
-        ArrayList<Question> listQuestions = tDb.getListQuestionsOfTest(currentTest);
+        ArrayList<Question> listQuestions = new ArrayList<>();
+        listQuestions = tDb.getListQuestionsOfTest(currentTest);
         request.setAttribute("listQuestions", listQuestions);
-        request.getRequestDispatcher("../../.././view/user/room/test/ViewTestDetail.jsp").forward(request, response);
+        request.getRequestDispatcher("../../../view/user/room/ViewTestDetail.jsp").forward(request, response);
     }
 }

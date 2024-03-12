@@ -73,11 +73,11 @@ public class TestDBContext extends DBContext {
         }
     }
 
-    public Test get(int testId) {
+    public Test getTestById(Test entity) {
         String sql = "SELECT * FROM online_quizz.test WHERE test_id = ?";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, testId);
+            stm.setInt(1, entity.getTestId());
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
                 Test t = new Test();
