@@ -18,4 +18,5 @@ public class Notification {
     private String url;
     private NotificationType type;
     private boolean isRead;
+    private String content;
 }

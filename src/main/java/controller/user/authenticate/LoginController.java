@@ -1,14 +1,11 @@
 package controller.user.authenticate;
 
-import dao.RoleDBConext;
 import dao.UserDBContext;
 import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class LoginController extends HttpServlet {
     @Override

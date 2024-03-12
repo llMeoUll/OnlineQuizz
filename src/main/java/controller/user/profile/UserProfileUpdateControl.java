@@ -1,8 +1,13 @@
 package controller.user.profile;
 
 import com.lambdaworks.crypto.SCryptUtil;
+import dao.NotificationDBContext;
+import dao.NotificationTypeDBContext;
 import dao.UserDBContext;
+import entity.Notification;
+import entity.NotificationType;
 import entity.User;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.*;
@@ -15,6 +20,7 @@ import java.io.InputStream;
 import jakarta.servlet.http.Part;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 
 @MultipartConfig
@@ -26,9 +32,9 @@ public class UserProfileUpdateControl extends HttpServlet {
         int id = u.getId();
         UserDBContext udb = new UserDBContext();
         User user = udb.get(id);
-
         request.setAttribute("user", user);
         request.getRequestDispatcher("../../view/user/profile/EditProfile.jsp").forward(request, response);
+
     }
 
     @Override
@@ -87,6 +93,23 @@ public class UserProfileUpdateControl extends HttpServlet {
 //                        .build();
 //            }
             userDBContext.updateUserProfile(newUser);
+
+            NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
+            NotificationDBContext notificationDBContext = new NotificationDBContext();
+            ArrayList<User> tos = new ArrayList<>();
+            tos.add(userDBContext.getAdmin("Admin"));
+            Notification notification = new Notification();
+
+            NotificationType notificationType = notificationTypeDBContext.get(9);
+
+            notification.setContent(newUser.getEmail() + " " + notificationType.getAction());
+            notification.setRead(false);
+            notification.setType(notificationType);
+            notification.setTos(tos);
+            notification.setUrl("/Quizzicle/admin/user/profile?uid=" + newUser.getId());
+            notification.setFrom(newUser);
+
+            notificationDBContext.insert(notification);
             session.setAttribute("user", newUser);
             // Thêm người dùng vào cơ sở dữ liệu
         } else {

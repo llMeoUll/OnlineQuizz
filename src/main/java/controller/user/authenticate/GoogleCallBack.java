@@ -7,7 +7,8 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dao.NotificationDBContext;
-import dao.RoleDBConext;
+import dao.NotificationTypeDBContext;
+import dao.RoleDBContext;
 import dao.UserDBContext;
 import entity.Notification;
 import entity.NotificationType;
@@ -104,8 +105,8 @@ public class GoogleCallBack extends HttpServlet {
             user.setAvatar(picture);
             user.setVerified(verified);
             try {
-                RoleDBConext roleDBConext = new RoleDBConext();
-                user.setRoles(roleDBConext.list(user.getEmail()));
+                RoleDBContext roleDBContext = new RoleDBContext();
+                user.setRoles(roleDBContext.list(user.getEmail()));
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -151,9 +152,9 @@ public class GoogleCallBack extends HttpServlet {
 
     private Notification createNotification(ArrayList<User> tos, User from) {
         Notification notification = new Notification();
+        NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
         notification.setRead(false);
-        NotificationType notificationType = new NotificationType();
-        notificationType.setNotificationTypeId(1);
+        NotificationType notificationType = notificationTypeDBContext.get(1);
         notification.setType(notificationType);
         notification.setTos(tos);
         notification.setFrom(from);

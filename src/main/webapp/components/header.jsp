@@ -10,7 +10,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <a class="navbar-brand" href="#">
-            <img src="../imagines/logo1250x1250.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img src="../../imagines/logo1250x1250.png" width="30" height="30" class="d-inline-block align-top" alt="">
             Quizzical
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -23,10 +23,10 @@
                     <a class="nav-link" href="#"><i class="fas fa-home"></i> Homepage</a>
                 </li>
                 <li class="nav-item active mr-5">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/user/room"><i class='fas fa-book'></i> Your room</a>
+                    <a class="nav-link" href="./user/room"><i class='fas fa-book'></i> Your room</a>
                 </li>
                 <li class="nav-item active mr-5">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/user/set"><i class='fas fa-book'></i> Your set</a>
+                    <a class="nav-link" href="./user/set"><i class='fas fa-book'></i> Your set</a>
                 </li>
                 <li class="nav-item mr-5 mt-1">
                     <form action="search" method="post" class="form-inline my-2 my-lg-0"
@@ -76,9 +76,9 @@
                                 <i class="fa-sharp fa-solid fa-bell"></i>
                             </a>
                             <ul class="dropdown-menu" style="overflow-y: auto; max-height: 400px" aria-labelledby="navbarDropdownNotification">
-                                <c:forEach items="${requestScope.notifications}" var="notification">
-                                    <li class="dropdown-item">
-
+                                <c:forEach items="${sessionScope.notifications}" var="notification">
+                                    <li>
+                                        <a href="${notification.url}" class="dropdown-item">${notification.content}</a>
                                     </li>
                                 </c:forEach>
                             </ul>

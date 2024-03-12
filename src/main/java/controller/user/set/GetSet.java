@@ -37,83 +37,38 @@ public class GetSet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String title = request.getParameter("title");
-        int setId = Integer.parseInt(request.getParameter("set-id"));
-        String description = request.getParameter("description");
-        String[] hashTags = request.getParameterValues("hashtags") != null ? request.getParameterValues("hashtags") : new String[0];
-        boolean privacy = request.getParameter("privacy") != null && request.getParameter("privacy").equals("private") ? true : false;
-        Set set = new Set();
-        set.setSId(setId);
-        if (hashTags.length != 0) {
-            ArrayList<HashTag> hashTagList = new ArrayList<>();
-            for (String hashTag : hashTags) {
-                HashTag entity = new HashTag();
-                entity.setName(hashTag);
-                hashTagList.add(entity);
-            }
-            set.setHashTags(hashTagList);
-        }
-        set.setSName(title);
-        set.setDescription(description);
-        set.setPrivate(privacy);
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            response.getWriter().println("You are not logged in");
-            return;
-        }
-        set.setUser(user);
+        String numOfStarRate = request.getParameter("numberOfStar");
+        SetDBContext setDBContext = new SetDBContext();
+        Set set = setDBContext.get(Integer.parseInt(request.getParameter("setId")));
+        if (numOfStarRate != null) {
+            StarRateDBContext starRateDBContext = new StarRateDBContext();
+            NotificationDBContext notificationDBContext = new NotificationDBContext();
+            NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
+            HttpSession session = request.getSession();
+            User from = (User) session.getAttribute("user");
 
-        ArrayList<Question> questions = new ArrayList<>();
-        int numberOfQuestions = Integer.parseInt(request.getParameter("number-of-question"));
-        for (int i = 1; i <= numberOfQuestions; i++) {
-            Type type = new Type();
-            type.setTypeName(request.getParameter("question-type-" + i));
-            type.setTypeId(getIdType(type.getTypeName()));
-            Question question = new Question();
-            question.setType(type);
-            switch (type.getTypeName()) {
-                case "Multiple choice":
-                    String mulQuestion = request.getParameter("mul-question-" + i);
-                    String mulAnswer = request.getParameter("mul-answer-" + i);
-                    int numberOfOpt = Integer.parseInt(request.getParameter("number-opt-mul-" + i));
-                    ArrayList<QuestionOption> options = new ArrayList<>();
-                    for (int j = 1; j <= numberOfOpt; j++) {
-                        QuestionOption option = new QuestionOption();
-                        option.setOptContent(request.getParameter("mul-question-" + i + "-opt-" + j));
-                        options.add(option);
-                    }
-                    question.setQuestion(mulQuestion);
-                    question.setAnswer(mulAnswer);
-                    question.setQuestionOptions(options);
-                    questions.add(question);
-                    break;
-                case "True/False":
-                    String tfQuestion = request.getParameter("tf-question-" + i);
-                    String tfAnswer = request.getParameter("tf-answer-" + i);
-                    question.setQuestion(tfQuestion);
-                    question.setAnswer(tfAnswer);
-                    questions.add(question);
-                    break;
-                case "Essay":
-                    String essayQuestion = request.getParameter("essay-question-" + i);
-                    String essayAnswer = request.getParameter("essay-answer-" + i);
-                    question.setQuestion(essayQuestion);
-                    question.setAnswer(essayAnswer);
-                    questions.add(question);
-                    break;
+            Notification notification = new Notification();
+            NotificationType notificationType = notificationTypeDBContext.get(11);
+            notification.setType(notificationType);
+            notification.setFrom(from);
+            ArrayList<User> tos = new ArrayList<>();
+            tos.add(set.getUser());
+            notification.setTos(tos);
+            notification.setRead(false);
+            notification.setUrl("/Quizzicle/user/set/get?setID=" + set.getSId());
+            notification.setContent(from.getFamilyName() + " " +
+                    from.getGivenName() + " " + notificationType.getAction() + " " + set.getSName());
+            notificationDBContext.insert(notification);
 
-            }
+            StarRate starRate = new StarRate();
+            starRate.setRate(Integer.parseInt(numOfStarRate));
+            starRate.setSet(set);
+            starRate.setUser((User) session.getAttribute("user"));
+            starRateDBContext.insert(starRate);
         }
-        set.setQuestions(questions);
-        SetDBContext setDB = new SetDBContext();
-        try {
-            setDB.update(set);
-            response.getWriter().println("Update set successfully");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        response.sendRedirect("./get?setID=" + set.getSId());
     }
+
 
     private int getIdType(String typeName) {
         TypeDBContext typeDBContext = new TypeDBContext();

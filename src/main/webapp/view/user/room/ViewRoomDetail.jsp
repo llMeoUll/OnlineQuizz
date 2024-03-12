@@ -15,6 +15,10 @@
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="entity.User" %>
+<%@ page import="dao.UserDBContext" %>
+<%@ page import="entity.Test" %>
+<%@ page import="dao.TestDBContext" %>
 
 
 <html>
@@ -124,7 +128,10 @@
         </ul>
     </div>
 </nav>
-
+<%--create btn added by LinhNguyen--%>
+<div class="container mt-3">
+    <a href="./test/create?roomId=${requestScope.currentRoom.roomId}" class="btn btn-primary">Create Test</a>
+</div>
 <!-- Content -->
 <div class="container mt-3">
     <div class="card bg-light-purple mb-3">
@@ -136,7 +143,8 @@
             </div>
 
             <div>
-                <p class="text-light fs-5 font-weight-bold">Invite: Quizzicle/user/room/invite?codeToJoin=${requestScope.codeToJoin}</p>
+                <p class="text-light fs-5 font-weight-bold">Invite:
+                    Quizzicle/user/room/invite?codeToJoin=${requestScope.codeToJoin}</p>
             </div>
 
             <!-- Settings Dropdown -->
@@ -153,6 +161,9 @@
         </div>
     </div>
 </div>
+
+
+
 <!-- Edit Room Modal -->
 <div class="modal" id="editRoomModal" tabindex="-1" aria-labelledby="editRoomModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -240,9 +251,14 @@
                     <div class="row">
                         <p class="text-light ml-4">Test description: ${test.testDescription}</p>
                     </div>
-
                     <div class="row">
                         <p class="text-light ml-4">Start: ${test.startTime} | End: ${test.endTime}</p>
+                    </div>
+                    <div class="row">
+                        <a href="./test/dotest?testId=${test.testId}" class="btn btn-primary ml-4 mb-4">Do Test</a>
+                    </div>
+                    <div class="row">
+                        <a href="./test/leaderboard?testId=${test.testId}" class="btn btn-primary ml-4">Leader board</a>
                     </div>
                 </div>
             </div>
@@ -250,8 +266,6 @@
     </c:forEach>
 </div>
 
-
 </body>
-
 
 </html>

@@ -1,11 +1,15 @@
 package dao;
 
 import entity.*;
+import entity.ViewModel.LeaderBoardViewModel;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TestDBContext extends DBContext {
     public ArrayList<Test> getDoneTest(User entity) {
@@ -85,6 +89,8 @@ public class TestDBContext extends DBContext {
                 Room r = new Room();
                 r.setRoomId(rs.getInt("room_id"));
                 t.setRoom(r);
+                t.setAttempt(rs.getInt("attempt"));
+                t.setDuration(rs.getInt("duration"));
                 t.setTestName(rs.getString("test_name"));
                 t.setTestDescription(rs.getString("test_description"));
                 t.setStartTime(rs.getTimestamp("start_time"));
@@ -190,5 +196,290 @@ public class TestDBContext extends DBContext {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public int getCurrentAttemptOfThisTest(Test currentTest, User userLogged) {
+        String sql = "SELECT uid, test_id, max(attempt) as attempt \n" +
+                "FROM online_quizz.user_does_test \n" +
+                "GROUP BY uid, test_id \n" +
+                "HAVING uid = ? AND test_id = ?;";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, userLogged.getId());
+            stm.setInt(2, currentTest.getTestId());
+            ResultSet rs = stm.executeQuery();
+            // != null
+            if (rs.next()) {
+                int currentAttemp = rs.getInt("attempt");
+                return currentAttemp;
+            }
+            // null => 0
+            return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public void insertAttemptDetails(Test currentTest, User userLogged, int currentAttempt, Timestamp createdAt) {
+        String sql = "INSERT INTO `online_quizz`.`user_does_test`\n" +
+                "(`uid`,\n" +
+                "`test_id`,\n" +
+                "`attempt`,\n" +
+                "`created_at`)\n" +
+                "VALUES\n" +
+                "(\n" +
+                "?,\n" +
+                "?,\n" +
+                "?,\n" +
+                "?);\n";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, userLogged.getId());
+            stm.setInt(2, currentTest.getTestId());
+            stm.setInt(3, currentAttempt);
+            stm.setTimestamp(4, createdAt);
+            stm.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HashMap<Question, Float> getExactlyAnswerQuestionsInCertainTest(User userLogged, Test currentTest) {
+        HashMap<Question, Float> getExactlyAnswerQuestionsInCertainTest = new HashMap<>();
+        String sql = "SELECT question.qid,  question.question, question.answer, test_question.score FROM online_quizz.test\n" +
+                "JOIN online_quizz.test_question ON test.test_id = test_question.test_test_id\n" +
+                "JOIN online_quizz.question ON test_question.question_qid = question.qid\n" +
+                "WHERE test.test_id = ?;";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, currentTest.getTestId());
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Question q = new Question();
+                q.setQId(rs.getInt("qid"));
+                q.setQuestion(rs.getString("question"));
+                q.setAnswer(rs.getString("answer"));
+
+                Float score = new Float(rs.getFloat("score"));
+                getExactlyAnswerQuestionsInCertainTest.put(q, score);
+            }
+            return getExactlyAnswerQuestionsInCertainTest;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void insertAnswerOfTestWithCorrespondingScore(HashMap<Question, Float> questionSubmittedAndItsScoreAfterComparing, int udt_id) {
+        try {
+            connection.setAutoCommit(false);
+
+            for (Map.Entry<Question, Float> entryExactlyAnswer : questionSubmittedAndItsScoreAfterComparing.entrySet()) {
+                String sql = "INSERT INTO `online_quizz`.`user_answer`\n" +
+                        "(`udt_id`,\n" +
+                        "`qid`,\n" +
+                        "`user_answer`,\n" +
+                        "`score`)\n" +
+                        "VALUES\n" +
+                        "(?,\n" +
+                        "?,\n" +
+                        "?,\n" +
+                        "?);\n";
+                PreparedStatement stm = connection.prepareStatement(sql);
+                Question question = entryExactlyAnswer.getKey();
+                Float score = entryExactlyAnswer.getValue();
+                stm.setInt(1, udt_id);
+                stm.setInt(2, question.getQId());
+                stm.setString(3, question.getAnswer());
+                stm.setFloat(4, score);
+                stm.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public int getUserDoesTestId(User userLogged, Test currentTest, int currentAttempt) {
+        String sql = "SELECT * FROM online_quizz.user_does_test\n" +
+                "WHERE uid = ? AND test_id = ? AND attempt = ?;";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, userLogged.getId());
+            stm.setInt(2, currentTest.getTestId());
+            stm.setInt(3, currentAttempt);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("udt_id");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
+    public ArrayList<LeaderBoardViewModel> getLeaderBoardViewModels(Test currentTest) {
+        String sql = "SELECT udt.udt_id, udt.attempt, u.uid, u.username, udt.created_at, SUM(ua.score) AS score, test.test_name, test.test_description, test.test_id\n" +
+                "FROM online_quizz.user_does_test as udt\n" +
+                "JOIN test ON udt.test_id = test.test_id\n" +
+                "JOIN room ON test.room_id = room.room_id\n" +
+                "JOIN user_join_room as ujr ON ujr.room_id = room.room_id AND ujr.uid = udt.uid\n" +
+                "JOIN user as u ON u.uid = ujr.uid\n" +
+                "JOIN user_answer as ua ON ua.udt_id = udt.udt_id\n" +
+                "GROUP BY udt.udt_id, udt.attempt, u.uid, u.username, udt.created_at, test.test_name, test.test_description, test.test_id\n" +
+                "HAVING test.test_id = ?;";
+        ArrayList<LeaderBoardViewModel> leaderBoardViewModels = new ArrayList<>();
+
+        String sql2 = "SELECT test.test_id, test.test_name, SUM(test_question.score) as total_score FROM online_quizz.test\n" +
+                "JOIN online_quizz.test_question \n" +
+                "ON test.test_id = test_question.test_test_id\n" +
+                "GROUP BY test.test_id, test.test_name\n" +
+                "HAVING test_id = ?;\n";
+
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, currentTest.getTestId());
+            ResultSet rs = stm.executeQuery();
+
+            PreparedStatement stm2 = connection.prepareStatement(sql2);
+            stm2.setInt(1, currentTest.getTestId());
+            ResultSet rs2 = stm2.executeQuery();
+
+            float totalScore = 0;
+            if (rs2.next()) {
+                totalScore = rs2.getFloat("total_score");
+            }
+            while (rs.next()) {
+                LeaderBoardViewModel leaderBoardViewModel = new LeaderBoardViewModel();
+                leaderBoardViewModel.setTotalScore(totalScore);
+                User user = new User();
+                user.setId(rs.getInt("uid"));
+                user.setUsername(rs.getString("username"));
+                leaderBoardViewModel.setUser(user);
+
+                Test test = new Test();
+                test.setTestId(rs.getInt("test_id"));
+                test.setTestName(rs.getString("test_name"));
+                test.setTestDescription(rs.getString("test_description"));
+                leaderBoardViewModel.setTest(test);
+
+
+                leaderBoardViewModel.setUdtId(rs.getInt("udt_id"));
+                leaderBoardViewModel.setOrderAttempt(rs.getInt("attempt"));
+                leaderBoardViewModel.setCreatedAt(rs.getTimestamp("created_at"));
+                leaderBoardViewModel.setScore(rs.getFloat("score"));
+                leaderBoardViewModels.add(leaderBoardViewModel);
+            }
+            return leaderBoardViewModels;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void insert(Test entity, ArrayList<TestQuestion> testQuestions) throws SQLException {
+        try {
+            connection.setAutoCommit(false);
+            String sql = "INSERT INTO `online_quizz`.`test`\n" +
+                    "(`room_id`,\n" +
+                    "`test_name`,\n" +
+                    "`test_description`,\n" +
+                    "`duration`,\n" +
+                    "`start_time`,\n" +
+                    "`end_time`,\n" +
+                    "`attempt`,\n" +
+                    "`created_at`,\n" +
+                    "`updated_at`)\n" +
+                    "VALUES\n" +
+                    "(?, ?, ?, ?, ?, ?, ?,\n" +
+                    "current_timestamp(),\n" +
+                    "current_timestamp());";
+            try {
+                PreparedStatement stm = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+                stm.setInt(1, entity.getRoom().getRoomId());
+                stm.setString(2, entity.getTestName());
+                stm.setString(3, entity.getTestDescription());
+                stm.setInt(4, entity.getDuration());
+                stm.setTimestamp(5, entity.getStartTime());
+                stm.setTimestamp(6, entity.getEndTime());
+                stm.setInt(7, entity.getAttempt());
+                stm.executeUpdate();
+                ResultSet rs = stm.getGeneratedKeys();
+                if (rs.next()) {
+                    for (TestQuestion testQuestion : testQuestions) {
+                        testQuestion.setTestId(rs.getInt(1));
+                    }
+                    TestQuestionDBContext testQuestionDBContext = new TestQuestionDBContext();
+                    testQuestionDBContext.insertAll(testQuestions, connection);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            connection.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public User getOwnerTest(Test currentTest) {
+        String sql = "SELECT room.uid FROM online_quizz.test\n" +
+                "JOIN online_quizz.room ON test.room_id = room.room_id AND test.test_id = ?;";
+
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, currentTest.getTestId());
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("uid"));
+                return user;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    public ArrayList<Question> getListResultQuestionAnswer(int testId, int attempt, int userId) {
+        String sql = "SELECT t.test_id, t.room_id, udt.attempt, ua.qid, ua.user_answer FROM online_quizz.test t\n" +
+                "JOIN online_quizz.user_does_test udt ON t.test_id = udt.test_id\n" +
+                "JOIN online_quizz.user_answer ua ON ua.udt_id = udt.udt_id\n" +
+                "WHERE t.test_id = ? AND udt.attempt = ?;";
+        ArrayList<Question> listResultQuestionAnswer = new ArrayList<>();
+
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, testId);
+            stm.setInt(2, attempt);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Question q = new Question();
+                q.setQId(rs.getInt("qid"));
+                q.setAnswer(rs.getString("user_answer"));
+                listResultQuestionAnswer.add(q);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listResultQuestionAnswer;
     }
 }

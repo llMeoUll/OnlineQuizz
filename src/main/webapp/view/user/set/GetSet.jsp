@@ -10,6 +10,37 @@
     <script src="../.././webjars/jquery/3.7.1/jquery.min.js"></script>
 
     <style>
+        td {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .fl {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #f1f1f1;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e9e9e9;
+        }
+
         .flashcard-fl {
             display: flex;
             flex-direction: column;
@@ -90,57 +121,19 @@
             background-color: #8936a0;
         }
 
+        #ratingStars {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
 
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var flashcards = document.getElementsByClassName('flashcard');
-            var currentIndex = 0;
-
-            function showFlashcard(index) {
-                if (index >= 0 && index < flashcards.length) {
-                    for (var i = 0; i < flashcards.length; i++) {
-                        flashcards[i].classList.add('hidden');
-                    }
-                    flashcards[index].classList.remove('hidden');
-                    currentIndex = index;
-                }
-            }
-
-            function showNextFlashcard() {
-                var nextIndex = currentIndex + 1;
-                if (nextIndex >= flashcards.length) {
-                    nextIndex = 0;
-                }
-                showFlashcard(nextIndex);
-            }
-
-            function showPreviousFlashcard() {
-                var prevIndex = currentIndex - 1;
-                if (prevIndex < 0) {
-                    prevIndex = flashcards.length - 1;
-                }
-                showFlashcard(prevIndex);
-            }
-
-            for (var i = 0; i < flashcards.length; i++) {
-                flashcards[i].addEventListener('click', function () {
-                    this.classList.toggle("flipped");
-                });
-            }
-
-            var nextBtn = document.getElementById('nextBtn');
-            var prevBtn = document.getElementById('prevBtn');
-
-            nextBtn.addEventListener('click', showNextFlashcard);
-            prevBtn.addEventListener('click', showPreviousFlashcard);
-
-            showFlashcard(currentIndex);
-        });
-    </script>
 
 </head>
 <body>
+
+</div>
 <%--header--%>
 <div class="fixed-top shadow z-2" style="height: 64px; background-color: #0d6efd">
     <main id="main">
@@ -170,15 +163,14 @@
         <div class="container">
             <!-- Button trigger modal -->
             <a class="btn-success" href="#" onclick="confirmDelete()">Delete</a>
-            <script>
-                function confirmDelete() {
-                    var confirmation = window.confirm("Are you sure you want to delete set ${setID}?");
-                    if (confirmation) {
-                        window.location.href = "../set/delete?set-id=${setID}";
-                    } else {
-                    }
-                }
-            </script>
+            <<<<<<< HEAD
+            =======
+            <div style="justify-content: center;">
+                <!--  Update -->
+                <a class="btn btn-primary" href="/Quizzicle/user/set/update">Update</a>
+            </div>
+            >>>>>>> 063b3506d47acaa9494cdc47e09ea6584c10e6c9
+
             <table>
                 <thead>
                 <tr>
@@ -198,45 +190,22 @@
                     </tr>
                 </c:forEach>
                 </tbody>
-                <style>
-                    td {
-                        word-wrap: break-word;
-                        overflow-wrap: break-word;
-                    }
-                </style>
 
             </table>
-            <style>
-                .fl {
-                    width: 100%;
-                    overflow-x: auto;
-                }
-
-                table {
-                    width: 100%;
-                    border-collapse: collapse;
-                }
-
-                th, td {
-                    padding: 8px;
-                    border: 1px solid #ccc;
-                }
-
-                th {
-                    background-color: #f1f1f1;
-                }
-
-                tr:nth-child(even) {
-                    background-color: #f9f9f9;
-                }
-
-                tr:hover {
-                    background-color: #e9e9e9;
-                }
-            </style>
+            <form id="myForm" action="./get" method="post">
+                <div id="ratingStars" class="rating">
+                    <select onchange="submitForm()" name="numberOfStar">
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                    </select>
+                    <input type="hidden" name="setId" value="${requestScope.setID}">
+                </div>
+                <button type="submit">Rate</button>
+            </form>
         </div>
-
-
     </main>
 
 </div>
@@ -244,6 +213,57 @@
 <div id="create-set-content" style="margin-top: 64px">
 
 </div>
+<script>
+    function submitForm() {
+        document.getElementById("myForm").submit();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var flashcards = document.getElementsByClassName('flashcard');
+        var currentIndex = 0;
+
+        function showFlashcard(index) {
+            if (index >= 0 && index < flashcards.length) {
+                for (var i = 0; i < flashcards.length; i++) {
+                    flashcards[i].classList.add('hidden');
+                }
+                flashcards[index].classList.remove('hidden');
+                currentIndex = index;
+            }
+        }
+
+        function showNextFlashcard() {
+            var nextIndex = currentIndex + 1;
+            if (nextIndex >= flashcards.length) {
+                nextIndex = 0;
+            }
+            showFlashcard(nextIndex);
+        }
+
+        function showPreviousFlashcard() {
+            var prevIndex = currentIndex - 1;
+            if (prevIndex < 0) {
+                prevIndex = flashcards.length - 1;
+            }
+            showFlashcard(prevIndex);
+        }
+
+        for (var i = 0; i < flashcards.length; i++) {
+            flashcards[i].addEventListener('click', function () {
+                this.classList.toggle("flipped");
+            });
+        }
+
+        var nextBtn = document.getElementById('nextBtn');
+        var prevBtn = document.getElementById('prevBtn');
+
+        nextBtn.addEventListener('click', showNextFlashcard);
+        prevBtn.addEventListener('click', showPreviousFlashcard);
+
+        showFlashcard(currentIndex);
+    });
+</script>
+
 </body>
 </html>
 
