@@ -21,8 +21,10 @@ public class UpdateTest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int testId = Integer.parseInt(request.getParameter("testId"));
+        Test test = new Test();
+        test.setTestId(testId);
         TestDBContext testDB = new TestDBContext();
-        Test test = testDB.get(testId);
+         test = testDB.getTestById(test);
         request.setAttribute("test", test);
         TestQuestionDBContext testQuestionDB = new TestQuestionDBContext();
         ArrayList<TestQuestion> testQuestions = testQuestionDB.list(testId);

@@ -249,8 +249,8 @@ public class TestDBContext extends DBContext {
     public HashMap<Question, Float> getExactlyAnswerQuestionsInCertainTest(User userLogged, Test currentTest) {
         HashMap<Question, Float> getExactlyAnswerQuestionsInCertainTest = new HashMap<>();
         String sql = "SELECT question.qid,  question.question, question.answer, test_question.score FROM online_quizz.test\n" +
-                "JOIN online_quizz.test_question ON test.test_id = test_question.test_test_id\n" +
-                "JOIN online_quizz.question ON test_question.question_qid = question.qid\n" +
+                "JOIN online_quizz.test_question ON test.test_id = test_question.test_id\n" +
+                "JOIN online_quizz.question ON test_question.qid = question.qid\n" +
                 "WHERE test.test_id = ?;";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -339,7 +339,7 @@ public class TestDBContext extends DBContext {
 
         String sql2 = "SELECT test.test_id, test.test_name, SUM(test_question.score) as total_score FROM online_quizz.test\n" +
                 "JOIN online_quizz.test_question \n" +
-                "ON test.test_id = test_question.test_test_id\n" +
+                "ON test.test_id = test_question.test_id\n" +
                 "GROUP BY test.test_id, test.test_name\n" +
                 "HAVING test_id = ?;\n";
 
@@ -389,8 +389,9 @@ public class TestDBContext extends DBContext {
             }
         }
     }
-
-    public void insert(Test entity, ArrayList<TestQuestion> testQuestions) throws SQLException {
+    public int insert(Test entity, ArrayList<TestQuestion> testQuestions) throws SQLException {
+        //Return test id;
+        int testId = -1;
         try {
             connection.setAutoCommit(false);
             String sql = "INSERT INTO `online_quizz`.`test`\n" +
@@ -420,7 +421,8 @@ public class TestDBContext extends DBContext {
                 ResultSet rs = stm.getGeneratedKeys();
                 if (rs.next()) {
                     for (TestQuestion testQuestion : testQuestions) {
-                        testQuestion.setTestId(rs.getInt(1));
+                        testId = rs.getInt(1);
+                        testQuestion.setTestId(testId);
                     }
                     TestQuestionDBContext testQuestionDBContext = new TestQuestionDBContext();
                     testQuestionDBContext.insertAll(testQuestions, connection);
@@ -438,6 +440,7 @@ public class TestDBContext extends DBContext {
                 throw new RuntimeException(e);
             }
         }
+        return testId;
     }
 
     public void update(Test test, ArrayList<TestQuestion> testQuestions) {

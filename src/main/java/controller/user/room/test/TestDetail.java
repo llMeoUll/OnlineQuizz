@@ -26,8 +26,10 @@ public class TestDetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // currentTest
         int testId = Integer.parseInt(request.getParameter("testId"));
+        Test test = new Test();
+        test.setTestId(testId);
         TestDBContext tDb = new TestDBContext();
-        Test currentTest = tDb.get(testId);
+        Test currentTest = tDb.getTestById(test);
         request.setAttribute("currentTest", currentTest);
         // list question of this test
         ArrayList<Question> listQuestions = tDb.getListQuestionsOfTest(currentTest);

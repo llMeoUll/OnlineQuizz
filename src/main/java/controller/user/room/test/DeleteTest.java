@@ -22,7 +22,9 @@ public class DeleteTest extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         TestDBContext tDb = new TestDBContext();
         int testId = Integer.parseInt(request.getParameter("testId"));
-        Test test = tDb.get(testId);
+        Test test = new Test();
+        test.setTestId(testId);
+         test = tDb.getTestById(test);
         tDb.deleteById(test);
         response.sendRedirect("../../room/get?roomId=" + test.getRoom().getRoomId());
     }

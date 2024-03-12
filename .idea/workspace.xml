@@ -11,10 +11,26 @@
   <component name="ChangeListManager">
     <list default="true" id="f2da6b60-4134-419e-bec9-7a0a1c84e0be" name="Changes" comment="Fix error, forget hardcode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/question/DeleteQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/question/DeleteQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/room/DeleteRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/room/DeleteRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/admin/set/AdminDeleteSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/admin/set/AdminDeleteSet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/GoogleCallBack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/authenticate/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/profile/UserProfileUpdateControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/profile/UserProfileUpdateControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/DoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/DoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/test/DeleteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/DeleteTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/test/ReviewBeforeCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/ReviewBeforeCreate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/test/TestDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/TestDetail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/room/test/UpdateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/room/test/UpdateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionDBContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/test/UpdateTest.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/test/UpdateTest.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/CreateSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/user/set/GetSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/user/set/GetSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/SelfTestDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/SelfTestDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TestDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TestDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDBContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/SelfTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/SelfTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/room/ManageRoomScreen.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/room/ManageRoomScreen.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/set/Manage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/set/Manage.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,14 +41,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="Jsp File" />
         <option value="JavaScript File" />
         <option value="Class" />
-        <option value="Jsp File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/webapp/view/user/room/ManageRoomScreen.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
@@ -69,7 +86,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/ProjectSWP/OnlineQuizz/src/main/webapp/imagines&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Learn_SE/Spring2024/SWT301/fpt-swe-server/happyprograming-backend&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -262,7 +279,13 @@
       <workItem from="1709775348188" duration="25468000" />
       <workItem from="1709862264605" duration="18695000" />
       <workItem from="1709968090343" duration="33335000" />
-      <workItem from="1710038125324" duration="17294000" />
+      <workItem from="1710038125324" duration="34688000" />
+      <workItem from="1710087368863" duration="682000" />
+      <workItem from="1710118524282" duration="55000" />
+      <workItem from="1710125981062" duration="4483000" />
+      <workItem from="1710130560231" duration="2920000" />
+      <workItem from="1710150465192" duration="621000" />
+      <workItem from="1710214292626" duration="22316000" />
     </task>
     <servers />
   </component>
@@ -291,6 +314,11 @@
           <url>file://$PROJECT_DIR$/src/main/webapp/js/Dashboard.js</url>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dao/NotificationDBContext.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -298,6 +326,7 @@
         <watch expression="listRoomName.get(0).hashIsZero" />
         <watch expression="listRoomName.get(1)" />
         <watch expression="listRoom" />
+        <watch expression="selfTestQuestions.get(4)" />
       </configuration>
     </watches-manager>
   </component>

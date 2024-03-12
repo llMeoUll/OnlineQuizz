@@ -1,13 +1,19 @@
 package controller.user.authenticate;
 
 import com.lambdaworks.crypto.SCryptUtil;
+import dao.NotificationDBContext;
+import dao.NotificationTypeDBContext;
 import dao.UserDBContext;
+import entity.Notification;
+import entity.NotificationType;
 import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import util.Email;
+import websocket.endpoints.AdminDashboardWebSocketEndpoint;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class Register extends HttpServlet {
@@ -61,6 +67,13 @@ public class Register extends HttpServlet {
                         sendEmail.sendVerifyCode(request, newUser.getEmail(), subject, content, verifyType);
                         // Thêm người dùng vào cơ sở dữ liệu
                         db.insert(newUser);
+                        //Notice to admin
+                        User userAfterInsert = db.get(email);
+                        ArrayList<User> tos = db.getAdmin("Administrator");
+                        Notification notification = createNotification(tos, userAfterInsert);
+                        NotificationDBContext notificationDBContext = new NotificationDBContext();
+                        notificationDBContext.insert(notification);
+                        AdminDashboardWebSocketEndpoint.notifyAdminsNewUserRegistered(notification);
                         //set verify type to verify email
                         String uri = request.getRequestURI();
                         session.setAttribute("uri", uri);
@@ -87,5 +100,18 @@ public class Register extends HttpServlet {
             request.setAttribute("error", "Please fill out the form!");
             request.getRequestDispatcher("./view/user/authenticate/Register.jsp").forward(request, response);
         }
+    }
+
+    private Notification createNotification(ArrayList<User> tos, User from) {
+        Notification notification = new Notification();
+        NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
+        notification.setRead(false);
+        NotificationType notificationType = notificationTypeDBContext.get(1);
+        notification.setType(notificationType);
+        notification.setTos(tos);
+        notification.setFrom(from);
+        notification.setContent(notificationType.getAction() + "with email: " + from.getEmail());
+        notification.setUrl("/Quizzicle/admin/user/profile?uid=" + from.getId());
+        return notification;
     }
 }
