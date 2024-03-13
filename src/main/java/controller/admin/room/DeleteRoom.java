@@ -27,7 +27,8 @@ public class DeleteRoom extends HttpServlet {
 
         Notification notification = new Notification();
         notification.setRead(false);
-        notification.setFrom(userDBContext.getAdmin("Admin"));
+        User from = (User)request.getSession().getAttribute("user");
+        notification.setFrom(from);
         ArrayList<User> tos = new ArrayList<>();
         tos.add(roomToDelete.getUser());
         notification.setTos(tos);

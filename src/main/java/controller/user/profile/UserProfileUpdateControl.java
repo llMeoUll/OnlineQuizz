@@ -96,8 +96,8 @@ public class UserProfileUpdateControl extends HttpServlet {
 
             NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
             NotificationDBContext notificationDBContext = new NotificationDBContext();
-            ArrayList<User> tos = new ArrayList<>();
-            tos.add(userDBContext.getAdmin("Admin"));
+            ArrayList<User> tos = userDBContext.getAdmin("Administrator");
+
             Notification notification = new Notification();
 
             NotificationType notificationType = notificationTypeDBContext.get(9);
@@ -115,8 +115,8 @@ public class UserProfileUpdateControl extends HttpServlet {
         } else {
             // Xử lý lỗi nếu mật khẩu và xác nhận mật khẩu không khớp
             request.setAttribute("error", "Password and confirmation password must not be the same!");
-            request.getRequestDispatcher("./view/user/profile/EditProfile.jsp").forward(request, response);
+            request.getRequestDispatcher("../../view/user/profile/EditProfile.jsp").forward(request, response);
         }
-        request.getRequestDispatcher("./view/user/profile/EditProfile.jsp").forward(request, response);
+        request.getRequestDispatcher("../../view/user/profile/EditProfile.jsp").forward(request, response);
     }
 }

@@ -38,7 +38,7 @@ public class UpdateLikeAndUnlike extends HttpServlet {
             int setId = (int) session.getAttribute("setID");
             SetDBContext sdb = new SetDBContext();
             Set set = sdb.get(setId);
-            request.getRequestDispatcher("../.././view/user/set/Comment.jsp").forward(request, response);
+            request.getRequestDispatcher("../.././view/user/set/GetSet.jsp").forward(request, response);
 
         }
     }

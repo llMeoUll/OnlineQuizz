@@ -19,25 +19,25 @@ import java.util.ArrayList;
 public class CommentControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
-        int setID = 21;
-        SetDBContext sdb = new SetDBContext();
-        Set set = sdb.get(setID);
-
-        CommentDBContext cdb = new CommentDBContext();
-//        // get a list comment
-        ArrayList<Comment> comments = cdb.list(set);
-        ArrayList<ArrayList<Comment>> replyList = new ArrayList<>();
-        for (Comment c : comments) {
-            replyList.add(cdb.listReplyComment(c.getCommentId()));
-        }
-        // setAttribute
-//      request.setAttribute("user", user);
-        session.setAttribute("setID", setID);
-        request.setAttribute("replyList", replyList);
-        request.setAttribute("listC", comments);
-        request.getRequestDispatcher("../.././view/user/set/Comment.jsp").forward(request, response);
+//        request.setCharacterEncoding("UTF-8");
+//        HttpSession session = request.getSession();
+//        int setID = 21;
+//        SetDBContext sdb = new SetDBContext();
+//        Set set = sdb.get(setID);
+//
+//        CommentDBContext cdb = new CommentDBContext();
+////        // get a list comment
+//        ArrayList<Comment> comments = cdb.list(set);
+//        ArrayList<ArrayList<Comment>> replyList = new ArrayList<>();
+//        for (Comment c : comments) {
+//            replyList.add(cdb.listReplyComment(c.getCommentId()));
+//        }
+//        // setAttribute
+////      request.setAttribute("user", user);
+//        session.setAttribute("setID", setID);
+//        request.setAttribute("replyList", replyList);
+//        request.setAttribute("listC", comments);
+//        request.getRequestDispatcher("../.././view/user/set/GetSetr.jsp").forward(request, response);
     }
 
     @Override
@@ -74,7 +74,6 @@ public class CommentControl extends HttpServlet {
         request.setAttribute("setID", setId);
         request.setAttribute("replyList", replyList);
         request.setAttribute("listC", comments);
-        request.getRequestDispatcher("../.././view/user/set/Comment.jsp").forward(request, response);
-
+        request.getRequestDispatcher("../.././view/user/set/GetSet.jsp").forward(request, response);
     }
 }

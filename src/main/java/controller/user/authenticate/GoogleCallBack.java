@@ -115,9 +115,7 @@ public class GoogleCallBack extends HttpServlet {
                 try {
                     db.insert(user);
                     User userAfterInsert = db.get(email);
-                    User admin = db.getAdmin("Admin");
-                    ArrayList<User> tos = new ArrayList<>();
-                    tos.add(admin);
+                    ArrayList<User> tos = db.getAdmin("Administrator");
                     Notification notification = createNotification(tos, userAfterInsert);
                     NotificationDBContext notificationDBContext = new NotificationDBContext();
                     notificationDBContext.insert(notification);

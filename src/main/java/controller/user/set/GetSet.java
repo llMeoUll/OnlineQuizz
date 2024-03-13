@@ -17,12 +17,12 @@ public class GetSet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         // listSet
-//        int setID = Integer.parseInt(request.getParameter("setID"));
+//
+        int setID = Integer.parseInt(request.getParameter("setID"));;
 //        QuestionDBContext questionDBContext = new QuestionDBContext();
 //        request.setAttribute("listQuestion", questionDBContext.list(setID));
-//        request.setAttribute("setID", setID);
+        request.setAttribute("setID", setID);
 
-        int setID = 21;
         // user(avatar, name)
         // Comment(comment_id, content, reply_id, (count)likes, (count)unlikes, time)
 //        User u = (User) session.getAttribute("user");
@@ -30,8 +30,20 @@ public class GetSet extends HttpServlet {
 //        UserDBContext udb = new UserDBContext();
 //        User user = udb.get(id);
 
-        //comment
+        SetDBContext sdb = new SetDBContext();
+        Set set = sdb.get(setID);
 
+        CommentDBContext cdb = new CommentDBContext();
+//        // get a list comment
+        ArrayList<Comment> comments = cdb.list(set);
+        ArrayList<ArrayList<Comment>> replyList = new ArrayList<>();
+        for (Comment c : comments) {
+            replyList.add(cdb.listReplyComment(c.getCommentId()));
+        }
+        //comment
+        session.setAttribute("setID", setID);
+        request.setAttribute("replyList", replyList);
+        request.setAttribute("listC", comments);
         request.getRequestDispatcher("../.././view/user/set/GetSet.jsp").forward(request, response);
     }
 

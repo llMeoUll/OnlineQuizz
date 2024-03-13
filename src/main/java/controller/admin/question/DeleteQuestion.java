@@ -17,7 +17,7 @@ public class DeleteQuestion extends HttpServlet {
         Notification notification = new Notification();
         UserDBContext userDBContext = new UserDBContext();
         NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
-        User from = userDBContext.getAdmin("Admin");
+        User from = (User)request.getSession().getAttribute("user");
         ArrayList<User> tos = new ArrayList<>();
         tos.add(deletedQuestion.getSet().getUser());
         NotificationType notificationType = notificationTypeDBContext.get(8);

@@ -31,7 +31,7 @@
 </head>
 <body>
 <jsp:include page="../../../components/header.jsp"/>
-<section class="min-vh-100" style="background-color: #eee;">
+<main class="min-vh-100" style="background-color: #eee;">
     <div class="container h-auto">
         <div class="row d-flex justify-content-center align-items-center h-auto">
             <div class="col-lg-12 col-xl-11">
@@ -45,7 +45,7 @@
                                     <input name="uid" type="hidden" value="${requestScope.user.id}">
                                     <!-- Image section -->
                                     <div class="d-flex justify-content-center mb-4">
-                                        <img src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQlj3rCfLHry58AtJ8ZyBEAFPtChMddDSUSjt7C7nV3Nhsni9RIx5b0-n7LxfgerrPS6b-P-u3BOM3abuY"
+                                        <img src="${requestScope.user.avatar}"
                                              class="img-fluid img-circle profile-avatar" alt="User avatar"
                                              style="width: 300px; height: 300px; position: relative; border: 4px solid #f3f3f3; border-radius: 50%">
                                     </div>
@@ -151,7 +151,7 @@
             </div>
         </div>
     </div>
-</section>
+</main>
 <jsp:include page="../../../components/footer.jsp"/>
 <script src="../../js/UpdateProfile.js"></script>
 </body>
