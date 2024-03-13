@@ -1,0 +1,97 @@
+
+.flashcard-fl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flashcard {
+    position: relative;
+    width: 800px;
+    height: 450px;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.question,
+.answer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #333;
+}
+
+.question {
+    transform: rotateY(0deg);
+    background-color: #F0F8FF;
+}
+
+.answer {
+    transform: rotateY(180deg);
+    background-color: #FFF8DC;
+}
+
+.flashcard.flipped .question {
+    transform: rotateY(160deg);
+}
+
+.flashcard.flipped .answer {
+    transform: rotateY(0deg);
+}
+
+.hidden {
+    display: none;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.controls button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #8936a0;
+    color: #e2bdf3;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.controls button:hover {
+    background-color: #8936a0;
+}
+
+#ratingStars {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+#ratingStars>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#ratingStars>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
+#ratingStars>label{color:#ddd;float:right;}
+#ratingStars>input:checked~label,
+#ratingStars:not(:checked)>label:hover,
+#ratingStars:not(:checked)>label:hover~label{color:#FFD700;}
+/* Hover vào các sao phía trước ngôi sao đã chọn*/
+#ratingStars>input:checked+label:hover,
+#ratingStars>input:checked~label:hover,
+#ratingStars>label:hover~input:checked~label,
+#ratingStars>input:checked~label:hover~label{color:#FFED85;}

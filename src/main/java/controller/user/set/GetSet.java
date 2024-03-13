@@ -77,6 +77,7 @@ public class GetSet extends HttpServlet {
             starRate.setSet(set);
             starRate.setUser((User) session.getAttribute("user"));
             starRateDBContext.insert(starRate);
+            starRateDBContext.update(starRate);
         }
         response.sendRedirect("./get?setID=" + set.getSId());
     }
