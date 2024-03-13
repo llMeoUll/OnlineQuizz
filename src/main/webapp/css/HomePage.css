@@ -10,7 +10,7 @@ body{
 header{
     text-align: center;
     height: 71px;
-    background-color: #333;
+    background-color: #838BE3;
 }
 
 footer{
@@ -27,12 +27,13 @@ a {
 main{
     width: 100%;
     margin: 0 auto;
-    min-height: calc(100vh - 1165px);
-    padding: 30px 20px;
+    min-height: calc(100vh - 1150px);
+    /*padding: 30px 20px;*/
+    padding: 0;
     background-color: #f8f9fa;
 }
 .navbar {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+    background: #7D85D9;
 }
 
 .navbar-brand {
@@ -106,9 +107,14 @@ main{
 /* CSS cho màn hình table (<= 769px) */
 @media screen and (max-width: 769px) {
     .navbar-nav {
-        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        margin-top: 5px;
     }
-
+    .navbar-nav .nav-item .form-inline{
+        width: 50vw;
+    }
     .navbar-nav .nav-item {
         margin-right: 0 !important;
         margin-bottom: 1rem;
@@ -130,7 +136,9 @@ main{
         left: 50%;
         transform: translateX(95%);
     }
-
+    #custom-dropdown-li{
+        margin-left: 0;
+    }
     /* Position custom-dropdown-li, login, signup to the right */
     #custom-dropdown-li,
     .btn.sign-in-btn,

@@ -23,4 +23,5 @@ public class Comment {
     private Date createdAt;
     private Date updatedAt;
     private ArrayList<Comment> repliedComments;
+    private Comment parentComment;
 }

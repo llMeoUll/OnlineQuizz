@@ -13,8 +13,7 @@ import java.io.IOException;
 public class Register extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        boolean resend = request.getParameter("resend").equals("true") ? true : false;
-        if (resend) {
+        if (request.getParameter("resend") != null && request.getParameter("resend").equals("true")) {
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
             String verifyType = (String) session.getAttribute("verifyType");
