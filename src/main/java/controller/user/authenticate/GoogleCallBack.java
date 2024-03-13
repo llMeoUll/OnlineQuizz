@@ -156,7 +156,6 @@ public class GoogleCallBack extends HttpServlet {
         notification.setType(notificationType);
         notification.setTos(tos);
         notification.setFrom(from);
-        notification.setContent(notificationType.getAction() + "with email: " + from.getEmail());
         notification.setUrl("/Quizzicle/admin/user/profile?uid=" + from.getId());
         return notification;
     }

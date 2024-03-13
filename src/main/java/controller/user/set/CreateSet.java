@@ -92,7 +92,7 @@ public class CreateSet extends HttpServlet {
             return;
         }
 
-        response.sendRedirect("../set");
+        response.sendRedirect("../");
     }
 
     private int getIdType(String typeName) {

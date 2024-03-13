@@ -246,8 +246,9 @@ public class UserDBContext extends DBContext {
     public void delete(User entity) {
         String sqlDeleteUser = "DELETE FROM `online_quizz`.`user`\n" +
                 "WHERE `user`.`uid` = ?;";
+        PreparedStatement stmDeleteUser = null;
         try {
-            PreparedStatement stmDeleteUser = connection.prepareStatement(sqlDeleteUser);
+            stmDeleteUser = connection.prepareStatement(sqlDeleteUser);
             stmDeleteUser.setInt(1, entity.getId());
             stmDeleteUser.executeUpdate();
         } catch (SQLException e) {
@@ -411,21 +412,6 @@ public class UserDBContext extends DBContext {
             throw new RuntimeException(e);
         }
     }
-
-    public void verifiedEmail(String email) {
-        String sqlVerifiedEmail = "UPDATE `online_quizz`.`user`\n" +
-                "SET\n" +
-                "`is_verify` = 1\n" +
-                "WHERE `email` = ?;";
-        try {
-            PreparedStatement stmVerifiedEmail = connection.prepareStatement(sqlVerifiedEmail);
-            stmVerifiedEmail.setString(1, email);
-            stmVerifiedEmail.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public ArrayList<User> getAdmin(String roleName) {
         ArrayList<User> admins = new ArrayList<>();
         String sqlGetAdmin = "SELECT u.uid, u.email FROM online_quizz.role r\n" +
@@ -447,6 +433,22 @@ public class UserDBContext extends DBContext {
         }
         return admins;
     }
+
+    public void verifiedEmail(String email) {
+        String sqlVerifiedEmail = "UPDATE `online_quizz`.`user`\n" +
+                "SET\n" +
+                "`is_verify` = 1\n" +
+                "WHERE `email` = ?;";
+        try {
+            PreparedStatement stmVerifiedEmail = connection.prepareStatement(sqlVerifiedEmail);
+            stmVerifiedEmail.setString(1, email);
+            stmVerifiedEmail.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
     public ArrayList<User> list(Room room) {
         ArrayList<User> usersJoinedRoom = new ArrayList<>();

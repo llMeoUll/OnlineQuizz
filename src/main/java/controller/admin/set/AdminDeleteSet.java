@@ -24,7 +24,7 @@ public class AdminDeleteSet extends HttpServlet {
         Set set = setDBContext.get(id);
         Notification notification = new Notification();
         notification.setUrl("/Quizzicle/user/set");
-        User from = (User) request.getSession().getAttribute("user");
+        User from = (User)request.getSession().getAttribute("user");
         notification.setFrom(from);
         ArrayList<User> tos = new ArrayList<>();
         tos.add(set.getUser());

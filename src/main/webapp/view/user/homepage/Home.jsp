@@ -24,6 +24,13 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="home.js"></script>-->
     <link rel="stylesheet" href="./css/HomePage.css">
 </head>
 
@@ -31,11 +38,39 @@
 <!-- header -->
 <jsp:include page="../../../components/header.jsp"></jsp:include>
 <!-- header -->
-
 <!-- content -->
 <main>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut dolore corporis earum aspernatur corrupti odio magni
-    explicabo id architecto optio eius enim eveniet, cum maiores delectus cupiditate ullam eligendi sit.
+    <div id="carouselExampleIndicators" class="carousel slide" style="max-width: 100%;">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner" style="max-height: 100%;">
+            <div class="carousel-item active">
+                <img src="./imagines/carousel1.jpg" class="d-block w-100" style="width: 100%;height: auto;" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="./imagines/carousel2.jpg" class="d-block w-100" style="width: 100%;height: auto;" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="./imagines/carousel3.jpg" class="d-block w-100" style="width: 100%;height: auto;" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 </main>
 <!-- content -->
 

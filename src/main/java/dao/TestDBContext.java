@@ -89,12 +89,12 @@ public class TestDBContext extends DBContext {
                 Room r = new Room();
                 r.setRoomId(rs.getInt("room_id"));
                 t.setRoom(r);
+                t.setAttempt(rs.getInt("attempt"));
+                t.setDuration(rs.getInt("duration"));
                 t.setTestName(rs.getString("test_name"));
                 t.setTestDescription(rs.getString("test_description"));
                 t.setStartTime(rs.getTimestamp("start_time"));
                 t.setEndTime(rs.getTimestamp("end_time"));
-                t.setDuration(rs.getInt("duration"));
-                t.setAttempt(rs.getInt("attempt"));
                 return t;
             }
         } catch (SQLException e) {
@@ -120,8 +120,8 @@ public class TestDBContext extends DBContext {
                 "    question.sid,\n" +
                 "    question.type_id\n" +
                 "FROM online_quizz.test\n" +
-                "JOIN online_quizz.test_question ON test.test_id = test_question.test_id\n" +
-                "JOIN online_quizz.question ON test_question.qid = question.qid\n" +
+                "JOIN online_quizz.test_question ON test.test_id = test_question.test_test_id\n" +
+                "JOIN online_quizz.question ON test_question.question_qid = question.qid\n" +
                 "WHERE test.test_id = ?;\n";
 
         try {
@@ -249,8 +249,8 @@ public class TestDBContext extends DBContext {
     public HashMap<Question, Float> getExactlyAnswerQuestionsInCertainTest(User userLogged, Test currentTest) {
         HashMap<Question, Float> getExactlyAnswerQuestionsInCertainTest = new HashMap<>();
         String sql = "SELECT question.qid,  question.question, question.answer, test_question.score FROM online_quizz.test\n" +
-                "JOIN online_quizz.test_question ON test.test_id = test_question.test_id\n" +
-                "JOIN online_quizz.question ON test_question.qid = question.qid\n" +
+                "JOIN online_quizz.test_question ON test.test_id = test_question.test_test_id\n" +
+                "JOIN online_quizz.question ON test_question.question_qid = question.qid\n" +
                 "WHERE test.test_id = ?;";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -339,7 +339,7 @@ public class TestDBContext extends DBContext {
 
         String sql2 = "SELECT test.test_id, test.test_name, SUM(test_question.score) as total_score FROM online_quizz.test\n" +
                 "JOIN online_quizz.test_question \n" +
-                "ON test.test_id = test_question.test_id\n" +
+                "ON test.test_id = test_question.test_test_id\n" +
                 "GROUP BY test.test_id, test.test_name\n" +
                 "HAVING test_id = ?;\n";
 
@@ -389,9 +389,8 @@ public class TestDBContext extends DBContext {
             }
         }
     }
-    public int insert(Test entity, ArrayList<TestQuestion> testQuestions) throws SQLException {
-        //Return test id;
-        int testId = -1;
+
+    public void insert(Test entity, ArrayList<TestQuestion> testQuestions) throws SQLException {
         try {
             connection.setAutoCommit(false);
             String sql = "INSERT INTO `online_quizz`.`test`\n" +
@@ -421,8 +420,7 @@ public class TestDBContext extends DBContext {
                 ResultSet rs = stm.getGeneratedKeys();
                 if (rs.next()) {
                     for (TestQuestion testQuestion : testQuestions) {
-                        testId = rs.getInt(1);
-                        testQuestion.setTestId(testId);
+                        testQuestion.setTestId(rs.getInt(1));
                     }
                     TestQuestionDBContext testQuestionDBContext = new TestQuestionDBContext();
                     testQuestionDBContext.insertAll(testQuestions, connection);
@@ -432,54 +430,6 @@ public class TestDBContext extends DBContext {
             }
         } catch (SQLException e) {
             connection.rollback();
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                connection.setAutoCommit(true);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return testId;
-    }
-
-    public void update(Test test, ArrayList<TestQuestion> testQuestions) {
-        try {
-            connection.setAutoCommit(false);
-            String sql = "UPDATE `online_quizz`.`test`\n" +
-                    "SET\n" +
-                    "`room_id` = ?,\n" +
-                    "`test_name` = ?,\n" +
-                    "`test_description` = ?,\n" +
-                    "`duration` = ?,\n" +
-                    "`start_time` = ?,\n" +
-                    "`end_time` = ?,\n" +
-                    "`attempt` = ?,\n" +
-                    "`updated_at` = current_timestamp()\n" +
-                    "WHERE `test_id` = ?;";
-            try {
-                PreparedStatement stm = connection.prepareStatement(sql);
-                stm.setInt(1, test.getRoom().getRoomId());
-                stm.setString(2, test.getTestName());
-                stm.setString(3, test.getTestDescription());
-                stm.setInt(4, test.getDuration());
-                stm.setTimestamp(5, test.getStartTime());
-                stm.setTimestamp(6, test.getEndTime());
-                stm.setInt(7, test.getAttempt());
-                stm.setInt(8, test.getTestId());
-                stm.executeUpdate();
-                TestQuestionDBContext testQuestionDBContext = new TestQuestionDBContext();
-                testQuestionDBContext.delete(test.getTestId(), connection);
-                testQuestionDBContext.insertAll(testQuestions, connection);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
             throw new RuntimeException(e);
         } finally {
             try {
@@ -532,6 +482,4 @@ public class TestDBContext extends DBContext {
         }
         return listResultQuestionAnswer;
     }
-
-
 }

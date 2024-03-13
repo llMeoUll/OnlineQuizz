@@ -167,7 +167,7 @@
                                     </div>
                                     <!-- Div row chứa 2 card -->
                                     <c:forEach items="${listUser}" begin="0" end="1" var="u" varStatus="loop">
-                                        <div class="row" >
+                                        <div class="row">
                                             <div class="col-md-6" style="margin-top: 5px">
                                                 <div class="card">
                                                     <img src="${u.avatar}" class="card-img-top" alt="avatar"/>
@@ -343,7 +343,7 @@
                                                             <i class="fa-solid fa-user"></i>
                                                         </span>
                                                     </h5>
-                                                                                                           </h5>--%>
+                                                    </h5>--%>
                                                 </div>
                                             </div>
                                         </div>
@@ -373,5 +373,7 @@
         });
     });
 </script>
+
 </body>
+
 </html>
