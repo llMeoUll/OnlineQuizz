@@ -19,7 +19,8 @@ public class GetSet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int setID = Integer.parseInt(request.getParameter("setID"));
         QuestionDBContext questionDBContext = new QuestionDBContext();
-        request.setAttribute("listQuestion", questionDBContext.list(setID));
+        ArrayList<Question> questions = questionDBContext.list(setID);
+        request.setAttribute("listQuestion", questions);
         request.setAttribute("setID", setID);
         request.getRequestDispatcher("../.././view/user/set/GetSet.jsp").forward(request, response);
 

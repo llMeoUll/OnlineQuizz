@@ -11,60 +11,18 @@
     <script src="../.././webjars/jquery/3.7.1/jquery.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var flashcards = document.getElementsByClassName('flashcard');
-            var currentIndex = 0;
 
-            function showFlashcard(index) {
-                if (index >= 0 && index < flashcards.length) {
-                    for (var i = 0; i < flashcards.length; i++) {
-                        flashcards[i].classList.add('hidden');
-                    }
-                    flashcards[index].classList.remove('hidden');
-                    currentIndex = index;
-                }
-            }
-
-            function showNextFlashcard() {
-                var nextIndex = currentIndex + 1;
-                if (nextIndex >= flashcards.length) {
-                    nextIndex = 0;
-                }
-                showFlashcard(nextIndex);
-            }
-
-            function showPreviousFlashcard() {
-                var prevIndex = currentIndex - 1;
-                if (prevIndex < 0) {
-                    prevIndex = flashcards.length - 1;
-                }
-                showFlashcard(prevIndex);
-            }
-
-            for (var i = 0; i < flashcards.length; i++) {
-                flashcards[i].addEventListener('click', function () {
-                    this.classList.toggle("flipped");
-                });
-            }
-
-            var nextBtn = document.getElementById('nextBtn');
-            var prevBtn = document.getElementById('prevBtn');
-
-            nextBtn.addEventListener('click', showNextFlashcard);
-            prevBtn.addEventListener('click', showPreviousFlashcard);
-
-            showFlashcard(currentIndex);
-        });
     </script>
 
 </head>
 <body>
-</div>
+<%--</div>--%>
 <%--header--%>
-<div class="fixed-top shadow z-2" style="height: 64px; background-color: #0d6efd">
-    <main id="main">
+<div>
+    <div class="fixed-top shadow z-2" style="height: 64px; background-color: #0d6efd">
+        <main id="main" class="container">
 
-        <%--        <h1 class="container h2" style="padding-top: 100px;">Flashcards: ${fl.getTitle()}</h1>--%>
+            <%--        <h1 class="container h2" style="padding-top: 100px;">Flashcards: ${fl.getTitle()}</h1>--%>
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary container">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Quizzicle</a>
@@ -83,139 +41,92 @@
                     </div>
                 </div>
             </nav>
+        </main>
+    </div>
+    <div>
 
-        <hr class="container">
-        <div class="flashcard-fl">
-            <c:forEach var="i" items="${listQuestion}" varStatus="status">
-                <div class="flashcard ${status.index > 0 ? 'hidden' : ''}">
-                    <div class="question">
-                        <h2>${i.getQuestion()}</h2>
+            <hr class="container">
+            <div class="flashcard-fl">
+                <c:forEach var="i" items="${listQuestion}" varStatus="status">
+                    <div class="flashcard ${status.index > 0 ? 'hidden' : ''}">
+                        <div class="question">
+                            <h2>${i.getQuestion()}</h2>
+                        </div>
+                        <div class="answer">
+                            <p>${i.getAnswer()}</p>
+                        </div>
                     </div>
-                    <div class="answer">
-                        <p>${i.getAnswer()}</p>
-                    </div>
-                </div>
-            </c:forEach>
-        </div>
-
-        <div style="justify-content: center;">
-            <div class="controls">
-                <button id="prevBtn">Prev</button>
-                <button id="nextBtn">Next</button>
-            </div>
-        </div>
-        <hr class="container">
-
-
-        <h5 class="container text-success">All Terminology:</h5>
-        <div class="container">
-            <!-- Button trigger modal -->
-            <a class="btn-success" href="#" onclick="confirmDelete()">Delete</a>
-            <div style="justify-content: center;">
-                <!--  Update -->
-                <a class="btn btn-primary" href="/Quizzicle/user/set/update">Update</a>
-            </div>
-            <script>
-                function confirmDelete() {
-                    var confirmation = window.confirm("Are you sure you want to delete this set ${setID}?");
-                    if (confirmation) {
-                        window.location.href = "../set/delete?set-id=${setID}";
-                    } else {
-                    }
-                }
-            </script>
-
-
-            <table>
-                <thead>
-                <tr>
-                    <th>Question</th>
-                    <th>Answer</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="a" items="${listQuestion}">
-                    <tr>
-                        <td>
-                            <pre style="white-space: pre-line">${a.getQuestion()}</pre>
-                        </td>
-                        <td>
-                            <pre style="white-space: pre-line">${a.getAnswer()}</pre>
-                        </td>
-                    </tr>
                 </c:forEach>
-                </tbody>
-                <style>
-                    td {
-                        word-wrap: break-word;
-                        overflow-wrap: break-word;
-                    }
-                </style>
+            </div>
 
-            </table>
-            <form id="myForm" action="./get" method="post">
-                <div id="ratingStars" class="rating">
-                    <input type="radio" id="star5" name="numberOfStar" value="5" onclick="submitForm()">
-                    <label for="star5" title="5 stars"></label>
-                    <input type="radio" id="star4" name="numberOfStar" value="4" onclick="submitForm()">
-                    <label for="star4" title="4 stars"></label>
-                    <input type="radio" id="star3" name="numberOfStar" value="3" onclick="submitForm()">
-                    <label for="star3" title="3 stars"></label>
-                    <input type="radio" id="star2" name="numberOfStar" value="2" onclick="submitForm()">
-                    <label for="star2" title="2 stars"></label>
-                    <input type="radio" id="star1" name="numberOfStar" value="1" onclick="submitForm()">
-                    <label for="star1" title="1 star"></label>
-
-                    <input type="hidden" name="setId" value="${requestScope.setID}">
+            <div style="justify-content: center;">
+                <div class="controls">
+                    <button id="prevBtn">Prev</button>
+                    <button id="nextBtn">Next</button>
                 </div>
-                <button type="submit">Rate</button>
-            </form>
-            <script>
-                function submitForm() {
-                    document.getElementById("myForm").submit();
-                }
-            </script>
-            <style>
-                .fl {
-                    width: 100%;
-                    overflow-x: auto;
-                }
+            </div>
+            <hr class="container">
 
-                table {
-                    width: 100%;
-                    border-collapse: collapse;
-                }
+            <h5 class="container text-success">All Terminology:</h5>
+            <div class="container">
+                <!-- Button trigger modal -->
+                <a class="btn-success" href="#" onclick="confirmDelete(${setID})">Delete</a>
+                <div style="justify-content: center;">
+                    <!--  Update -->
+                    <a class="btn btn-primary" href="../.././update">Update</a>
+                </div>
 
-                th, td {
-                    padding: 8px;
-                    border: 1px solid #ccc;
-                }
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Answer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="a" items="${requestScope.listQuestion}">
 
-                th {
-                    background-color: #f1f1f1;
-                }
+                        <tr>
+                            <td>
+                                <pre style="white-space: pre-line">${a.getQuestion()}</pre>
+                            </td>
+                            <td>
+                                <pre style="white-space: pre-line">${a.getAnswer()}</pre>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
 
-                tr:nth-child(even) {
-                    background-color: #f9f9f9;
-                }
+                </table>
+                <form id="myForm" action="./get" method="post">
+                    <div id="ratingStars" class="rating">
+                        <input type="radio" id="star5" name="numberOfStar" value="5" onclick="submitForm()">
+                        <label for="star5" title="5 stars"></label>
+                        <input type="radio" id="star4" name="numberOfStar" value="4" onclick="submitForm()">
+                        <label for="star4" title="4 stars"></label>
+                        <input type="radio" id="star3" name="numberOfStar" value="3" onclick="submitForm()">
+                        <label for="star3" title="3 stars"></label>
+                        <input type="radio" id="star2" name="numberOfStar" value="2" onclick="submitForm()">
+                        <label for="star2" title="2 stars"></label>
+                        <input type="radio" id="star1" name="numberOfStar" value="1" onclick="submitForm()">
+                        <label for="star1" title="1 star"></label>
 
-                tr:hover {
-                    background-color: #e9e9e9;
-                }
+                        <input type="hidden" name="setId" value="${requestScope.setID}">
+                    </div>
+                </form>
 
-            </style>
+            </div>
+    </div>
 
 
-        </div>
-    </main>
+    </div>
+    <%--content--%>
+    <div id="create-set-content" style="margin-top: 64px">
 
 </div>
-<%--content--%>
-<div id="create-set-content" style="margin-top: 64px">
-
-</div>
 
 
+<script src="../.././js/GetSet.js"></script>
 </body>
 </html>
 
