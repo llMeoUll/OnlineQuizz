@@ -12,7 +12,7 @@ public class SelfTestQuestionDBContext extends DBContext{
         try {
             String sql = "INSERT INTO `online_quizz`.`self-test_question`\n" +
                     "(`self-test_id`,\n" +
-                    "`question_qid`,\n" +
+                    "`qid`,\n" +
                     "`user_answer`)\n" +
                     "VALUES\n" +
                     "(?, ?, ?);";
