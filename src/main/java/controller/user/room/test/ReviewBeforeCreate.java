@@ -8,6 +8,7 @@ import entity.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import util.DateTimeLocalConverter;
+import websocket.endpoints.RoomWebSocketEndpoint;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -67,6 +68,8 @@ public class ReviewBeforeCreate extends HttpServlet {
                     + notificationType.getAction() + " in room: " + room.getRoomName());
             ArrayList<User> tos = userDBContext.list(room);
             notification.setTos(tos);
+
+            RoomWebSocketEndpoint.sendMessageToOtherUsers(notification);
 
             notificationDBContext.insert(notification);
             session.removeAttribute("room");

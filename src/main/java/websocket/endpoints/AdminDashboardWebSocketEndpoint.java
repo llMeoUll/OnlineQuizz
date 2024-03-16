@@ -1,13 +1,14 @@
 package websocket.endpoints;
 
+import com.google.gson.Gson;
 import entity.Notification;
 import jakarta.websocket.*;
 import jakarta.websocket.server.ServerEndpoint;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import entity.User;
+import java.util.Map;
 import java.util.Set;
 
 @ServerEndpoint("/admin/notification")
@@ -36,10 +37,15 @@ public class AdminDashboardWebSocketEndpoint {
     }
 
     // Gửi thông báo đến tất cả các admin khi có sự kiện đăng ký tài khoản mới
-    public static void notifyAdminsNewUserRegistered(Notification notifications) {
+    public static void notifyAdminsNewUserRegistered(Notification notification) {
         for (Session session : adminSessions) {
             try {
-                session.getBasicRemote().sendText(String.valueOf(notifications.getFrom().getId()));
+                Map<String, String> data = new HashMap<>();
+                data.put("info", String.valueOf(notification.getFrom().getId()));
+                data.put("content", notification.getContent());
+                Gson gson = new Gson();
+                String jsonData = gson.toJson(data);
+                session.getBasicRemote().sendText(jsonData);
             } catch (IOException e) {
                 e.printStackTrace();
             }
