@@ -280,6 +280,32 @@
         <url-pattern>/user/set/get</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>selftestsetting</servlet-name>
+        <servlet-class>controller.user.set.SelfTestSetting</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>selftestsetting</servlet-name>
+        <url-pattern>/user/set/self-test-setting</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>doselftest</servlet-name>
+        <servlet-class>controller.user.set.DoSelfTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>doselftest</servlet-name>
+        <url-pattern>/user/set/self-test</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>selftesthistory</servlet-name>
+        <servlet-class>controller.user.set.SelfTestHistory</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>selftesthistory</servlet-name>
+        <url-pattern>/user/set/self-test/history</url-pattern>
+    </servlet-mapping>
+
     <!--    Do test Feature-->
     <servlet>
         <servlet-name>DoTest</servlet-name>
@@ -307,6 +333,7 @@
         <servlet-name>ReviewTest</servlet-name>
         <url-pattern>/user/room/test/reviewtest</url-pattern>
     </servlet-mapping>
+
 
     <!--    *********************************************ADMINISTRATOR******************************************************-->
     <!--    Authenticate Feature-->
