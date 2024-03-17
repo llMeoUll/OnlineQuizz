@@ -1,6 +1,6 @@
 package controller.user.room;
 
-import controller.user.room.utilities.GenerateCodeToJoin;
+import util.GenerateCodeToJoin;
 import dao.RoomDBContext;
 import dao.TestDBContext;
 import dao.UserDBContext;
@@ -9,7 +9,6 @@ import entity.Test;
 import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,22 +31,22 @@ public class RoomDetail extends HttpServlet {
         int roomId = Integer.parseInt(request.getParameter("roomId"));
         Room r = new Room();
         r.setRoomId(roomId);
+
         RoomDBContext rDB = new RoomDBContext();
+
         User userLogged = (User) request.getSession().getAttribute("user");
         UserDBContext uDB = new UserDBContext();
         User u = uDB.get(userLogged.getEmail());
+
         TestDBContext tDB = new TestDBContext();
         ArrayList<Test> listTestOfRoom = tDB.getTestsCorrespondingEachRoom(u, r);
         r = rDB.getRoomById(r);
         String codeToJoin = GenerateCodeToJoin.generateCode(r.getCode() + r.getPassword());
         String roomName = r.getRoomName();
+        request.setAttribute("currentUser", u);
         request.setAttribute("codeToJoin", codeToJoin);
         request.setAttribute("currentRoom", r);
         request.setAttribute("listTestOfRoom", listTestOfRoom);
         request.getRequestDispatcher("../../view/user/room/ViewRoomDetail.jsp").forward(request, response);
-//        response.sendRedirect("../room");
-
     }
-
-
 }

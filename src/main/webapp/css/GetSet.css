@@ -43,7 +43,6 @@ tr:hover {
     margin-bottom: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /*overflow: hidden;*/
     cursor: pointer;
     perspective: 1000px;
 }
@@ -66,12 +65,12 @@ tr:hover {
 
 .question {
     transform: rotateY(0deg);
-    background-color: #F0F8FF;
+    background-color: #e4d4e7;
 }
 
 .answer {
     transform: rotateY(180deg);
-    background-color: #FFF8DC;
+    background-color: #e4d4e7;
 }
 
 .flashcard.flipped .question {

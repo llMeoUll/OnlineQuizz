@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import entity.Type;
 public class QuestionDBContext extends DBContext{
     public ArrayList<Question> list(int setId) {
         ArrayList<Question> questions = new ArrayList<>();
@@ -144,5 +144,31 @@ public class QuestionDBContext extends DBContext{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public Question get(int qid) {
+        String sqlGetQuestion = "SELECT * FROM online_quizz.question\n" +
+                "WHERE `question`.`qid` = ?";
+        try {
+            PreparedStatement stmGetQuestion = connection.prepareStatement(sqlGetQuestion);
+            stmGetQuestion.setInt(1, qid);
+            ResultSet rs = stmGetQuestion.executeQuery();
+            while(rs.next()) {
+                Question question = new Question();
+                question.setQId(qid);
+                question.setQuestion(rs.getString("question"));
+                question.setAnswer(rs.getString("answer"));
+                SetDBContext setDBContext = new SetDBContext();
+                Set set = setDBContext.get(rs.getInt("sid"));
+                question.setSet(set);
+                Type type = new Type();
+                type.setTypeId(rs.getInt("type_id"));
+                question.setType(type);
+                return question;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 }

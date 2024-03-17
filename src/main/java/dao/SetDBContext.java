@@ -1,17 +1,19 @@
 package dao;
 
-import entity.*;
+import entity.HashTag;
+import entity.Question;
+import entity.Set;
+import entity.User;
 import org.checkerframework.checker.units.qual.A;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class SetDBContext extends DBContext {
-    public ArrayList<Set> getOwnedSet(User entity) {
+    public ArrayList<Set> getOwnedSet(User owner) {
         ArrayList<Set> ownedSets = new ArrayList<>();
         String sqlGetOwnedSet = "SELECT `set`.`sid`,\n" +
                 "    `set`.`sname`,\n" +
@@ -24,7 +26,7 @@ public class SetDBContext extends DBContext {
                 "WHERE `set`.`uid` = ?";
         try {
             PreparedStatement stmGetOwnedSet = connection.prepareStatement(sqlGetOwnedSet);
-            stmGetOwnedSet.setString(1, String.valueOf(entity.getId()));
+            stmGetOwnedSet.setString(1, String.valueOf(owner.getId()));
             ResultSet rs = stmGetOwnedSet.executeQuery();
             while (rs.next()) {
                 Set ownedSet = new Set();
@@ -32,7 +34,7 @@ public class SetDBContext extends DBContext {
                 ownedSet.setSName(rs.getString("sname"));
                 ownedSet.setDescription(rs.getString("description"));
                 ownedSet.setPrivate(rs.getBoolean("is_private"));
-                ownedSet.setUser(entity);
+                ownedSet.setUser(owner);
                 ownedSets.add(ownedSet);
             }
         } catch (SQLException e) {
@@ -56,6 +58,9 @@ public class SetDBContext extends DBContext {
                 set.setSName(rs.getString("sname"));
                 set.setDescription(rs.getString("description"));
                 set.setPrivate(rs.getBoolean("is_private"));
+                UserDBContext userDBContext = new UserDBContext();
+                User user = userDBContext.get(rs.getInt("uid"));
+                set.setUser(user);
                 ArrayList<Question> questions = new QuestionDBContext().list(setId);
                 set.setQuestions(questions);
                 ArrayList<HashTag> hashTags = new HashtagDBContext().list(setId, connection);
@@ -177,7 +182,7 @@ public class SetDBContext extends DBContext {
                     "INNER JOIN `online_quizz`.`user` u ON s.uid = u.uid";
             PreparedStatement stmGetListSet = connection.prepareStatement(sqlGetListSet);
             ResultSet rs = stmGetListSet.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 Set set = new Set();
                 User user = new User();
                 user.setId(rs.getInt("uid"));
@@ -201,7 +206,9 @@ public class SetDBContext extends DBContext {
     //    get all set of user
     public ArrayList<Set> list(User user) {
         ArrayList<Set> ls = new ArrayList<>();
-        String sql = "SELECT * FROM online_quizz.set WHERE uid = ?";
+        String sql = "SELECT * FROM online_quizz.set " +
+                "WHERE uid = ? " +
+                "order by `updated_at` desc";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, user.getId());
@@ -225,7 +232,6 @@ public class SetDBContext extends DBContext {
             PreparedStatement stm = connection.prepareStatement(sqlDeleteSet);
             stm.setInt(1, set.getSId());
             stm.executeUpdate();
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

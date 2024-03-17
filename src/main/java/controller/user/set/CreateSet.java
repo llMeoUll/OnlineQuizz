@@ -87,7 +87,12 @@ public class CreateSet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        response.sendRedirect("./");
+        if(session.getAttribute("test") != null){
+            response.sendRedirect(".././room/test/create/add-question");
+            return;
+        }
+
+        response.sendRedirect("../");
     }
 
     private int getIdType(String typeName) {
