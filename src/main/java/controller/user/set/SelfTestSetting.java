@@ -1,5 +1,6 @@
 package controller.user.set;
 
+import com.google.gson.Gson;
 import dao.SetDBContext;
 import entity.Question;
 import entity.QuestionOption;
@@ -36,8 +37,11 @@ public class SelfTestSetting extends HttpServlet {
         ArrayList<Question> questions = new ArrayList<>();
         HttpSession session = request.getSession();
         Set set = (Set) session.getAttribute("set");
+        // deep copy for set questions using Gson
+        Gson gson = new Gson();
+        Set setCopy = gson.fromJson(gson.toJson(set), Set.class);
         // list question in set
-        ArrayList<Question> setQuestions = set.getQuestions();
+        ArrayList<Question> setQuestions = setCopy.getQuestions();
         Collections.shuffle(setQuestions);
         // get question by type
         for (Question question : setQuestions) {

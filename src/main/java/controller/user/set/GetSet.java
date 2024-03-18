@@ -18,7 +18,7 @@ public class GetSet extends HttpServlet {
         HttpSession session = request.getSession();
         // listSet
 //
-        int setID = Integer.parseInt(request.getParameter("setID"));;
+        int setID = Integer.parseInt(request.getParameter("setId"));;
 //        QuestionDBContext questionDBContext = new QuestionDBContext();
 //        request.setAttribute("listQuestion", questionDBContext.list(setID));
         request.setAttribute("setID", setID);

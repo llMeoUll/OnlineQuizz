@@ -33,7 +33,7 @@
                 <c:forEach var="c" items="${listSet}">
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title"><a href="./set/get?setID=${c.getSId()}">${c.getSName()}</a></h5>
+                            <h5 class="card-title"><a href="./set/get?setId=${c.getSId()}">${c.getSName()}</a></h5>
                         </div>
                     </div>
                 </c:forEach>

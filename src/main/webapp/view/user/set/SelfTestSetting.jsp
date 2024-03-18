@@ -19,7 +19,7 @@
 <body>
 
 <div class="container h-100 w-100 d-flex align-items-center justify-content-center">
-    <form action="./self-test-setting" method="post" class="w-50">
+    <form action="./self-test-setting" method="post" class="w-50" id="setting-form">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <div>

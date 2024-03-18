@@ -281,31 +281,39 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>selftestsetting</servlet-name>
+        <servlet-name>SelfTestSetting</servlet-name>
         <servlet-class>controller.user.set.SelfTestSetting</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>selftestsetting</servlet-name>
+        <servlet-name>SelfTestSetting</servlet-name>
         <url-pattern>/user/set/self-test-setting</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>doselftest</servlet-name>
+        <servlet-name>DoSelfTest</servlet-name>
         <servlet-class>controller.user.set.DoSelfTest</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>doselftest</servlet-name>
+        <servlet-name>DoSelfTest</servlet-name>
         <url-pattern>/user/set/self-test</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>selftesthistory</servlet-name>
+        <servlet-name>SelfTestHistory</servlet-name>
         <servlet-class>controller.user.set.SelfTestHistory</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>selftesthistory</servlet-name>
+        <servlet-name>SelfTestHistory</servlet-name>
         <url-pattern>/user/set/self-test/history</url-pattern>
     </servlet-mapping>
-
+<!--    SelfTestHistory detail-->
+    <servlet>
+        <servlet-name>SelfTestHistoryDetail</servlet-name>
+        <servlet-class>controller.user.set.SelfTestHistoryDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SelfTestHistoryDetail</servlet-name>
+        <url-pattern>/user/set/self-test/history/view-detail</url-pattern>
+    </servlet-mapping>
     <!--    Do test Feature-->
     <servlet>
         <servlet-name>DoTest</servlet-name>

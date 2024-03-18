@@ -10,7 +10,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Set {
+
+public class Set implements Cloneable{
     private int sId;
     private String sName;
     private String description;
@@ -22,4 +23,6 @@ public class Set {
     private ArrayList<Comment> comments;
     private ArrayList<Question> questions;
     private ArrayList<HashTag> hashTags = new ArrayList<>();
+
+
 }

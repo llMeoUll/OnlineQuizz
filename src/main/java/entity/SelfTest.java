@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 
 @Getter
 @Setter
@@ -17,5 +16,6 @@ public class SelfTest {
     private int selfTestId;
     private User user;
     private Set set;
+    private int result;
     private Timestamp createdAt;
 }

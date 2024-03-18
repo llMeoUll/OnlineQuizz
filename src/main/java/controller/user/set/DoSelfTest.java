@@ -31,8 +31,28 @@ public class DoSelfTest extends HttpServlet {
             selfTestQuestion.setAnswer(answer);
             selfTestQuestions.add(selfTestQuestion);
         }
-        SelfTestDBContext selfTestDBContext = new SelfTestDBContext();
+
+        ArrayList<Question> rawQuestions = new ArrayList<>();
+        for (Question question : set.getQuestions()) {
+            for(SelfTestQuestion selfTestQuestion : selfTestQuestions) {
+                if (question.getQId() == selfTestQuestion.getQuestion().getQId()) {
+                    rawQuestions.add(question);
+                }
+            }
+        }
+        int result = 0;
+        for (Question question : rawQuestions) {
+            for(SelfTestQuestion selfTestQuestion : selfTestQuestions) {
+                if (question.getQId() == selfTestQuestion.getQuestion().getQId()) {
+                    if (question.getAnswer().equalsIgnoreCase(selfTestQuestion.getAnswer())) {
+                        result++;
+                    }
+                }
+            }
+        }
+        selfTest.setResult(result);
         try {
+            SelfTestDBContext selfTestDBContext = new SelfTestDBContext();
             selfTestDBContext.insert(selfTest, selfTestQuestions);
             session.removeAttribute("questions");
             session.removeAttribute("set");
