@@ -171,4 +171,8 @@ public class QuestionDBContext extends DBContext{
         }
         return null;
     }
+
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
+    }
 }

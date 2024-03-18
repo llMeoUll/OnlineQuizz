@@ -7,6 +7,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class VerifyCode extends HttpServlet {
     @Override
@@ -15,7 +16,11 @@ public class VerifyCode extends HttpServlet {
         String email = request.getParameter("email");
         String verifyType = request.getParameter("verify-type");
         if (code != null && email != null && verifyType != null) {
-            checkCode(request, response, code, verifyType);
+            try {
+                checkCode(request, response, code, verifyType);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         } else {
             request.getRequestDispatcher("./view/user/authenticate/Verify.jsp").forward(request, response);
         }
@@ -26,7 +31,11 @@ public class VerifyCode extends HttpServlet {
         String code = request.getParameter("code");
         if (code != null) {
             String verifyType = request.getParameter("verify-type");
-            checkCode(request, response, code, verifyType);
+            try {
+                checkCode(request, response, code, verifyType);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
 
         } else {
             request.setAttribute("error", "Please enter the code sent to your email.");
@@ -34,7 +43,7 @@ public class VerifyCode extends HttpServlet {
         }
     }
 
-    private void checkCode(HttpServletRequest request, HttpServletResponse response, String code, String verifyType) throws IOException, ServletException {
+    private void checkCode(HttpServletRequest request, HttpServletResponse response, String code, String verifyType) throws IOException, ServletException, SQLException {
         HttpSession session = request.getSession();
         String sessionCode = (String) session.getAttribute("code");
         if(sessionCode != null) {
@@ -46,6 +55,8 @@ public class VerifyCode extends HttpServlet {
                     User sessionUser = (User) session.getAttribute("user");
                     UserDBContext userDB = new UserDBContext();
                     userDB.verifiedEmail(sessionUser.getEmail());
+                    // close connection
+                    userDB.closeConnection();
                     response.sendRedirect("./login");
                 } else if(verifyType.equals("reset-password")){
                     response.sendRedirect("./reset-password");

@@ -15,9 +15,14 @@ public class LeaderBoard extends HttpServlet {
         int testId = Integer.parseInt(request.getParameter("testId"));
         Test currentTest = new Test();
         currentTest.setTestId(testId);
-        ArrayList<LeaderBoardViewModel> leaderBoardViewModels = new ArrayList<>();
         TestDBContext testDBContext = new TestDBContext();
-        leaderBoardViewModels = testDBContext.getLeaderBoardViewModels(currentTest);
+        ArrayList<LeaderBoardViewModel> leaderBoardViewModels = testDBContext.getLeaderBoardViewModels(currentTest);
+        // close connection
+        try {
+            testDBContext.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         request.setAttribute("leaderBoardViewModels", leaderBoardViewModels);
         request.getRequestDispatcher("../../../view/user/room/LeaderBoard.jsp").forward(request, response);
     }

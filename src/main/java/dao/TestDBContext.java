@@ -489,4 +489,8 @@ public class TestDBContext extends DBContext {
         }
         return listResultQuestionAnswer;
     }
+
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
+    }
 }

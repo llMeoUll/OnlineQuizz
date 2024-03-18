@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Home extends HttpServlet {
@@ -20,6 +21,12 @@ public class Home extends HttpServlet {
         if (user != null) {
             NotificationDBContext notificationDBContext = new NotificationDBContext();
             ArrayList<Notification> notifications = notificationDBContext.list(user);
+            // close connection
+            try {
+                notificationDBContext.closeConnection();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             session.setAttribute("notifications", notifications);
         }
         request.getRequestDispatcher("./view/user/homepage/Home.jsp").forward(request, response);

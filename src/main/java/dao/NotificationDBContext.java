@@ -97,4 +97,8 @@ public class NotificationDBContext extends DBContext<Notification> {
         }
     }
 
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
+    }
+
 }

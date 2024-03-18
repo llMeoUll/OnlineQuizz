@@ -12,6 +12,8 @@ public class DailyUpdateActiveUsers implements Job {
         ActiveUsersDBContext activeUsersDBContext = new ActiveUsersDBContext();
         try {
             activeUsersDBContext.update();
+            // Close connection
+            activeUsersDBContext.closeConnection();
         } catch (Exception e) {
             e.printStackTrace();
         }

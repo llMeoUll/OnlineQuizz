@@ -5,6 +5,7 @@ import entity.Room;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RoomManagement extends HttpServlet {
@@ -13,6 +14,12 @@ public class RoomManagement extends HttpServlet {
         RoomDBContext roomDBContext = new RoomDBContext();
         ArrayList<Room> rooms = roomDBContext.listRoomAndOwner();
         request.setAttribute("rooms", rooms);
+        // Close connection
+        try {
+            roomDBContext.closeConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher(".././view/admin/RoomManagement.jsp").forward(request, response);
     }
 

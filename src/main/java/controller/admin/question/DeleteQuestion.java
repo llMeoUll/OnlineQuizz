@@ -6,6 +6,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DeleteQuestion extends HttpServlet {
@@ -30,6 +31,15 @@ public class DeleteQuestion extends HttpServlet {
         NotificationDBContext notificationDBContext = new NotificationDBContext();
         notificationDBContext.insert(notification);
         questionDBContext.delete(qid);
+        // Close connection
+        try {
+            questionDBContext.closeConnection();
+            userDBContext.closeConnection();
+            notificationDBContext.closeConnection();
+            notificationTypeDBContext.closeConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         response.sendRedirect("../question");
     }
 

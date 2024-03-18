@@ -68,13 +68,25 @@ public class ReviewBeforeCreate extends HttpServlet {
             ArrayList<User> tos = userDBContext.list(room);
             notification.setTos(tos);
 
+            // close connection
             notificationDBContext.insert(notification);
+            notificationDBContext.closeConnection();
+            notificationTypeDBContext.closeConnection();
+            userDBContext.closeConnection();
+            testDBContext.closeConnection();
+
             session.removeAttribute("room");
             session.removeAttribute("questions");
             session.removeAttribute("test");
             response.sendRedirect("../../../room/get?roomId=" + room.getRoomId());
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                testDBContext.closeConnection();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
 
     }

@@ -13,6 +13,12 @@ public class SetManage extends HttpServlet {
         User user = (User) request.getSession().getAttribute("user");
         SetDBContext dao = new SetDBContext();
         request.setAttribute("listSet", dao.list(user));
+        // close connection
+        try {
+            dao.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher(".././view/user/set/Manage.jsp").forward(request, response);
     }
 

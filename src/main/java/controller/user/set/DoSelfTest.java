@@ -54,6 +54,7 @@ public class DoSelfTest extends HttpServlet {
         try {
             SelfTestDBContext selfTestDBContext = new SelfTestDBContext();
             selfTestDBContext.insert(selfTest, selfTestQuestions);
+            selfTestDBContext.closeConnection();
             session.removeAttribute("questions");
             session.removeAttribute("set");
             response.sendRedirect("./self-test/history?setId=" + set.getSId());

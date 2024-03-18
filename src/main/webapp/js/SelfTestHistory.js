@@ -1,6 +1,3 @@
-function onRowClick() {
-    alert('hello')
-}
 window.addEventListener('DOMContentLoaded', event => {
     const datatablesSimple = document.getElementById('self-test-history');
     if (datatablesSimple) {

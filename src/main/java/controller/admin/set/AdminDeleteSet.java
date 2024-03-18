@@ -35,6 +35,15 @@ public class AdminDeleteSet extends HttpServlet {
 
         notificationDBContext.insert(notification);
         setDBContext.delete(set);
+        // Close connection
+        try {
+            setDBContext.closeConnection();
+            notificationDBContext.closeConnection();
+            userDBContext.closeConnection();
+            notificationTypeDBContext.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         response.sendRedirect("../set");
     }
 

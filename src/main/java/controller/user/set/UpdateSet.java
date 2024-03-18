@@ -25,6 +25,13 @@ public class UpdateSet extends HttpServlet {
             response.getWriter().println("You are not owner of this set");
         }
 
+        // close connection
+        try {
+            setDB.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
@@ -111,6 +118,12 @@ public class UpdateSet extends HttpServlet {
     private int getIdType(String typeName) {
         TypeDBContext typeDBContext = new TypeDBContext();
         ArrayList<Type> types = typeDBContext.list();
+        // close connection
+        try {
+            typeDBContext.closeConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         for (Type type : types) {
             if (type.getTypeName().equals(typeName)) {
                 return type.getTypeId();

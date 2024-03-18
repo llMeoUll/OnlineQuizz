@@ -84,6 +84,9 @@ public class CreateSet extends HttpServlet {
         SetDBContext setDBContext = new SetDBContext();
         try {
             setDBContext.insert(set);
+
+            // close connection
+            setDBContext.closeConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -98,6 +101,12 @@ public class CreateSet extends HttpServlet {
     private int getIdType(String typeName) {
         TypeDBContext typeDBContext = new TypeDBContext();
         ArrayList<Type> types = typeDBContext.list();
+        // close connection
+        try {
+            typeDBContext.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         for (Type type : types) {
             if (type.getTypeName().equals(typeName)) {
                 return type.getTypeId();

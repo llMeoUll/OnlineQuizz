@@ -4,6 +4,7 @@ import dao.UserDBContext;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import entity.User;
 
@@ -13,6 +14,12 @@ public class UserManagement extends HttpServlet {
         UserDBContext userDBContext = new UserDBContext();
         ArrayList<User> users = userDBContext.list();
         request.setAttribute("users", users);
+        // Close connection
+        try {
+            userDBContext.closeConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher("../view/admin/UserManagement.jsp").forward(request, response);
     }
 
@@ -22,6 +29,12 @@ public class UserManagement extends HttpServlet {
         UserDBContext userDBContext = new UserDBContext();
         ArrayList<User> users = userDBContext.list(userEmail);
         request.setAttribute("users", users);
+        // Close connection
+        try {
+            userDBContext.closeConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher("../view/admin/UserManagement.jsp").forward(request, response);
     }
 }

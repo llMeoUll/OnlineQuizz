@@ -33,6 +33,12 @@ public class TestDetail extends HttpServlet {
         request.setAttribute("currentTest", currentTest);
         // list question of this test
         ArrayList<Question> listQuestions = tDb.getListQuestionsOfTest(currentTest);
+        // close connection
+        try {
+            tDb.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         request.setAttribute("listQuestions", listQuestions);
         request.getRequestDispatcher("../../.././view/user/room/test/ViewTestDetail.jsp").forward(request, response);
     }

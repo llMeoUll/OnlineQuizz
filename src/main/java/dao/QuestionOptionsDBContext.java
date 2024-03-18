@@ -39,4 +39,8 @@ public class QuestionOptionsDBContext extends DBContext{
             throw new RuntimeException(e);
         }
     }
+
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
+    }
 }

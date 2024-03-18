@@ -27,6 +27,12 @@ public class DeleteSet extends HttpServlet {
         } else {
             response.getWriter().println("You are not owner of this set");
         }
+        // close connection
+        try {
+            setDB.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

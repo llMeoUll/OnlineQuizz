@@ -6,6 +6,7 @@ import jakarta.servlet.http.*;
 import util.Email;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ForgotPassword extends HttpServlet {
     @Override
@@ -41,6 +42,12 @@ public class ForgotPassword extends HttpServlet {
             } else {
                 request.setAttribute("error", "Email không tồn tại");
                 request.getRequestDispatcher("./view/user/authenticate/ForgotPassword.jsp").forward(request, response);
+            }
+            // close connection
+            try {
+                db.closeConnection();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         } else {
             request.setAttribute("error", "Email không được để trống");

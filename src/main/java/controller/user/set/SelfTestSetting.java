@@ -11,8 +11,6 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
-
 public class SelfTestSetting extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,6 +20,12 @@ public class SelfTestSetting extends HttpServlet {
         HttpSession session = request.getSession();
         if (session.getAttribute("set") != null) {
             session.removeAttribute("set");
+        }
+        // close connection
+        try {
+            setDB.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         session.setAttribute("set", set);
         request.getRequestDispatcher("../.././view/user/set/SelfTestSetting.jsp").forward(request, response);

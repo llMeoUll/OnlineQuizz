@@ -18,11 +18,6 @@ public class SelfTestHistoryDetail extends HttpServlet {
         // get self test information
         SelfTestDBContext selfTestDBContext = new SelfTestDBContext();
         SelfTest selfTest = selfTestDBContext.get(selfTestId);
-        try {
-            selfTestDBContext.closeConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
         //get set information
         SetDBContext setDBContext = new SetDBContext();
         Set set = setDBContext.get(selfTest.getSet().getSId());
@@ -31,16 +26,14 @@ public class SelfTestHistoryDetail extends HttpServlet {
         setInfor.setSName(set.getSName());
         setInfor.setDescription(set.getDescription());
         selfTest.setSet(setInfor);
-        try {
-            setDBContext.closeConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
         // get self test questions
         SelfTestQuestionDBContext selfTestQuestionDBContext = new SelfTestQuestionDBContext();
         ArrayList<SelfTestQuestion> selfTestQuestions = selfTestQuestionDBContext.list(selfTestId);
+        // close connection
         try {
             selfTestQuestionDBContext.closeConnection();
+            selfTestDBContext.closeConnection();
+            setDBContext.closeConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

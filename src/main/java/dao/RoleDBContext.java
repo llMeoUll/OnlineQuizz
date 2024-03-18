@@ -92,4 +92,8 @@ public class RoleDBContext extends DBContext {
         }
         return roles;
     }
+
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
+    }
 }

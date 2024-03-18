@@ -33,6 +33,12 @@ public class UserProfileUpdateControl extends HttpServlet {
         UserDBContext udb = new UserDBContext();
         User user = udb.get(id);
         request.setAttribute("user", user);
+        // close connection
+        try {
+            udb.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher("../../view/user/profile/EditProfile.jsp").forward(request, response);
 
     }
@@ -67,7 +73,6 @@ public class UserProfileUpdateControl extends HttpServlet {
 //            e.printStackTrace();
 //        }
         String avatar = request.getParameter("avatar");
-        UserDBContext db = new UserDBContext();
         // Kiểm tra xem các trường có giá trị hay không
         if (password != null && !password.equals(old_pass)) {
             String generatedSecuredPasswordHash = SCryptUtil.scrypt(password, 16, 16, 16);
@@ -110,6 +115,14 @@ public class UserProfileUpdateControl extends HttpServlet {
             notification.setFrom(newUser);
 
             notificationDBContext.insert(notification);
+            // close connection
+            try {
+                userDBContext.closeConnection();
+                notificationTypeDBContext.closeConnection();
+                notificationDBContext.closeConnection();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             session.setAttribute("user", newUser);
             // Thêm người dùng vào cơ sở dữ liệu
         } else {

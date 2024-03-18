@@ -7,6 +7,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class SelfTestHistory extends HttpServlet {
     @Override
@@ -18,6 +19,13 @@ public class SelfTestHistory extends HttpServlet {
         request.setAttribute("set", setDBContext.get(setId));
         SelfTestDBContext selfTestDBContext = new SelfTestDBContext();
         request.setAttribute("selfTestHistories", selfTestDBContext.list(user.getId(), setId));
+        // close connection
+        try {
+            selfTestDBContext.closeConnection();
+            setDBContext.closeConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher("../../.././view/user/set/SelfTestHistory.jsp").forward(request, response);
     }
 

@@ -29,8 +29,7 @@ public class ReviewTest extends HttpServlet {
         // list question and this answer
         ArrayList<Question> listResultQuestionAnswer = tDb.getListResultQuestionAnswer(testId, attempt, userId);
         // list question of this test
-        ArrayList<Question> listQuestions = new ArrayList<>();
-        listQuestions = tDb.getListQuestionsOfTest(currentTest);
+        ArrayList<Question> listQuestions = tDb.getListQuestionsOfTest(currentTest);
         for (Question question : listQuestions) {
             if (question.getType().getTypeName().equals("True/False")) {
                 QuestionOption opt1 = new QuestionOption();
@@ -63,6 +62,13 @@ public class ReviewTest extends HttpServlet {
                 question.setQuestionOptions(opts);
             }
 
+        }
+        // close connection
+        try {
+            tDb.closeConnection();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         request.setAttribute("listResultQuestionAnswer", listResultQuestionAnswer);
         request.setAttribute("listQuestions", listQuestions);

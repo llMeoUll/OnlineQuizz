@@ -35,6 +35,15 @@ public class UserProfile extends HttpServlet {
         RoomDBContext rdb = new RoomDBContext();
         List<Room> listR = rdb.list(user);
 
+        // close connection
+        try {
+            udb.closeConnection();
+            sdb.closeConnection();
+            rdb.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         request.setAttribute("user",user);
         request.setAttribute("countSet",countSet);
         request.setAttribute("countRoom",countRoom);
