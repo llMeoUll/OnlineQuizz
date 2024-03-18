@@ -34,6 +34,8 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
+
+
 <%--Navbar--%>
 <style>
 
@@ -143,7 +145,7 @@
                 <tr>
                     <!-- Column for Questions -->
                     <td>
-                        <div class="container mt-3 bg-light-purple p-3 rounded room-item">
+                        <div class="container mt-1 bg-light-purple p-3 rounded room-item">
                             <!-- Card Body -->
                             <div class="card-body">
                                 <!-- Information Block -->
@@ -240,78 +242,6 @@
                     </td>
                 </tr>
             </c:forEach>
-            <script>
-                window.onload = function () {
-                    // Function to shuffle an array while keeping order
-                    function shuffleArrayWithOrder(array) {
-                        let currentIndex = array.length;
-                        let tempValue, randomIndex;
-
-                        // While there remain elements to shuffle...
-                        while (0 !== currentIndex) {
-                            // Pick a remaining element...
-                            randomIndex = Math.floor(Math.random() * currentIndex);
-                            currentIndex--;
-
-                            // And swap it with the current element.
-                            tempValue = array[currentIndex];
-                            array[currentIndex] = array[randomIndex];
-                            array[randomIndex] = tempValue;
-                        }
-
-                        return array;
-                    }
-
-                    // Retrieve option elements by their IDs for all questions
-                    <c:forEach items="${requestScope.listQuestions}" var="question">
-                    <c:choose>
-                    <c:when test="${question.type.getTypeId() == 1}">
-                    <c:forEach items="${question.questionOptions}" var="option" varStatus="loop">
-                    const option${loop.index}_${question.getQId()} = document.getElementById('option${loop.index}_${question.getQId()}');
-                    </c:forEach>
-
-                    const optionsContent_${question.getQId()} = [
-                        <c:forEach items="${question.questionOptions}" var="option" varStatus="loop">
-                        option${loop.index}_${question.getQId()}.nextElementSibling.innerHTML${!loop.last ? ',' : ''}
-                        </c:forEach>
-                    ];
-
-                    const shuffledOptionsContent_${question.getQId()} = shuffleArrayWithOrder(optionsContent_${question.getQId()});
-
-                    <c:forEach items="${question.questionOptions}" var="option" varStatus="loop">
-                    option${loop.index}_${question.getQId()}.nextElementSibling.innerHTML = shuffledOptionsContent_${question.getQId()}[${loop.index}];
-                    option${loop.index}_${question.getQId()}.value = shuffledOptionsContent_${question.getQId()}[${loop.index}];
-                    </c:forEach>
-                    </c:when>
-
-                    <c:when test="${question.type.getTypeId() == 2}">
-                    // For type_id = 2 (True/False)
-                    const optionTrue_${question.getQId()} = document.getElementById('optionTrue_${question.getQId()}');
-                    const optionFalse_${question.getQId()} = document.getElementById('optionFalse_${question.getQId()}');
-
-                    // Extract option content from the original HTML
-                    const optionsContent_${question.getQId()} = [
-                        optionTrue_${question.getQId()}.nextElementSibling.innerHTML,
-                        optionFalse_${question.getQId()}.nextElementSibling.innerHTML
-                    ];
-
-                    // Shuffle the options content array while keeping order
-                    const shuffledOptionsContent_${question.getQId()} = shuffleArrayWithOrder(optionsContent_${question.getQId()});
-
-                    // Update the HTML with the shuffled options content
-                    optionTrue_${question.getQId()}.nextElementSibling.innerHTML = shuffledOptionsContent_${question.getQId()}[0];
-                    optionTrue_${question.getQId()}.value = shuffledOptionsContent_${question.getQId()}[0];
-
-                    optionFalse_${question.getQId()}.nextElementSibling.innerHTML = shuffledOptionsContent_${question.getQId()}[1];
-                    optionFalse_${question.getQId()}.value = shuffledOptionsContent_${question.getQId()}[1];
-                    </c:when>
-                    <c:otherwise>
-                    // Handle other types or provide a default
-                    </c:otherwise>
-                    </c:choose>
-                    </c:forEach>
-                }
-            </script>
 
 
             <button type="submit" id="submitButton" class="btn btn-primary mt-3 mb-3">Submit Answers</button>
@@ -353,7 +283,6 @@
                 "Time remaining: " + hours + "h " + minutes + "m " + seconds + "s";
         }
     }
-
 
 </script>
 </html>

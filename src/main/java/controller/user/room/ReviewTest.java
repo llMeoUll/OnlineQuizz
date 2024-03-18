@@ -46,13 +46,11 @@ public class ReviewTest extends HttpServlet {
                 QuestionOption answer = new QuestionOption();
                 answer.setOptContent(question.getAnswer());
                 opts.add(answer);
-                //remove answer from question
-                question.setAnswer(null);
                 question.setQuestionOptions(opts);
             } else if (question.getType().getTypeName().equals("Essay")) {
                 QuestionOption opt = new QuestionOption();
-                for(Question q : listResultQuestionAnswer){
-                    if(q.getQId() == question.getQId()){
+                for (Question q : listResultQuestionAnswer) {
+                    if (q.getQId() == question.getQId()) {
                         opt.setOptContent(q.getAnswer());
                         break;
                     }
@@ -61,7 +59,6 @@ public class ReviewTest extends HttpServlet {
                 opts.add(opt);
                 question.setQuestionOptions(opts);
             }
-
         }
         // close connection
         try {
@@ -70,6 +67,7 @@ public class ReviewTest extends HttpServlet {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
         request.setAttribute("listResultQuestionAnswer", listResultQuestionAnswer);
         request.setAttribute("listQuestions", listQuestions);
         request.getRequestDispatcher("../../../view/user/room/ReviewTest.jsp").forward(request, response);

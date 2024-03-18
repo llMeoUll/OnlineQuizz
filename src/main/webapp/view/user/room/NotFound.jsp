@@ -130,7 +130,9 @@
     <c:if test="${requestScope.NoTestOwnerRights ne null}">
         <p>${requestScope.NoTestOwnerRights}</p>
     </c:if>
-
+    <c:if test="${requestScope.timeErrorMessage ne null}">
+        <p>${requestScope.timeErrorMessage}</p>
+    </c:if>
     <p>Error page!</p>
 </div>
 

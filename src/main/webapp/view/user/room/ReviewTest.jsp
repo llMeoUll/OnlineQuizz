@@ -215,10 +215,13 @@
         <tbody>
 
         <c:forEach items="${requestScope.listQuestions}" var="question">
+            <script>
+                console.log(${question.answer})
+            </script>
             <tr>
                 <!-- Column for Questions -->
                 <td>
-                    <div class="container mt-3 bg-light-purple p-3 rounded room-item">
+                    <div class="container mt-1 bg-light-purple p-3 rounded room-item">
                         <!-- Card Body -->
                         <div class="card-body">
                             <!-- Information Block -->
@@ -303,7 +306,27 @@
                                 </div>
                             </div>
                         </c:when>
+                        <c:when test="${question.type.getTypeId() == 3}">
+                            <div class="row text-light">
+                                <div class="answer-option">
+                                    <label for="textInput_${question.getQId()}">Answer:</label>
+                                    <c:if test="${not empty listResultQuestionAnswer}">
+                                        <c:forEach items="${listResultQuestionAnswer}" var="resultQuestion">
+                                            <c:if test="${resultQuestion.getQId() == question.getQId()}">
+                                                <input type="text" id="textInput_${question.getQId()}"
+                                                       name="answer_${question.getQId()}"
+                                                       value="${resultQuestion.getAnswer()}" readonly>
+                                            </c:if>
+                                        </c:forEach>
+                                    </c:if>
+
+                                </div>
+                            </div>
+                        </c:when>
                     </c:choose>
+                    <div class="text-success">
+                        The correct answer is: ${question.answer}
+                    </div>
                 </td>
             </tr>
         </c:forEach>
