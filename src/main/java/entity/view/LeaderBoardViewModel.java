@@ -1,4 +1,4 @@
-package entity.ViewModel;
+package entity.view;
 
 import entity.Test;
 import entity.User;

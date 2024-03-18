@@ -1,7 +1,7 @@
 package dao;
 
 import entity.*;
-import entity.ViewModel.LeaderBoardViewModel;
+import entity.view.LeaderBoardViewModel;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

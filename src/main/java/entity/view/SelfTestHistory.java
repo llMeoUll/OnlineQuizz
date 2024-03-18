@@ -1,4 +1,4 @@
-package entity.ViewModel;
+package entity.view;
 
 import entity.Set;
 import entity.User;
@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 
 @Getter
 @Setter
@@ -21,4 +20,5 @@ public class SelfTestHistory {
     private Set set;
     private Timestamp createdAt;
     private int result;
+    private int numberOfQuestion;
 }

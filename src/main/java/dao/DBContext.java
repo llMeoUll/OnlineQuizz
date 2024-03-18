@@ -22,4 +22,10 @@ public abstract class DBContext<U> {
         }
     }
 
+    public void closeConnection() throws SQLException {
+        if (connection != null && !connection.isClosed()) {
+            connection.close();
+        }
+    }
+
 }

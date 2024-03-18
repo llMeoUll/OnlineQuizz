@@ -2,10 +2,9 @@ package controller.user.room;
 
 import dao.TestDBContext;
 import entity.Test;
-import entity.ViewModel.LeaderBoardViewModel;
+import entity.view.LeaderBoardViewModel;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -11,27 +11,42 @@
 <html>
 <head>
     <title>Self test history</title>
+    <link rel="stylesheet" href="../../.././webjars/bootstrap/5.3.2/css/bootstrap.min.css">
+    <%--    <link rel="stylesheet" href="../../../.././css/CreateSet.css">--%>
+    <link rel="stylesheet" href="../../.././webjars/font-awesome/6.5.1/css/all.min.css">
+    <script src="../../.././webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    <script src="../../.././webjars/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <table>
-           <thead>
-                <tr>
-                    <th>Index</th>
-                    <th>Test Date</th>
-                    <th>Test Result</th>
-                </tr>
-           </thead>
-            <tbody>
-                <c:forEach items="${requestScope.selfTests}" var="selfTest" varStatus="selfTestLoop">
-                    <tr>
-                        <td>${selfTestLoop.count}</td>
-                        <fmt:formatDate value="${selfTest.createdAt}" pattern="HH:mm dd/MM/yyyy" var="formattedDate" />
-                        <td>${formattedDate}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+<div class="container">
+    <h4 class="text-center">Self test history</h4>
+    <div class="row justify-content-center">
+        <a href=".././get?setId=${requestScope.set.getSId()}" class="text-decoration-none text-center">${requestScope.set.getSName()}</a>
     </div>
+    <table id="self-test-history" class="table table-hover">
+        <thead>
+        <tr>
+            <th>Index</th>
+            <th>Test Result</th>
+            <th>Test record</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${requestScope.selfTestHistories}" var="selfTestHistory" varStatus="selfTestHistoryLoop">
+            <tr>
+                <td>${selfTestHistoryLoop.count}</td>
+                <td>${selfTestHistory.result}/${selfTestHistory.numberOfQuestion}</td>
+                <fmt:formatDate value="${selfTestHistory.createdAt}" pattern="HH:mm dd/MM/yyyy" var="formattedDate"/>
+                <td>${formattedDate}</td>
+                <td>${selfTestHistory.selfTestId}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+<script src="../../.././js/SelfTestHistory.js"></script>
 </body>
 </html>
