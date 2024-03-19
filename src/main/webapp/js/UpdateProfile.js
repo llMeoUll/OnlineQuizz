@@ -94,3 +94,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
 
 });
+
+function changeAvatarButton() {
+    document.getElementById("fileInput").click()
+}
+
+const inputFile = document.getElementById('fileInput');
+inputFile.addEventListener('change', () => {
+    let selectAvatar = document.getElementById('buttonOpenFile');
+    let changeButton = document.getElementById("buttonSubmitForm");
+
+    if (inputFile.files.length > 0) {
+        selectAvatar.classList.add('d-none');
+        changeButton.classList.remove('d-none');
+        changeButton.classList.add('d-block');
+    }
+
+});

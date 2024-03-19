@@ -126,30 +126,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!--api of gg drive-->
-        <dependency>
-            <groupId>com.google.api-client</groupId>
-            <artifactId>google-api-client</artifactId>
-            <version>2.4.0</version>
-        </dependency>
-        <!--api of gg drive maven-->
-        <dependency>
-            <groupId>com.google.apis</groupId>
-            <artifactId>google-api-services-drive</artifactId>
-            <version>v3-rev20240123-2.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.13.0</version> <!-- Bạn có thể sử dụng phiên bản phù hợp -->
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.13.0</version> <!-- Bạn có thể sử dụng phiên bản phù hợp -->
-        </dependency>
-
     </dependencies>
 
     <build>

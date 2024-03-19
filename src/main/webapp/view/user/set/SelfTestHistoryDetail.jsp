@@ -12,11 +12,10 @@
 <html lang="en">
 <head>
     <title>History detail</title>
-    <link rel="stylesheet" href="../../../.././webjars/bootstrap/5.3.2/css/bootstrap.min.css">
-    <%--    <link rel="stylesheet" href="../../../.././css/CreateSet.css">--%>
-    <link rel="stylesheet" href="../../../.././webjars/font-awesome/6.5.1/css/all.min.css">
-    <script src="../../../.././webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
-    <script src="../../../.././webjars/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/font-awesome/6.5.1/css/all.min.css">
+    <script src="${pageContext.request.contextPath}/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/webjars/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
