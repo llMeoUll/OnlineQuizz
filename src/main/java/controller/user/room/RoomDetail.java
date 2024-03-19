@@ -38,6 +38,7 @@ public class RoomDetail extends HttpServlet {
         UserDBContext uDB = new UserDBContext();
         User u = uDB.get(userLogged.getEmail());
 
+
         TestDBContext tDB = new TestDBContext();
         ArrayList<Test> listTestOfRoom = tDB.getTestsCorrespondingEachRoom(u, r);
         r = rDB.getRoomById(r);

@@ -218,7 +218,7 @@
             <tr>
                 <!-- Column for Questions -->
                 <td>
-                    <div class="container mt-3 bg-light-purple p-3 rounded room-item">
+                    <div class="container mt-1 bg-light-purple p-3 rounded room-item">
                         <!-- Card Body -->
                         <div class="card-body">
                             <!-- Information Block -->

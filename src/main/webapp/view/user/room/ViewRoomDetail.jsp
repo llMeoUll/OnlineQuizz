@@ -130,9 +130,12 @@
     </div>
 </nav>
 <%--create btn added by LinhNguyen--%>
-<div class="container mt-3">
-    <a href="./test/create?roomId=${requestScope.currentRoom.roomId}" class="btn btn-primary">Create Test</a>
-</div>
+<c:if test="${requestScope.currentRoom.user.id eq requestScope.currentUser.id}">
+    <div class="container mt-3">
+        <a href="./test/create?roomId=${requestScope.currentRoom.roomId}" class="btn btn-primary">Create Test</a>
+    </div>
+</c:if>
+
 <!-- Content -->
 <div class="container mt-3">
     <div class="card bg-light-purple mb-3">
@@ -145,7 +148,30 @@
 
             <div>
                 <p class="text-light fs-5 font-weight-bold">Invite:
-                    Quizzicle/user/room/invite?codeToJoin=${requestScope.codeToJoin}</p>
+                    Quizzicle/user/room/invite?codeToJoin=${requestScope.codeToJoin}</p> <br/>
+                <div>
+                    Code: <input class="bg-light-purple" type="text" value="${requestScope.currentRoom.code}" readonly>
+                    Password: <input class="bg-light-purple" type="password" id="passwordField"
+                                     value="${requestScope.currentRoom.password}"
+                                     readonly>
+                    <span id="togglePassword" onclick="togglePasswordVisibility()">👁️</span>
+                </div>
+
+                <script>
+                    function togglePasswordVisibility() {
+                        var passwordField = document.getElementById("passwordField");
+                        var toggleButton = document.getElementById("togglePassword");
+
+                        if (passwordField.type === "password") {
+                            passwordField.type = "text";
+                            toggleButton.textContent = "👁️";
+                        } else {
+                            passwordField.type = "password";
+                            toggleButton.textContent = "👁️";
+                        }
+                    }
+                </script>
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -162,7 +188,6 @@
         </div>
     </div>
 </div>
-
 
 
 <!-- Edit Room Modal -->

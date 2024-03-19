@@ -28,6 +28,15 @@ public class DoTest extends HttpServlet {
         currentTest.setTestId(testId);
         currentTest = testDBContext.getTestById(currentTest);
 
+        // Check time. If now < start time or now > end time => Cannot do test
+        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+        // Perform timestamp comparison
+        if (currentTimestamp.before(currentTest.getStartTime()) || currentTimestamp.after(currentTest.getEndTime())) {
+            // Cannot do the test
+            request.setAttribute("timeErrorMessage", "Cannot do the test at this time.");
+            request.getRequestDispatcher("../../../view/user/room/NotFound.jsp").forward(request, response);
+            return;
+        }
         // Get current user
         User userLogged = (User) request.getSession().getAttribute("user");
         UserDBContext uDB = new UserDBContext();
@@ -40,15 +49,17 @@ public class DoTest extends HttpServlet {
         if (u.getId() == ownerTest.getId()) {
             request.setAttribute("NoTestOwnerRights", "You do not have the right to take the test (because you are the owner)");
             request.getRequestDispatcher("../../../view/user/room/NotFound.jsp").forward(request, response);
+            return;
         }
 
         int currentAttempt = testDBContext.getCurrentAttemptOfThisTest(currentTest, userLogged);
         if (currentAttempt >= currentTest.getAttempt()) {
             request.setAttribute("ExceededTimesDoTest", "The number of times you have taken the test has exceeded");
             request.getRequestDispatcher("../../../view/user/room/NotFound.jsp").forward(request, response);
+            return;
         }
-
         currentTest = testDBContext.getTestById(currentTest);
+
         request.setAttribute("currentTest", currentTest);
         // list question of this test
         ArrayList<Question> listQuestions = testDBContext.getListQuestionsOfTest(currentTest);
