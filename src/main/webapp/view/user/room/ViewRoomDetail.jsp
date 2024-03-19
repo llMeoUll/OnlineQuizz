@@ -30,6 +30,7 @@
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../.././css/manageRoom/ViewRoomDetail.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -264,8 +265,19 @@
             </div>
         </a>
     </c:forEach>
-</div>
+    <div class="position-fixed bottom-0 start-0 p-3" style="z-index: 11">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="mr-auto">Notification</strong>
+            </div>
+            <div class="toast-body">
 
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../.././js/NotificationInRoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
