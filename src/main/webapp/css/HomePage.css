@@ -10,7 +10,7 @@ body{
 header{
     text-align: center;
     height: 71px;
-    background-color: #838BE3;
+    background-color: #fff;
 }
 
 footer{
@@ -54,11 +54,14 @@ main{
     background-color: #ffffff;
 }
 
-.navbar-nav {
-    margin-top: 5px;
-    margin-left: 10em;
-    font-size: 18px;
-}
+/*.navbar-nav {*/
+/*    display: flex;*/
+/*    flex: 1;*/
+/*    gap: 10px;*/
+/*    font-size: 16px;*/
+/*    justify-content: space-evenly;*/
+/*    margin: 0;*/
+/*}*/
 
 .dropdown-menu {
     background: #ffffff;
@@ -117,7 +120,7 @@ main{
     }
     .navbar-nav .nav-item {
         margin-right: 0 !important;
-        margin-bottom: 1rem;
+        /*margin-bottom: 1rem;*/
     }
 
     .dropdown-menu {
@@ -146,3 +149,6 @@ main{
         margin-left: auto;
     }
 }
+
+
+

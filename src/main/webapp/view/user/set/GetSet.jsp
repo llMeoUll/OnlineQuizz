@@ -1,269 +1,65 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%--@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);--%>
 <html>
 <head>
     <title>Get set</title>
     <link rel="stylesheet" href="../.././webjars/bootstrap/5.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../.../css/GetSet.css">
     <link rel="stylesheet" href="../.././webjars/font-awesome/6.5.1/css/all.min.css">
     <script src="../.././webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
     <script src="../.././webjars/jquery/3.7.1/jquery.min.js"></script>
-<%--    comment--%>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <%-- comment   --%>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <style>
-        .fl {
-            width: 100%;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 8px;
-            border: 1px solid #ccc;
-        }
-
-        th {
-            background-color: #f1f1f1;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tr:hover {
-            background-color: #e9e9e9;
-        }
-
-        td {
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-      /**/
-        /*#create-set-content {*/
-        /*    position: fixed;*/
-        /*    top: 0;*/
-        /*    width: 100%;*/
-        /*    height: 64px;*/
-        /*    background-color: #0d6efd;*/
-        /*    z-index: 2;*/
-        /*}*/
-
-        .bootdey {
-            padding-top: 64px; /* Đảm bảo không bị đè lên phần tử trên */
-            margin-top: 500px;
-        }
-        body {
-            margin-top: 20px;
-            background: #ebeef0;
-        }
-
-        .img-sm {
-            width: 46px;
-            height: 46px;
-        }
-
-        .panel {
-            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.075);
-            border-radius: 0;
-            border: 0;
-            margin-bottom: 15px;
-        }
-
-        .panel .panel-footer,
-        .panel > :last-child {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-      .fl {
-                    width: 100%;
-                    overflow-x: auto;
-                }
-        .media-block .media-left {
-            display: block;
-            float: left
-        }
-
-        .media-block .media-right {
-            float: right
-        }
-
-        .media-block .media-body {
-            display: block;
-            overflow: hidden;
-            width: auto
-        }
-
-        .middle .media-left,
-        .middle .media-right,
-        .middle .media-body {
-            vertical-align: middle
-        }
-
-        .thumbnail {
-            border-radius: 0;
-            border-color: #e9e9e9
-        }
-
-        .tag.tag-sm,
-        .btn-group-sm > .tag {
-            padding: 5px 10px;
-        }
-
-        .tag:not(.label) {
-            background-color: #fff;
-            padding: 6px 12px;
-            border-radius: 2px;
-            border: 1px solid #cdd6e1;
-            font-size: 12px;
-            line-height: 1.42857;
-            vertical-align: middle;
-            -webkit-transition: all .15s;
-            transition: all .15s;
-        }
-
-        .text-muted,
-        a.text-muted:hover,
-        a.text-muted:focus {
-            color: #acacac;
-        }
-
-        .text-sm {
-            font-size: 0.9em;
-        }
-
-        .text-5x,
-        .text-4x,
-        .text-5x,
-        .text-2x,
-        .text-lg,
-        .text-sm,
-        .text-xs {
-            line-height: 1.25;
-        }
-
-        .btn-trans {
-            background-color: transparent;
-            border-color: transparent;
-            color: #929292;
-        }
-
-        .btn-icon {
-            padding-left: 9px;
-            padding-right: 9px;
-        }
-
-        .btn-sm,
-        .btn-group-sm > .btn,
-        .btn-icon.btn-sm {
-            padding: 5px 10px !important;
-        }
-
-        .mar-top {
-            margin-top: 15px;
-        }
-      
-      .panel .panel-heading,
-        .panel > :first-child {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-
-        .panel-body {
-            padding: 25px 20px;
-        }
-    </style>
-    <script>
-        function confirmDelete() {
-            var confirmation = window.confirm("Are you sure you want to delete this set ${setID}?");
-            if (confirmation) {
-                window.location.href = "../set/delete?set-id=${setID}";
-            } else {
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var flashcards = document.getElementsByClassName('flashcard');
-            var currentIndex = 0;
-
-            function showFlashcard(index) {
-                if (index >= 0 && index < flashcards.length) {
-                    for (var i = 0; i < flashcards.length; i++) {
-                        flashcards[i].classList.add('hidden');
-                    }
-                    flashcards[index].classList.remove('hidden');
-                    currentIndex = index;
-                }
-            }
-
-            function showNextFlashcard() {
-                var nextIndex = currentIndex + 1;
-                if (nextIndex >= flashcards.length) {
-                    nextIndex = 0;
-                }
-                showFlashcard(nextIndex);
-            }
-
-            function showPreviousFlashcard() {
-                var prevIndex = currentIndex - 1;
-                if (prevIndex < 0) {
-                    prevIndex = flashcards.length - 1;
-                }
-                showFlashcard(prevIndex);
-            }
-
-            for (var i = 0; i < flashcards.length; i++) {
-                flashcards[i].addEventListener('click', function () {
-                    this.classList.toggle("flipped");
-                });
-            }
-
-            var nextBtn = document.getElementById('nextBtn');
-            var prevBtn = document.getElementById('prevBtn');
-
-            nextBtn.addEventListener('click', showNextFlashcard);
-            prevBtn.addEventListener('click', showPreviousFlashcard);
-
-            showFlashcard(currentIndex);
-        });
-    </script>
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../css/GetSet.css">
+    <link rel="stylesheet" href="../../css/HomePage.css">
 </head>
-<body>
+<body class="bg-white">
 </div>
 <%--header--%>
-<div class="fixed-top shadow z-2" style="height: 64px; background-color: #0d6efd">
-    <main id="main">
+<jsp:include page="../../../components/header.jsp"></jsp:include>
 
-        <%--        <h1 class="container h2" style="padding-top: 100px;">Flashcards: ${fl.getTitle()}</h1>--%>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary container">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Quizzicle</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav me-auto">
-                            <!-- Add any additional navbar links here -->
-                        </ul>
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-light" type="submit">Search</button>
-                        </form>
+<%--main--%>
+<main class="bg-white">
+    <%--    nam--%>
+    <div class=" z-2" style="background-color: #fff">
+
+        <hr class="container">
+        <%--        flashcard--%>
+        <div class="flashcard-fl mt-32">
+            <c:forEach var="i" items="${listQuestion}" varStatus="status">
+                <div class="flashcard ${status.index > 0 ? 'hidden' : ''}">
+                    <div class="question">
+                        <h2>${i.getQuestion()}</h2>
+                    </div>
+                    <div class="answer">
+                        <p>${i.getAnswer()}</p>
                     </div>
                 </div>
-            </nav>
+            </c:forEach>
+        </div>
 
+        <div style="justify-content: center;">
+            <div class="controls">
+                <button id="prevBtn">Prev</button>
+                <button id="nextBtn">Next</button>
+            </div>
+        </div>
+        <hr class="container">
         <h5 class="container text-success">All Terminology:</h5>
         <div class="container">
             <!-- Button trigger modal -->
@@ -271,163 +67,46 @@
             <div style="justify-content: center;">
                 <!--  Update -->
                 <a class="btn btn-primary" href="/Quizzicle/user/set/update">Update</a>
+                <form id="myForm" action="./get" method="post">
+                    <div id="ratingStars" class="" style="position: static">
+                        <input type="radio" id="star5" name="numberOfStar" value="5" onclick="submitForm()">
+                        <label for="star5" title="5 stars"></label>
+                        <input type="radio" id="star4" name="numberOfStar" value="4" onclick="submitForm()">
+                        <label for="star4" title="4 stars"></label>
+                        <input type="radio" id="star3" name="numberOfStar" value="3" onclick="submitForm()">
+                        <label for="star3" title="3 stars"></label>
+                        <input type="radio" id="star2" name="numberOfStar" value="2" onclick="submitForm()">
+                        <label for="star2" title="2 stars"></label>
+                        <input type="radio" id="star1" name="numberOfStar" value="1" onclick="submitForm()">
+                        <label for="star1" title="1 star"></label>
+
+                        <input type="hidden" name="setId" value="${requestScope.setID}">
+                    </div>
+                </form>
             </div>
-            <script>
-                function confirmDelete() {
-                    var confirmation = window.confirm("Are you sure you want to delete this set ${setID}?");
-                    if (confirmation) {
-                        window.location.href = "../set/delete?set-id=${setID}";
-                    } else {
-                    }
-                }
-            </script>
-
-
-            <table>
+            <table class="table mb-4">
                 <thead>
                 <tr>
-                    <th>Question</th>
-                    <th>Answer</th>
+                    <th scope="col">Question</th>
+                    <th scope="col">Answer</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="a" items="${listQuestion}">
                     <tr>
-                        <td>
+                        <th>
                             <pre style="white-space: pre-line">${a.getQuestion()}</pre>
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             <pre style="white-space: pre-line">${a.getAnswer()}</pre>
-                        </td>
+                        </th>
                     </tr>
                 </c:forEach>
                 </tbody>
-                <style>
-                    td {
-                        word-wrap: break-word;
-                        overflow-wrap: break-word;
-                    }
-                </style>
-
             </table>
-            <form id="myForm" action="./get" method="post">
-                <div id="ratingStars" class="rating">
-                    <input type="radio" id="star5" name="numberOfStar" value="5" onclick="submitForm()">
-                    <label for="star5" title="5 stars"></label>
-                    <input type="radio" id="star4" name="numberOfStar" value="4" onclick="submitForm()">
-                    <label for="star4" title="4 stars"></label>
-                    <input type="radio" id="star3" name="numberOfStar" value="3" onclick="submitForm()">
-                    <label for="star3" title="3 stars"></label>
-                    <input type="radio" id="star2" name="numberOfStar" value="2" onclick="submitForm()">
-                    <label for="star2" title="2 stars"></label>
-                    <input type="radio" id="star1" name="numberOfStar" value="1" onclick="submitForm()">
-                    <label for="star1" title="1 star"></label>
 
-                    <input type="hidden" name="setId" value="${requestScope.setID}">
-                </div>
-                <button type="submit">Rate</button>
-            </form>
-            <script>
-                function submitForm() {
-                    document.getElementById("myForm").submit();
-                }
-            </script>
-            <style>
-              
-
-    </style>
-</head>
-<body>
-</div>
-<%--header--%>
-<%--<div class="fixed-top shadow z-2" style="height: 64px; background-color: #0d6efd">--%>
-<%--    <main id="main">--%>
-
-<%--        &lt;%&ndash;        <h1 class="container h2" style="padding-top: 100px;">Flashcards: ${fl.getTitle()}</h1>&ndash;%&gt;--%>
-<%--        <nav class="navbar navbar-expand-lg navbar-dark bg-primary container">--%>
-<%--            <div class="container-fluid">--%>
-<%--                <a class="navbar-brand" href="#">Quizzicle</a>--%>
-<%--                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"--%>
-<%--                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">--%>
-<%--                    <span class="navbar-toggler-icon"></span>--%>
-<%--                </button>--%>
-<%--                <div class="collapse navbar-collapse" id="navbarNav">--%>
-<%--                    <ul class="navbar-nav me-auto">--%>
-<%--                        <!-- Add any additional navbar links here -->--%>
-<%--                    </ul>--%>
-<%--                    <form class="d-flex">--%>
-<%--                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">--%>
-<%--                        <button class="btn btn-outline-light" type="submit">Search</button>--%>
-<%--                    </form>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </nav>--%>
-
-<%--        <hr class="container">--%>
-<%--        <div class="flashcard-fl">--%>
-<%--            <c:forEach var="i" items="${listQuestion}" varStatus="status">--%>
-<%--                <div class="flashcard ${status.index > 0 ? 'hidden' : ''}">--%>
-<%--                    <div class="question">--%>
-<%--                        <h2>${i.getQuestion()}</h2>--%>
-<%--                    </div>--%>
-<%--                    <div class="answer">--%>
-<%--                        <p>${i.getAnswer()}</p>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </c:forEach>--%>
-<%--        </div>--%>
-
-<%--        <div style="justify-content: center;">--%>
-<%--            <div class="controls">--%>
-<%--                <button id="prevBtn">Prev</button>--%>
-<%--                <button id="nextBtn">Next</button>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <hr class="container">--%>
-
-
-<%--        <h5 class="container text-success">All Terminology:</h5>--%>
-<%--        <div class="container">--%>
-<%--            <!-- Button trigger modal -->--%>
-<%--            <a class="btn-success" href="#" onclick="confirmDelete()">Delete</a>--%>
-<%--            <div style="justify-content: center;">--%>
-<%--                <!--  Update -->--%>
-<%--                <a class="btn btn-primary" href="/Quizzicle/user/set/update">Update</a>--%>
-<%--            </div>--%>
-<%--            <table>--%>
-<%--                <thead>--%>
-<%--                <tr>--%>
-<%--                    <th>Question</th>--%>
-<%--                    <th>Answer</th>--%>
-<%--                </tr>--%>
-<%--                </thead>--%>
-<%--                <tbody>--%>
-<%--                <c:forEach var="a" items="${listQuestion}">--%>
-<%--                    <tr>--%>
-<%--                        <td>--%>
-<%--                            <pre style="white-space: pre-line">${a.getQuestion()}</pre>--%>
-<%--                        </td>--%>
-<%--                        <td>--%>
-<%--                            <pre style="white-space: pre-line">${a.getAnswer()}</pre>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                </c:forEach>--%>
-<%--                </tbody>--%>
-
-
-<%--            </table>--%>
-<%--            <form id="myForm" action="./get" method="post">--%>
-<%--                <div id="ratingStars" class="rating">--%>
-<%--                    <input type="radio" id="star5" name="numberOfStar" value="5" onclick="submitForm()">--%>
-<%--                    <label for="star5" title="5 stars"></label>--%>
-<%--                    <input type="radio" id="star4" name="numberOfStar" value="4" onclick="submitForm()">--%>
-<%--                    <label for="star4" title="4 stars"></label>--%>
-<%--                    <input type="radio" id="star3" name="numberOfStar" value="3" onclick="submitForm()">--%>
-<%--                    <label for="star3" title="3 stars"></label>--%>
-<%--                    <input type="radio" id="star2" name="numberOfStar" value="2" onclick="submitForm()">--%>
-<%--                    <label for="star2" title="2 stars"></label>--%>
-<%--                    <input type="radio" id="star1" name="numberOfStar" value="1" onclick="submitForm()">--%>
-<%--                    <label for="star1" title="1 star"></label>--%>
+        </div>
+    </div>
 
 <%--                    <input type="hidden" name="setId" value="${requestScope.setID}">--%>
 <%--                </div>--%>
@@ -494,72 +173,68 @@
                                         Comment
                                     </button>
                                 </div>
-
-                                <form id="commentId=${c.getCommentId()}" action="./add" method="post"
-                                      style="display: none;">
+                                    <form id="commentId=${c.getCommentId()}" action="../comment/add" method="post"
+                                          style="display: none;">
                                     <textarea name="comment" class="form-control" rows="2"
                                               placeholder="What are you thinking?"></textarea>
-                                    <input type="hidden" value="${c.getCommentId()}" name="replyId">
-                                    <div class="mar-top clearfix">
-                                        <input type="hidden" name="setID" value="${sessionScope.setID}">
-                                        <button class="btn btn-sm btn-primary pull-right" type="submit"><i
-                                                class="fa fa-pencil fa-fw"></i> Share
-                                        </button>
-                                    </div>
-                                </form>
-                                <hr>
-                                    <%-- reply comment--%>
-                                <div>
-                                    <c:forEach items="${replyList[loop.index]}" var="reply">
-                                        <div class="media-block pad-all">
-                                            <a class="media-left" href="#"><img class="img-circle img-sm"
-                                                                                alt="Profile Picture"
-                                                                                src="${reply.getUser().getAvatar()}"></a>
-                                            <div class="media-body">
-                                                <div class="mar-btm">
-                                                    <a href="#"
-                                                       class="btn-link text-semibold media-heading box-inline">${reply.getUser().getGivenName()}</a>
-                                                    <p class="text-muted text-sm"><i class="fa fa-globe fa-lg"></i>
-                                                        <fmt:formatDate value="${c.getCreatedAt()}"
-                                                                        pattern="yyyy-MM-dd HH:mm:ss"/>
-                                                    </p>
-                                                </div>
-                                                <p>${reply.getContent()}</p>
-                                                <div>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-sm btn-default like-btn" data-id="${reply.getCommentId()}"
-                                                                onclick="clickLike(${reply.getCommentId()})">
-                                                            <i class="mr-3 fa fa-thumbs-o-up"></i>
-                                                            <p id="likeCount_${reply.getCommentId()}">${reply.getLikes()}</p>
-                                                        </button>
-                                                        <button class="btn btn-sm btn-default dislike-btn" data-id="${c.getCommentId()}"
-                                                                onclick="clickDislike(${reply.getCommentId()})">
-                                                            <i class="fa fa-thumbs-o-down"></i>
-                                                            <p id="dislikeCount_${reply.getCommentId()}">${reply.getUnlikes()}</p>
-                                                        </button>
+                                        <input type="hidden" value="${c.getCommentId()}" name="replyId">
+                                        <div class="mar-top clearfix">
+                                            <input type="hidden" name="setID" value="${sessionScope.setID}">
+                                            <button class="btn btn-sm btn-primary pull-right" type="submit"><i
+                                                    class="fa fa-pencil fa-fw"></i> Share
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <hr>
+                                        <%-- reply comment--%>
+                                    <div>
+                                        <c:forEach items="${replyList[loop.index]}" var="reply">
+                                            <div class="media-block pad-all">
+                                                <a class="media-left" href="#"><img class="img-circle img-sm"
+                                                                                    alt="Profile Picture"
+                                                                                    src="${reply.getUser().getAvatar()}"></a>
+                                                <div class="media-body">
+                                                    <div class="mar-btm">
+                                                        <a href="#"
+                                                           class="btn-link text-semibold media-heading box-inline">${reply.getUser().getGivenName()}</a>
+                                                        <p class="text-muted text-sm"><i class="fa fa-globe fa-lg"></i>
+                                                            <fmt:formatDate value="${c.getCreatedAt()}"
+                                                                            pattern="yyyy-MM-dd HH:mm:ss"/>
+                                                        </p>
+                                                    </div>
+                                                    <p>${reply.getContent()}</p>
+                                                    <div>
+                                                        <div class="btn-group">
+                                                            <a class="btn btn-sm btn-default btn-hover-success"
+                                                               href="#"><i
+                                                                    class="fa fa-thumbs-up"></i>${reply.likes} </a>
+                                                            <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i
+                                                                    class="fa fa-thumbs-down"></i>${reply.unlikes}
+                                                                </a>
+                                                        </div>
+<%--                                                        <button class="btn btn-sm btn-default btn-hover-primary"--%>
+<%--                                                                href="#"--%>
+<%--                                                                onclick="toggleForm('${reply.getCommentId()}')">--%>
+<%--                                                            Comment--%>
+<%--                                                        </button>--%>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </c:forEach>
+                                        </c:forEach>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<%--script for comment--%>
-<%--nam_set--%>
-<script>
-    function submitForm() {
-        document.getElementById("myForm").submit();
-    }
-</script>
+</main>
+<%--footer--%>
+<jsp:include page="../../../components/footer.jsp"></jsp:include>
+<script src="../.././js/GetSet.js"></script>
+<script src="${requestScope.getContextPath}/Quizzicle/js/Comment.js"></script>
 <script>
     function toggleForm(replyId) {
         var divContainsForm = document.getElementById('commentId=' + replyId);
@@ -642,8 +317,5 @@
     });
 
 </script>
-
-
 </body>
-
 </html>

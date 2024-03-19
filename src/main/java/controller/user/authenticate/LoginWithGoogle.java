@@ -48,6 +48,4 @@ public class LoginWithGoogle extends HttpServlet {
                 GOOGLE_LINK_AUTH
         ).setScopes(Arrays.asList(GOOGLE_SCOPES)).build();
     }
-
-
 }

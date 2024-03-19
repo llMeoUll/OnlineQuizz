@@ -1,5 +1,6 @@
 package controller.user.profile;
 
+
 import com.lambdaworks.crypto.SCryptUtil;
 import dao.NotificationDBContext;
 import dao.NotificationTypeDBContext;
@@ -7,23 +8,14 @@ import dao.UserDBContext;
 import entity.Notification;
 import entity.NotificationType;
 import entity.User;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.*;
-
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-
-
-import jakarta.servlet.http.Part;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
-@MultipartConfig
 public class UserProfileUpdateControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,7 +26,6 @@ public class UserProfileUpdateControl extends HttpServlet {
         User user = udb.get(id);
         request.setAttribute("user", user);
         request.getRequestDispatcher("../../view/user/profile/EditProfile.jsp").forward(request, response);
-
     }
 
     @Override
@@ -49,27 +40,10 @@ public class UserProfileUpdateControl extends HttpServlet {
         String email = request.getParameter("email");
         String old_pass = request.getParameter("current_password");
         String password = request.getParameter("password");
-        // upload images
-//        Part file = request.getPart("avatar");
-//        String imgFileName = file.getSubmittedFileName();
-//        String uploadPath = "D:/session5/SWP391/OnlineQuizz/src/main/webapp/imagines/" + imgFileName;
-//
-//        try {
-//            FileOutputStream fos = new FileOutputStream(uploadPath);
-//            InputStream is = file.getInputStream();
-//
-//            byte[] data = new byte[is.available()];
-//            is.read(data);
-//            fos.write(data);
-//            fos.close();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        String avatar = request.getParameter("avatar");
-        UserDBContext db = new UserDBContext();
+        String avatar = request.getParameter("avatarUrl").trim();
         // Kiểm tra xem các trường có giá trị hay không
         if (password != null && !password.equals(old_pass)) {
+
             String generatedSecuredPasswordHash = SCryptUtil.scrypt(password, 16, 16, 16);
             // Tạo một đối tượng User mới và thiết lập thông tin
             UserDBContext userDBContext = new UserDBContext();
@@ -83,17 +57,9 @@ public class UserProfileUpdateControl extends HttpServlet {
             newUser.setId(id);
             Date updatedAt = new Date();
             newUser.setUpdatedAt(new Timestamp(updatedAt.getTime()));
-
-            // xác thực và upload ảnh lên google drive
-//            try{
-//                GoogleCredential credential = new GoogleCredential.Builder()
-//                        .setTransport(new NetHttpTransport())
-//                        .setJsonFactory(new JacksonFactory())
-//                        .setClientSecrets(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET)
-//                        .build();
-//            }
             userDBContext.updateUserProfile(newUser);
 
+            // notification
             NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
             NotificationDBContext notificationDBContext = new NotificationDBContext();
             ArrayList<User> tos = userDBContext.getAdmin("Administrator");

@@ -45,15 +45,43 @@
                                     <input name="uid" type="hidden" value="${requestScope.user.id}">
                                     <!-- Image section -->
                                     <div class="d-flex justify-content-center mb-4">
-                                        <img src="${requestScope.user.avatar}"
-                                             class="img-fluid img-circle profile-avatar" alt="User avatar"
-                                             style="width: 300px; height: 300px; position: relative; border: 4px solid #f3f3f3; border-radius: 50%">
+                                        <c:choose>
+                                            <c:when test="${empty sessionScope.user.avatar}">
+                                                <img id="avatarPreview"
+                                                     src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg"
+                                                     class="img-fluid img-circle profile-avatar" alt="User avatar"
+                                                     style="width: 300px; height: 300px; position: relative; border: 4px solid #f3f3f3; border-radius: 50%">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img id="avatarPreview" src="${sessionScope.user.avatar}"
+                                                     class="img-fluid img-circle profile-avatar" alt="User avatar"
+                                                     style="width: 300px; height: 300px; position: relative; border: 4px solid #f3f3f3; border-radius: 50%">
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                     <!-- Upload image -->
-                                    <div class="mb-5">
-                                        <h6 class="text-center">Upload a different photo...</h6>
-                                        <input type="file" class="form-control" name="avatar">
+                                    <%--                                    <div class="mb-5">--%>
+                                    <%--                                        <h6 class="text-center">Upload a different photo...</h6>--%>
+                                    <%--                                        <input type="file" class="form-control" name="avatar">--%>
+                                    <%--                                    </div>--%>
+                                    <div>
+                                        <form id="changeAvatarForm" action="avatar" method="POST"
+                                              class="flex items-center justify-center">
+                                            <input onchange="submitChangeAvatar()" type="text" class="hidden"
+                                                   id="avatarUrl"
+                                                   name="avatarUrl">
+                                            <input id="fileInput" type="file" class="hidden" accept=".jpg,.jpeg,.png">
+                                            <button type="submit" id="buttonSubmitForm"
+                                                    class="hidden h-10 items-center justify-end rounded-sm border bg-white px-6 text-sm text-gray-600 shadow-sm">
+                                                Change
+                                            </button>
+                                        </form>
+                                        <button id="buttonOpenFile" onclick="changeAvatarButton()"
+                                                class="flex h-10 items-center justify-end rounded-sm border bg-white px-6 text-sm text-gray-600 shadow-sm">
+                                            Select Avatar
+                                        </button>
                                     </div>
+                                    <%----------------------------------%>
                                     <div class="w-100">
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -82,15 +110,28 @@
                                                        value="${sessionScope.user.email}" required/>
                                             </div>
                                         </div>
-                                        <div class="d-flex flex-row align-items-center mb-4">
-                                            <i class="fas fa-lock-open fa-lg me-3 fa-fw"></i>
-                                            <div class="form-outline flex-fill mb-0">
-                                                <input type="password" name="current_password"
-                                                       placeholder="Current_password"
-                                                       class="form-control"
-                                                       value="${sessionScope.user.password}" required/>
-                                            </div>
+
+                                        <div class="input-group d-flex flex-row align-items-center mb-4 position-relative">
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw "></i>
+                                            <span class="position-absolute top-custom start-100 translate-middle-y p-1"
+                                            <%--                                                  id="show-hide-password">--%>
+                                            <i class="fa-regular fa-eye-slash"></i>
+                                            </span>
+                                            <input
+                                                    type="password"
+                                                    class="form-control rounded mt-1 password"
+                                                    placeholder="Old password"
+                                                    aria-label="password"
+                                                    aria-describedby="password"
+                                                    name="password"
+                                            <%--                                                    id="password-input"--%>
+                                                    value="${sessionScope.user.password}"
+                                            />
+                                            <div class="valid-feedback">Good</div>
+                                            <div class="invalid-feedback">Wrong</div>
                                         </div>
+
+                                        <%-- New password--%>
                                         <div class="input-group d-flex flex-row align-items-center mb-4 position-relative">
                                             <i class="fas fa-lock fa-lg me-3 fa-fw "></i>
                                             <span class="position-absolute top-custom start-100 translate-middle-y p-1"
@@ -100,15 +141,38 @@
                                             <input
                                                     type="password"
                                                     class="form-control rounded mt-1 password"
-                                                    placeholder="Type your password"
+                                                    placeholder="New password"
                                                     aria-label="password"
                                                     aria-describedby="password"
                                                     name="password"
                                                     id="password-input"
                                             />
+
                                             <div class="valid-feedback">Good</div>
                                             <div class="invalid-feedback">Wrong</div>
                                         </div>
+                                        <div class="input-group d-flex flex-row align-items-center mb-4 position-relative">
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw "></i>
+                                            <span class="position-absolute top-custom start-100 translate-middle-y p-1"
+                                                  id="new-password">
+                                                <i class="fa-regular fa-eye-slash"></i>
+                                            </span>
+                                            <input
+                                                    type="password"
+                                                    class="form-control rounded mt-1 password newPassword"
+                                                    placeholder="Confirm new password"
+                                                    aria-label="password"
+                                                    aria-describedby="password"
+                                                    name="password"
+                                                    id="new-password-input"
+                                            />
+
+                                            <div class="valid-feedback">Good</div>
+                                            <div class="invalid-feedback">Wrong</div>
+                                        </div>
+
+
+                                        <%--check  password--%>
                                         <div
                                                 class="alert px-4 py-3 mb-0 d-none"
                                                 role="alert"
@@ -139,9 +203,10 @@
                                             </ul>
                                         </div>
                                         <div class="d-flex justify-content-left mx-4 mb-3 mb-lg-4">
+                                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                                            <%--                                            <button type="submit" class="btn btn-light btn-lg">Cancle</button>--%>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                                        <button type="submit" class="btn btn-light btn-lg">Cancle</button>
+
                                     </div>
                                 </form>
                             </div>
@@ -153,7 +218,10 @@
     </div>
 </main>
 <jsp:include page="../../../components/footer.jsp"/>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-storage.js"></script>
 <script src="../../js/UpdateProfile.js"></script>
+<script src="../../js/uploadFirebase.js"></script>
 </body>
 </html>
 

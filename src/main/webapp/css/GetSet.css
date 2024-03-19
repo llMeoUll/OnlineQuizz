@@ -79,11 +79,7 @@
     background-color: #8936a0;
 }
 
-#ratingStars {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-}
+
 #ratingStars>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
 #ratingStars>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
 #ratingStars>label{color:#ddd;float:right;}

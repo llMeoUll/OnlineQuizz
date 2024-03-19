@@ -32,6 +32,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <!--<script src="home.js"></script>-->
     <link rel="stylesheet" href="./css/HomePage.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>

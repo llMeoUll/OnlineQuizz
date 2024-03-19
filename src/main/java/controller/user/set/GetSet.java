@@ -16,25 +16,14 @@ public class GetSet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
-        // listSet
-//
         int setID = Integer.parseInt(request.getParameter("setID"));;
-//        QuestionDBContext questionDBContext = new QuestionDBContext();
-//        request.setAttribute("listQuestion", questionDBContext.list(setID));
-        request.setAttribute("setID", setID);
+        QuestionDBContext questionDBContext = new QuestionDBContext();
+        CommentDBContext cdb = new CommentDBContext();
 
-        // user(avatar, name)
-        // Comment(comment_id, content, reply_id, (count)likes, (count)unlikes, time)
-//        User u = (User) session.getAttribute("user");
-//        int id = u.getId();
-//        UserDBContext udb = new UserDBContext();
-//        User user = udb.get(id);
-
+        // get list Comment of a setId
         SetDBContext sdb = new SetDBContext();
         Set set = sdb.get(setID);
-
-        CommentDBContext cdb = new CommentDBContext();
-//        // get a list comment
+        // get a list comment
         ArrayList<Comment> comments = cdb.list(set);
         ArrayList<ArrayList<Comment>> replyList = new ArrayList<>();
         for (Comment c : comments) {
@@ -44,43 +33,48 @@ public class GetSet extends HttpServlet {
         session.setAttribute("setID", setID);
         request.setAttribute("replyList", replyList);
         request.setAttribute("listC", comments);
+
+        // set Attribute for list question
+        request.setAttribute("listQuestion", questionDBContext.list(setID));
+        request.setAttribute("setID", setID);
+
         request.getRequestDispatcher("../.././view/user/set/GetSet.jsp").forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String numOfStarRate = request.getParameter("numberOfStar");
-        SetDBContext setDBContext = new SetDBContext();
-        Set set = setDBContext.get(Integer.parseInt(request.getParameter("setId")));
-        if (numOfStarRate != null) {
-            StarRateDBContext starRateDBContext = new StarRateDBContext();
-            NotificationDBContext notificationDBContext = new NotificationDBContext();
-            NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
-            HttpSession session = request.getSession();
-            User from = (User) session.getAttribute("user");
-
-            Notification notification = new Notification();
-            NotificationType notificationType = notificationTypeDBContext.get(11);
-            notification.setType(notificationType);
-            notification.setFrom(from);
-            ArrayList<User> tos = new ArrayList<>();
-            tos.add(set.getUser());
-            notification.setTos(tos);
-            notification.setRead(false);
-            notification.setUrl("/Quizzicle/user/set/get?setID=" + set.getSId());
-            notification.setContent(from.getFamilyName() + " " +
-                    from.getGivenName() + " " + notificationType.getAction() + " " + set.getSName());
-            notificationDBContext.insert(notification);
-
-            StarRate starRate = new StarRate();
-            starRate.setRate(Integer.parseInt(numOfStarRate));
-            starRate.setSet(set);
-            starRate.setUser((User) session.getAttribute("user"));
-            starRateDBContext.insert(starRate);
-            starRateDBContext.update(starRate);
-        }
-        response.sendRedirect("./get?setID=" + set.getSId());
-    }
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        String numOfStarRate = request.getParameter("numberOfStar");
+//        SetDBContext setDBContext = new SetDBContext();
+//        Set set = setDBContext.get(Integer.parseInt(request.getParameter("setId")));
+//        if (numOfStarRate != null) {
+//            StarRateDBContext starRateDBContext = new StarRateDBContext();
+//            NotificationDBContext notificationDBContext = new NotificationDBContext();
+//            NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
+//            HttpSession session = request.getSession();
+//            User from = (User) session.getAttribute("user");
+//
+//            Notification notification = new Notification();
+//            NotificationType notificationType = notificationTypeDBContext.get(11);
+//            notification.setType(notificationType);
+//            notification.setFrom(from);
+//            ArrayList<User> tos = new ArrayList<>();
+//            tos.add(set.getUser());
+//            notification.setTos(tos);
+//            notification.setRead(false);
+//            notification.setUrl("/Quizzicle/user/set/get?setID=" + set.getSId());
+//            notification.setContent(from.getFamilyName() + " " +
+//                    from.getGivenName() + " " + notificationType.getAction() + " " + set.getSName());
+//            notificationDBContext.insert(notification);
+//
+//            StarRate starRate = new StarRate();
+//            starRate.setRate(Integer.parseInt(numOfStarRate));
+//            starRate.setSet(set);
+//            starRate.setUser((User) session.getAttribute("user"));
+//            starRateDBContext.insert(starRate);
+//            starRateDBContext.update(starRate);
+//        }
+//        response.sendRedirect("./get?setID=" + set.getSId());
+//    }
 
 
     private int getIdType(String typeName) {
