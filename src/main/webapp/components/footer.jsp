@@ -79,7 +79,7 @@
         <!-- Section: Text -->
         <section class="mb-4">
             <p>
-                Tại Quizlet, chúng tôi tin rằng bất cứ ai cũng có thể học bất cứ điều gì.
+                Tại Quizzicle, chúng tôi tin rằng bất cứ ai cũng có thể học bất cứ điều gì.
                 Chỉ cần họ có tinh thần kiên trì, được hướng dẫn đúng cách và có các công cụ phù hợp để thành công.
                 Chúng tôi
                 biết rằng sinh viên đang chịu nhiều áp lực hơn bao giờ hết. Điều đó có thể khiến họ quá tải, gây lo âu
@@ -101,10 +101,10 @@
 
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a class="text-body" href="#!">Giới thiệu về Quizlet</a>
+                            <a class="text-body" href="#!">Giới thiệu về Quizzicle</a>
                         </li>
                         <li>
-                            <a class="text-body" href="#!">Cách Quizlet hoạt động</a>
+                            <a class="text-body" href="#!">Cách Quizzicle hoạt động</a>
                         </li>
                         <li>
                             <a class="text-body" href="#!">Tuyển dụng</a>
@@ -173,7 +173,7 @@
                             <a class="text-body" href="#!">Quyền riêng tư</a>
                         </li>
                         <li>
-                            <a class="text-body" href="#!">Quizlet cho trường học</a>
+                            <a class="text-body" href="#!">Quizzicle cho trường học</a>
                         </li>
                     </ul>
                 </div>

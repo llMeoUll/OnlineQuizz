@@ -29,7 +29,7 @@ public class Home extends HttpServlet {
             }
             session.setAttribute("notifications", notifications);
         }
-        request.getRequestDispatcher("./view/user/homepage/Home.jsp").forward(request, response);
+        request.getRequestDispatcher("./Home.jsp").forward(request, response);
     }
 
     @Override

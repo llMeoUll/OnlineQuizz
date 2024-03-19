@@ -243,6 +243,22 @@ public class UserDBContext extends DBContext {
         }
     }
 
+    public void updateAvatar(User user) {
+        String sqlUpdateAvatar = "UPDATE `online_quizz`.`user`\n" +
+                "SET\n" +
+                "`avatar` = ?,\n" +
+                "`updated_at` = current_timestamp()\n" +
+                "WHERE `uid` = ?;";
+        try {
+            PreparedStatement stmUpdateAvatar = connection.prepareStatement(sqlUpdateAvatar);
+            stmUpdateAvatar.setString(1, user.getAvatar());
+            stmUpdateAvatar.setInt(2, user.getId());
+            stmUpdateAvatar.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void delete(User entity) {
         String sqlDeleteUser = "DELETE FROM `online_quizz`.`user`\n" +
                 "WHERE `user`.`uid` = ?;";

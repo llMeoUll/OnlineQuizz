@@ -45,7 +45,7 @@ public class LoginController extends HttpServlet {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-                request.getRequestDispatcher("./").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/home");
 
             } else {
                 request.setAttribute("error", "Email is not registered!");

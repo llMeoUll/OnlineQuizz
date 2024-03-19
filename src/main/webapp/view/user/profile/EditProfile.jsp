@@ -9,25 +9,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Register</title>
-    <link rel="shortcut icon" type="image/x-icon" href="./icons/favicon32x32.ico"/>
+    <title>Profile</title>
     <link rel="stylesheet" href="../../css/EditProfile.css">
-    <link rel="stylesheet" href="../.././webjars/bootstrap/5.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../.././webjars/font-awesome/6.5.1/css/all.min.css">
-    <script src="../.././webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
-    <script src="../.././webjars/jquery/3.7.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../../css/HomePage.css">
+    <link rel="shortcut icon" type="image/png" href="${pageContext.request.contextPath}/images/logo96x96.png"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/font-awesome/6.5.1/css/all.min.css">
+    <script src="${pageContext. request. contextPath}/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext. request. contextPath}/webjars/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 <jsp:include page="../../../components/header.jsp"/>
@@ -40,20 +28,32 @@
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edit Profile</p>
+<%--                                update avatar--%>
+                                <div class="d-flex justify-content-center mb-5">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <div class="my-5 d-flex align-items-center justify-content-center overflow-hidden">
+                                                <c:set var="noAvatar" value="${pageContext.request.contextPath}/images/noImage.png"/>
+                                                <img id="avatarPreview" src="${sessionScope.user.avatar != null ? sessionScope.user.avatar : noAvatar}" alt="" class="rounded-circle" height="240" width="240">
+                                            </div>
+                                            <div>
+                                                <form id="changeAvatarForm" action="update-avatar" method="GET" class="d-flex align-items-center justify-content-center">
+                                                    <input type="hidden" id="avatarUrl" name="avatarUrl">
+                                                    <input id="fileInput" type="file" class="d-none" accept=".jpg,.jpeg,.png">
+                                                    <button type="submit" id="buttonSubmitForm" class="d-none btn btn-primary">
+                                                        Change
+                                                    </button>
+                                                </form>
+                                                <button id="buttonOpenFile" onclick="changeAvatarButton()" class="btn btn-primary">
+                                                    Select Avatar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <form action="./update" method="post" enctype="multipart/form-data"
                                       class="mx-1 mx-md-4">
                                     <input name="uid" type="hidden" value="${requestScope.user.id}">
-                                    <!-- Image section -->
-                                    <div class="d-flex justify-content-center mb-4">
-                                        <img src="${requestScope.user.avatar}"
-                                             class="img-fluid img-circle profile-avatar" alt="User avatar"
-                                             style="width: 300px; height: 300px; position: relative; border: 4px solid #f3f3f3; border-radius: 50%">
-                                    </div>
-                                    <!-- Upload image -->
-                                    <div class="mb-5">
-                                        <h6 class="text-center">Upload a different photo...</h6>
-                                        <input type="file" class="form-control" name="avatar">
-                                    </div>
                                     <div class="w-100">
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -153,7 +153,10 @@
     </div>
 </main>
 <jsp:include page="../../../components/footer.jsp"/>
-<script src="../../js/UpdateProfile.js"></script>
+<script src="${pageContext. request. contextPath}/js/UpdateProfile.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-storage.js"></script>
+<script src="${pageContext. request. contextPath}/js/UploadFirebase.js"></script>
 </body>
 </html>
 
