@@ -371,5 +371,9 @@ public class RoomDBContext extends DBContext {
         }
         return rooms;
     }
+
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
+    }
 }
 

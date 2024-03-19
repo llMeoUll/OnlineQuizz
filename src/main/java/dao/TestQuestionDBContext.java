@@ -29,4 +29,8 @@ public class TestQuestionDBContext extends DBContext{
             e.printStackTrace();
         }
     }
+
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
+    }
 }

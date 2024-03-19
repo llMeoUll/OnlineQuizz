@@ -6,6 +6,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginController extends HttpServlet {
     @Override
@@ -28,20 +29,44 @@ public class LoginController extends HttpServlet {
                 User loggedUser = db.get(email, password);
                 if (loggedUser == null) {
                     request.setAttribute("error", "Email/Password is invalid!");
+                    // close connection
+                    try {
+                        db.closeConnection();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                     request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request, response);
                 }
                 HttpSession session = request.getSession();
                 session.setAttribute("user", loggedUser);
-                request.getRequestDispatcher("./").forward(request, response);
+                // close connection
+                try {
+                    db.closeConnection();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                response.sendRedirect(request.getContextPath() + "/home");
 
             } else {
                 request.setAttribute("error", "Email is not registered!");
+                // close connection
+                try {
+                    db.closeConnection();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request, response);
                 return;
             }
 
         } else {
             request.setAttribute("error", "Email/Password is invalid!");
+            // close connection
+            try {
+                db.closeConnection();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             request.getRequestDispatcher("./view/user/authenticate/Login.jsp").forward(request, response);
             return;
         }

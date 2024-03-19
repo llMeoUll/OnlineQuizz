@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CommentControl extends HttpServlet {
@@ -74,6 +75,14 @@ public class CommentControl extends HttpServlet {
         request.setAttribute("setID", setId);
         request.setAttribute("replyList", replyList);
         request.setAttribute("listC", comments);
+        // close connection
+        try {
+            cdb.closeConnection();
+            sdb.closeConnection();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher("../.././view/user/set/GetSet.jsp").forward(request, response);
     }
 }

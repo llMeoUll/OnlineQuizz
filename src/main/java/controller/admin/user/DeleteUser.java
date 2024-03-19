@@ -15,6 +15,12 @@ public class DeleteUser extends HttpServlet {
         User user = new User();
         user.setId(uid);
         userDBContext.delete(user);
+        // Close connection
+        try {
+            userDBContext.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         response.sendRedirect("../user");
     }
 

@@ -5,6 +5,7 @@ import entity.Room;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -16,6 +17,12 @@ public class UpdateRoom extends HttpServlet {
         RoomDBContext roomDBContext = new RoomDBContext();
         Room receivedRoom = roomDBContext.getRoomById(room);
         request.setAttribute("room", receivedRoom);
+        // Close connection
+        try {
+            roomDBContext.closeConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher("../../view/admin/UpdateRoom.jsp").forward(request, response);
     }
 
@@ -33,6 +40,12 @@ public class UpdateRoom extends HttpServlet {
         room.setDescription(description);
         RoomDBContext roomDBContext = new RoomDBContext();
         roomDBContext.updateRoom(room);
+        // Close connection
+        try {
+            roomDBContext.closeConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         response.sendRedirect("../room");
     }
 }

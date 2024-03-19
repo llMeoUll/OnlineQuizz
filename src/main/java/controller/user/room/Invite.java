@@ -42,9 +42,25 @@ public class Invite extends HttpServlet {
             Notification notification = createNotification(request, r);
             NotificationDBContext notificationDBContext = new NotificationDBContext();
             notificationDBContext.insert(notification);
+            // close connection
+            try {
+                rDB.closeConnection();
+                uDB.closeConnection();
+                notificationDBContext.closeConnection();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             response.sendRedirect("../../../Quizzicle/user/room");
         } else {
             request.getRequestDispatcher("/view/user/RoomScreen/NotFound.jsp").forward(request, response);
+        }
+
+        // close connection
+        try {
+            rDB.closeConnection();
+            uDB.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

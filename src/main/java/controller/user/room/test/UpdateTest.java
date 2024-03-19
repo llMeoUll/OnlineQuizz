@@ -33,6 +33,13 @@ public class UpdateTest extends HttpServlet {
         tDb.updateById(t);
         // user/room/get?roomId = ?
         t = tDb.getTestById(t);
+
+        // close connection
+        try {
+            tDb.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         response.sendRedirect("../../room/get?roomId=" + t.getRoom().getRoomId());
 
     }

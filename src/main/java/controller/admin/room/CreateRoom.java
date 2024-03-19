@@ -5,6 +5,7 @@ import entity.Room;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -36,6 +37,13 @@ public class CreateRoom extends HttpServlet {
         room.setCreatedAt(createdAt);
         RoomDBContext roomDBContext = new RoomDBContext();
         roomDBContext.insert(room);
+        // Close connection
+        try {
+            roomDBContext.closeConnection();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         response.sendRedirect("../room");
     }
 }

@@ -53,6 +53,12 @@ public class TestDetail extends HttpServlet {
                 question.setQuestionOptions(opts);
             }
         }
+        // close connection
+        try {
+            tDb.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         request.setAttribute("listQuestions", listQuestions);
         request.getRequestDispatcher("../../../view/user/room/ViewTestDetail.jsp").forward(request, response);
     }

@@ -57,6 +57,8 @@ public class ActiveUsersDBContext extends DBContext {
         return listActiveUsers;
     }
 
-
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
+    }
 
 }

@@ -5,6 +5,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import entity.User;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -15,6 +16,12 @@ public class UpdateUser extends HttpServlet {
         UserDBContext userDBContext = new UserDBContext();
         User userForUpdate = userDBContext.get(userId);
         request.setAttribute("userForUpdate", userForUpdate);
+        // Close connection
+        try {
+            userDBContext.closeConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher("../../view/admin/UpdateUser.jsp").forward(request, response);
     }
 
@@ -35,6 +42,12 @@ public class UpdateUser extends HttpServlet {
         param.setUpdatedAt(new Timestamp(updatedAt.getTime()));
         UserDBContext userDBContext = new UserDBContext();
         userDBContext.update(param);
+        // Close connection
+        try {
+            userDBContext.closeConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         response.sendRedirect("../user");
     }
 }

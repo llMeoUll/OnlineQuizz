@@ -30,6 +30,12 @@ public class AddQuestion extends HttpServlet {
             entity.setQuestions(questionDBContext.list(set.getSId()));
             setAndQuestions.add(entity);
         }
+        // close connection
+        try {
+            setDBContext.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         session.setAttribute("sets", setAndQuestions);
         request.getRequestDispatcher("../../../.././view/user/room/test/AddQuestion.jsp").forward(request, response);
     }

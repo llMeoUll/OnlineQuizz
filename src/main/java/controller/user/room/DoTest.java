@@ -77,6 +77,13 @@ public class DoTest extends HttpServlet {
                 question.setQuestionOptions(opts);
             }
         }
+        // close connection
+        try {
+            testDBContext.closeConnection();
+            uDB.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         request.setAttribute("listQuestions", listQuestions);
         request.getRequestDispatcher("../../../view/user/room/DoTest.jsp").forward(request, response);
     }

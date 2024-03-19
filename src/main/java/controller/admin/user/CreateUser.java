@@ -6,6 +6,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import entity.User;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,6 +40,13 @@ public class CreateUser extends HttpServlet {
             roles.add(role);
             newUser.setRoles(roles);
             userDBContext.insert(newUser);
+            // Close connection
+            try {
+                userDBContext.closeConnection();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             response.sendRedirect("../user");
         }
         else {

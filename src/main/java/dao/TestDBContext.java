@@ -1,7 +1,7 @@
 package dao;
 
 import entity.*;
-import entity.ViewModel.LeaderBoardViewModel;
+import entity.view.LeaderBoardViewModel;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -488,5 +488,9 @@ public class TestDBContext extends DBContext {
             throw new RuntimeException(e);
         }
         return listResultQuestionAnswer;
+    }
+
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
     }
 }

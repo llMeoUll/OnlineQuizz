@@ -7,7 +7,6 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -18,7 +17,7 @@ public class GetSet extends HttpServlet {
         HttpSession session = request.getSession();
         // listSet
 //
-        int setID = Integer.parseInt(request.getParameter("setID"));;
+        int setID = Integer.parseInt(request.getParameter("setId"));;
 //        QuestionDBContext questionDBContext = new QuestionDBContext();
 //        request.setAttribute("listQuestion", questionDBContext.list(setID));
         request.setAttribute("setID", setID);
@@ -39,6 +38,13 @@ public class GetSet extends HttpServlet {
         ArrayList<ArrayList<Comment>> replyList = new ArrayList<>();
         for (Comment c : comments) {
             replyList.add(cdb.listReplyComment(c.getCommentId()));
+        }
+        // close connection
+        try {
+            sdb.closeConnection();
+            cdb.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         //comment
         session.setAttribute("setID", setID);

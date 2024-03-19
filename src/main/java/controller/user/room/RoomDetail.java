@@ -42,7 +42,14 @@ public class RoomDetail extends HttpServlet {
         ArrayList<Test> listTestOfRoom = tDB.getTestsCorrespondingEachRoom(u, r);
         r = rDB.getRoomById(r);
         String codeToJoin = GenerateCodeToJoin.generateCode(r.getCode() + r.getPassword());
-        String roomName = r.getRoomName();
+        // close connection
+        try {
+            rDB.closeConnection();
+            uDB.closeConnection();
+            tDB.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         request.setAttribute("currentUser", u);
         request.setAttribute("codeToJoin", codeToJoin);
         request.setAttribute("currentRoom", r);

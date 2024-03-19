@@ -4,6 +4,9 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0"
          metadata-complete="true">
+    <welcome-file-list>
+        <welcome-file>Home.jsp</welcome-file>
+    </welcome-file-list>
     <!--    *********************************************Listener******************************************************-->
     <listener>
         <listener-class>listener.ActiveSessionCounter</listener-class>
@@ -280,32 +283,62 @@
         <url-pattern>/user/set/get</url-pattern>
     </servlet-mapping>
 
+    <!--Comment-->
     <servlet>
-        <servlet-name>selftestsetting</servlet-name>
+        <servlet-name>CommentControl</servlet-name>
+        <servlet-class>controller.user.comment.CommentControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CommentControl</servlet-name>
+        <url-pattern>/user/comment/add</url-pattern>
+    </servlet-mapping>
+
+    <!--like/unlike-->
+    <servlet>
+        <servlet-name>UpdateLikeAndUnlike</servlet-name>
+        <servlet-class>controller.user.comment.UpdateLikeAndUnlike</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateLikeAndUnlike</servlet-name>
+        <url-pattern>/user/comment/updateLike</url-pattern>
+    </servlet-mapping>
+
+    <!--    Self Test Feature-->
+
+    <servlet>
+        <servlet-name>SelfTestSetting</servlet-name>
         <servlet-class>controller.user.set.SelfTestSetting</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>selftestsetting</servlet-name>
+        <servlet-name>SelfTestSetting</servlet-name>
         <url-pattern>/user/set/self-test-setting</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>doselftest</servlet-name>
+        <servlet-name>DoSelfTest</servlet-name>
         <servlet-class>controller.user.set.DoSelfTest</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>doselftest</servlet-name>
+        <servlet-name>DoSelfTest</servlet-name>
         <url-pattern>/user/set/self-test</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>selftesthistory</servlet-name>
+        <servlet-name>SelfTestHistory</servlet-name>
         <servlet-class>controller.user.set.SelfTestHistory</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>selftesthistory</servlet-name>
+        <servlet-name>SelfTestHistory</servlet-name>
         <url-pattern>/user/set/self-test/history</url-pattern>
     </servlet-mapping>
-
+<!--    SelfTestHistory detail-->
+    <servlet>
+        <servlet-name>SelfTestHistoryDetail</servlet-name>
+        <servlet-class>controller.user.set.SelfTestHistoryDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SelfTestHistoryDetail</servlet-name>
+        <url-pattern>/user/set/self-test/history/view-detail</url-pattern>
+    </servlet-mapping>
     <!--    Do test Feature-->
     <servlet>
         <servlet-name>DoTest</servlet-name>
@@ -315,7 +348,7 @@
         <servlet-name>DoTest</servlet-name>
         <url-pattern>/user/room/test/dotest</url-pattern>
     </servlet-mapping>
-
+<!--    Leader board-->
     <servlet>
         <servlet-name>LeaderBoard</servlet-name>
         <servlet-class>controller.user.room.LeaderBoard</servlet-class>
@@ -332,6 +365,54 @@
     <servlet-mapping>
         <servlet-name>ReviewTest</servlet-name>
         <url-pattern>/user/room/test/reviewtest</url-pattern>
+    </servlet-mapping>
+
+    <!--    search-->
+    <servlet>
+        <servlet-name>SearchControl</servlet-name>
+        <servlet-class>controller.user.search.SearchControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchControl</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <!--HomePage-->
+    <servlet>
+        <servlet-name>HomeControl</servlet-name>
+        <servlet-class>controller.user.home.Home</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeControl</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <!--    Profile-->
+    <servlet>
+        <servlet-name>UserProfileControl</servlet-name>
+        <servlet-class>controller.user.profile.UserProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserProfileControl</servlet-name>
+        <url-pattern>/user/profile</url-pattern>
+    </servlet-mapping>
+
+    <!--    Profile Update-->
+    <servlet>
+        <servlet-name>UserProfileUpdateControl</servlet-name>
+        <servlet-class>controller.user.profile.UserProfileUpdateControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserProfileUpdateControl</servlet-name>
+        <url-pattern>/user/profile/update</url-pattern>
+    </servlet-mapping>
+
+<!--    update avatar-->
+    <servlet>
+        <servlet-name>UpdateAvatar</servlet-name>
+        <servlet-class>controller.user.profile.UpdateAvatar</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateAvatar</servlet-name>
+        <url-pattern>/user/profile/update-avatar</url-pattern>
     </servlet-mapping>
 
 
@@ -487,60 +568,5 @@
         <servlet-name>AdminDeleteQuestion</servlet-name>
         <url-pattern>/admin/question/delete</url-pattern>
     </servlet-mapping>
-    <!--    search-->
-    <servlet>
-        <servlet-name>SearchControl</servlet-name>
-        <servlet-class>controller.user.search.SearchControl</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SearchControl</servlet-name>
-        <url-pattern>/search</url-pattern>
-    </servlet-mapping>
-    <!--HomePage-->
-    <servlet>
-        <servlet-name>HomeControl</servlet-name>
-        <servlet-class>controller.user.home.Home</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>HomeControl</servlet-name>
-        <url-pattern>/home</url-pattern>
-    </servlet-mapping>
-    <!--    Profile-->
-    <servlet>
-        <servlet-name>UserProfileControl</servlet-name>
-        <servlet-class>controller.user.profile.UserProfile</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserProfileControl</servlet-name>
-        <url-pattern>/user/profile</url-pattern>
-    </servlet-mapping>
 
-    <!--    Profile Update-->
-    <servlet>
-        <servlet-name>UserProfileUpdateControl</servlet-name>
-        <servlet-class>controller.user.profile.UserProfileUpdateControl</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserProfileUpdateControl</servlet-name>
-        <url-pattern>/user/profile/update</url-pattern>
-    </servlet-mapping>
-    <!--Comment-->
-    <servlet>
-        <servlet-name>CommentControl</servlet-name>
-        <servlet-class>controller.user.comment.CommentControl</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CommentControl</servlet-name>
-        <url-pattern>/user/comment/add</url-pattern>
-    </servlet-mapping>
-
-    <!--like/unlike-->
-    <servlet>
-        <servlet-name>UpdateLikeAndUnlike</servlet-name>
-        <servlet-class>controller.user.comment.UpdateLikeAndUnlike</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UpdateLikeAndUnlike</servlet-name>
-        <url-pattern>/user/comment/updateLike</url-pattern>
-    </servlet-mapping>
 </web-app>

@@ -42,6 +42,13 @@ public class UpdateRoom extends HttpServlet {
         RoomDBContext rDB = new RoomDBContext();
         rDB.updateRoom(r);
 
+        // close connection
+        try {
+            rDB.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         response.sendRedirect("../room");
     }
 }

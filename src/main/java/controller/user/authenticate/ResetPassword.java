@@ -7,6 +7,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ResetPassword extends HttpServlet {
     @Override
@@ -28,6 +29,12 @@ public class ResetPassword extends HttpServlet {
                 db.updatePassword(email, generatedSecuredPasswordHash);
                 User user = db.get(email, password);
                 session.setAttribute("user", user);
+                // close connection
+                try {
+                    db.closeConnection();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 response.sendRedirect("./login");
             } else {
                 request.setAttribute("error", "Mật khẩu không khớp");

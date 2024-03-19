@@ -24,7 +24,7 @@ public class AdminCreateSet extends HttpServlet {
         String[] hashTags = request.getParameterValues("hashtags") != null ? request.getParameterValues("hashtags") : new String[0];
         boolean privacy = request.getParameter("privacy") != null && request.getParameter("privacy").equals("private") ? true : false;
         Set set = new Set();
-        if(hashTags.length != 0){
+        if (hashTags.length != 0) {
             ArrayList<HashTag> hashTagList = new ArrayList<>();
             for (String hashTag : hashTags) {
                 HashTag entity = new HashTag();
@@ -85,15 +85,25 @@ public class AdminCreateSet extends HttpServlet {
         SetDBContext setDBContext = new SetDBContext();
         try {
             setDBContext.insert(set);
+            // Close connection
+            setDBContext.closeConnection();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
         response.sendRedirect("../set");
     }
 
     private int getIdType(String typeName) {
         TypeDBContext typeDBContext = new TypeDBContext();
         ArrayList<Type> types = typeDBContext.list();
+        // close connection
+        try {
+            typeDBContext.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         for (Type type : types) {
             if (type.getTypeName().equals(typeName)) {
                 return type.getTypeId();
