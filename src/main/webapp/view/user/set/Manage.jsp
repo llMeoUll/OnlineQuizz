@@ -33,7 +33,6 @@
 <main>
     <!-- ======= Breadcrumbs ======= -->
     <div class="container">
-<<<<<<< HEAD
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent">
             </ol>
@@ -41,20 +40,6 @@
         <h2 class="text-3xl font-bold text-center">All SET</h2>
     </div><!-- End Breadcrumbs -->
     <div id="create-set-content" class="mt-10">
-        <%--        <div class="container">--%>
-        <%--            <div class="row">--%>
-        <%--                <div class="col-md-12">--%>
-        <%--                    <c:forEach var="c" items="${listSet}">--%>
-        <%--                        <div class="card mb-3">--%>
-        <%--                            <div class="card-body mt-1">--%>
-        <%--                                <h5 class=""><a href="./set/get?setID=${c.getSId()}">${c.getSName()}</a></h5>--%>
-        <%--                            </div>--%>
-        <%--                        </div>--%>
-        <%--                    </c:forEach>--%>
-        <%--                </div>--%>
-        <%--            </div>--%>
-        <%--        </div>--%>
-
         <section class="vh-100">
             <div class="container py-5 h-52">
                 <div class="row d-flex justify-content-center align-items-center h-52">
@@ -75,7 +60,7 @@
                                             <th scope="row">${loop.index + 1}</th>
                                             <td>${c.getSName()}</td>
                                             <td>
-                                                <a href="./set/get?setID=${c.getSId()}" class="btn btn-success ms-1">View</a>
+                                                <a href="./set/get?setId=${c.getSId()}" class="btn btn-success ms-1">View</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -83,14 +68,6 @@
                                 </table>
 
                             </div>
-=======
-        <div class="row">
-            <div class="col-md-12">
-                <c:forEach var="c" items="${listSet}">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="./set/get?setId=${c.getSId()}">${c.getSName()}</a></h5>
->>>>>>> 894b06f202f21815805085fe4c213da107af7a3c
                         </div>
                     </div>
                 </div>
@@ -100,6 +77,5 @@
 </main><!-- End #main -->
 
 <jsp:include page="../../../components/footer.jsp"></jsp:include>
-<%--<script src="../.././js/GetSet.js"></script>--%>
 </body>
 </html>

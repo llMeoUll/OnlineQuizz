@@ -45,6 +45,7 @@ public class UserDBContext extends DBContext {
                 User user = initUserInfo(resultSet);
                 RoleDBContext roleDBContext = new RoleDBContext();
                 ArrayList<Role> roles = roleDBContext.list(user.getEmail());
+                roleDBContext.closeConnection();
                 user.setRoles(roles);
                 return user;
             }
@@ -68,6 +69,7 @@ public class UserDBContext extends DBContext {
                 if (SCryptUtil.check(password, user.getPassword())) {
                     RoleDBContext roleDBContext = new RoleDBContext();
                     ArrayList<Role> roles = roleDBContext.list(user.getEmail());
+                    roleDBContext.closeConnection();
                     user.setRoles(roles);
                     return user;
                 }
@@ -262,9 +264,8 @@ public class UserDBContext extends DBContext {
     public void delete(User entity) {
         String sqlDeleteUser = "DELETE FROM `online_quizz`.`user`\n" +
                 "WHERE `user`.`uid` = ?;";
-        PreparedStatement stmDeleteUser = null;
         try {
-            stmDeleteUser = connection.prepareStatement(sqlDeleteUser);
+            PreparedStatement stmDeleteUser = connection.prepareStatement(sqlDeleteUser);
             stmDeleteUser.setInt(1, entity.getId());
             stmDeleteUser.executeUpdate();
         } catch (SQLException e) {

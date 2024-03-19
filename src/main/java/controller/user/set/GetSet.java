@@ -7,6 +7,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -14,15 +15,14 @@ public class GetSet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
-        int setID = Integer.parseInt(request.getParameter("setID"));
+        int setId = Integer.parseInt(request.getParameter("setId"));
         QuestionDBContext questionDBContext = new QuestionDBContext();
         CommentDBContext cdb = new CommentDBContext();
-        request.setAttribute("setID", setID);
+        request.setAttribute("setId", setId);
 
         // get list Comment of a setId
         SetDBContext sdb = new SetDBContext();
-        Set set = sdb.get(setID);
+        Set set = sdb.get(setId);
         // get a list comment
         ArrayList<Comment> comments = cdb.list(set);
         ArrayList<ArrayList<Comment>> replyList = new ArrayList<>();
@@ -30,20 +30,23 @@ public class GetSet extends HttpServlet {
             replyList.add(cdb.listReplyComment(c.getCommentId()));
         }
         // close connection
-//        try {
-//            sdb.closeConnection();
-//            cdb.closeConnection();
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            sdb.closeConnection();
+            cdb.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         //comment
-        session.setAttribute("setID", setID);
+        request.setAttribute("setId", setId);
         request.setAttribute("replyList", replyList);
         request.setAttribute("listC", comments);
-
         // set Attribute for list question
-        request.setAttribute("listQuestion", questionDBContext.list(setID));
-        request.setAttribute("setID", setID);
+        request.setAttribute("listQuestion", questionDBContext.list(setId));
+        try {
+            questionDBContext.closeConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         request.getRequestDispatcher("../.././view/user/set/GetSet.jsp").forward(request, response);
     }
@@ -68,7 +71,7 @@ public class GetSet extends HttpServlet {
 //            tos.add(set.getUser());
 //            notification.setTos(tos);
 //            notification.setRead(false);
-//            notification.setUrl("/Quizzicle/user/set/get?setID=" + set.getSId());
+//            notification.setUrl("/Quizzicle/user/set/get?setId=" + set.getSId());
 //            notification.setContent(from.getFamilyName() + " " +
 //                    from.getGivenName() + " " + notificationType.getAction() + " " + set.getSName());
 //            notificationDBContext.insert(notification);
@@ -80,7 +83,7 @@ public class GetSet extends HttpServlet {
 //            starRateDBContext.insert(starRate);
 //            starRateDBContext.update(starRate);
 //        }
-//        response.sendRedirect("./get?setID=" + set.getSId());
+//        response.sendRedirect("./get?setId=" + set.getSId());
 //    }
 
 

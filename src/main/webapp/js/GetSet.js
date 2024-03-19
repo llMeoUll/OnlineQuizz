@@ -1,7 +1,7 @@
 function confirmDelete() {
-    var confirmation = window.confirm("Are you sure you want to delete this set ${setID}?");
+    var confirmation = window.confirm("Are you sure you want to delete this set ${setId}?");
     if (confirmation) {
-        window.location.href = "../set/delete?set-id=${setID}";
+        window.location.href = "../set/delete?set-id=${setId}";
     } else {
     }
 }
@@ -52,3 +52,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     showFlashcard(currentIndex);
 });
+
+// js for comments
+function toggleForm(replyId) {
+    var divContainsForm = document.getElementById('commentId=' + replyId);
+    if (divContainsForm.style.display === 'none' || form.style.display === '') {
+        divContainsForm.style.display = 'block';
+    } else {
+        divContainsForm.style.display = 'none';
+    }
+}
+
+
+

@@ -60,10 +60,15 @@ public class SetDBContext extends DBContext {
                 set.setPrivate(rs.getBoolean("is_private"));
                 UserDBContext userDBContext = new UserDBContext();
                 User user = userDBContext.get(rs.getInt("uid"));
+                userDBContext.closeConnection();
                 set.setUser(user);
-                ArrayList<Question> questions = new QuestionDBContext().list(setId);
+                QuestionDBContext questionDBContext = new QuestionDBContext();
+                ArrayList<Question> questions = questionDBContext.list(setId);
+                questionDBContext.closeConnection();
                 set.setQuestions(questions);
-                ArrayList<HashTag> hashTags = new HashtagDBContext().list(setId, connection);
+                HashtagDBContext hashtagDBContext = new HashtagDBContext();
+                ArrayList<HashTag> hashTags = hashtagDBContext.list(setId, connection);
+                hashtagDBContext.closeConnection();
                 set.setHashTags(hashTags);
                 return set;
             }
@@ -97,8 +102,10 @@ public class SetDBContext extends DBContext {
                         // Now, insert questions associated with this set
                         HashtagDBContext hashtagDBContext = new HashtagDBContext();
                         hashtagDBContext.insertAll(set.getHashTags(), setId, connection);
+                        hashtagDBContext.closeConnection();
                         QuestionDBContext questionDBContext = new QuestionDBContext();
                         questionDBContext.insertAll(set.getQuestions(), setId, connection);
+                        questionDBContext.closeConnection();
                     }
                     connection.commit(); // Commit the transaction for inserting set
                 } catch (SQLException e) {
@@ -135,6 +142,7 @@ public class SetDBContext extends DBContext {
                 //delete all hashtag set mapping
                 HashtagSetMappingDBContext hashtagSetMappingDBContext = new HashtagSetMappingDBContext();
                 hashtagSetMappingDBContext.deleteAll(set.getSId(), connection);
+                hashtagSetMappingDBContext.closeConnection();
                 //delete all hashtag
                 HashtagDBContext hashtagDBContext = new HashtagDBContext();
                 ArrayList<HashTag> oldHashTags = hashtagDBContext.list(set.getSId(), connection);
@@ -142,11 +150,13 @@ public class SetDBContext extends DBContext {
                     hashtagDBContext.deleteAll(oldHashTags, connection);
                 }
                 hashtagDBContext.insertAll(set.getHashTags(), set.getSId(), connection);
+                hashtagDBContext.closeConnection();
 
                 QuestionDBContext questionDBContext = new QuestionDBContext();
                 //delete all question
                 questionDBContext.deleteAll(set.getSId(), connection);
                 questionDBContext.insertAll(set.getQuestions(), set.getSId(), connection);
+                questionDBContext.closeConnection();
                 connection.commit(); // Commit the transaction for updating set
             } catch (SQLException e) {
                 connection.rollback(); // Rollback if there's an exception
@@ -254,6 +264,7 @@ public class SetDBContext extends DBContext {
                 set.setUpdatedAt(rs.getTimestamp("updated_at"));
                 UserDBContext udb = new UserDBContext();
                 User user = udb.get(rs.getInt("uid"));
+                udb.closeConnection();
                 set.setUser(user);
                 sets.add(set);
             }

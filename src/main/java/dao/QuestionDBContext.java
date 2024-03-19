@@ -24,9 +24,13 @@ public class QuestionDBContext extends DBContext{
                 question.setQId(rs.getInt("qid"));
                 question.setQuestion(rs.getString("question"));
                 question.setAnswer(rs.getString("answer"));
-                question.setType(new TypeDBContext().get(rs.getInt("type_id"), connection));
+                TypeDBContext typeDBContext = new TypeDBContext();
+                question.setType(typeDBContext.get(rs.getInt("type_id"), connection));
+                typeDBContext.closeConnection();
                 if (question.getType().getTypeName().equals("Multiple choice")){
-                    question.setQuestionOptions(new QuestionOptionsDBContext().list(question.getQId(), connection));
+                    QuestionOptionsDBContext questionOptionsDBContext = new QuestionOptionsDBContext();
+                    question.setQuestionOptions(questionOptionsDBContext.list(question.getQId(), connection));
+                    questionOptionsDBContext.closeConnection();
                 }
                 questions.add(question);
             }
@@ -93,6 +97,7 @@ public class QuestionDBContext extends DBContext{
                 questionOptionsDBContext.deleteAll(question.getQId(), connection);
             }
         }
+        questionOptionsDBContext.closeConnection();
 
         String sql = "DELETE FROM `online_quizz`.`question` WHERE `sid` = ?";
         try {
@@ -160,6 +165,7 @@ public class QuestionDBContext extends DBContext{
                 question.setAnswer(rs.getString("answer"));
                 SetDBContext setDBContext = new SetDBContext();
                 Set set = setDBContext.get(rs.getInt("sid"));
+                setDBContext.closeConnection();
                 question.setSet(set);
                 Type type = new Type();
                 type.setTypeId(rs.getInt("type_id"));

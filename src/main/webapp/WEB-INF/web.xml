@@ -290,17 +290,26 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>CommentControl</servlet-name>
-        <url-pattern>/user/comment/add</url-pattern>
+        <url-pattern>/user/comment/create</url-pattern>
     </servlet-mapping>
 
-    <!--like/unlike-->
+    <!--update like-->
     <servlet>
         <servlet-name>UpdateLikeAndUnlike</servlet-name>
-        <servlet-class>controller.user.comment.UpdateLikeAndUnlike</servlet-class>
+        <servlet-class>controller.user.comment.UpdateLike</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateLikeAndUnlike</servlet-name>
-        <url-pattern>/user/comment/updateLike</url-pattern>
+        <url-pattern>/user/comment/update-like</url-pattern>
+    </servlet-mapping>
+<!--    update dislike-->
+    <servlet>
+        <servlet-name>UpdateDislike</servlet-name>
+        <servlet-class>controller.user.comment.UpdateDislike</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateDislike</servlet-name>
+        <url-pattern>/user/comment/update-dislike</url-pattern>
     </servlet-mapping>
 
     <!--    Self Test Feature-->
