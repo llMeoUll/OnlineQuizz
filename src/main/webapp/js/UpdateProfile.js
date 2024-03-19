@@ -1,20 +1,30 @@
 $(document).ready(function () {
-    $('#show-hide-password').click(function () {
-        let passwordInput = $('.password');
-        let icon = $(this).find('i');
-
+    function togglePasswordVisibility(passwordInput, icon) {
         // Toggle password visibility
         if (passwordInput.attr('type') === 'password') {
             passwordInput.attr('type', 'text');
-            icon.removeClass('fa-eye-slash').addClass('fa-eye');
+            icon.removeClass('fa-eye').addClass('fa-eye-slash');
         } else {
             passwordInput.attr('type', 'password');
-            icon.removeClass('fa-eye').addClass('fa-eye-slash');
+            icon.removeClass('fa-eye-slash').addClass('fa-eye');
         }
+    }
+
+    $('#show-hide-password').click(function () {
+        let passwordInput = $(this).parent().find('.password');
+        let icon = $(this).find('i');
+        togglePasswordVisibility(passwordInput, icon);
     });
+    $('#new-password').click(function () {
+        let passwordInput = $(this).parent().find('.password');
+        console.log(passwordInput);
+        let icon = $(this).find('i');
+        togglePasswordVisibility(passwordInput, icon);
+    });
+
 });
 
-addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", (event) => {
     const password = document.getElementById("password-input");
     const passwordAlert = document.getElementById("password-alert");
     const requirements = document.querySelectorAll(".requirements");

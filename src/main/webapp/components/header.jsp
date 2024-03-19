@@ -81,7 +81,7 @@
                     </li>
                 </ul>
                 </c:if>
-            </div>
+        </div>
         </div>
     </nav>
 </header>
