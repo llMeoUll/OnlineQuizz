@@ -238,7 +238,7 @@
                     <strong class="mr-auto">Notification</strong>
                 </div>
                 <div class="toast-body">
-                    New User registered! Click to view details.
+
                 </div>
             </div>
         </div>

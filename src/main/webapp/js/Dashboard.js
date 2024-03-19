@@ -24,11 +24,15 @@ const socket = new WebSocket("ws://localhost:8888/Quizzicle/admin/notification")
 
     // Xử lý sự kiện khi nhận thông báo từ máy chủ
 document.addEventListener('DOMContentLoaded', function () {
-    var myToast = new bootstrap.Toast(document.querySelector('.toast'));
-    var userId;
+    let myToast = new bootstrap.Toast(document.querySelector('.toast'));
+    let userId;
+    let content;
     socket.addEventListener('message', function (event) {
         // Hiển thị toast khi có sự kiện message từ WebSocket
-        userId = event.data;
+        let parseEvent = JSON.parse(event.data);
+        userId = parseEvent.info;
+        content = parseEvent.content;
+        document.querySelector('.toast-body').innerHTML = content;
         myToast.show();
         setTimeout(function () {
             myToast.hide();
