@@ -169,5 +169,9 @@ public class CommentDBContext extends DBContext {
         }
 
     }
+
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
+    }
 }
 

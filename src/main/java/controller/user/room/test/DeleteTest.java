@@ -29,6 +29,12 @@ public class DeleteTest extends HttpServlet {
         Test t = new Test();
         t.setTestId(testId);
         tDb.deleteById(t);
+        // close connection
+        try {
+            tDb.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         response.sendRedirect("../../room/get?roomId=" + roomId);
     }
 }

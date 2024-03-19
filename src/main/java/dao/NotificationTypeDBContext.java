@@ -25,4 +25,8 @@ public class NotificationTypeDBContext extends DBContext<NotificationType>{
         }
         return null;
     }
+
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
+    }
 }

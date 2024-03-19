@@ -280,6 +280,40 @@
         <url-pattern>/user/set/get</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>SelfTestSetting</servlet-name>
+        <servlet-class>controller.user.set.SelfTestSetting</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SelfTestSetting</servlet-name>
+        <url-pattern>/user/set/self-test-setting</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DoSelfTest</servlet-name>
+        <servlet-class>controller.user.set.DoSelfTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DoSelfTest</servlet-name>
+        <url-pattern>/user/set/self-test</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SelfTestHistory</servlet-name>
+        <servlet-class>controller.user.set.SelfTestHistory</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SelfTestHistory</servlet-name>
+        <url-pattern>/user/set/self-test/history</url-pattern>
+    </servlet-mapping>
+<!--    SelfTestHistory detail-->
+    <servlet>
+        <servlet-name>SelfTestHistoryDetail</servlet-name>
+        <servlet-class>controller.user.set.SelfTestHistoryDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SelfTestHistoryDetail</servlet-name>
+        <url-pattern>/user/set/self-test/history/view-detail</url-pattern>
+    </servlet-mapping>
     <!--    Do test Feature-->
     <servlet>
         <servlet-name>DoTest</servlet-name>
@@ -307,6 +341,7 @@
         <servlet-name>ReviewTest</servlet-name>
         <url-pattern>/user/room/test/reviewtest</url-pattern>
     </servlet-mapping>
+
 
     <!--    *********************************************ADMINISTRATOR******************************************************-->
     <!--    Authenticate Feature-->

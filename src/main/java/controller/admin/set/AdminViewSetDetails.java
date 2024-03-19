@@ -7,6 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class AdminViewSetDetails extends HttpServlet {
     @Override
@@ -15,6 +16,12 @@ public class AdminViewSetDetails extends HttpServlet {
         SetDBContext setDBContext = new SetDBContext();
         Set set = setDBContext.get(setId);
         request.setAttribute("set", set);
+        // Close connection
+        try {
+            setDBContext.closeConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher("../.././view/admin/SetDetails.jsp").forward(request, response);
     }
 

@@ -470,4 +470,8 @@ public class UserDBContext extends DBContext {
 
         return usersJoinedRoom;
     }
+
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
+    }
 }

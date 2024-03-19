@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CommentControl extends HttpServlet {
@@ -46,7 +47,6 @@ public class CommentControl extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         CommentDBContext cdb = new CommentDBContext();
-//      int setId = Integer.parseInt(request.getParameter("setID"));// thieu setid
         int setId = (int) session.getAttribute("setID");
         SetDBContext sdb = new SetDBContext();
         Set set = sdb.get(setId);
@@ -74,9 +74,9 @@ public class CommentControl extends HttpServlet {
             replyList.add(cdb.listReplyComment(c.getCommentId()));
         }
         // setAttribute
-//      request.setAttribute("setID", setId);
         request.setAttribute("replyList", replyList);
         request.setAttribute("listC", comments);
+
         response.sendRedirect("../set/get?setID=" + setId);
     }
 }

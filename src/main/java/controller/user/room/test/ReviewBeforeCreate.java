@@ -51,30 +51,42 @@ public class ReviewBeforeCreate extends HttpServlet {
         }
         // insert test to database
         TestDBContext testDBContext = new TestDBContext();
-        NotificationDBContext notificationDBContext = new NotificationDBContext();
-        NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
-
-        Notification notification = new Notification();
-        NotificationType notificationType = notificationTypeDBContext.get(10);
-        UserDBContext userDBContext = new UserDBContext();
-        notification.setFrom(room.getUser());
-        notification.setType(notificationType);
-        notification.setRead(false);
-        notification.setUrl("/Quizzicle/user/room/test/get?testId=" + test.getTestId());
-        notification.setContent(room.getUser().getFamilyName() + " " + room.getUser().getGivenName() + " "
-                + notificationType.getAction() + " in room: " + room.getRoomName());
-        ArrayList<User> tos = userDBContext.list(room);
-        notification.setTos(tos);
-
-        notificationDBContext.insert(notification);
         try {
-            testDBContext.insert(test, testQuestions);
+            int testId = testDBContext.insert(test, testQuestions);
+            NotificationDBContext notificationDBContext = new NotificationDBContext();
+            NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
+
+            Notification notification = new Notification();
+            NotificationType notificationType = notificationTypeDBContext.get(10);
+            UserDBContext userDBContext = new UserDBContext();
+            notification.setFrom(room.getUser());
+            notification.setType(notificationType);
+            notification.setRead(false);
+            notification.setUrl("/Quizzicle/user/room/test/get?testId=" + testId);
+            notification.setContent(room.getUser().getFamilyName() + " " + room.getUser().getGivenName() + " "
+                    + notificationType.getAction() + " in room: " + room.getRoomName());
+            ArrayList<User> tos = userDBContext.list(room);
+            notification.setTos(tos);
+
+            // close connection
+            notificationDBContext.insert(notification);
+            notificationDBContext.closeConnection();
+            notificationTypeDBContext.closeConnection();
+            userDBContext.closeConnection();
+            testDBContext.closeConnection();
+
             session.removeAttribute("room");
             session.removeAttribute("questions");
             session.removeAttribute("test");
             response.sendRedirect("../../../room/get?roomId=" + room.getRoomId());
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                testDBContext.closeConnection();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
 
     }

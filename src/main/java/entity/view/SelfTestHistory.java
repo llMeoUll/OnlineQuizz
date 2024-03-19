@@ -1,5 +1,7 @@
-package entity;
+package entity.view;
 
+import entity.Set;
+import entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,10 +14,11 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class SelfTest {
+public class SelfTestHistory {
     private int selfTestId;
     private User user;
     private Set set;
-    private int result;
     private Timestamp createdAt;
+    private int result;
+    private int numberOfQuestion;
 }

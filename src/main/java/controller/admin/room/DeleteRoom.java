@@ -18,7 +18,7 @@ public class DeleteRoom extends HttpServlet {
         int roomId = Integer.parseInt(request.getParameter("room_id"));
         RoomDBContext roomDBContext = new RoomDBContext();
         NotificationDBContext notificationDBContext = new NotificationDBContext();
-        UserDBContext userDBContext = new UserDBContext();
+//        UserDBContext userDBContext = new UserDBContext();
         NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
 
         Room room = new Room();
@@ -38,6 +38,15 @@ public class DeleteRoom extends HttpServlet {
 
         notificationDBContext.insert(notification);
         roomDBContext.deleteRoom(room);
+        // Close connection
+        try {
+            roomDBContext.closeConnection();
+            notificationDBContext.closeConnection();
+//            userDBContext.closeConnection();
+            notificationTypeDBContext.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         response.sendRedirect("../room");
     }
 

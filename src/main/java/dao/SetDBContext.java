@@ -262,4 +262,8 @@ public class SetDBContext extends DBContext {
         }
         return sets;
     }
+
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
+    }
 }

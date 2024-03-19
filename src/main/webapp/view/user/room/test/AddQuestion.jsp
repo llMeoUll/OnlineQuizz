@@ -220,8 +220,8 @@
                                 </div>
                                 <div class="form-floating mb-3">
                                     <select class="form-select tf-answer" id="tf-answer-1" name="tf-answer-1">
-                                        <option value="true">True</option>
-                                        <option value="false">False</option>
+                                        <option value="True">True</option>
+                                        <option value="False">False</option>
                                     </select>
                                     <label class="tf-answer-label" for="tf-answer-1">Answer</label>
                                 </div>

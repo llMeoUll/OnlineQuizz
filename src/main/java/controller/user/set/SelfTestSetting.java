@@ -1,5 +1,6 @@
 package controller.user.set;
 
+import com.google.gson.Gson;
 import dao.SetDBContext;
 import entity.Question;
 import entity.QuestionOption;
@@ -10,8 +11,6 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
-
 public class SelfTestSetting extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,6 +20,12 @@ public class SelfTestSetting extends HttpServlet {
         HttpSession session = request.getSession();
         if (session.getAttribute("set") != null) {
             session.removeAttribute("set");
+        }
+        // close connection
+        try {
+            setDB.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         session.setAttribute("set", set);
         request.getRequestDispatcher("../.././view/user/set/SelfTestSetting.jsp").forward(request, response);
@@ -36,8 +41,11 @@ public class SelfTestSetting extends HttpServlet {
         ArrayList<Question> questions = new ArrayList<>();
         HttpSession session = request.getSession();
         Set set = (Set) session.getAttribute("set");
+        // deep copy for set questions using Gson
+        Gson gson = new Gson();
+        Set setCopy = gson.fromJson(gson.toJson(set), Set.class);
         // list question in set
-        ArrayList<Question> setQuestions = set.getQuestions();
+        ArrayList<Question> setQuestions = setCopy.getQuestions();
         Collections.shuffle(setQuestions);
         // get question by type
         for (Question question : setQuestions) {

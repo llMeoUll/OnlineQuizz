@@ -33,6 +33,7 @@
 <main>
     <!-- ======= Breadcrumbs ======= -->
     <div class="container">
+<<<<<<< HEAD
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent">
             </ol>
@@ -82,6 +83,14 @@
                                 </table>
 
                             </div>
+=======
+        <div class="row">
+            <div class="col-md-12">
+                <c:forEach var="c" items="${listSet}">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="./set/get?setId=${c.getSId()}">${c.getSName()}</a></h5>
+>>>>>>> 894b06f202f21815805085fe4c213da107af7a3c
                         </div>
                     </div>
                 </div>

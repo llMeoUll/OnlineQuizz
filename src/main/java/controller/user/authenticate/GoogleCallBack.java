@@ -120,13 +120,22 @@ public class GoogleCallBack extends HttpServlet {
                     NotificationDBContext notificationDBContext = new NotificationDBContext();
                     notificationDBContext.insert(notification);
                     AdminDashboardWebSocketEndpoint.notifyAdminsNewUserRegistered(notification);
+                    // close connection
+                    notificationDBContext.closeConnection();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
+
             }
             User registeredUser = db.get(user.getEmail());
             HttpSession session = request.getSession();
             session.setAttribute("user", registeredUser);
+            // close connection
+            try {
+                db.closeConnection();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             response.sendRedirect("./");
         } else {
             // Handle the case where the response entity is null
@@ -156,6 +165,7 @@ public class GoogleCallBack extends HttpServlet {
         notification.setType(notificationType);
         notification.setTos(tos);
         notification.setFrom(from);
+        notification.setContent(notificationType.getAction() + from.getEmail());
         notification.setUrl("/Quizzicle/admin/user/profile?uid=" + from.getId());
         return notification;
     }

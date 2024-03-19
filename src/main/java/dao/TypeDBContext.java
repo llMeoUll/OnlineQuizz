@@ -5,6 +5,7 @@ import entity.Type;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TypeDBContext extends DBContext{
@@ -40,5 +41,9 @@ public class TypeDBContext extends DBContext{
             throw new RuntimeException(e);
         }
         return types;
+    }
+
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
     }
 }

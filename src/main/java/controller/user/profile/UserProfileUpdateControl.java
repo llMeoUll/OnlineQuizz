@@ -25,6 +25,12 @@ public class UserProfileUpdateControl extends HttpServlet {
         UserDBContext udb = new UserDBContext();
         User user = udb.get(id);
         request.setAttribute("user", user);
+        // close connection
+        try {
+            udb.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher("../../view/user/profile/EditProfile.jsp").forward(request, response);
     }
 
@@ -41,6 +47,24 @@ public class UserProfileUpdateControl extends HttpServlet {
         String old_pass = request.getParameter("current_password");
         String password = request.getParameter("password");
         String avatar = request.getParameter("avatarUrl").trim();
+        // upload images
+//        Part file = request.getPart("avatar");
+//        String imgFileName = file.getSubmittedFileName();
+//        String uploadPath = "D:/session5/SWP391/OnlineQuizz/src/main/webapp/imagines/" + imgFileName;
+//
+//        try {
+//            FileOutputStream fos = new FileOutputStream(uploadPath);
+//            InputStream is = file.getInputStream();
+//
+//            byte[] data = new byte[is.available()];
+//            is.read(data);
+//            fos.write(data);
+//            fos.close();
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
         // Kiểm tra xem các trường có giá trị hay không
         if (password != null && !password.equals(old_pass)) {
 
@@ -76,6 +100,14 @@ public class UserProfileUpdateControl extends HttpServlet {
             notification.setFrom(newUser);
 
             notificationDBContext.insert(notification);
+            // close connection
+            try {
+                userDBContext.closeConnection();
+                notificationTypeDBContext.closeConnection();
+                notificationDBContext.closeConnection();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             session.setAttribute("user", newUser);
             // Thêm người dùng vào cơ sở dữ liệu
         } else {

@@ -26,6 +26,13 @@ public class DeleteRoom extends HttpServlet {
         r.setRoomId(roomId);
         rDb.deleteRoom(r);
 
+        // close connection
+        try {
+            rDb.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         response.sendRedirect("../room");
 
     }

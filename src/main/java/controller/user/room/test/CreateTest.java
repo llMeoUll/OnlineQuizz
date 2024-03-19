@@ -28,6 +28,12 @@ public class CreateTest extends HttpServlet {
         room = roomDBContext.getRoomById(room);
 
         session.setAttribute("room", room);
+        // close connection
+        try {
+            roomDBContext.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher("../../.././view/user/room/test/CreateTest.jsp").forward(request, response);
     }
 

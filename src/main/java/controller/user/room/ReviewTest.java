@@ -2,6 +2,7 @@ package controller.user.room;
 
 import dao.TestDBContext;
 import entity.Question;
+import entity.QuestionOption;
 import entity.Test;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -9,6 +10,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ReviewTest extends HttpServlet {
     @Override
@@ -24,12 +26,50 @@ public class ReviewTest extends HttpServlet {
         currentTest.setTestId(testId);
         currentTest = tDb.getTestById(currentTest);
         request.setAttribute("currentTest", currentTest);
-        // list question of this test
-        ArrayList<Question> listQuestions = new ArrayList<>();
-        listQuestions = tDb.getListQuestionsOfTest(currentTest);
-
         // list question and this answer
         ArrayList<Question> listResultQuestionAnswer = tDb.getListResultQuestionAnswer(testId, attempt, userId);
+        // list question of this test
+        ArrayList<Question> listQuestions = tDb.getListQuestionsOfTest(currentTest);
+        for (Question question : listQuestions) {
+            if (question.getType().getTypeName().equals("True/False")) {
+                QuestionOption opt1 = new QuestionOption();
+                opt1.setOptContent("True");
+                QuestionOption opt2 = new QuestionOption();
+                opt2.setOptContent("False");
+                ArrayList<QuestionOption> opts = new ArrayList<>();
+                opts.add(opt1);
+                opts.add(opt2);
+                question.setQuestionOptions(opts);
+            } else if (question.getType().getTypeName().equals("Multiple choice")) {
+                ArrayList<QuestionOption> opts = question.getQuestionOptions();
+                // add answer to option
+                QuestionOption answer = new QuestionOption();
+                answer.setOptContent(question.getAnswer());
+                opts.add(answer);
+                //remove answer from question
+                question.setAnswer(null);
+                question.setQuestionOptions(opts);
+            } else if (question.getType().getTypeName().equals("Essay")) {
+                QuestionOption opt = new QuestionOption();
+                for(Question q : listResultQuestionAnswer){
+                    if(q.getQId() == question.getQId()){
+                        opt.setOptContent(q.getAnswer());
+                        break;
+                    }
+                }
+                ArrayList<QuestionOption> opts = new ArrayList<>();
+                opts.add(opt);
+                question.setQuestionOptions(opts);
+            }
+
+        }
+        // close connection
+        try {
+            tDb.closeConnection();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         request.setAttribute("listResultQuestionAnswer", listResultQuestionAnswer);
         request.setAttribute("listQuestions", listQuestions);
         request.getRequestDispatcher("../../../view/user/room/ReviewTest.jsp").forward(request, response);

@@ -71,6 +71,13 @@ public class RoomManage extends HttpServlet {
         }
 
         ArrayList<String> listRoomName = rDB.listRoomName();
+        // close connection
+        try {
+            rDB.closeConnection();
+            uDB.closeConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         request.setAttribute("listRoomName", listRoomName);
 
         request.getRequestDispatcher(".././view/user/room/ManageRoomScreen.jsp").forward(request, response);

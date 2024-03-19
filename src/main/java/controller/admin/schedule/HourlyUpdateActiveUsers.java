@@ -14,6 +14,9 @@ public class HourlyUpdateActiveUsers implements Job {
         try {
             activeUsersDBContext.update(numberOfActiveUser);
             ActiveSessionCounter.resetActiveSessions();
+            // Close connection
+            activeUsersDBContext.closeConnection();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,7 +1,7 @@
 package dao;
 
 import entity.*;
-import entity.ViewModel.LeaderBoardViewModel;
+import entity.view.LeaderBoardViewModel;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -118,10 +118,12 @@ public class TestDBContext extends DBContext {
                 "    question.question,\n" +
                 "    question.answer,\n" +
                 "    question.sid,\n" +
-                "    question.type_id\n" +
+                "    question.type_id," +
+                "    t.type_name   \n" +
                 "FROM online_quizz.test\n" +
-                "JOIN online_quizz.test_question ON test.test_id = test_question.test_test_id\n" +
-                "JOIN online_quizz.question ON test_question.question_qid = question.qid\n" +
+                "JOIN online_quizz.test_question ON test.test_id = test_question.test_id\n" +
+                "JOIN online_quizz.question ON test_question.qid = question.qid " +
+                "Join online_quizz.type t on t.type_id = question.type_id\n" +
                 "WHERE test.test_id = ?;\n";
 
         try {
@@ -140,6 +142,8 @@ public class TestDBContext extends DBContext {
 
                 Type t = new Type();
                 t.setTypeId(rs.getInt("type_id"));
+                t.setTypeName(rs.getString("type_name"));
+
                 q.setType(t);
 
                 ArrayList<QuestionOption> listOptions = new ArrayList<>();
@@ -249,8 +253,8 @@ public class TestDBContext extends DBContext {
     public HashMap<Question, Float> getExactlyAnswerQuestionsInCertainTest(User userLogged, Test currentTest) {
         HashMap<Question, Float> getExactlyAnswerQuestionsInCertainTest = new HashMap<>();
         String sql = "SELECT question.qid,  question.question, question.answer, test_question.score FROM online_quizz.test\n" +
-                "JOIN online_quizz.test_question ON test.test_id = test_question.test_test_id\n" +
-                "JOIN online_quizz.question ON test_question.question_qid = question.qid\n" +
+                "JOIN online_quizz.test_question ON test.test_id = test_question.test_id\n" +
+                "JOIN online_quizz.question ON test_question.qid = question.qid\n" +
                 "WHERE test.test_id = ?;";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -339,7 +343,7 @@ public class TestDBContext extends DBContext {
 
         String sql2 = "SELECT test.test_id, test.test_name, SUM(test_question.score) as total_score FROM online_quizz.test\n" +
                 "JOIN online_quizz.test_question \n" +
-                "ON test.test_id = test_question.test_test_id\n" +
+                "ON test.test_id = test_question.test_id\n" +
                 "GROUP BY test.test_id, test.test_name\n" +
                 "HAVING test_id = ?;\n";
 
@@ -390,7 +394,8 @@ public class TestDBContext extends DBContext {
         }
     }
 
-    public void insert(Test entity, ArrayList<TestQuestion> testQuestions) throws SQLException {
+    public int insert(Test entity, ArrayList<TestQuestion> testQuestions) throws SQLException {
+        int testId = -1;
         try {
             connection.setAutoCommit(false);
             String sql = "INSERT INTO `online_quizz`.`test`\n" +
@@ -420,7 +425,8 @@ public class TestDBContext extends DBContext {
                 ResultSet rs = stm.getGeneratedKeys();
                 if (rs.next()) {
                     for (TestQuestion testQuestion : testQuestions) {
-                        testQuestion.setTestId(rs.getInt(1));
+                        testId = rs.getInt(1);
+                        testQuestion.setTestId(testId);
                     }
                     TestQuestionDBContext testQuestionDBContext = new TestQuestionDBContext();
                     testQuestionDBContext.insertAll(testQuestions, connection);
@@ -438,6 +444,7 @@ public class TestDBContext extends DBContext {
                 throw new RuntimeException(e);
             }
         }
+        return testId;
     }
 
     public User getOwnerTest(Test currentTest) {
@@ -481,5 +488,9 @@ public class TestDBContext extends DBContext {
             throw new RuntimeException(e);
         }
         return listResultQuestionAnswer;
+    }
+
+    public void closeConnection() throws SQLException {
+        super.closeConnection();
     }
 }

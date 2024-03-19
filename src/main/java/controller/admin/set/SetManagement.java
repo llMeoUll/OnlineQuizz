@@ -5,6 +5,7 @@ import entity.Set;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SetManagement extends HttpServlet {
@@ -13,6 +14,12 @@ public class SetManagement extends HttpServlet {
         SetDBContext setDBContext = new SetDBContext();
         ArrayList<Set> sets = setDBContext.list();
         request.setAttribute("sets", sets);
+        // Close connection
+        try {
+            setDBContext.closeConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher("../view/admin/SetManagement.jsp").forward(request, response);
     }
 
