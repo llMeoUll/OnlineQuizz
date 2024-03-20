@@ -12,13 +12,15 @@
 <html lang="en">
 <head>
     <title>History detail</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo96x96.png" type="image/png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/font-awesome/6.5.1/css/all.min.css">
-    <script src="${pageContext.request.contextPath}/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/webjars/jquery/3.7.1/jquery.min.js"></script>
+    <script src="${pageContext. request. contextPath}/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext. request. contextPath}/webjars/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-<div class="container">
+<jsp:include page="../../../components/header.jsp"></jsp:include>
+<div class="container" style="margin-top: 96px">
     <h4>View self test detail | <a class="text-decoration-none" href="../.././get?setId=${requestScope.selfTest.set.getSId()}">${requestScope.selfTest.set.getSName()}</a></h4>
     <p>Result: ${requestScope.selfTest.result}/${requestScope.selfTestQuestions.size()}</p>
     <fmt:formatDate value="${requestScope.selfTest.createdAt}" pattern="HH:mm:ss dd/MM/yyyy" var="time"/>

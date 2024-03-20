@@ -1,16 +1,12 @@
 package dao;
 
-import entity.Question;
-import entity.QuestionOption;
-import entity.Set;
-import entity.Type;
+import entity.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import entity.Type;
 public class QuestionDBContext extends DBContext{
     public ArrayList<Question> list(int setId) {
         ArrayList<Question> questions = new ArrayList<>();
@@ -176,6 +172,14 @@ public class QuestionDBContext extends DBContext{
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    public ArrayList<Question> list(ArrayList<TestQuestion> testQuestions) {
+        ArrayList<Question> questions = new ArrayList<>();
+        for (TestQuestion testQuestion : testQuestions) {
+            questions.add(get(testQuestion.getQId()));
+        }
+        return questions;
     }
 
     public void closeConnection() throws SQLException {

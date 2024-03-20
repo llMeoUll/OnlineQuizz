@@ -408,22 +408,18 @@ public class UserDBContext extends DBContext {
             String sqlUpdateUser = "UPDATE `online_quizz`.`user`\n" +
                     "SET\n" +
                     "`email` = ?,\n" +
-                    "`username` = ?,\n" +
                     "`given_name` = ?,\n" +
                     "`family_name` = ?,\n" +
                     "`password` = ?,\n" +
-                    "`avatar` = ?,\n" +
                     "`updated_at` = ?\n" +
                     "WHERE `uid` = ?;";
             PreparedStatement stmUpdateUser = connection.prepareStatement(sqlUpdateUser);
             stmUpdateUser.setString(1, entity.getEmail());
-            stmUpdateUser.setString(2, entity.getUsername());
-            stmUpdateUser.setString(3, entity.getGivenName());
-            stmUpdateUser.setString(4, entity.getFamilyName());
-            stmUpdateUser.setString(5, entity.getPassword());
-            stmUpdateUser.setString(6, entity.getAvatar());
-            stmUpdateUser.setTimestamp(7, entity.getUpdatedAt());
-            stmUpdateUser.setInt(8, entity.getId());
+            stmUpdateUser.setString(2, entity.getGivenName());
+            stmUpdateUser.setString(3, entity.getFamilyName());
+            stmUpdateUser.setString(4, entity.getPassword());
+            stmUpdateUser.setTimestamp(5, entity.getUpdatedAt());
+            stmUpdateUser.setInt(6, entity.getId());
             stmUpdateUser.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

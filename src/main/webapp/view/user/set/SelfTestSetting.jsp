@@ -10,20 +10,21 @@
 <html>
 <head>
     <title>Self-test Setting</title>
-    <link rel="stylesheet" href="../.././webjars/bootstrap/5.3.2/css/bootstrap.min.css">
-<%--    <link rel="stylesheet" href="../.././css/CreateSet.css">--%>
-    <link rel="stylesheet" href="../.././webjars/font-awesome/6.5.1/css/all.min.css">
-    <script src="../.././webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
-    <script src="../.././webjars/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo96x96.png" type="image/png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/font-awesome/6.5.1/css/all.min.css">
+    <script src="${pageContext. request. contextPath}/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext. request. contextPath}/webjars/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-
+<jsp:include page="../../../components/header.jsp"></jsp:include>
 <div class="container h-100 w-100 d-flex align-items-center justify-content-center">
     <form action="./self-test-setting" method="post" class="w-50" id="setting-form">
         <div class="card">
+            <c:set var="numberQuestion" value="${sessionScope.set.questions.size()}"/>
             <div class="card-header d-flex justify-content-between align-items-center">
                 <div>
-                    <h5 class="card-title">${sessionScope.set.getSName()}</h5>
+                    <h5 class="card-title">${sessionScope.set.getSName()} (total question: ${numberQuestion})</h5>
                     <h4 class="card-text">Set up your test</h4>
                 </div>
                 <div>
@@ -32,11 +33,10 @@
                     </a>
                 </div>
             </div>
-            <c:set var="numberQuestion" value="${sessionScope.set.questions.size()}"/>
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <p>
-                        Questions (max ${numberQuestion})
+                        Number of questions
                     </p>
                     <input type="number" name="number-question" value="${numberQuestion >= 20 ? 20 : numberQuestion}" min="2"/>
                 </div>

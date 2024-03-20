@@ -490,6 +490,53 @@ public class TestDBContext extends DBContext {
         return listResultQuestionAnswer;
     }
 
+    public void update(Test test, ArrayList<TestQuestion> testQuestions) {
+        try {
+            connection.setAutoCommit(false);
+            String sql = "UPDATE `online_quizz`.`test`\n" +
+                    "SET\n" +
+                    "`room_id` = ?,\n" +
+                    "`test_name` = ?,\n" +
+                    "`test_description` = ?,\n" +
+                    "`duration` = ?,\n" +
+                    "`start_time` = ?,\n" +
+                    "`end_time` = ?,\n" +
+                    "`attempt` = ?,\n" +
+                    "`updated_at` = current_timestamp()\n" +
+                    "WHERE `test_id` = ?;";
+            try {
+                PreparedStatement stm = connection.prepareStatement(sql);
+                stm.setInt(1, test.getRoom().getRoomId());
+                stm.setString(2, test.getTestName());
+                stm.setString(3, test.getTestDescription());
+                stm.setInt(4, test.getDuration());
+                stm.setTimestamp(5, test.getStartTime());
+                stm.setTimestamp(6, test.getEndTime());
+                stm.setInt(7, test.getAttempt());
+                stm.setInt(8, test.getTestId());
+                stm.executeUpdate();
+                TestQuestionDBContext testQuestionDBContext = new TestQuestionDBContext();
+                testQuestionDBContext.delete(test.getTestId(), connection);
+                testQuestionDBContext.insertAll(testQuestions, connection);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     public void closeConnection() throws SQLException {
         super.closeConnection();
     }

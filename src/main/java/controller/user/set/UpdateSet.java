@@ -14,7 +14,7 @@ public class UpdateSet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        int setId = Integer.parseInt(request.getParameter("set-id"));
+        int setId = Integer.parseInt(request.getParameter("setId"));
         SetDBContext setDB = new SetDBContext();
         //check user is owner of set
         if (setDB.isOwner(user.getId(), setId)) {

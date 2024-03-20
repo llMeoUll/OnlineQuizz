@@ -1,46 +1,79 @@
 package controller.user.room.test;
 
+import dao.QuestionDBContext;
 import dao.TestDBContext;
+import dao.TestQuestionDBContext;
+import entity.Question;
+import entity.Room;
 import entity.Test;
+import entity.TestQuestion;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import util.DateTimeLocalConverter;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class UpdateTest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+        int testId = Integer.parseInt(request.getParameter("testId"));
+        TestDBContext testDB = new TestDBContext();
+        Test test = new Test();
+        test.setTestId(testId);
+        test = testDB.getTestById(test);
+        request.setAttribute("test", test);
+        TestQuestionDBContext testQuestionDB = new TestQuestionDBContext();
+        ArrayList<TestQuestion> testQuestions = testQuestionDB.list(testId);
+        QuestionDBContext questionDB = new QuestionDBContext();
+        ArrayList<Question> questions = questionDB.list(testQuestions);
+        request.setAttribute("questions", questions);
+        //close connection
+
+        request.getRequestDispatcher("../../.././view/user/room/test/UpdateTest.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int testId = Integer.parseInt(request.getParameter("testId"));
-        String testName = request.getParameter("testName");
-        String testDescription = request.getParameter("testDescription");
+        int roomId = Integer.parseInt(request.getParameter("roomId"));
+        String Name = request.getParameter("name");
+        String Description = request.getParameter("description");
+        Timestamp startTime = DateTimeLocalConverter.DateTimeLocalToTimestamp(request.getParameter("start"));
+        int duration = Integer.parseInt(request.getParameter("duration"));
+        int attempt = Integer.parseInt(request.getParameter("attempt"));
+        Timestamp endTime = DateTimeLocalConverter.DateTimeLocalToTimestamp(request.getParameter("end"));
+        Test test = new Test();
+        test.setTestName(Name);
+        test.setTestDescription(Description);
+        test.setDuration(duration);
+        test.setAttempt(attempt);
+        test.setStartTime(startTime);
+        test.setEndTime(endTime);
+        test.setTestId(testId);
+        Room room = new Room();
+        room.setRoomId(roomId);
+        test.setRoom(room);
 
-        Test t = new Test();
-        t.setTestId(testId);
-        t.setTestName(testName);
-        t.setTestDescription(testDescription);
-//
-        TestDBContext tDb = new TestDBContext();
-        tDb.updateById(t);
-        // user/room/get?roomId = ?
-        t = tDb.getTestById(t);
 
-        // close connection
-        try {
-            tDb.closeConnection();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        String[] questions = request.getParameterValues("question-ids");
+        ArrayList<TestQuestion> testQuestions = new ArrayList<>();
+        for (int i = 0; i < questions.length; i++) {
+            float score = Float.parseFloat(request.getParameter("score-question-" + questions[i]));
+            int questionId = Integer.parseInt(questions[i]);
+            TestQuestion testQuestion = new TestQuestion();
+            testQuestion.setQId(questionId);
+            testQuestion.setScore(score);
+            testQuestion.setTestId(testId);
+            testQuestions.add(testQuestion);
         }
-        response.sendRedirect("../../room/get?roomId=" + t.getRoom().getRoomId());
-
+        // update test to database
+        TestDBContext testDBContext = new TestDBContext();
+        testDBContext.update(test, testQuestions);
+        response.sendRedirect("../../room/get?roomId=" + room.getRoomId());
     }
+
+
 }

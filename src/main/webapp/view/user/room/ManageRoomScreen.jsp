@@ -20,121 +20,29 @@
 
 <head>
     <title>Manage room</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    </style>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href=".././css/manageRoom/ManageRoomScreen.css">
-    <link rel="stylesheet" href=".././css/manageRoom/SearchBar.css">
-
-    <!-- Bootstrap and jQuery scripts -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manageRoom/ManageRoomScreen.css">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo96x96.png" type="image/png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/font-awesome/6.5.1/css/all.min.css">
+    <script src="${pageContext. request. contextPath}/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext. request. contextPath}/webjars/jquery/3.7.1/jquery.min.js"></script>
 
 </head>
 
 <body>
-<%--Navbar--%>
-<style>
-    /* Navbar styling with linear gradient background */
-    .navbar {
-        background: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%);
-        /* Purple linear gradient background */
-    }
-
-    .navbar-brand,
-    .navbar-nav .nav-link {
-        color: #ffffff !important;
-    }
-
-    .navbar-brand:hover,
-    .navbar-nav .nav-link:hover {
-        color: #3498db !important;
-    }
-
-    .navbar-toggler-icon {
-        background-color: #ffffff;
-    }
-
-    .dropdown-menu {
-        background: linear-gradient(to right, #6c5ce7, #4a40a3);
-        border: none;
-    }
-
-    .dropdown-item {
-        color: #ffffff !important;
-    }
-
-    .dropdown-item:hover {
-        background-color: #3498db !important;
-    }
-</style>
-
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="../../">
-        <img src="../../imagines/logo1250x1250.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        Quizzicle
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class='fas fa-align-right'></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active mr-3">
-                <a class="nav-link" href="#"><i class="fas fa-home"></i> Homepage</a>
-            </li>
-            <li class="nav-item active mr-3">
-                <a class="nav-link" href="#"><i class='fas fa-book'></i> Your room</a>
-            </li>
-            <li class="nav-item active mr-3">
-                <a class="nav-link" href="#"><i class='fas fa-book'></i> Your set</a>
-            </li>
-            <li class="nav-item mr-3">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i
-                            class="fas fa-search"></i></button>
-                </form>
-            </li>
-            <li class="nav-item mr-3">
-                <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notification</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"></i> Profile
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#"><i class="fas fa-cogs"></i> Settings</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</nav>
-<!-- Content -->
+<jsp:include page="../../../components/header.jsp"></jsp:include>
 
 <!-- Content -->
-<div class="container mt-4">
+<div class="container" style="margin-top: 96px">
     <div class="row">
         <!-- Left Block -->
         <div class="col-lg-4 col-md-4 col-sm-12 p-0">
             <!-- User Info Block -->
-            <div class="mb-4 bg-light-purple p-3 rounded">
+            <div class="mb-4  p-3 rounded">
                 <!-- Clickable User Avatar -->
                 <img src="https://th.bing.com/th/id/R.d4cafb173ba792aaf336e574250b4560?rik=F6cZ58cL%2b%2f%2fcUQ&pid=ImgRaw&r=0"
                      alt="User Avatar" class="img-fluid rounded-circle clickable-avatar"
-                     style="width: 50px; height: 50px;" data-toggle="modal" data-target="#avatarModal">
+                     style="width: 50px; height: 50px;" data-bs-dismiss="modal" data-target="#avatarModal">
                 <span class="ml-2 h5">${requestScope.userHasRoom.username}</span>
             </div>
         </div>
@@ -143,12 +51,12 @@
         <div class="col-lg-8 col-md-8 col-sm-12 p-0">
 
             <!-- Create Room Button -->
-            <button type="button" class="btn btn-primary float-md-right float-sm-none" data-toggle="modal"
+            <button type="button" class="btn btn-primary float-md-right float-sm-none" data-bs-dismiss="modal"
                     data-target="#createRoomModal">
                 <i class="fas fa-plus-circle mr-1"></i>Create Room
             </button>
             <%-- Create join room--%>
-            <button type="button" class="btn btn-primary float-md-right float-sm-none mr-3" data-toggle="modal"
+            <button type="button" class="btn btn-primary float-md-right float-sm-none mr-3" data-bs-dismiss="modal"
                     data-target="#joinRoomModal">
                 <i class="fas fa-plus-circle mr-1"></i>Join Room
             </button>
@@ -197,14 +105,24 @@
 <%--Display list room --%>
 <div>
     <c:forEach items="${requestScope.listRoom}" var="room">
-        <a href="./room/get?roomId=${room.roomId}" class="text-decoration-none">
-            <div class="container mt-3 bg-light-purple p-3 rounded room-item">
-                <!-- Information Block -->
-                <div class="row">
-                    <p class="font-weight-bold ml-4 text-light">Name: ${room.roomName} | Owner: ${room.user.username}</p>
+        <div class="container">
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <a href="./room/get?roomId=${room.roomId}" class="text-decoration-none">
+                        <div class="container mt-3  p-3 rounded room-item">
+                            <!-- Information Block -->
+                            <div class="row">
+                                <p class="font-weight-bold ml-4 ">Name: ${room.roomName} |
+                                    Owner: ${room.user.username}</p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
+
             </div>
-        </a>
+        </div>
+
     </c:forEach>
 </div>
 
@@ -213,9 +131,9 @@
 <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-purple text-white">
+            <div class="modal-header bg-purple ">
                 <h5 class="modal-title" id="avatarModalLabel">User's Larger Avatar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -263,9 +181,9 @@
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-purple text-white">
+            <div class="modal-header bg-purple ">
                 <h5 class="modal-title" id="createRoomModalLabel">Create Room</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -308,9 +226,9 @@
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-purple text-white">
+            <div class="modal-header bg-purple ">
                 <h5 class="modal-title" id="joinRoomModalLabel">Join Room</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

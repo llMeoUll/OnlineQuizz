@@ -6,6 +6,7 @@
 <html>
 <head>
     <title>Get set</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo96x96.png" type="image/png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/font-awesome/6.5.1/css/all.min.css">
     <script src="${pageContext. request. contextPath}/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
@@ -50,9 +51,12 @@
             <a class="btn-success" href="#" onclick="confirmDelete()">Delete</a>
             <div style="justify-content: center;">
                 <!--  Update -->
-                <a class="btn btn-primary" href="/Quizzicle/user/set/update">Update</a>
+                <a class="btn btn-primary" href="/Quizzicle/user/set/update?setId=${requestScope.setId}">Update</a>
+                <a class="btn btn-primary" href="${pageContext.request.contextPath}/user/set/self-test-setting?setId=${requestScope.setId}">Self test</a>
+                <a class="btn btn-primary" href="${pageContext.request.contextPath}/user/set/self-test/history?setId=${requestScope.setId}">Self test history</a>
+
                 <form id="myForm" action="./get" method="post">
-                    <div id="ratingStars" class="" style="position: static">
+                    <div id="ratingStars">
                         <input type="radio" id="star5" name="numberOfStar" value="5" onclick="submitForm()">
                         <label for="star5" title="5 stars"></label>
                         <input type="radio" id="star4" name="numberOfStar" value="4" onclick="submitForm()">
@@ -63,7 +67,6 @@
                         <label for="star2" title="2 stars"></label>
                         <input type="radio" id="star1" name="numberOfStar" value="1" onclick="submitForm()">
                         <label for="star1" title="1 star"></label>
-
                         <input type="hidden" name="setId" value="${requestScope.setId}">
                     </div>
                 </form>

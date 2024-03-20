@@ -51,9 +51,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form action="./update" method="post" enctype="multipart/form-data"
+                                <form action="./update" method="post"
                                       class="mx-1 mx-md-4">
-                                    <input name="uid" type="hidden" value="${requestScope.user.id}">
+                                    <input name="uid" type="hidden" value="${requestScope.uid}">
                                     <div class="w-100">
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -70,7 +70,7 @@
                                             <i class="fa-solid fa-address-card fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <input type="text" name="username" placeholder="Username"
-                                                       class="form-control"
+                                                       class="form-control" readonly
                                                        value="${sessionScope.user.username}" required/>
                                             </div>
                                         </div>
@@ -79,28 +79,50 @@
                                             <div class="form-outline flex-fill mb-0">
                                                 <input type="email" name="email" placeholder="Email"
                                                        class="form-control"
-                                                       value="${sessionScope.user.email}" required/>
+                                                       value="${sessionScope.user.email}" readonly required/>
                                             </div>
                                         </div>
+                                        <%-- current passoword--%>
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-lock-open fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="password" name="current_password"
-                                                       placeholder="Current_password"
+                                                <input type="password" name="current-password"
+                                                       placeholder="Type current password"
                                                        class="form-control"
-                                                       value="${sessionScope.user.password}" required/>
+                                                       id="current-password"
+                                                       required/>
+                                                <i class="fas fa-eye" id="togglePassword"></i>
                                             </div>
+                                            <c:if test="${requestScope.wrongCurrentPassword ne null}">
+                                                <div class="invalid-feedback">${requestScope.wrongCurrentPassword}</div>
+                                            </c:if>
+
                                         </div>
+
+                                        <script>
+                                            const togglePassword = document.getElementById('togglePassword');
+                                            const currentPassword = document.getElementById('current-password');
+                                            const invalidFeedback = document.querySelector('.invalid-feedback');
+
+                                            togglePassword.addEventListener('click', function () {
+                                                const type = currentPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                                                currentPassword.setAttribute('type', type);
+                                                togglePassword.classList.toggle('fa-eye-slash');
+                                            });
+
+                                        </script>
+
+                                        <%-- new pass--%>
                                         <div class="input-group d-flex flex-row align-items-center mb-4 position-relative">
                                             <i class="fas fa-lock fa-lg me-3 fa-fw "></i>
-                                            <span class="position-absolute top-custom start-100 translate-middle-y p-1"
+                                            <span class="position-absolute top-custom start-100 translate-middle-y p-1 show-hide-password"
                                                   id="show-hide-password">
-                                                <i class="fa-regular fa-eye-slash"></i>
-                                            </span>
+        <i class="fa-regular fa-eye-slash"></i>
+    </span>
                                             <input
                                                     type="password"
                                                     class="form-control rounded mt-1 password"
-                                                    placeholder="Type your password"
+                                                    placeholder="Type your new password"
                                                     aria-label="password"
                                                     aria-describedby="password"
                                                     name="password"
@@ -109,6 +131,71 @@
                                             <div class="valid-feedback">Good</div>
                                             <div class="invalid-feedback">Wrong</div>
                                         </div>
+
+                                        <script>
+                                            const passwordInput = document.getElementById('password-input');
+                                            const showHidePasswordIcon = document.getElementById('show-hide-password');
+
+                                            showHidePasswordIcon.addEventListener('click', function () {
+                                                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                                                passwordInput.setAttribute('type', type);
+
+                                                // Toggle icon
+                                                showHidePasswordIcon.querySelector('i').classList.toggle('fa-eye');
+                                                showHidePasswordIcon.querySelector('i').classList.toggle('fa-eye-slash');
+                                            });
+                                        </script>
+
+                                        <%--confirm pass--%>
+                                        <div class="input-group d-flex flex-row align-items-center mb-4 position-relative">
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw "></i>
+                                            <span class="position-absolute top-custom start-100 translate-middle-y p-1 show-hide-confirm-password"
+                                                  id="show-hide-confirm-password">
+        <i class="fa-regular fa-eye-slash"></i>
+    </span>
+                                            <input
+                                                    type="password"
+                                                    class="form-control rounded mt-1 confirm-password"
+                                                    placeholder="Confirm your new password"
+                                                    aria-label="confirm-password"
+                                                    aria-describedby="confirm-password"
+                                                    name="confirm-password"
+                                                    id="confirm-password-input"
+                                            />
+                                            <div class="valid-feedback">Passwords match!</div>
+                                            <div class="invalid-feedback">Passwords do not match!</div>
+                                        </div>
+
+                                        <script>
+                                            document.addEventListener('DOMContentLoaded', function () {
+                                                const passwordInput = document.getElementById('password-input');
+                                                const confirmPasswordInput = document.getElementById('confirm-password-input');
+                                                const showHideConfirmPassword = document.querySelector('#show-hide-confirm-password');
+
+                                                showHideConfirmPassword.addEventListener('click', function () {
+                                                    togglePasswordVisibility(confirmPasswordInput, showHideConfirmPassword);
+                                                });
+
+                                                function togglePasswordVisibility(inputField, iconElement) {
+                                                    const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
+                                                    inputField.setAttribute('type', type);
+                                                    iconElement.querySelector('i').classList.toggle('fa-eye-slash');
+                                                    iconElement.querySelector('i').classList.toggle('fa-eye');
+                                                }
+
+                                                confirmPasswordInput.addEventListener('input', function () {
+                                                    if (confirmPasswordInput.value === '' || passwordInput.value === confirmPasswordInput.value) {
+                                                        confirmPasswordInput.classList.remove('is-invalid');
+                                                        confirmPasswordInput.classList.add('is-valid');
+                                                    } else {
+                                                        confirmPasswordInput.classList.remove('is-valid');
+                                                        confirmPasswordInput.classList.add('is-invalid');
+                                                    }
+                                                });
+                                            });
+                                        </script>
+
+                                        <%-- --%>
                                         <div
                                                 class="alert px-4 py-3 mb-0 d-none"
                                                 role="alert"
@@ -141,7 +228,7 @@
                                         <div class="d-flex justify-content-left mx-4 mb-3 mb-lg-4">
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                                        <button type="submit" class="btn btn-light btn-lg">Cancle</button>
+                                        <a href="../../home" class="btn btn-light btn-lg">Cancle</a>
                                     </div>
                                 </form>
                             </div>

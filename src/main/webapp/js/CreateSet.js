@@ -7,8 +7,10 @@ $(document).ready(function(){
         let scrollTop = $(window).scrollTop();
         if (scrollTop >= stickyTop) {
             $('.sticky-top').addClass('shadow');
+            $('.sticky-top').css('z-index', '1040');
         } else {
             $('.sticky-top').removeClass('shadow');
+            $('.sticky-top').css('z-index', '10');
         }
     });
 });
