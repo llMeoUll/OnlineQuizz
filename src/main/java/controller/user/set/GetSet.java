@@ -20,6 +20,10 @@ public class GetSet extends HttpServlet {
         CommentDBContext cdb = new CommentDBContext();
         request.setAttribute("setId", setId);
 
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+
+
         // get list Comment of a setId
         SetDBContext sdb = new SetDBContext();
         Set set = sdb.get(setId);
@@ -29,25 +33,32 @@ public class GetSet extends HttpServlet {
         for (Comment c : comments) {
             replyList.add(cdb.listReplyComment(c.getCommentId()));
         }
+        //get star rate
+        StarRateDBContext starRateDBContext = new StarRateDBContext();
+        StarRate rate = starRateDBContext.get(user.getId(), setId);
+        if (rate != null) {
+            request.setAttribute("rate", rate.getRate());
+        } else {
+            request.setAttribute("rate", 0);
+        }
+
+        // get average rate
+        float avgRate = starRateDBContext.getAverageRate(setId);
+        request.setAttribute("avgRate", avgRate);
+        request.setAttribute("setId", setId);
+        request.setAttribute("replyList", replyList);
+        request.setAttribute("listC", comments);
+        request.setAttribute("listQuestion", questionDBContext.list(setId));
+
         // close connection
         try {
             sdb.closeConnection();
             cdb.closeConnection();
+            starRateDBContext.closeConnection();
+            questionDBContext.closeConnection();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        //comment
-        request.setAttribute("setId", setId);
-        request.setAttribute("replyList", replyList);
-        request.setAttribute("listC", comments);
-        // set Attribute for list question
-        request.setAttribute("listQuestion", questionDBContext.list(setId));
-        try {
-            questionDBContext.closeConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
         request.getRequestDispatcher("../.././view/user/set/GetSet.jsp").forward(request, response);
     }
 

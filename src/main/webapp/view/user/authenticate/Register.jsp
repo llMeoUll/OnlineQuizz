@@ -33,9 +33,9 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="input-group form-outline flex-fill mb-0">
-                                            <input type="text" name="first-name" placeholder="First Name"
+                                            <input type="text" name="given-name" placeholder="Given Name"
                                                    class="form-control" required/>
-                                            <input type="text" name="last-name" placeholder="Last Name"
+                                            <input type="text" name="family-name" placeholder="Family Name"
                                                    class="form-control" required/>
                                         </div>
                                     </div>
@@ -111,7 +111,11 @@
                                                    class="form-control password" required/>
                                         </div>
                                     </div>
-
+                                    <div>
+                                        <p class="text-danger text-center">
+                                            ${requestScope.error}
+                                        </p>
+                                    </div>
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <button type="submit" class="btn btn-primary btn-lg">Register</button>

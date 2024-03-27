@@ -32,15 +32,15 @@ fileInput.addEventListener("change", (e) => {
         (error) => {
         },
         () => {
-            uploadTask.snapshot.ref
-                .getDownloadURL()
-                .then((downloadURL) => {
+            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                     document.getElementById("avatarUrl").value = downloadURL
                     document.getElementById("avatarPreview").src = downloadURL
                     document.getElementById("avatarPreviewContainer").style.display = "block"
                     document.getElementById("avatarPreview").src = downloadURL
                     document.getElementById("buttonOpenFile").style.display = 'none'
                     document.getElementById("changeAvatarForm").submit()
+                //delete old avatar
+
                 })
         }
     )

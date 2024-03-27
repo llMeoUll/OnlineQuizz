@@ -1,10 +1,4 @@
-function confirmDelete() {
-    var confirmation = window.confirm("Are you sure you want to delete this set ${setId}?");
-    if (confirmation) {
-        window.location.href = "../set/delete?set-id=${setId}";
-    } else {
-    }
-}
+
 function submitForm() {
     document.getElementById("myForm").submit();
 }

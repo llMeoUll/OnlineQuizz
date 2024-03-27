@@ -42,7 +42,7 @@
                 <!-- Clickable User Avatar -->
                 <img src="https://th.bing.com/th/id/R.d4cafb173ba792aaf336e574250b4560?rik=F6cZ58cL%2b%2f%2fcUQ&pid=ImgRaw&r=0"
                      alt="User Avatar" class="img-fluid rounded-circle clickable-avatar"
-                     style="width: 50px; height: 50px;" data-bs-dismiss="modal" data-target="#avatarModal">
+                     style="width: 50px; height: 50px;" data-bs-dismiss="modal" data-bs-target="#avatarModal">
                 <span class="ml-2 h5">${requestScope.userHasRoom.username}</span>
             </div>
         </div>
@@ -51,13 +51,13 @@
         <div class="col-lg-8 col-md-8 col-sm-12 p-0">
 
             <!-- Create Room Button -->
-            <button type="button" class="btn btn-primary float-md-right float-sm-none" data-bs-dismiss="modal"
-                    data-target="#createRoomModal">
+            <button type="button" class="btn btn-primary float-md-right float-sm-none" data-bs-toggle="modal"
+                    data-bs-target="#createRoomModal">
                 <i class="fas fa-plus-circle mr-1"></i>Create Room
             </button>
             <%-- Create join room--%>
-            <button type="button" class="btn btn-primary float-md-right float-sm-none mr-3" data-bs-dismiss="modal"
-                    data-target="#joinRoomModal">
+            <button type="button" class="btn btn-primary float-md-right float-sm-none mr-3" data-bs-toggle="modal"
+                    data-bs-target="#joinRoomModal">
                 <i class="fas fa-plus-circle mr-1"></i>Join Room
             </button>
 
@@ -126,12 +126,11 @@
     </c:forEach>
 </div>
 
-
 <!-- Modal for Larger Image -->
 <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-purple ">
+            <div class="modal-header bg-primary ">
                 <h5 class="modal-title" id="avatarModalLabel">User's Larger Avatar</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -181,9 +180,9 @@
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-purple ">
+            <div class="modal-header">
                 <h5 class="modal-title" id="createRoomModalLabel">Create Room</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -226,7 +225,7 @@
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header bg-purple ">
+            <div class="modal-header bg-primary ">
                 <h5 class="modal-title" id="joinRoomModalLabel">Join Room</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

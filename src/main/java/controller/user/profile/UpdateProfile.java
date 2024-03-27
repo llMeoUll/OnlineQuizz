@@ -9,17 +9,16 @@ import entity.Notification;
 import entity.NotificationType;
 import entity.User;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class UserProfileUpdateControl extends HttpServlet {
+public class UpdateProfile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("../../view/user/profile/EditProfile.jsp").forward(request, response);
+        request.getRequestDispatcher("../../view/user/profile/UpdateProfile.jsp").forward(request, response);
     }
 
     @Override

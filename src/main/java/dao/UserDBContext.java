@@ -483,8 +483,77 @@ public class UserDBContext extends DBContext {
 
         return usersJoinedRoom;
     }
+    public void updateName(User user) {
+        String sqlUpdateName = "UPDATE `online_quizz`.`user`\n" +
+                "SET\n" +
+                "`given_name` = ?,\n" +
+                "`family_name` = ?,\n" +
+                "`updated_at` = current_timestamp()\n" +
+                "WHERE `uid` = ?;";
+        try {
+            PreparedStatement stmUpdateName = connection.prepareStatement(sqlUpdateName);
+            stmUpdateName.setString(1, user.getGivenName());
+            stmUpdateName.setString(2, user.getFamilyName());
+            stmUpdateName.setInt(3, user.getId());
+            stmUpdateName.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    public void updateUsername(User user) {
+        String sqlUpdateUsername = "UPDATE `online_quizz`.`user`\n" +
+                "SET\n" +
+                "`username` = ?,\n" +
+                "`updated_at` = current_timestamp()\n" +
+                "WHERE `uid` = ?;";
+        try {
+            PreparedStatement stmUpdateUsername = connection.prepareStatement(sqlUpdateUsername);
+            stmUpdateUsername.setString(1, user.getUsername());
+            stmUpdateUsername.setInt(2, user.getId());
+            stmUpdateUsername.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void updateEmail(User user) {
+        String sqlUpdateEmail = "UPDATE `online_quizz`.`user`\n" +
+                "SET\n" +
+                "`email` = ?," +
+                "`is_verify` = 0,\n" +
+                "`updated_at` = current_timestamp()\n" +
+                "WHERE `uid` = ?;";
+        try {
+            PreparedStatement stmUpdateEmail = connection.prepareStatement(sqlUpdateEmail);
+            stmUpdateEmail.setString(1, user.getEmail());
+            stmUpdateEmail.setInt(2, user.getId());
+            stmUpdateEmail.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public boolean checkPassword(User user, String oldPassword) {
+        try {
+            String sql = "SELECT * FROM `online_quizz`.`user` "
+                    + "WHERE `email` = ? ";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, user.getEmail());
+            ResultSet resultSet = stm.executeQuery();
+            if (resultSet.next()) {
+                User user1 = initUserInfo(resultSet);
+                if (SCryptUtil.check(oldPassword, user1.getPassword())) {
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
     public void closeConnection() throws SQLException {
         super.closeConnection();
     }
+
+
+
 }

@@ -20,12 +20,10 @@ public class UserProfile extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("user");
-        int id = u.getId();
+        User user = (User) session.getAttribute("user");
 
         //User
         UserDBContext udb = new UserDBContext();
-        User user = udb.get(id);
         int countSet = udb.CountSet(user.getId());
         int countRoom = udb.CountRoom(user.getId());
         // Set
@@ -44,7 +42,6 @@ public class UserProfile extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        request.setAttribute("user",user);
         request.setAttribute("countSet",countSet);
         request.setAttribute("countRoom",countRoom);
         request.setAttribute("listS",listS);

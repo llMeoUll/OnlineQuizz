@@ -80,14 +80,35 @@
 }
 
 
-#ratingStars>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
-#ratingStars>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
-#ratingStars>label{color:#ddd;float:right;}
-#ratingStars>input:checked~label,
-#ratingStars:not(:checked)>label:hover,
-#ratingStars:not(:checked)>label:hover~label{color:#FFD700;}
+#ratingStars > input {
+    display: none;
+}
+
+/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#ratingStars > label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+/*1 ngôi sao*/
+#ratingStars > label {
+    color: #ddd;
+    float: right;
+}
+
+#ratingStars > input:checked ~ label,
+#ratingStars:not(:checked) > label:hover,
+#ratingStars:not(:checked) > label:hover ~ label {
+    color: #FFD700;
+}
+
 /* Hover vào các sao phía trước ngôi sao đã chọn*/
-#ratingStars>input:checked+label:hover,
-#ratingStars>input:checked~label:hover,
-#ratingStars>label:hover~input:checked~label,
-#ratingStars>input:checked~label:hover~label{color:#FFED85;}
+#ratingStars > input:checked + label:hover,
+#ratingStars > input:checked ~ label:hover,
+#ratingStars > label:hover ~ input:checked ~ label,
+#ratingStars > input:checked ~ label:hover ~ label {
+    color: #FFED85;
+}

@@ -24,7 +24,7 @@ function submitCode(){
     }
 }
 
-// Set the timer for 3 minutes (in seconds)
+// Set the timer for 2 minutes (in seconds)
 const timerDuration = 2 * 60;
 
 // Get the countdown element

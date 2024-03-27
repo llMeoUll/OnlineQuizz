@@ -10,33 +10,41 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class StarRateDBContext extends DBContext {
-    public ArrayList<StarRate> list(User entity) {
-        ArrayList<StarRate> ratedStars = new ArrayList<>();
-        String sqlGetRatedStar = "SELECT `star_rate`.`uid`,\n" +
-                "    `star_rate`.`sid`,\n" +
-                "    `star_rate`.`rate`,\n" +
-                "    `star_rate`.`created_at`,\n" +
-                "    `star_rate`.`updated_at`\n" +
-                "FROM `online_quizz`.`star_rate`\n" +
-                "WHERE `star_rate`.`uid` = ?";
+    public StarRate get(int uid, int sid) {
+        String sql = "SELECT * FROM online_quizz.star_rate\n" +
+                "Where uid = ? and sid = ?;";
         try {
-            PreparedStatement stmGetRatedStar = connection.prepareStatement(sqlGetRatedStar);
-            stmGetRatedStar.setString(1, String.valueOf(entity.getId()));
-            ResultSet rs = stmGetRatedStar.executeQuery();
-            while(rs.next()) {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, uid);
+            stm.setInt(2, sid);
+            ResultSet resultSet = stm.executeQuery();
+            if (resultSet.next()) {
                 StarRate starRate = new StarRate();
-                starRate.setUser(entity);
-                starRate.setRate(Integer.parseInt(rs.getString("rate")));
-                Set set = new Set();
-                set.setSId(rs.getInt("sid"));
-                starRate.setSet(set);
-                ratedStars.add(starRate);
+                starRate.setRate(resultSet.getInt("rate"));
+                return starRate;
             }
+            return null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return ratedStars;
     }
+
+    public float getAverageRate(int sid) {
+        String sql = "SELECT AVG(rate) as avgRate FROM online_quizz.star_rate\n" +
+                "Where sid = ?;";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, sid);
+            ResultSet resultSet = stm.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getFloat("avgRate");
+            }
+            return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void insert(StarRate starRate) {
         String sqlInsertStarRate = "INSERT INTO online_quizz.`star_rate`\n" +
                 "(uid,\n" +
@@ -73,13 +81,13 @@ public class StarRateDBContext extends DBContext {
         }
     }
 
-    public boolean checkStarRated (StarRate starRate){
+    public boolean checkStarRated(StarRate starRate) {
         String sql = "SELECT * FROM online_quizz.star_rate\n" +
                 "Where uid = ? and sid = ?;";
         try {
-        PreparedStatement stm = connection.prepareStatement(sql);
-        stm.setInt(1, starRate.getUser().getId());
-        stm.setInt(2, starRate.getSet().getSId());
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, starRate.getUser().getId());
+            stm.setInt(2, starRate.getSet().getSId());
             ResultSet resultSet = stm.executeQuery();
             return resultSet.next();
         } catch (SQLException e) {

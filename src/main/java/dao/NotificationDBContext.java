@@ -30,6 +30,10 @@ public class NotificationDBContext extends DBContext<Notification> {
                 notification.setNotificationId(rs.getInt("noti_id"));
                 UserDBContext userDBContext = new UserDBContext();
                 User from = userDBContext.get(rs.getInt("from"));
+
+                //close connection
+                userDBContext.closeConnection();
+
                 notification.setFrom(from);
                 notification.setUrl(rs.getString("url"));
                 NotificationType notificationType = new NotificationType();

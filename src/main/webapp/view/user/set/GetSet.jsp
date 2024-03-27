@@ -47,26 +47,31 @@
         <hr class="container">
         <h5 class="container text-success">All Terminology:</h5>
         <div class="container">
-            <!-- Button trigger modal -->
-            <a class="btn-success" href="#" onclick="confirmDelete()">Delete</a>
-            <div style="justify-content: center;">
-                <!--  Update -->
-                <a class="btn btn-primary" href="/Quizzicle/user/set/update?setId=${requestScope.setId}">Update</a>
-                <a class="btn btn-primary" href="${pageContext.request.contextPath}/user/set/self-test-setting?setId=${requestScope.setId}">Self test</a>
-                <a class="btn btn-primary" href="${pageContext.request.contextPath}/user/set/self-test/history?setId=${requestScope.setId}">Self test history</a>
-
+            <div class="btn-group">
+                <a class="btn btn-outline-primary"
+                   href="${pageContext.request.contextPath}/user/set/delete?setId=${requestScope.setId}">Delete</a>
+                <a class="btn btn-outline-primary"
+                   href="/Quizzicle/user/set/update?setId=${requestScope.setId}">Update</a>
+                <a class="btn btn-outline-primary"
+                   href="${pageContext.request.contextPath}/user/set/self-test-setting?setId=${requestScope.setId}">Self
+                    test</a>
+                <a class="btn btn-outline-primary"
+                   href="${pageContext.request.contextPath}/user/set/self-test/history?setId=${requestScope.setId}">Self
+                    test history</a>
+            </div>
+            <div>
                 <form id="myForm" action="./get" method="post">
+                    <div class="text-end">
+                        <span>Average star: ${requestScope.avgRate == null ? "set has not been rated yet" : requestScope.avgRate }</span>
+                    </div>
                     <div id="ratingStars">
-                        <input type="radio" id="star5" name="numberOfStar" value="5" onclick="submitForm()">
-                        <label for="star5" title="5 stars"></label>
-                        <input type="radio" id="star4" name="numberOfStar" value="4" onclick="submitForm()">
-                        <label for="star4" title="4 stars"></label>
-                        <input type="radio" id="star3" name="numberOfStar" value="3" onclick="submitForm()">
-                        <label for="star3" title="3 stars"></label>
-                        <input type="radio" id="star2" name="numberOfStar" value="2" onclick="submitForm()">
-                        <label for="star2" title="2 stars"></label>
-                        <input type="radio" id="star1" name="numberOfStar" value="1" onclick="submitForm()">
-                        <label for="star1" title="1 star"></label>
+                        <c:forEach begin="1" end="5" var="index">
+                            <c:set var="count" value="${6 - index}"></c:set>
+                            <input type="radio" id="star${count}" name="numberOfStar"
+                                   value="${count}" ${(count) == requestScope.rate ? "checked" : ""}
+                                   onclick="submitForm()">
+                            <label for="star${count}" title="${count} stars"></label>
+                        </c:forEach>
                         <input type="hidden" name="setId" value="${requestScope.setId}">
                     </div>
                 </form>

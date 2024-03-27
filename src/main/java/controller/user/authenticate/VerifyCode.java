@@ -13,6 +13,7 @@ public class VerifyCode extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String code = request.getParameter("code");
+
         String email = request.getParameter("email");
         String verifyType = request.getParameter("verify-type");
         if (code != null && email != null && verifyType != null) {
@@ -48,18 +49,39 @@ public class VerifyCode extends HttpServlet {
         String sessionCode = (String) session.getAttribute("code");
         if(sessionCode != null) {
             if (sessionCode.equals(code) || SCryptUtil.check(code, sessionCode)) {
-                session.removeAttribute("code");
-                session.removeAttribute("uri");
-                session.removeAttribute("verifyType");
-                if(verifyType.equals("verify-email")){
-                    User sessionUser = (User) session.getAttribute("user");
-                    UserDBContext userDB = new UserDBContext();
-                    userDB.verifiedEmail(sessionUser.getEmail());
-                    // close connection
-                    userDB.closeConnection();
-                    response.sendRedirect("./login");
-                } else if(verifyType.equals("reset-password")){
-                    response.sendRedirect("./reset-password");
+                switch (verifyType)
+                {
+                    case "verify-email":
+                        User sessionUser = (User) session.getAttribute("user");
+                        UserDBContext userDB = new UserDBContext();
+                        userDB.verifiedEmail(sessionUser.getEmail());
+                        // close connection
+                        userDB.closeConnection();
+                        response.sendRedirect("./login");
+                        break;
+                    case "reset-password":
+                        response.sendRedirect("./reset-password");
+                        break;
+                    case "verify-email-update":
+                        User userUpdateEmail = (User) session.getAttribute("user");
+                        UserDBContext userDBContext = new UserDBContext();
+                        userDBContext.verifiedEmail(userUpdateEmail.getEmail());
+                        // close connection
+                        userDBContext.closeConnection();
+                        response.sendRedirect(request.getContextPath() + "/user/profile/update");
+                        break;
+                    case "login-verifying-email":
+                        User loggedUser = (User) session.getAttribute("user");
+                        UserDBContext db = new UserDBContext();
+                        db.verifiedEmail(loggedUser.getEmail());
+                        // close connection
+                        db.closeConnection();
+                        response.sendRedirect("./home");
+                        break;
+                    default:
+                        session.removeAttribute("code");
+                        session.removeAttribute("uri");
+                        session.removeAttribute("verifyType");
                 }
             } else {
                 request.setAttribute("error", "Incorrect code. Please try again.");

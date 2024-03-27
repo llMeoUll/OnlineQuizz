@@ -407,7 +407,7 @@
     <!--    Profile Update-->
     <servlet>
         <servlet-name>UserProfileUpdateControl</servlet-name>
-        <servlet-class>controller.user.profile.UserProfileUpdateControl</servlet-class>
+        <servlet-class>controller.user.profile.UpdateProfile</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserProfileUpdateControl</servlet-name>
@@ -422,6 +422,42 @@
     <servlet-mapping>
         <servlet-name>UpdateAvatar</servlet-name>
         <url-pattern>/user/profile/update-avatar</url-pattern>
+    </servlet-mapping>
+    <!--    update name-->
+    <servlet>
+        <servlet-name>UpdateName</servlet-name>
+        <servlet-class>controller.user.profile.UpdateName</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateName</servlet-name>
+        <url-pattern>/user/profile/update-name</url-pattern>
+    </servlet-mapping>
+    <!--    update username-->
+    <servlet>
+        <servlet-name>UpdateUsername</servlet-name>
+        <servlet-class>controller.user.profile.UpdateUsername</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateUsername</servlet-name>
+        <url-pattern>/user/profile/update-username</url-pattern>
+    </servlet-mapping>
+<!--    update password-->
+    <servlet>
+        <servlet-name>UpdateEmail</servlet-name>
+        <servlet-class>controller.user.profile.UpdateEmail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateEmail</servlet-name>
+        <url-pattern>/user/profile/update-email</url-pattern>
+    </servlet-mapping>
+    <!--    update password-->
+    <servlet>
+        <servlet-name>UpdatePassword</servlet-name>
+        <servlet-class>controller.user.profile.UpdatePassword</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdatePassword</servlet-name>
+        <url-pattern>/user/profile/update-password</url-pattern>
     </servlet-mapping>
 
 

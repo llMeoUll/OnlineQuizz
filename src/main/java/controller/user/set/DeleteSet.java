@@ -16,14 +16,14 @@ public class DeleteSet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        int setId = Integer.parseInt(request.getParameter("set-id"));
+        int setId = Integer.parseInt(request.getParameter("setId"));
         SetDBContext setDB = new SetDBContext();
         //check user is owner of set
         if (setDB.isOwner(user.getId(), setId)) {
             Set entity = new Set();
             entity.setSId(setId);
             setDB.delete(entity);
-            response.sendRedirect("viewAll");
+            response.sendRedirect(request.getContextPath() + "/user/set");
         } else {
             response.getWriter().println("You are not owner of this set");
         }

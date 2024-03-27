@@ -1,5 +1,7 @@
 package util;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
@@ -15,6 +17,8 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+
+import static java.net.URLEncoder.encode;
 
 public class Email {
     static Dotenv dotenv = Dotenv.configure().load();
@@ -87,7 +91,12 @@ public class Email {
         // Tạo URL xác nhận
         Dotenv dotenv = Dotenv.configure().load();
         String rootUrl = dotenv.get("ROOT_URL");
-        String url = rootUrl + "verify-code?verify-type="+type+"&email=" + email + "&code=" + hashCode;
+        String url = null;
+        try {
+            url = rootUrl + "verify-code?verify-type="+type+"&email=" + email + "&code=" +  encode(hashCode, StandardCharsets.UTF_8.toString());
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
         MailTemplate mailTemplate = new MailTemplate();
         String mailContent = mailTemplate.generateEmail(subject, content, url, code);
         // Gửi email xác nhận

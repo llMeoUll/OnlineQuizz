@@ -36,14 +36,14 @@ public class Register extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String firstName = request.getParameter("first-name");
-        String lastName = request.getParameter("last-name");
+        String givenName = request.getParameter("given-name");
+        String familyName = request.getParameter("family-name");
         String userName = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String verifyPassword = request.getParameter("verify-password");
         // Kiểm tra xem các trường có giá trị hay không
-        if (firstName != null && lastName != null && userName != null && email != null && password != null && verifyPassword != null) {
+        if (givenName != null && familyName != null && userName != null && email != null && password != null && verifyPassword != null) {
             UserDBContext db = new UserDBContext();
             if (db.checkEmail(email)) {
                 if (db.checkUsername(userName)) {
@@ -53,8 +53,8 @@ public class Register extends HttpServlet {
                         // Tạo một đối tượng User mới và thiết lập thông tin
                         User newUser = new User();
                         newUser.setEmail(email);
-                        newUser.setGivenName(firstName);
-                        newUser.setFamilyName(lastName);
+                        newUser.setGivenName(givenName);
+                        newUser.setFamilyName(familyName);
                         newUser.setPassword(generatedSecuredPasswordHash);
                         newUser.setUsername(userName);
                         HttpSession session = request.getSession();
