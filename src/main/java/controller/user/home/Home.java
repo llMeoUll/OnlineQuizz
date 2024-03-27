@@ -1,6 +1,7 @@
 package controller.user.home;
 
 import dao.NotificationDBContext;
+import dao.UserDBContext;
 import entity.Notification;
 import entity.User;
 import jakarta.servlet.ServletException;
@@ -29,6 +30,8 @@ public class Home extends HttpServlet {
             }
             session.setAttribute("notifications", notifications);
         }
+        UserDBContext userDBContext = new UserDBContext();
+
         request.getRequestDispatcher("./Home.jsp").forward(request, response);
     }
 

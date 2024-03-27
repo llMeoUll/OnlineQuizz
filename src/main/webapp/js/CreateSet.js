@@ -247,8 +247,8 @@ function handleAddQuestion() {
     </div>
     <div class="form-floating mb-3">
         <select class="form-select tf-answer" id="tf-answer-${length}" name="tf-answer-${length}">
-            <option value="true">True</option>
-            <option value="false">False</option>
+            <option value="True">True</option>
+            <option value="False">False</option>
         </select>
         <label class="tf-answer-label" for="tf-answer-${length}">Answer</label>
     </div>

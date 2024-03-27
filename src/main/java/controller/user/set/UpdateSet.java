@@ -108,7 +108,7 @@ public class UpdateSet extends HttpServlet {
         SetDBContext setDB = new SetDBContext();
         try {
             setDB.update(set);
-            response.getWriter().println("Update set successfully");
+            response.sendRedirect(request.getContextPath() + "/user/set/get?setId=" + setId);
         } catch (SQLException e) {
             e.printStackTrace();
         }

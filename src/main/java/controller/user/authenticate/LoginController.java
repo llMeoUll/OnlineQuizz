@@ -67,6 +67,7 @@ public class LoginController extends HttpServlet {
             session.setAttribute("verifyType", verifyType);
             response.sendRedirect(request.getContextPath() + "/verify-code");
         } else {
+            session.setAttribute("user", loggedUser);
             response.sendRedirect(request.getContextPath() + "/home");
         }
         // close connection
