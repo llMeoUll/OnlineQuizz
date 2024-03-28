@@ -19,11 +19,16 @@ public class UserProfile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-
-        //User
         UserDBContext udb = new UserDBContext();
+        User user = null;
+        if (request.getParameter("uId") != null) {
+            int uId = Integer.parseInt(request.getParameter("uId"));
+            user = udb.get(uId);
+        } else {
+            HttpSession session = request.getSession();
+            user = (User) session.getAttribute("user");
+        }
+        //User
         int countSet = udb.CountSet(user.getId());
         int countRoom = udb.CountRoom(user.getId());
         // Set
@@ -41,11 +46,11 @@ public class UserProfile extends HttpServlet {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-        request.setAttribute("countSet",countSet);
-        request.setAttribute("countRoom",countRoom);
-        request.setAttribute("listS",listS);
-        request.setAttribute("listR",listR);
+        request.setAttribute("user", user);
+        request.setAttribute("countSet", countSet);
+        request.setAttribute("countRoom", countRoom);
+        request.setAttribute("listS", listS);
+        request.setAttribute("listR", listR);
         request.getRequestDispatcher("../view/user/profile/UserProfile.jsp").forward(request, response);
     }
 

@@ -19,14 +19,11 @@
 <jsp:include page="../../../components/header.jsp"></jsp:include>
 
 <%--main--%>
-<main class="bg-white">
-    <%--    nam--%>
-    <div class=" z-2" style="background-color: #fff">
-
-        <hr class="container">
+<main class="container bg-white" style="margin-top: 96px">
+    <div class="z-2" style="background-color: #fff">
         <%--        flashcard--%>
         <div class="flashcard-fl mt-32">
-            <c:forEach var="i" items="${listQuestion}" varStatus="status">
+            <c:forEach var="i" items="${requestScope.set.getQuestions()}" varStatus="status">
                 <div class="flashcard ${status.index > 0 ? 'hidden' : ''}">
                     <div class="question">
                         <h2>${i.getQuestion()}</h2>
@@ -38,176 +35,170 @@
             </c:forEach>
         </div>
 
-        <div style="justify-content: center;">
+        <div class="justify-content-center">
             <div class="controls">
                 <button id="prevBtn">Prev</button>
                 <button id="nextBtn">Next</button>
             </div>
         </div>
-        <hr class="container">
-        <h5 class="container text-success">All Terminology:</h5>
-        <div class="container">
-            <div class="btn-group">
+        <div class="btn-group mb-3">
+            <c:if test="${sessionScope.user.id eq requestScope.set.user.id}">
                 <a class="btn btn-outline-primary"
-                   href="${pageContext.request.contextPath}/user/set/delete?setId=${requestScope.setId}">Delete</a>
+                   href="${pageContext.request.contextPath}/user/set/delete?setId=${requestScope.set.getSId()}">Delete</a>
                 <a class="btn btn-outline-primary"
-                   href="/Quizzicle/user/set/update?setId=${requestScope.setId}">Update</a>
-                <a class="btn btn-outline-primary"
-                   href="${pageContext.request.contextPath}/user/set/self-test-setting?setId=${requestScope.setId}">Self
-                    test</a>
-                <a class="btn btn-outline-primary"
-                   href="${pageContext.request.contextPath}/user/set/self-test/history?setId=${requestScope.setId}">Self
-                    test history</a>
-            </div>
-            <div>
-                <form id="myForm" action="./get" method="post">
-                    <div class="text-end">
-                        <span>Average star: ${requestScope.avgRate == null ? "set has not been rated yet" : requestScope.avgRate }</span>
-                    </div>
-                    <div id="ratingStars">
-                        <c:forEach begin="1" end="5" var="index">
-                            <c:set var="count" value="${6 - index}"></c:set>
-                            <input type="radio" id="star${count}" name="numberOfStar"
-                                   value="${count}" ${(count) == requestScope.rate ? "checked" : ""}
-                                   onclick="submitForm()">
-                            <label for="star${count}" title="${count} stars"></label>
-                        </c:forEach>
-                        <input type="hidden" name="setId" value="${requestScope.setId}">
-                    </div>
-                </form>
-            </div>
-            <table class="table mb-4">
-                <thead>
-                <tr>
-                    <th scope="col">Question</th>
-                    <th scope="col">Answer</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="a" items="${listQuestion}">
-                    <tr>
-                        <th>
-                            <pre style="white-space: pre-line">${a.getQuestion()}</pre>
-                        </th>
-                        <th>
-                            <pre style="white-space: pre-line">${a.getAnswer()}</pre>
-                        </th>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-
+                   href="/Quizzicle/user/set/update?setId=${requestScope.set.getSId()}">Update</a>
+            </c:if>
+            <a class="btn btn-outline-primary"
+               href="${pageContext.request.contextPath}/user/set/self-test-setting?setId=${requestScope.set.getSId()}">Self
+                test</a>
+            <a class="btn btn-outline-primary"
+               href="${pageContext.request.contextPath}/user/set/self-test/history?setId=${requestScope.set.getSId()}">Self
+                test history</a>
         </div>
+        <h5 class="text-success">All Terminology:</h5>
+        <div>
+            <form id="myForm" action="./get" method="post">
+                <div class="text-end">
+                    <span>Average star: ${requestScope.avgRate == null ? "set has not been rated yet" : requestScope.avgRate }</span>
+                </div>
+                <div id="ratingStars">
+                    <c:forEach begin="1" end="5" var="index">
+                        <c:set var="count" value="${6 - index}"></c:set>
+                        <input type="radio" id="star${count}" name="numberOfStar"
+                               value="${count}" ${(count) == requestScope.rate ? "checked" : ""}
+                               onclick="submitForm()">
+                        <label for="star${count}" title="${count} stars"></label>
+                    </c:forEach>
+                    <input type="hidden" name="setId" value="${requestScope.set.getSId()}">
+                </div>
+            </form>
+        </div>
+        <table class="table mb-4">
+            <thead>
+            <tr>
+                <th scope="col">Question</th>
+                <th scope="col">Answer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="a" items="${requestScope.set.getQuestions()}">
+                <tr>
+                    <th>
+                        <pre style="white-space: pre-line">${a.getQuestion()}</pre>
+                    </th>
+                    <th>
+                        <pre style="white-space: pre-line">${a.getAnswer()}</pre>
+                    </th>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
 
     <%--Write comment--%>
-    <div class="container">
-        <form action="${pageContext.request.contextPath}/user/comment/create" method="post">
+    <form action="${pageContext.request.contextPath}/user/comment/create" method="post">
                         <textarea name="comment" class="form-control mb-3" rows="2"
                                   placeholder="What are you thinking?"></textarea>
-            <input type="hidden" name="setId" value="${requestScope.setId}">
-            <button class="btn btn-primary" type="submit">
-                <i class="fa fa-pencil fa-fw"></i> Send
-            </button>
-        </form>
-    </div>
+        <input type="hidden" name="setId" value="${requestScope.set.getSId()}">
+        <button class="btn btn-primary" type="submit">
+            <i class="fa fa-pencil fa-fw"></i> Send
+        </button>
+    </form>
     <%--List comment--%>
-    <div class="container">
-        <c:forEach items="${listC}" var="c" varStatus="loop">
-            <div class="card mb-3">
+    <c:forEach items="${listC}" var="c" varStatus="loop">
+        <div class="card mb-3">
+            <div class="card-header">
+                <div class="d-flex flex-start align-items-center">
+                    <c:set var="noAvatar" value="${pageContext.request.contextPath}/images/noImage.png"/>
+                    <img class="rounded-circle me-3"
+                         src="${c.getUser().getAvatar() != null ? c.getUser().getAvatar() : noAvatar}" alt="avatar"
+                         width="60"
+                         height="60"/>
+                    <div>
+                        <h6 class="fw-bold text-primary mb-1">${c.getUser().getGivenName()} ${c.getUser().getFamilyName()}</h6>
+                        <p class="text-muted small mb-0">
+                            <fmt:formatDate value="${c.getCreatedAt()}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p>${c.content}</p>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group">
+                    <button class="btn"
+                            data-id="${c.getCommentId()}"
+                            onclick="updateLike(${c.getCommentId()})">
+                        <i class="fa-regular fa-thumbs-up"></i>
+                        <span id="likeCount_${c.getCommentId()}">${c.getLikes()}</span>
+                    </button>
+                    <button class="btn btn-sm btn-default dislike-btn"
+                            data-id="${c.getCommentId()}"
+                            onclick="updateDislike(${c.getCommentId()})">
+                        <i class="fa-regular fa-thumbs-down"></i>
+                        <span id="dislikeCount_${c.getCommentId()}">${c.getUnlikes()}</span>
+                    </button>
+                </div>
+                <button class="btn btn-sm btn-default btn-hover-primary" href="#"
+                        onclick="toggleForm('${c.getCommentId()}')">
+                    Comment
+                </button>
+                <form id="commentId=${c.getCommentId()}" action="../comment/create" method="post"
+                      style="display: none;">
+                                    <textarea name="comment" class="form-control" rows="2"
+                                              placeholder="What are you thinking?"></textarea>
+                    <input type="hidden" value="${c.getCommentId()}" name="replyId">
+                    <div class="mt-3">
+                        <input type="hidden" name="setId" value="${requestScope.set.getSId()}">
+                        <button class="btn btn-primary" type="submit"><i
+                                class="fa fa-pencil fa-fw"></i> send
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <%-- reply comment--%>
+        <c:forEach items="${replyList[loop.index]}" var="reply">
+            <div class="card ms-5 mb-3">
                 <div class="card-header">
                     <div class="d-flex flex-start align-items-center">
-                        <c:set var="noAvatar" value="${pageContext.request.contextPath}/images/noImage.png"/>
                         <img class="rounded-circle me-3"
-                             src="${c.getUser().getAvatar() != null ? c.getUser().getAvatar() : noAvatar}" alt="avatar"
+                             src="${reply.getUser().getAvatar() != null ? reply.getUser().getAvatar() : noAvatar}"
+                             alt="avatar"
                              width="60"
                              height="60"/>
                         <div>
-                            <h6 class="fw-bold text-primary mb-1">${c.getUser().getGivenName()} ${c.getUser().getFamilyName()}</h6>
+                            <h6 class="fw-bold text-primary mb-1">${reply.getUser().getGivenName()} ${reply.getUser().getFamilyName()}</h6>
                             <p class="text-muted small mb-0">
-                                <fmt:formatDate value="${c.getCreatedAt()}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                <fmt:formatDate value="${reply.getCreatedAt()}" pattern="yyyy-MM-dd HH:mm:ss"/>
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <p>${c.content}</p>
+                    <p>${reply.content}</p>
                 </div>
                 <div class="card-footer">
                     <div class="btn-group">
                         <button class="btn"
-                                data-id="${c.getCommentId()}"
-                                onclick="updateLike(${c.getCommentId()})">
+                                data-id="${reply.getCommentId()}"
+                                onclick="updateLike(${reply.getCommentId()})">
                             <i class="fa-regular fa-thumbs-up"></i>
-                            <span id="likeCount_${c.getCommentId()}">${c.getLikes()}</span>
+                            <span id="likeCount_${reply.getCommentId()}">${reply.getLikes()}</span>
                         </button>
                         <button class="btn btn-sm btn-default dislike-btn"
-                                data-id="${c.getCommentId()}"
-                                onclick="updateDislike(${c.getCommentId()})">
+                                data-id="${reply.getCommentId()}"
+                                onclick="updateDislike(${reply.getCommentId()})">
                             <i class="fa-regular fa-thumbs-down"></i>
-                            <span id="dislikeCount_${c.getCommentId()}">${c.getUnlikes()}</span>
+                            <span id="dislikeCount_${reply.getCommentId()}">${reply.getUnlikes()}</span>
                         </button>
                     </div>
-                    <button class="btn btn-sm btn-default btn-hover-primary" href="#"
-                            onclick="toggleForm('${c.getCommentId()}')">
-                        Comment
-                    </button>
-                    <form id="commentId=${c.getCommentId()}" action="../comment/create" method="post"
-                          style="display: none;">
-                                    <textarea name="comment" class="form-control" rows="2"
-                                              placeholder="What are you thinking?"></textarea>
-                        <input type="hidden" value="${c.getCommentId()}" name="replyId">
-                        <div class="mt-3">
-                            <input type="hidden" name="setId" value="${requestScope.setId}">
-                            <button class="btn btn-primary" type="submit"><i
-                                    class="fa fa-pencil fa-fw"></i> send
-                            </button>
-                        </div>
-                    </form>
                 </div>
             </div>
-
-            <%-- reply comment--%>
-            <c:forEach items="${replyList[loop.index]}" var="reply">
-                <div class="card ms-5 mb-3">
-                    <div class="card-header">
-                        <div class="d-flex flex-start align-items-center">
-                            <img class="rounded-circle me-3"
-                                 src="${reply.getUser().getAvatar() != null ? reply.getUser().getAvatar() : noAvatar}"
-                                 alt="avatar"
-                                 width="60"
-                                 height="60"/>
-                            <div>
-                                <h6 class="fw-bold text-primary mb-1">${reply.getUser().getGivenName()} ${reply.getUser().getFamilyName()}</h6>
-                                <p class="text-muted small mb-0">
-                                    <fmt:formatDate value="${reply.getCreatedAt()}" pattern="yyyy-MM-dd HH:mm:ss"/>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p>${reply.content}</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="btn-group">
-                            <button class="btn"
-                                    data-id="${reply.getCommentId()}"
-                                    onclick="updateLike(${reply.getCommentId()})">
-                                <i class="fa-regular fa-thumbs-up"></i>
-                                <span id="likeCount_${reply.getCommentId()}">${reply.getLikes()}</span>
-                            </button>
-                            <button class="btn btn-sm btn-default dislike-btn"
-                                    data-id="${reply.getCommentId()}"
-                                    onclick="updateDislike(${reply.getCommentId()})">
-                                <i class="fa-regular fa-thumbs-down"></i>
-                                <span id="dislikeCount_${reply.getCommentId()}">${reply.getUnlikes()}</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </c:forEach>
         </c:forEach>
-    </div>
+    </c:forEach>
 </main>
 <%--footer--%>
 <jsp:include page="../../../components/footer.jsp"></jsp:include>
@@ -222,7 +213,7 @@
             type: 'POST',
             data: JSON.stringify({
                 comment_id: commentId,
-                set_id: ${requestScope.setId}
+                set_id: ${requestScope.set.getSId()}
             }),
             success: function (data) {
                 //get json data
@@ -244,7 +235,7 @@
             type: 'POST',
             data: JSON.stringify({
                 comment_id: commentId,
-                set_id: ${requestScope.setId}
+                set_id: ${requestScope.set.getSId()}
             }),
             success: function (data) {
                 //get json data

@@ -18,8 +18,6 @@ public class GetSet extends HttpServlet {
         int setId = Integer.parseInt(request.getParameter("setId"));
         QuestionDBContext questionDBContext = new QuestionDBContext();
         CommentDBContext cdb = new CommentDBContext();
-        request.setAttribute("setId", setId);
-
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
@@ -44,11 +42,10 @@ public class GetSet extends HttpServlet {
 
         // get average rate
         float avgRate = starRateDBContext.getAverageRate(setId);
+        request.setAttribute("set", set);
         request.setAttribute("avgRate", avgRate);
-        request.setAttribute("setId", setId);
         request.setAttribute("replyList", replyList);
         request.setAttribute("listC", comments);
-        request.setAttribute("listQuestion", questionDBContext.list(setId));
 
         // close connection
         try {

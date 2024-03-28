@@ -24,11 +24,12 @@
 <!-- header -->
 <jsp:include page="../../../components/header.jsp"></jsp:include>
 <!-- content -->
-<div class="container" style="margin-top: 96px">
+<div class="container" style="margin-top: 96px; min-height: 80vh">
     <div class="d-flex align-items-center mb-3">
-        <img src="${sessionScope.user.avatar}" alt="avatar" width="40px" height="40px"
+        <c:set var="noAvatar" value="${pageContext.request.contextPath}/images/noImage.png"/>
+        <img src="${requestScope.user.avatar ne null ? requestScope.user.avatar : noAvatar}" alt="avatar" width="40px" height="40px"
              class="rounded-circle border me-3"/>
-        <span class="fw-bold">${sessionScope.user.givenName} ${sessionScope.user.familyName}</span>
+        <span class="fw-bold">${requestScope.user.givenName} ${requestScope.user.familyName}</span>
     </div>
     <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -47,7 +48,7 @@
             <div class="row row-cols-2 g-3">
                 <c:choose>
                     <c:when test="${empty requestScope.listS}">
-                        <p>You not have set.</p>
+                        <p>${requestScope.user.givenName} has not set.</p>
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${requestScope.listS}" var="s">
@@ -79,7 +80,7 @@
                 <c:choose>
                     <c:when test="${empty listR}">
                         <!-- Print an alternative HTML structure if listSet is empty -->
-                        <p>You not have room.</p>
+                        <p>${requestScope.user.givenName} has not room.</p>
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${listR}" var="r">

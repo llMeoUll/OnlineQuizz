@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SearchControl extends HttpServlet {
     @Override
@@ -25,7 +24,6 @@ public class SearchControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getParameter("query");
-//      String type = request.getParameter("type") != null ? request.getParameter("type") : "all";
 
 //        User
         UserDBContext udb = new UserDBContext();
@@ -61,11 +59,8 @@ public class SearchControl extends HttpServlet {
         request.setAttribute("listUser", listUser);
         request.setAttribute("countSet", countSet);
         request.setAttribute("countRoom", countRoom);
-
         request.setAttribute("listSet", listSet);
-
         request.setAttribute("listRoom", listRoom);
-
         request.setAttribute("txtSearch",query);
         request.getRequestDispatcher("./view/user/search/SearchResult.jsp").forward(request, response);
     }

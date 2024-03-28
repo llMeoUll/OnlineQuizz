@@ -58,5 +58,4 @@
 <!-- Footer -->
 <jsp:include page="components/footer.jsp"></jsp:include>
 </body>
-<script src="${pageContext. request. contextPath}/js/Search.js"></script>
 </html>
