@@ -254,7 +254,7 @@ public class SetDBContext extends DBContext {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, "%" + name + "%");
             ResultSet rs = stm.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 Set set = new Set();
                 set.setSId(rs.getInt("sid"));
                 set.setSName(rs.getString("sname"));

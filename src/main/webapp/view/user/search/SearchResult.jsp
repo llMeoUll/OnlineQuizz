@@ -23,6 +23,7 @@
 
 <body>
 <jsp:include page="../../../components/header.jsp"></jsp:include>
+<c:set var="noImage" value="${pageContext.request.contextPath}/images/noImage.png"/>
 
 <main class="container" style="margin-top: 96px">
     <h3>Results for "${txtSearch}"</h3>
@@ -99,7 +100,6 @@
                            href="${pageContext.request.contextPath}/user/profile?uId=${u.id}">
                             <div class="card">
                                 <div class="card-header d-flex justify-content-start align-items-center">
-                                    <c:set var="noImage" value="${pageContext.request.contextPath}/images/noImage.png"/>
                                     <img src="${u.avatar ne null ? u.avatar : noImage}" class="rounded-circle border"
                                          alt="avatar" width="48" height="48"/>
                                     <p class="card-title mx-3 fs-4 text-truncate">${u.username ne null ? u.username : u.email}</p>

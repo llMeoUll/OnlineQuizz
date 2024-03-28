@@ -42,9 +42,11 @@
     <h3 class="text-center">Room: ${requestScope.currentRoom.roomName}</h3>
     <!-- Button trigger modal -->
     <div class="input-group">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#infoRoomModal">
-            Info
-        </button>
+        <c:if test="${requestScope.joined}">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#infoRoomModal">
+                Info
+            </button>
+        </c:if>
         <%--create btn added by LinhNguyen--%>
         <c:if test="${requestScope.currentRoom.user.id eq sessionScope.user.id}">
             <a href="./test/create?roomId=${requestScope.currentRoom.roomId}" class="btn btn-success">Create
@@ -146,6 +148,9 @@
 
 
 <%--Display list test --%>
+<c:if test="${empty requestScope.listTestOfRoom}">
+    <p class="text-center fs-5">This room has no test.</p>
+</c:if>
 <div class="container mt-3">
     <c:forEach items="${requestScope.listTestOfRoom}" var="test">
         <a href="./test/get?testId=${test.testId}" class="text-decoration-none">

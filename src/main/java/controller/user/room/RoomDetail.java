@@ -31,11 +31,11 @@ public class RoomDetail extends HttpServlet {
         int roomId = Integer.parseInt(request.getParameter("roomId"));
         Room r = new Room();
         r.setRoomId(roomId);
-
         RoomDBContext rDB = new RoomDBContext();
-
         User userLogged = (User) request.getSession().getAttribute("user");
 
+        // check user is in room or not
+        boolean joined = rDB.checkUserJoinedRoom(userLogged.getId(), roomId);
 
         TestDBContext tDB = new TestDBContext();
         ArrayList<Test> listTestOfRoom = tDB.getTestsCorrespondingEachRoom(userLogged, r);
@@ -48,6 +48,7 @@ public class RoomDetail extends HttpServlet {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        request.setAttribute("joined", joined);
         request.setAttribute("codeToJoin", codeToJoin);
         request.setAttribute("currentRoom", r);
         request.setAttribute("listTestOfRoom", listTestOfRoom);
