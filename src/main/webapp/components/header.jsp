@@ -19,6 +19,15 @@
             </button>
             <ul class="collapse navbar-collapse m-0" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <c:forEach items="${sessionScope.user.roles}" var="role">
+                        <c:if test="${role.getRId() eq 3}">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="${pageContext. request. contextPath}/admin/dashboard">Dashboard</a>
+                            </li>
+                        </c:if>
+                    </c:forEach>
+
+
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="${pageContext. request. contextPath}/user/set">Your set</a>
                     </li>

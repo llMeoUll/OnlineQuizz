@@ -84,3 +84,77 @@ addEventListener("DOMContentLoaded", (event) => {
     });
 
 });
+
+const form = document.getElementById("register-form");
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const errorName = document.getElementById("error-name").value?.trim();
+    const errorUsername = document.getElementById("error-username").value?.trim();
+    const errorPassword = document.getElementById("error-password").value?.trim();
+    if (errorName === "" || errorUsername === "" || errorPassword === "" || errorName === undefined || errorUsername === undefined || errorPassword === undefined) {
+        form.submit();
+    }
+});
+
+
+function removeAscent(str) {
+    if (str === null || str === undefined) return str;
+    str = str.toLowerCase();
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+    str = str.replace(/đ/g, "d");
+    return str;
+}
+
+function validateName() {
+    let givenName = removeAscent(document.getElementById("given-name").value.trim());
+    let familyName = removeAscent(document.getElementById("family-name").value.trim());
+    let errorNameBox = document.getElementById("error-name");
+
+
+    // Regular expression to check if the input contains only letters, spaces, and Vietnamese characters
+    let lettersOnly = /^[A-Za-z\s]+$/;
+
+    // Check if given name contains only letters, spaces, and Vietnamese characters
+    if (!givenName.match(lettersOnly) || !familyName.match(lettersOnly)) {
+        errorNameBox.innerText = "Given name and Family name should not contain special characters or numbers.";
+    } else {
+        errorNameBox.innerText = "";
+    }
+}
+
+
+function validateUsername() {
+    let username = document.getElementById("username").value;
+    let errorUsernameBox = document.getElementById("error-username");
+    // Regular expression to check if the input contains only letters, numbers, dash, and underscores
+
+    let lettersNumbersUnderscores = /^[A-Za-z0-9-@_]+$/;
+    // Check if username contains only letters, numbers, and underscores
+    if (!username.match(lettersNumbersUnderscores)) {
+        errorUsernameBox.innerText = "Username should not contain special characters. Only letters, numbers, dash, underscores, and @ are allowed.";
+    } else {
+        errorUsernameBox.innerText = "";
+    }
+}
+
+function validatePasswordMatch() {
+    let password = document.getElementById("password-input").value;
+    let confirmPassword = document.getElementById("verify-password").value;
+
+    let errorUsernameBox = document.getElementById("error-password");
+
+    // Check if username contains only letters, numbers, and underscores
+    if (password !== confirmPassword) {
+        errorUsernameBox.innerText = "Verify password does not match.";
+    } else {
+        errorUsernameBox.innerText = "";
+    }
+}
+
+
+

@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
         myToast.show();
         setTimeout(function () {
             myToast.hide();
-        }, 5000);
+        }, 20000);
     });
     document.querySelector('.toast').addEventListener('click', function () {
         console.log('Toast clicked!');

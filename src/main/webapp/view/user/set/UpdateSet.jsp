@@ -23,6 +23,7 @@
 <div id="create-set-content" style="margin-top: 64px">
     <form action="./update?set-id=${requestScope.set.getSId()}" method="post">
         <div class="container-fluid bg-white p-4 d-flex align-items-center justify-content-between sticky-top">
+            <a href="${pageContext.request.contextPath}/user/set/get?setId=${requestScope.set.getSId()}" class="btn btn-outline-primary mx-3">Back</a>
             <h3 class="d-inline mx-3">Update set</h3>
             <button type="submit" class="btn btn-primary mx-3">Update</button>
         </div>
@@ -191,13 +192,13 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <select class="form-select tf-answer" id="tf-answer-${QuestionsLoop.count}" name="tf-answer-${QuestionsLoop.count}">
-                                    <option value="true"
-                                        <c:if test="${question.getType().typeName eq 'True/False' && question.answer eq 'true'}">
+                                    <option value="True"
+                                        <c:if test="${question.getType().typeName eq 'True/False' && question.answer eq 'True'}">
                                             selected
                                         </c:if>
                                     >True</option>
-                                    <option value="false"
-                                            <c:if test="${question.getType().typeName eq 'True/False' && question.answer eq 'false'}">
+                                    <option value="False"
+                                            <c:if test="${question.getType().typeName eq 'True/False' && question.answer eq 'False'}">
                                                 selected
                                             </c:if>
                                     >False</option>

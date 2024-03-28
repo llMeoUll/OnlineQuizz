@@ -55,7 +55,7 @@
                href="${pageContext.request.contextPath}/user/set/self-test/history?setId=${requestScope.set.getSId()}">Self
                 test history</a>
         </div>
-        <h5 class="text-success">All Terminology:</h5>
+        <h5 class="text-success">All Terminology of set: ${requestScope.set.getSName()}</h5>
         <div>
             <form id="myForm" action="./get" method="post">
                 <div class="text-end">

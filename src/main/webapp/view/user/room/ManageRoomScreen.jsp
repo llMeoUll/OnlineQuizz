@@ -20,7 +20,6 @@
 
 <head>
     <title>Manage room</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manageRoom/ManageRoomScreen.css">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo96x96.png" type="image/png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/font-awesome/6.5.1/css/all.min.css">
@@ -40,10 +39,11 @@
             <!-- User Info Block -->
             <div class="mb-4  p-3 rounded">
                 <!-- Clickable User Avatar -->
-                <img src="https://th.bing.com/th/id/R.d4cafb173ba792aaf336e574250b4560?rik=F6cZ58cL%2b%2f%2fcUQ&pid=ImgRaw&r=0"
+                <c:set var="noImage" value="${pageContext.request.contextPath}/images/noImage.png"/>
+                <img src="${requestScope.userHasRoom.avatar != null ? requestScope.userHasRoom.avatar : noImage}"
                      alt="User Avatar" class="img-fluid rounded-circle clickable-avatar"
                      style="width: 50px; height: 50px;" data-bs-dismiss="modal" data-bs-target="#avatarModal">
-                <span class="ml-2 h5">${requestScope.userHasRoom.username}</span>
+                <span class="ml-2 h5">${requestScope.userHasRoom.username ne null ? requestScope.userHasRoom.username : requestScope.userHasRoom.email}</span>
             </div>
         </div>
 
@@ -137,7 +137,7 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                <img src="https://th.bing.com/th/id/R.d4cafb173ba792aaf336e574250b4560?rik=F6cZ58cL%2b%2f%2fcUQ&pid=ImgRaw&r=0"
+                <img src="${requestScope.userHasRoom.avatar != null ? requestScope.userHasRoom.avatar : noImage}"
                      alt="User Avatar" class="img-fluid rounded-circle" style="max-width: 100%;">
             </div>
         </div>

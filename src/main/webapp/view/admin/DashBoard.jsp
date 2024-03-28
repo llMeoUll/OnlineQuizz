@@ -2,6 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
+        <title>Dashboard</title>
+        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/logo96x96.png"/>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -9,7 +11,6 @@
         <link href="../css/Dashboard.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <title>Dashboard</title>
     </head>
     <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" style="
@@ -17,8 +18,8 @@
         justify-content: space-between;
 ">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="">
-            <img src="../imagines/logo1250x1250.png" alt="Quizzicle Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
+        <a class="navbar-brand ps-3" href="${pageContext.request.contextPath}">
+            <img src="${pageContext.request.contextPath}/images/logo96x96.png" alt="Quizzicle Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
             Quizzicle
         </a>
         <!-- Sidebar Toggle-->
@@ -112,9 +113,6 @@
             <main>
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Dashboard</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ol>
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-primary text-white mb-4">
@@ -177,12 +175,11 @@
                                     <c:forEach items="${requestScope.rooms}" var="room" begin="0" end="1">
                                         <div class="card h-25 m-2" style="width: 16rem;">
                                             <div class="card-body p-4">
-                                                <h4 class="card-title">
+                                                <h4 class="card-title text-truncate">
                                                     ${room.roomName}
                                                 </h4>
-                                                <p class="card-text ">${room.description}</p>
-                                                <a href="#" class="btn btn-primary">Details</a>
-                                                <a href="#" class="btn btn-danger">Delete</a>
+                                                <a href="${pageContext.request.contextPath}/admin/room/update?room_id=${room.roomId}" class="btn btn-primary">Update</a>
+                                                <a href="${pageContext.request.contextPath}/admin/room/delete?room_id=${room.roomId}" class="btn btn-danger">Delete</a>
                                             </div>
                                         </div>
                                     </c:forEach>

@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Forgot Password</title>
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/logo96x96.png"/>
     <link rel="stylesheet" href="webjars/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/ForgotPassword.css">
     <link rel="stylesheet" href="webjars/font-awesome/6.5.1/css/all.min.css">

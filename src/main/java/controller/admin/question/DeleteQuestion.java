@@ -12,13 +12,14 @@ import java.util.ArrayList;
 public class DeleteQuestion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String fromSet = request.getParameter("from-set");
         QuestionDBContext questionDBContext = new QuestionDBContext();
         int qid = Integer.parseInt(request.getParameter("qid"));
         Question deletedQuestion = questionDBContext.get(qid);
         Notification notification = new Notification();
         UserDBContext userDBContext = new UserDBContext();
         NotificationTypeDBContext notificationTypeDBContext = new NotificationTypeDBContext();
-        User from = (User)request.getSession().getAttribute("user");
+        User from = (User) request.getSession().getAttribute("user");
         ArrayList<User> tos = new ArrayList<>();
         tos.add(deletedQuestion.getSet().getUser());
         NotificationType notificationType = notificationTypeDBContext.get(8);
@@ -27,7 +28,7 @@ public class DeleteQuestion extends HttpServlet {
         notification.setType(notificationType);
         notification.setUrl("/Quizzicle/user/set/get?setID=" + deletedQuestion.getSet().getSId());
         notification.setRead(false);
-        notification.setContent("Admin delete your question in set: "  + deletedQuestion.getSet().getSName());
+        notification.setContent("Admin delete your question in set: " + deletedQuestion.getSet().getSName());
         NotificationDBContext notificationDBContext = new NotificationDBContext();
         notificationDBContext.insert(notification);
         questionDBContext.delete(qid);
@@ -40,7 +41,12 @@ public class DeleteQuestion extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        response.sendRedirect("../question");
+        if (fromSet != null) {
+            response.sendRedirect(".././set/details?setId=" + deletedQuestion.getSet().getSId());
+            return;
+        } else {
+            response.sendRedirect("../question");
+        }
     }
 
     @Override

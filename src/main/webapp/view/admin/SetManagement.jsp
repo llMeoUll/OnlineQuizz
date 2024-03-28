@@ -15,13 +15,14 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../css/Dashboard.css" rel="stylesheet">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/logo96x96.png"/>
         <title>Dashboard</title>
     </head>
     <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="">
-            <img src="../imagines/logo1250x1250.png" alt="Quizzicle Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
+        <a class="navbar-brand ps-3" href="${pageContext.request.contextPath}/admin/dashboard">
+            <img src="${pageContext.request.contextPath}/images/logo96x96.png" alt="Quizzicle Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
             Quizzicle
         </a>
         <!-- Sidebar Toggle-->

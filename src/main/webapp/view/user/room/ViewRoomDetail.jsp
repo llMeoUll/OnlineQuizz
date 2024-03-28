@@ -42,7 +42,7 @@
     <h3 class="text-center">Room: ${requestScope.currentRoom.roomName}</h3>
     <!-- Button trigger modal -->
     <div class="input-group">
-        <c:if test="${requestScope.joined}">
+        <c:if test="${requestScope.joined || sessionScope.user.id eq requestScope.currentRoom.user.id}">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#infoRoomModal">
                 Info
             </button>

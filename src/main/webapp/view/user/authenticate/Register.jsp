@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Register</title>
-    <link rel="shortcut icon" type="image/x-icon" href="./icons/favicon32x32.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/logo96x96.png"/>
     <link rel="stylesheet" href="./css/Register.css">
     <link rel="stylesheet" href="webjars/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="webjars/font-awesome/6.5.1/css/all.min.css">
@@ -28,25 +28,33 @@
 
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-                                <form action="./register" method="post" class="mx-1 mx-md-4">
+                                <form action="./register" method="post" class="mx-1 mx-md-4" id="register-form">
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="input-group form-outline flex-fill mb-0">
                                             <input type="text" name="given-name" placeholder="Given Name"
+                                                   id="given-name"
+                                                   onblur="validateName()"
                                                    class="form-control" required/>
                                             <input type="text" name="family-name" placeholder="Family Name"
+                                                    id="family-name"
+                                                    onblur="validateName()"
                                                    class="form-control" required/>
                                         </div>
                                     </div>
+                                    <p id="error-name" class="text-danger ps-5"></p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fa-solid fa-address-card fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <input type="text" name="username" placeholder="Username"
                                                    class="form-control"
+                                                   id="username"
+                                                    onblur="validateUsername()"
                                                    required/>
                                         </div>
                                     </div>
+                                    <p id="error-username" class="text-danger ps-5"></p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
@@ -108,9 +116,12 @@
                                         <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <input type="password" name="verify-password" placeholder="Verify password"
+                                                   id="verify-password"
+                                                   onblur="validatePasswordMatch()"
                                                    class="form-control password" required/>
                                         </div>
                                     </div>
+                                    <p id="error-password" class="text-danger ps-5"></p>
                                     <div>
                                         <p class="text-danger text-center">
                                             ${requestScope.error}

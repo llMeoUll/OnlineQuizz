@@ -27,9 +27,9 @@
 <div class="container" style="margin-top: 96px; min-height: 80vh">
     <div class="d-flex align-items-center mb-3">
         <c:set var="noAvatar" value="${pageContext.request.contextPath}/images/noImage.png"/>
-        <img src="${requestScope.user.avatar ne null ? requestScope.user.avatar : noAvatar}" alt="avatar" width="40px" height="40px"
+        <img src="${requestScope.user.avatar ne null ? requestScope.user.avatar : noAvatar}" alt="avatar" width="64px" height="64px"
              class="rounded-circle border me-3"/>
-        <span class="fw-bold">${requestScope.user.givenName} ${requestScope.user.familyName}</span>
+        <span class="h3">${requestScope.user.givenName} ${requestScope.user.familyName}</span>
     </div>
     <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">

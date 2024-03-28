@@ -56,11 +56,9 @@ public class RoleDBContext extends DBContext {
     public ArrayList<Role> list(String email) throws ClassNotFoundException {
         ArrayList<Role> roles = new ArrayList<>();
         try {
-            String sql = "select r.rid, r.name as rname, f.fid, f.fname, f.url from `user` u\n" +
+            String sql = "select r.rid, r.name as rname from `user` u\n" +
                     "inner join `role_user_mapping` ru on u.uid = ru.uid\n" +
                     "inner join `role` r on r.rid = ru.rid\n" +
-                    "inner join `role_feature_mapping` rf on rf.rid = r.rid\n" +
-                    "inner join `feature` f on f.fid = rf.fid\n" +
                     "where u.email = ?;";
 
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -71,13 +69,10 @@ public class RoleDBContext extends DBContext {
                 Role r = new Role();
                 r.setRId(rs.getInt("rid"));
                 r.setName(rs.getString("rname"));
-
-                Feature f = new Feature();
-                f.setFId(rs.getInt("fid"));
-                f.setFName(rs.getString("fname"));
-                f.setUrl(rs.getString("url"));
-
-                r.getFeatures().add(f);
+                FeatureDBContext featureDBContext = new FeatureDBContext();
+                ArrayList<Feature> features = featureDBContext.list(r.getRId());
+                r.setFeatures(features);
+                featureDBContext.closeConnection();
                 roles.add(r);
             }
 
