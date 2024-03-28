@@ -9,12 +9,15 @@
 <html>
 <head>
     <title>Verify</title>
-    <link rel="shortcut icon" type="image/x-icon" href="./icons/logo64x64.ico"/>
-    <link rel="stylesheet" href="./css/Verify.css">
-    <link rel="stylesheet" href="webjars/bootstrap/5.3.2/css/bootstrap.min.css">
-    <script src="webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/logo96x96.png"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Verify.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
+    <script src="${pageContext.request.contextPath}/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
+<jsp:include page="../../../components/header.jsp" />
 <form method="post" action="./verify-code">
 <div class="container d-flex flex-column">
     <h2 class="text-center mb-4">Verify Your Code</h2>

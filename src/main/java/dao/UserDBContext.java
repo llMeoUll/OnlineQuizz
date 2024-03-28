@@ -518,7 +518,6 @@ public class UserDBContext extends DBContext {
         String sqlUpdateEmail = "UPDATE `online_quizz`.`user`\n" +
                 "SET\n" +
                 "`email` = ?," +
-                "`is_verify` = 0,\n" +
                 "`updated_at` = current_timestamp()\n" +
                 "WHERE `uid` = ?;";
         try {

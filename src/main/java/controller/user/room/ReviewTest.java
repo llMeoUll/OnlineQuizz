@@ -1,5 +1,6 @@
 package controller.user.room;
 
+import dao.RoomDBContext;
 import dao.TestDBContext;
 import entity.Question;
 import entity.QuestionOption;
@@ -25,7 +26,8 @@ public class ReviewTest extends HttpServlet {
         Test currentTest = new Test();
         currentTest.setTestId(testId);
         currentTest = tDb.getTestById(currentTest);
-        request.setAttribute("currentTest", currentTest);
+        RoomDBContext rDb = new RoomDBContext();
+        currentTest.setRoom(rDb.getRoomById(currentTest.getRoom()));
         // list question and this answer
         ArrayList<Question> listResultQuestionAnswer = tDb.getListResultQuestionAnswer(testId, attempt, userId);
         // list question of this test
@@ -63,11 +65,12 @@ public class ReviewTest extends HttpServlet {
         // close connection
         try {
             tDb.closeConnection();
+            rDb.closeConnection();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+        request.setAttribute("currentTest", currentTest);
         request.setAttribute("listResultQuestionAnswer", listResultQuestionAnswer);
         request.setAttribute("listQuestions", listQuestions);
         request.getRequestDispatcher("../../../view/user/room/ReviewTest.jsp").forward(request, response);

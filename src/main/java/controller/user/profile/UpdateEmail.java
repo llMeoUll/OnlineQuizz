@@ -20,9 +20,8 @@ public class UpdateEmail extends HttpServlet {
             String content = "Please confirm that you want to use this email as your Quizzicle account email address";
             Email sendEmail = new Email();
             sendEmail.sendVerifyCode(request, user.getEmail(), subject, content, verifyType);
-            response.sendRedirect("./verify-code");
+            response.sendRedirect(request.getContextPath() + "/verify-code");
         }
-
     }
 
     @Override
@@ -33,7 +32,6 @@ public class UpdateEmail extends HttpServlet {
         User user = (User) session.getAttribute("user");
         if (userDBContext.checkEmail(email)) {
             user.setEmail(email);
-            userDBContext.updateEmail(user);
             session.setAttribute("user", user);
 
             // Tạo nội dung email

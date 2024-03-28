@@ -14,6 +14,7 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/logo96x96.png" type="image/png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <script src="${pageContext. request. contextPath}/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script src="${pageContext. request. contextPath}/webjars/jquery/3.7.1/jquery.min.js"></script>
 </head>
@@ -22,7 +23,7 @@
 <div class="container" style="margin-top: 96px">
     <h4 class="text-center">Self test history</h4>
     <div class="row justify-content-center">
-        <a href=".././get?setId=${requestScope.set.getSId()}" class="text-decoration-none text-center">${requestScope.set.getSName()}</a>
+        <a href=".././get?setId=${requestScope.set.getSId()}" class="text-decoration-none text-center fs-3">${requestScope.set.getSName()}</a>
     </div>
     <table id="self-test-history" class="table table-hover">
         <thead>

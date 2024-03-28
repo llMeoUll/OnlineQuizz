@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../../.././webjars/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../.././css/CreateSet.css">
     <link rel="stylesheet" href="../../../.././webjars/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <script src="../../../.././webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
     <script src="../../../.././webjars/jquery/3.7.1/jquery.min.js"></script>
 </head>

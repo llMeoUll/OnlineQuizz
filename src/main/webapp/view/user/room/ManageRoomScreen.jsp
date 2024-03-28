@@ -189,7 +189,6 @@
             <div class="modal-body">
                 <!-- Add your form elements for creating a room here -->
                 <form action="../user/room/create" method="post">
-                    <input type="hidden" name="ownerUser" value="${requestScope.userHasRoom.id}">
                     <div class="form-group">
                         <label for="roomName" class="text-purple">Room Name</label>
                         <input type="text" class="form-control" id="roomName" name="roomName"

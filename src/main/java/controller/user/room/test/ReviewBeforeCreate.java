@@ -63,7 +63,7 @@ public class ReviewBeforeCreate extends HttpServlet {
             notification.setFrom(room.getUser());
             notification.setType(notificationType);
             notification.setRead(false);
-            notification.setUrl("/Quizzicle/user/room/get?roomId=" + test.getRoom().getRoomId());
+            notification.setUrl("/Quizzicle/user/room/test/get?testId=" + test.getTestId());
             notification.setContent(room.getUser().getFamilyName() + " " + room.getUser().getGivenName() + " "
                     + notificationType.getAction() + " in room: " + room.getRoomName());
             ArrayList<User> tos = userDBContext.list(room);

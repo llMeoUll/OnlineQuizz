@@ -47,10 +47,9 @@ public class VerifyCode extends HttpServlet {
     private void checkCode(HttpServletRequest request, HttpServletResponse response, String code, String verifyType) throws IOException, ServletException, SQLException {
         HttpSession session = request.getSession();
         String sessionCode = (String) session.getAttribute("code");
-        if(sessionCode != null) {
+        if (sessionCode != null) {
             if (sessionCode.equals(code) || SCryptUtil.check(code, sessionCode)) {
-                switch (verifyType)
-                {
+                switch (verifyType) {
                     case "verify-email":
                         User sessionUser = (User) session.getAttribute("user");
                         UserDBContext userDB = new UserDBContext();
@@ -65,7 +64,7 @@ public class VerifyCode extends HttpServlet {
                     case "verify-email-update":
                         User userUpdateEmail = (User) session.getAttribute("user");
                         UserDBContext userDBContext = new UserDBContext();
-                        userDBContext.verifiedEmail(userUpdateEmail.getEmail());
+                        userDBContext.updateEmail(userUpdateEmail);
                         // close connection
                         userDBContext.closeConnection();
                         response.sendRedirect(request.getContextPath() + "/user/profile/update");
@@ -78,11 +77,11 @@ public class VerifyCode extends HttpServlet {
                         db.closeConnection();
                         response.sendRedirect("./home");
                         break;
-                    default:
-                        session.removeAttribute("code");
-                        session.removeAttribute("uri");
-                        session.removeAttribute("verifyType");
+
                 }
+                session.removeAttribute("code");
+                session.removeAttribute("uri");
+                session.removeAttribute("verifyType");
             } else {
                 request.setAttribute("error", "Incorrect code. Please try again.");
                 request.getRequestDispatcher("./view/user/authenticate/Verify.jsp").forward(request, response);

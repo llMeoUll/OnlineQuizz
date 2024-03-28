@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import util.GenerateCode;
 
 import java.io.IOException;
@@ -16,26 +17,22 @@ import java.util.Date;
 public class CreateRoom extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("../../view/admin/CreateRoom.jsp").forward(request, response);
+        request.getRequestDispatcher("../../view/user/room/CreateRoom.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int uid = Integer.parseInt(request.getParameter("ownerUser"));
         String roomName = request.getParameter("roomName");
         String password = request.getParameter("password");
         String description = request.getParameter("description");
         String code = GenerateCode.generateCode();
-
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
         Date createdAtDate = new Date();
-
         Timestamp createdAt = new Timestamp(createdAtDate.getTime());
 
         Room r = new Room();
-        User u = new User();
-        u.setId(uid);
-
-        r.setUser(u);
+        r.setUser(user);
         r.setRoomName(roomName);
         r.setCode(code);
         r.setPassword(password);
@@ -52,6 +49,6 @@ public class CreateRoom extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        response.sendRedirect("../../../Quizzicle/user/room");
+        response.sendRedirect(request.getContextPath() + "/user/room");
     }
 }

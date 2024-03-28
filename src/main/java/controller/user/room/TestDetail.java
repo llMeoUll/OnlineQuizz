@@ -1,5 +1,6 @@
 package controller.user.room;
 
+import dao.RoomDBContext;
 import dao.TestDBContext;
 import entity.Question;
 import entity.QuestionOption;
@@ -32,7 +33,8 @@ public class TestDetail extends HttpServlet {
         Test currentTest = new Test();
         currentTest.setTestId(testId);
         currentTest = tDb.getTestById(currentTest);
-        request.setAttribute("currentTest", currentTest);
+        RoomDBContext roomDBContext = new RoomDBContext();
+        currentTest.setRoom(roomDBContext.getRoomById(currentTest.getRoom()));
         // list question of this test
         ArrayList<Question> listQuestions = tDb.getListQuestionsOfTest(currentTest);
         // get question by type
@@ -56,10 +58,12 @@ public class TestDetail extends HttpServlet {
         // close connection
         try {
             tDb.closeConnection();
+            roomDBContext.closeConnection();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        request.setAttribute("currentTest", currentTest);
         request.setAttribute("listQuestions", listQuestions);
-        request.getRequestDispatcher("../../../view/user/room/ViewTestDetail.jsp").forward(request, response);
+        request.getRequestDispatcher("../../.././view/user/room/test/ViewTestDetail.jsp").forward(request, response);
     }
 }

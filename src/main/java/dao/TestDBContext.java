@@ -330,14 +330,14 @@ public class TestDBContext extends DBContext {
     }
 
     public ArrayList<LeaderBoardViewModel> getLeaderBoardViewModels(Test currentTest) {
-        String sql = "SELECT udt.udt_id, udt.attempt, u.uid, u.username, udt.created_at, SUM(ua.score) AS score, test.test_name, test.test_description, test.test_id\n" +
+        String sql = "SELECT udt.udt_id, udt.attempt, u.uid, u.username, u.email, udt.created_at, SUM(ua.score) AS score, test.test_name, test.test_description, test.test_id\n" +
                 "FROM online_quizz.user_does_test as udt\n" +
                 "JOIN test ON udt.test_id = test.test_id\n" +
                 "JOIN room ON test.room_id = room.room_id\n" +
                 "JOIN user_join_room as ujr ON ujr.room_id = room.room_id AND ujr.uid = udt.uid\n" +
                 "JOIN user as u ON u.uid = ujr.uid\n" +
                 "JOIN user_answer as ua ON ua.udt_id = udt.udt_id\n" +
-                "GROUP BY udt.udt_id, udt.attempt, u.uid, u.username, udt.created_at, test.test_name, test.test_description, test.test_id\n" +
+                "GROUP BY udt.udt_id, udt.attempt, u.uid, u.username, u.email, udt.created_at, test.test_name, test.test_description, test.test_id\n" +
                 "HAVING test.test_id = ?;";
         ArrayList<LeaderBoardViewModel> leaderBoardViewModels = new ArrayList<>();
 
@@ -367,6 +367,7 @@ public class TestDBContext extends DBContext {
                 User user = new User();
                 user.setId(rs.getInt("uid"));
                 user.setUsername(rs.getString("username"));
+                user.setEmail(rs.getString("email"));
                 leaderBoardViewModel.setUser(user);
 
                 Test test = new Test();
