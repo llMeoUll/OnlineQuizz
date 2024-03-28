@@ -9,6 +9,7 @@ import org.checkerframework.checker.units.qual.A;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 
@@ -254,6 +255,59 @@ public class SetDBContext extends DBContext {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, "%" + name + "%");
             ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Set set = new Set();
+                set.setSId(rs.getInt("sid"));
+                set.setSName(rs.getString("sname"));
+                set.setDescription(rs.getString("description"));
+                set.setPrivate(rs.getBoolean("is_private"));
+                set.setCreatedAt(rs.getTimestamp("created_at"));
+                set.setUpdatedAt(rs.getTimestamp("updated_at"));
+                UserDBContext udb = new UserDBContext();
+                User user = udb.get(rs.getInt("uid"));
+                udb.closeConnection();
+                set.setUser(user);
+                sets.add(set);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return sets;
+    }
+
+    public ArrayList<Set> search(String setName, Timestamp fromDate, Timestamp toDate) {
+        ArrayList<Set> sets = new ArrayList<>();
+        String sqlSearch = "SELECT `set`.`sid`,\n" +
+                "    `set`.`sname`,\n" +
+                "    `set`.`description`,\n" +
+                "    `set`.`is_private`,\n" +
+                "    `set`.`uid`,\n" +
+                "    `set`.`created_at`,\n" +
+                "    `set`.`updated_at`\n" +
+                "FROM online_quizz.`set`\n" +
+                "WHERE 1=1 ";
+        if(!setName.equals("")) {
+            sqlSearch = sqlSearch + "AND `set`.`sname` LIKE ? ";
+        }
+        if(fromDate != null) {
+            sqlSearch = sqlSearch + "AND `set`.`created_at` >= ? ";
+        }
+        if(toDate != null) {
+            sqlSearch = sqlSearch + "AND `set`.`created_at` <= ? ";
+        }
+        try {
+            PreparedStatement stmSearch = connection.prepareStatement(sqlSearch);
+            int index = 1;
+            if(!setName.equals("")) {
+                stmSearch.setString(index++, "%" + setName + "%");
+            }
+            if(fromDate != null) {
+                stmSearch.setTimestamp(index++, fromDate);
+            }
+            if(toDate != null) {
+                stmSearch.setTimestamp(index, toDate);
+            }
+            ResultSet rs = stmSearch.executeQuery();
             while (rs.next()) {
                 Set set = new Set();
                 set.setSId(rs.getInt("sid"));

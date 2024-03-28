@@ -103,6 +103,25 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
+                <div class="container-fluid mt-5">
+                    <form action="../admin/set" method="POST" class="row g-3">
+                        <div class="col-md-4">
+                            <label for="name" class="form-label">Set Name</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="fromDate" class="form-label">From Date</label>
+                            <input type="datetime-local" class="form-control" id="fromDate" name="fromDate">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="toDate" class="form-label">To Date</label>
+                            <input type="datetime-local" class="form-control" id="toDate" name="toDate">
+                        </div>
+                        <div class="col-md-2 mt-5">
+                            <button type="submit" class="btn btn-primary">Filter</button>
+                        </div>
+                    </form>
+                </div>
                 <section class="vh-100" style="background-color: #eee;">
                     <div class="container py-5 h-100">
                         <div class="row d-flex justify-content-center align-items-center h-100">

@@ -5,10 +5,7 @@ import entity.*;
 
 import com.lambdaworks.crypto.SCryptUtil;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -546,6 +543,62 @@ public class UserDBContext extends DBContext {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+
+    public ArrayList<User> search(Timestamp fromDate, Timestamp toDate, String email, boolean isVerified) {
+        ArrayList<User> users = new ArrayList<>();
+        String sqlSearch = "SELECT user.`uid`,\n" +
+                "    user.`email`,\n" +
+                "    user.`username`,\n" +
+                "    user.`given_name`,\n" +
+                "    user.`family_name`,\n" +
+                "    user.`avatar`,\n" +
+                "    user.`is_verify`,\n" +
+                "    user.`created_at`,\n" +
+                "    user.`updated_at`\n" +
+                "FROM online_quizz.`user`\n" +
+                "WHERE 1=1 ";
+        if(!email.equals("")) {
+            sqlSearch = sqlSearch + "AND user.`email` LIKE ? ";
+        }
+        if(fromDate != null) {
+            sqlSearch = sqlSearch + "AND user.`created_at` >= ? ";
+        }
+        if(toDate != null) {
+            sqlSearch = sqlSearch + "AND user.`created_at` <= ? ";
+        }
+        sqlSearch = sqlSearch + "AND user.`is_verify` = ? ";
+        try {
+            PreparedStatement statementSearch = connection.prepareStatement(sqlSearch);
+            int index = 1;
+            if (!email.equals("")) {
+                statementSearch.setString(index++, "%" + email + "%");
+            }
+            if (fromDate != null) {
+                statementSearch.setTimestamp(index++, fromDate);
+            }
+            if(toDate != null) {
+                statementSearch .setTimestamp(index++, toDate);
+            }
+            statementSearch.setBoolean(index, isVerified);
+            ResultSet rs = statementSearch.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("uid"));
+                user.setEmail(rs.getString("email"));
+                user.setUsername(rs.getString("username"));
+                user.setGivenName(rs.getString("given_name"));
+                user.setFamilyName(rs.getString("family_name"));
+                user.setAvatar(rs.getString("avatar"));
+                user.setVerified(rs.getBoolean("is_verify"));
+                user.setCreatedAt(rs.getTimestamp("created_at"));
+                user.setUpdatedAt(rs.getTimestamp("updated_at"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
     public void closeConnection() throws SQLException {
         super.closeConnection();

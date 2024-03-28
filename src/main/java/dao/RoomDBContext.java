@@ -3,10 +3,7 @@ package dao;
 import entity.Room;
 import entity.User;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class RoomDBContext extends DBContext {
@@ -326,6 +323,60 @@ public class RoomDBContext extends DBContext {
             throw new RuntimeException(e);
         }
         return false;
+    }
+
+    public ArrayList<Room> search(String roomName, Timestamp fromDate, Timestamp toDate) {
+        ArrayList<Room> rooms = new ArrayList<>();
+        String sqlSearch = "SELECT room.`room_id`,\n" +
+                "    room.`room_name`,\n" +
+                "    room.`code`,\n" +
+                "    room.`password`,\n" +
+                "    room.`description`,\n" +
+                "    room.`uid`,\n" +
+                "    room.`created_at`,\n" +
+                "    room.`updated_at`\n" +
+                "FROM online_quizz.`room`\n" +
+                "WHERE 1=1 ";
+        if(!roomName.equals("")) {
+            sqlSearch = sqlSearch + "AND room.`room_name` LIKE ? ";
+        }
+        if(fromDate != null) {
+            sqlSearch = sqlSearch + "AND room.`created_at` >= ? ";
+        }
+        if(toDate != null) {
+            sqlSearch = sqlSearch + "AND room.`created_at` <= ? ";
+        }
+        try {
+            PreparedStatement stmSearch = connection.prepareStatement(sqlSearch);
+            int index = 1;
+            if(!roomName.equals("")) {
+                stmSearch.setString(index++, "%" + roomName + "%");
+            }
+            if(fromDate != null) {
+                stmSearch.setTimestamp(index++, fromDate);
+            }
+            if(toDate != null) {
+                stmSearch.setTimestamp(index, toDate);
+            }
+            ResultSet rs = stmSearch.executeQuery();
+            while (rs.next()) {
+                Room r = new Room();
+                r.setRoomId(rs.getInt("room_id"));
+                r.setRoomName(rs.getString("room_name"));
+                r.setCode(rs.getString("code"));
+                r.setPassword(rs.getString("password"));
+                UserDBContext udb = new UserDBContext();
+                User user = udb.get(rs.getInt("uid"));
+                r.setUser(user);
+                r.setDescription(rs.getString("description"));
+                r.setCreatedAt(rs.getTimestamp("created_at"));
+                r.setUpdatedAt(rs.getTimestamp("updated_at"));
+                rooms.add(r);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rooms;
     }
     public void closeConnection() throws SQLException {
         super.closeConnection();

@@ -97,6 +97,32 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
+                <div class="container-fluid mt-5">
+                    <form action="../admin/user" method="POST" class="row g-3">
+                        <div class="col-md-4">
+                            <label for="name" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="name" name="email">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="fromDate" class="form-label">From Date</label>
+                            <input type="datetime-local" class="form-control" id="fromDate" name="fromDate">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="toDate" class="form-label">To Date</label>
+                            <input type="datetime-local" class="form-control" id="toDate" name="toDate">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="verification" class="form-label">Verification</label>
+                            <select class="form-select" id="verification" name="verification">
+                                <option value="verified">Verified</option>
+                                <option value="notVerified">Not verified</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 mt-5">
+                            <button type="submit" class="btn btn-primary">Filter</button>
+                        </div>
+                    </form>
+                </div>
                 <div class="container-fluid px-4">
                     <div class="container mt-3 mb-4">
                         <div class="col-lg-9 mt-4 mt-lg-0">
