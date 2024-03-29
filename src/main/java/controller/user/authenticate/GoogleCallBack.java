@@ -12,6 +12,7 @@ import dao.RoleDBContext;
 import dao.UserDBContext;
 import entity.Notification;
 import entity.NotificationType;
+import entity.Role;
 import entity.User;
 import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.servlet.*;
@@ -25,6 +26,7 @@ import org.apache.http.util.EntityUtils;
 import websocket.endpoints.AdminDashboardWebSocketEndpoint;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.locks.Lock;
@@ -104,12 +106,15 @@ public class GoogleCallBack extends HttpServlet {
             user.setFamilyName(familyName);
             user.setAvatar(picture);
             user.setVerified(verified);
-            try {
-                RoleDBContext roleDBContext = new RoleDBContext();
-                user.setRoles(roleDBContext.list(user.getEmail()));
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            try {
+//                RoleDBContext roleDBContext = new RoleDBContext();
+//                user.setRoles(roleDBContext.list(user.getEmail()));
+//                roleDBContext.closeConnection();
+//            } catch (ClassNotFoundException ex) {
+//                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (SQLException e) {
+//                throw new RuntimeException(e);
+//            }
             // Check if user is already in database, if not, insert
             if (db.checkEmail(user.getEmail())) {
                 try {
@@ -130,13 +135,27 @@ public class GoogleCallBack extends HttpServlet {
             User registeredUser = db.get(user.getEmail());
             HttpSession session = request.getSession();
             session.setAttribute("user", registeredUser);
+            Boolean isAdmin = false;
+            if (registeredUser != null) {
+                for (Role role : registeredUser.getRoles()) {
+                    if (role.getName().equals("Administrator")) {
+                        isAdmin = true;
+                        break;
+                    }
+                }
+                session.setAttribute("isAdmin", isAdmin);
+            }
             // close connection
             try {
                 db.closeConnection();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            response.sendRedirect("./");
+            if (isAdmin) {
+                response.sendRedirect("./admin/dashboard");
+            } else {
+                response.sendRedirect("./");
+            }
         } else {
             // Handle the case where the response entity is null
             response.getWriter().println("Error: No response entity");

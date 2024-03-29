@@ -35,20 +35,18 @@
 <div class="container" style="margin-top: 96px">
     <div class="row">
         <!-- Left Block -->
-        <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+        <div class="col-md-4 col-sm-12 d-flex justify-content-start align-items-center">
             <!-- User Info Block -->
-            <div class="mb-4  p-3 rounded">
-                <!-- Clickable User Avatar -->
-                <c:set var="noImage" value="${pageContext.request.contextPath}/images/noImage.png"/>
-                <img src="${requestScope.userHasRoom.avatar != null ? requestScope.userHasRoom.avatar : noImage}"
-                     alt="User Avatar" class="img-fluid rounded-circle clickable-avatar"
-                     style="width: 50px; height: 50px;" data-bs-dismiss="modal" data-bs-target="#avatarModal">
-                <span class="ml-2 h5">${requestScope.userHasRoom.username ne null ? requestScope.userHasRoom.username : requestScope.userHasRoom.email}</span>
-            </div>
+            <!-- Clickable User Avatar -->
+            <c:set var="noImage" value="${pageContext.request.contextPath}/images/noImage.png"/>
+            <img src="${requestScope.userHasRoom.avatar != null ? requestScope.userHasRoom.avatar : noImage}"
+                 alt="User Avatar" class="img-fluid rounded-circle clickable-avatar me-2"
+                 style="width: 50px; height: 50px;" data-bs-dismiss="modal" data-bs-target="#avatarModal">
+            <p class="h5 text-truncate">${requestScope.userHasRoom.username ne null ? requestScope.userHasRoom.username : requestScope.userHasRoom.email}</p>
         </div>
 
         <!-- Right Block -->
-        <div class="col-lg-8 col-md-8 col-sm-12 p-0">
+        <div class="col-md-8 col-sm-12 p-0">
 
             <!-- Create Room Button -->
             <button type="button" class="btn btn-primary float-md-right float-sm-none" data-bs-toggle="modal"

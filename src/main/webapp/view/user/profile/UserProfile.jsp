@@ -59,9 +59,9 @@
                                                 ${s.getSName()}
                                         </div>
                                         <div class="d-flex justify-content-between">
-                                            <div class="d-flex align-items-end">
-                                                <img src="${s.getUser().getAvatar()}" alt="avatar" width="40px"
-                                                     height="40px" class="rounded-circle"/>
+                                            <div class="d-flex align-items-center">
+                                                <img src="${s.getUser().getAvatar() ne null ? s.user.avatar : noAvatar}" alt="avatar" width="40px"
+                                                     height="40px" class="rounded-circle me-2"/>
                                                 <span>${s.getUser().getUsername()}</span>
                                             </div>
                                             <a class="btn btn-primary"

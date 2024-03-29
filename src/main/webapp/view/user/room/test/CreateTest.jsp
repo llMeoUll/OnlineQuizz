@@ -72,8 +72,8 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="description">Test description</label>
-                    <textarea type="text" class="form-control" id="description" name="description" style="height: 85%"
-                              required>${sessionScope.test.testDescription}</textarea>
+                    <textarea type="text" class="form-control" id="description" name="description" rows="6"
+                              >${sessionScope.test.testDescription}</textarea>
                 </div>
             </div>
         </div>

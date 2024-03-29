@@ -15,7 +15,13 @@ public class GetSet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        int setId = Integer.parseInt(request.getParameter("setId"));
+        int setId = 0;
+        if(request.getParameter("setId") != null){
+            setId = Integer.parseInt(request.getParameter("setId"));
+        } else {
+            response.sendRedirect(".././set");
+            return;
+        }
         QuestionDBContext questionDBContext = new QuestionDBContext();
         CommentDBContext cdb = new CommentDBContext();
         HttpSession session = request.getSession();

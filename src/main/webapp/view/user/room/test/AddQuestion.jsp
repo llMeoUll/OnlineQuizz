@@ -236,7 +236,7 @@
                                 </div>
                                 <textarea class="form-control essay-answer" id="essay-answer-1" name="essay-answer-1"
                                           placeholder="Enter a answer"
-                                          style="height: 100px"></textarea>
+                                          rows="5"></textarea>
                             </div>
                         </div>
                         <button type="button" onclick="handleAddQuestion();" class="btn btn-outline-primary">+ADD

@@ -1,6 +1,7 @@
 package controller.user.authenticate;
 
 import dao.UserDBContext;
+import entity.Role;
 import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -43,6 +44,18 @@ public class LoginController extends HttpServlet {
         }
         User loggedUser = db.get(email, password);
         HttpSession session = request.getSession();
+        Boolean isAdmin = false;
+        if (loggedUser != null) {
+            for (Role role : loggedUser.getRoles()) {
+                if (role.getName().equals("Administrator")) {
+                    isAdmin = true;
+                    break;
+                }
+            }
+            session.setAttribute("isAdmin", isAdmin);
+        }
+
+
         if (loggedUser == null) {// check if email and password is correct
             // close connection
             try {
@@ -66,6 +79,9 @@ public class LoginController extends HttpServlet {
             session.setAttribute("uri", uri);
             session.setAttribute("verifyType", verifyType);
             response.sendRedirect(request.getContextPath() + "/verify-code");
+        } else if (isAdmin) {
+            session.setAttribute("user", loggedUser);
+            response.sendRedirect(request.getContextPath() + "/admin/dashboard");
         } else {
             session.setAttribute("user", loggedUser);
             response.sendRedirect(request.getContextPath() + "/home");

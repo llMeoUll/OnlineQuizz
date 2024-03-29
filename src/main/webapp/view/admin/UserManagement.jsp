@@ -139,11 +139,12 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            <c:set var="noImage" value="${pageContext.request.contextPath}/images/noImage.png"/>
                                             <c:forEach items="${requestScope.users}" var="user">
                                                 <tr class="candidates-list">
                                                     <td class="title">
                                                         <div class="thumb">
-                                                            <img class="img-fluid" src="${user.avatar}" alt>
+                                                            <img class="img-fluid" src="${user.avatar ne null ? user.avatar : noImage}" alt>
                                                         </div>
                                                         <div class="candidate-list-details">
                                                             <div class="candidate-list-info">

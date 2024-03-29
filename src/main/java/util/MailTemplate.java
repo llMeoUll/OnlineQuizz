@@ -69,7 +69,7 @@ public class MailTemplate {
                 "      </tr>\n" +
                 "      <tr>\n" +
                 "        <td style=\"text-align:center; padding-bottom: 20px\">\n" +
-                "          <img src=\"https://lh3.googleusercontent.com/drive-viewer/AEYmBYR8JAUDazFFROzQjAv13G-RHRzo-aNkcNndcq9eByWt0gkpmjZ4TMhKHXqNMduO_FiLserxg5SGROQa_RCKOS_2ELyC=s1600\" style=\"width: 15%;\" />\n" +
+                "          <img src=\"https://firebasestorage.googleapis.com/v0/b/online-quizz-system.appspot.com/o/static%2Flogo1250x1250.png?alt=media&token=381b146a-c98c-4044-b510-db5b345af2bd\" style=\"width: 15%;\" />\n" +
                 "        </td>\n" +
                 "      </tr>\n" +
                 "    </thead>\n" +

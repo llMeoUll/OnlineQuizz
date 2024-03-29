@@ -102,8 +102,9 @@
           <div class="card mv-4">
             <div class="card-header">
               <div class="row">
+                <c:set var="noImage" value="${pageContext.request.contextPath}/images/noImage.png"/>
                 <div class="col-md-2 rounded mt-3">
-                  <img src="${requestScope.set.getUser().getAvatar()}" class="col-md-10 border-dark rounded"/>
+                  <img src="${requestScope.set.getUser().getAvatar() ne null ? requestScope.set.getUser().getAvatar() : noImage}" class="col-md-10 border-dark rounded"/>
                 </div>
                 <div class="col-md-4 mt-3">
                   <h2>${requestScope.set.getSName()}</h2>

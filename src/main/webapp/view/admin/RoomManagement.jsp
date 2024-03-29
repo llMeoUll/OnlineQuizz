@@ -121,6 +121,7 @@
                     <div class="container py-5 h-100">
                         <div class="row d-flex justify-content-center align-items-center h-100">
                             <div class="col col-xl-10">
+                                <c:set var="noImage" value="${pageContext.request.contextPath}/images/noImage.png"/>
                                 <c:forEach items="${requestScope.rooms}" var="room">
                                     <div class="card mb-5" style="border-radius: 15px;">
                                         <div class="card-body p-4">
@@ -140,7 +141,7 @@
                                                 </span></p>
                                                 <span class="ms-3 me-4">|</span></p>
                                                 <a href="/Quizzicle/admin/user/profile?uid=${room.user.id}">
-                                                    <img src="${room.user.avatar}" alt="avatar"
+                                                    <img src="${room.user.avatar ne null ? room.user.avatar : noImage}" alt="avatar"
                                                          class="img-fluid rounded-circle me-1" width="35">
                                                 </a>
                                             </div>

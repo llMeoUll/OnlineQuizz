@@ -1,19 +1,24 @@
 $(document).on("keydown", "form", function (event) {
     return event.key != "Enter";
 });
-$(document).ready(function(){
-    $(window).scroll(function(){
-        let stickyTop = $('.sticky-top').offset().top;
-        let scrollTop = $(window).scrollTop();
-        if (scrollTop >= stickyTop) {
-            $('.sticky-top').addClass('shadow');
-            $('.sticky-top').css('z-index', '1040');
-        } else {
-            $('.sticky-top').removeClass('shadow');
-            $('.sticky-top').css('z-index', '10');
+$(document).ready(function () {
+    $(window).scroll(function () {
+        let isStickyTop = $('.sticky-top');
+        if(isStickyTop.length > 0)
+        {
+            let stickyTop = isStickyTop.offset().top;
+            let scrollTop = $(window).scrollTop();
+            if (scrollTop >= stickyTop) {
+                $('.sticky-top').addClass('shadow');
+                $('.sticky-top').css('z-index', '1040');
+            } else {
+                $('.sticky-top').removeClass('shadow');
+                $('.sticky-top').css('z-index', '10');
+            }
         }
     });
 });
+
 // number of questions state
 function setNumberOfQuestions() {
     let numberOfQuestions = document.getElementsByClassName("question").length;
@@ -25,6 +30,7 @@ function setNumberOfOptions(qid) {
     let numberOfOptions = document.querySelectorAll(`#opt-container-${qid} .opt`).length;
     document.getElementById(`number-opt-mul-${qid}`).value = numberOfOptions;
 }
+
 // run the function state when the document is loaded
 document.addEventListener("DOMContentLoaded", function () {
     setNumberOfQuestions();
@@ -32,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     setNumberOfOptions(1);
 });
-
 
 
 // handle add hashtags
@@ -242,7 +247,7 @@ function handleAddQuestion() {
     cardBodyTF.setAttribute('style', 'display: none;');
     cardBodyTF.innerHTML = `
     <div class="form-floating mb-3">
-        <input type="text" class="form-control tf-question" id="tf-question-${length}" name="tf-question-${length}" placeholder="Enter a question" required/>
+        <input type="text" class="form-control tf-question" id="tf-question-${length}" name="tf-question-${length}" placeholder="Enter a question"/>
         <label class="tf-question-label" for="tf-question-${length}">Question</label>
     </div>
     <div class="form-floating mb-3">
@@ -260,11 +265,11 @@ function handleAddQuestion() {
     cardBodyEssay.setAttribute('style', 'display: none;');
     cardBodyEssay.innerHTML = `
     <div class="form-floating mb-3">
-        <input type="text" class="form-control essay-question" id="essay-question-${length}" name="essay-question-${length}" placeholder="Enter a question" required/>
+        <input type="text" class="form-control essay-question" id="essay-question-${length}" name="essay-question-${length}" placeholder="Enter a question"/>
         <label class="essay-question-label" for="essay-question-${length}">Question</label>
     </div>
     <textarea class="form-control essay-answer" id="essay-answer-${length}" name="essay-answer-${length}" placeholder="Enter a answer"
-              style="height: 100px"></textarea>
+              rows="5"></textarea>
     `;
 
 

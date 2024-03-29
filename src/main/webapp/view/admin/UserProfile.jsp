@@ -111,7 +111,8 @@
                                 <div class="col-lg-4">
                                     <div class="card mb-4">
                                         <div class="card-body text-center">
-                                            <img src="${requestScope.user.avatar}" alt="avatar"
+                                            <c:set var="noImage" value="${pageContext.request.contextPath}/images/noImage.png"/>
+                                            <img src="${requestScope.user.avatar ne null ? requestScope.user.avatar : noImage}" alt="avatar"
                                                  class="rounded-circle img-fluid" style="width: 150px;">
                                             <h5 class="my-3">${requestScope.user.givenName} ${requestScope.user.familyName}</h5>
                                             <p class="text-muted mb-1">${requestScope.user.createdAt}</p>

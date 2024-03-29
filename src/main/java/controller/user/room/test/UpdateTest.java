@@ -24,11 +24,17 @@ public class UpdateTest extends HttpServlet {
         Test test = new Test();
         test.setTestId(testId);
         test = testDB.getTestById(test);
-        request.setAttribute("test", test);
         TestQuestionDBContext testQuestionDB = new TestQuestionDBContext();
         ArrayList<TestQuestion> testQuestions = testQuestionDB.list(testId);
         QuestionDBContext questionDB = new QuestionDBContext();
         ArrayList<Question> questions = questionDB.list(testQuestions);
+        float totalScore = 0;
+        for (TestQuestion testQuestion : testQuestions) {
+            totalScore += testQuestion.getScore();
+        }
+        request.setAttribute("testQuestions", testQuestions);
+        request.setAttribute("totalScore", totalScore);
+        request.setAttribute("test", test);
         request.setAttribute("questions", questions);
         //close connection
 
